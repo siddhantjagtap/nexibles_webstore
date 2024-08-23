@@ -4,7 +4,7 @@ function Refund() {
     return (
         <div>
             <div className="min-h-screen p-8" style={({ backgroundImage: "url('/Home/nexibles-1.png')" })}>
-                <h1 className="text-4xl font-gotham-light font-bold text-white text-center mb-6">{`Return & Refund Policy`}</h1>
+                <h1 className="text-4xl  mt-12 font-gotham-light font-bold text-white text-center mb-6">{`Return & Refund Policy`}</h1>
                 <div className="w-[90%] text-center mx-auto bg-white rounded-lg shadow-lg p-8">
                     <p className="mb-4">{`We strive to ensure that you have a satisfying shopping experience with us. Our Return Policy outlines guidelines for returns, applicable only in the case of damaged or wrong products.`}</p>
                     <section className="mb-6">
