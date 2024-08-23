@@ -15,6 +15,7 @@ const Navbar = () => {
   const [showPersonDropdown, setShowPersonDropdown] = useState(false);
 //   const { user, logout } = useAuth();
   const [cartItemCount, setCartItemCount] = useState(0);
+  
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);
