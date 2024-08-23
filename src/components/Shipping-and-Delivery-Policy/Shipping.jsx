@@ -4,7 +4,7 @@ function Shipping() {
     return (
         <div>
             <div className="min-h-screen p-8" style={({ backgroundImage: "url('/Home/nexibles-1.png')" })}>
-                <h1 className="text-4xl font-gotham-light font-bold text-white text-center mb-6">{`Shipping & Delivery Policy`}</h1>
+                <h1 className="text-4xl  mt-12 font-gotham-light font-bold text-white text-center mb-6">{`Shipping & Delivery Policy`}</h1>
                 <div className="w-[90%] text-center mx-auto bg-white rounded-lg p-8">
                     <div className="mb-6">
                         <div className='flex justify-between items-center '>
