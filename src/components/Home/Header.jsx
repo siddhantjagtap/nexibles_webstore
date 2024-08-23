@@ -1,7 +1,9 @@
 'use client';
 import Image from 'next/image';
-import Navbar from './Navbar';
+
 import { useState, useEffect } from 'react';
+import BlogSection from './BlogSection';
+
 
 export default function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +17,7 @@ export default function Header() {
 
   return (
     <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/Home/nexibles-1.png')" }}>
-      <Navbar />
+     
       <div className="container mx-auto px-4 pt-24">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mt-8 md:mt-0 relative">
@@ -55,6 +57,7 @@ export default function Header() {
           ))}
         </div>
       </div>
+  {/* <BlogSection /> */}
     </div>
   );
 }
