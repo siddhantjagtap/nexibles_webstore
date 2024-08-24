@@ -3,7 +3,12 @@ import React from 'react'
 
 function page() {
   return (
-    <div><Privacy /></div>
+    <div>
+      <div>
+        <Navbar />
+      </div>
+      <div><Privacy /></div>
+    </div>
   )
 }
 
