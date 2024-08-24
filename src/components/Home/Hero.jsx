@@ -19,8 +19,8 @@ export default function Hero() {
   return (
     <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/Home/nexibles-1.png')" }}>
      
-      <div className="container mx-auto px-4 pt-24">
-        <div className="flex flex-col md:flex-row items-center justify-between">
+      <div className="container mx-auto  pt-24">
+        <div className="flex  items-center">
           <div className="md:w-1/2 mt-8 md:mt-0 relative">
             <div className="overflow-hidden w-full h-[500px] relative">
               {images.map((src, index) => (

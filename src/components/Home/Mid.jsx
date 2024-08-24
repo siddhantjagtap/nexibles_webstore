@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-
 import pouch1 from '../../../public/Home/pouch-1.png'
 import pouch2 from '../../../public/Home/pouch-2.png'
 import pouch3 from '../../../public/Home/pouch-3.png'
 import pouch4 from '../../../public/Home/pouch-4.png'
+import human from '../../../public/Home/human.png'
+import bird from '../../../public/Home/bird.png'
 
 export default function Mid() {
   const celebrations = [
@@ -22,7 +23,7 @@ export default function Mid() {
   ]
 
   return (
-    <div className="bg-[#464087] text-white py-12 px-4">
+    <div className="bg-[#464087] text-white py-12 px-8">
       <h2 className="text-3xl font-bold text-center text-[#ffda40] mb-8">
         Celebrate With Personalization
       </h2>
@@ -32,11 +33,11 @@ export default function Mid() {
       </p>
 
       {/* Celebration Icons */}
-      <div className="flex justify-center space-x-8 mb-16">
+      <div className="flex justify-center space-x-24 mb-16">
         {celebrations.map((celebration, index) => (
           <div key={index} className="text-center">
-            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-2">
-              <span className="text-4xl">{celebration.icon}</span>
+            <div className="w-48 h-48 bg-[#f7eee5] rounded-full flex items-center justify-center mb-2">
+              <span className="text-8xl">{celebration.icon}</span>
             </div>
             <p>{celebration.name}</p>
           </div>
@@ -50,94 +51,62 @@ export default function Mid() {
       {/* Pouches */}
       <div className="flex flex-wrap justify-center gap-8 mb-8">
         {pouches.map((pouch, index) => (
-          <div key={index} className="w-64 ">
-            <div className="bg-[#f7eee5] rounded-b-full h-80 flex items-end justify-center ">
-             
-              <Image
-                src={pouch.image}
-                alt={pouch.name}
-                width={400}
-                height={480} 
-                className="object-contain transition-transform duration-300 hover:-translate-y-[50px]"
-              />
-            
+          <div key={index} className="w-64 relative pt-4">
+            <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center ">
+              <div className="relative w-full h-full -mt-6">
+                <Image
+                  src={pouch.image}
+                  alt={pouch.name}
+                  layout="fill"
+                  objectFit="contain"
+                  className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
+                />
+              </div>
             </div>
+            <button className="bg-[#ffda40] text-[#464087] px-6 py-1 rounded-full font-bold text-xl absolute bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+              Customise
+            </button>
           </div>
         ))}
       </div>
 
-      <div className="flex justify-center">
-        <button className="bg-[#ffda40] text-[#464087] px-8 py-3 rounded-full font-bold">
-          Customise
-        </button>
+        {/* Versatile Gifting section */}
+        <div className="flex  items-center  relative">
+        <div className="">
+          <h2 className="text-8xl font-bold text-white mb-6">Versatile Gifting</h2>
+          <p className="text-4xl mb-8 max-w-xl">
+            Perfect Custom Pouches for gifting Chocolates, Coffee Beans, Dry Fruits and more
+          </p>
+          <div className="flex items-center absolute bottom-0 left-0">
+            <div className="relative w-80 h-80">
+              <Image src={human} alt="Human" layout="fill" objectFit="contain" />
+            </div>
+            <div className="relative w-56 h-56 -ml-20 mb-12">
+              <Image src={bird} alt="Bird" layout="fill" objectFit="contain" />
+            </div>
+          </div>
+        </div>
+        <div className="w-1/2 relative">
+          <div className="absolute top-24 right-28 flex space-x-20">
+            <div className="w-28 h-28 bg-white rounded-full"></div>
+            <div className="w-28 h-28 bg-white rounded-full"></div>
+            <div className="w-28 h-28 bg-white rounded-full"></div>
+          </div>
+          <Image 
+            src={pouch2} 
+            alt="Large Pouch" 
+            width={800} 
+            height={1000} 
+            objectFit="contain" 
+            className="ml-auto mt-[10rem]"
+          />
+        </div>
+      </div>
+
+      {/* Celebrations section */}
+      <div className="text-center mt-24">
+        <h3 className="text-3xl font-bold text-[#ffda40] mb-6">Celebrations</h3>
       </div>
     </div>
   )
 }
-
-// import React from 'react'
-// import bird from '../../../public/Home/bird.png'
-// import butterfly1 from '../../../public/Home/butterfly_1.png'
-// import butterfly2 from '../../../public/Home/butterfly_2.png'
-// import butterfly3 from '../../../public/Home/butterfly_3.png'
-// import butterfly4 from '../../../public/Home/butterfly_4.png'
-// import pouch1 from '../../../public/Home/pouch-1.png'
-// import pouch2 from '../../../public/Home/pouch-2.png'
-// import pouch3 from '../../../public/Home/pouch-3.png'
-// import pouch4 from '../../../public/Home/pouch-4.png'
-
-// export default function Mid() {
-//   const celebrations = [
-//     { name: 'Diwali', icon: bird },
-//     { name: 'Birthday', icon: butterfly1 },
-//     { name: 'Wedding', icon: butterfly2 },
-//     { name: 'Graduation', icon: butterfly3 },
-//   ]
-
-//   const products = [
-//     { image: pouch1 },
-//     { image: pouch2 },
-//     { image: pouch3 },
-//     { image: pouch4 },
-//   ]
-
-//   return (
-//     <div className="bg-[#464087] p-8 px-24 rounded-lg relative">
-//       <h1 className="text-4xl font-bold text-yellow-300 mb-4 text-center">Popular Products</h1>
-      
-//       <div className="flex justify-between mb-12">
-//         {celebrations.map((celebration, index) => (
-//           <div key={index} className="flex flex-col items-center">
-//             <div className="bg-white rounded-full p-4 mb-2 w-16 h-16 flex items-center justify-center">
-//               <img src={celebration.icon.src} alt={celebration.name} className="w-10 h-10" />
-//             </div>
-//             <span className="text-[#ffda40] font-semibold">{celebration.name}</span>
-//           </div>
-//         ))}
-//       </div>
-
-//       <div className="flex items-center justify-center gap-6">
-//         {products.map((product, index) => (
-//           <div key={index} className="relative">
-//             <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-full h-[24rem] w-[18rem] flex items-center justify-center overflow-hidden">
-//               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-//                 <img 
-//                   src={product.image.src} 
-//                   alt="Product" 
-//                   className="w-[120%] h-[120%] object-contain transition-transform duration-300 hover:translate-y-[-50px]" 
-//                 />
-//               </div>
-//             </div>
-//             <button className="bg-[#ffda40] text-[#362c60] font-bold py-2 px-10 rounded-full absolute bottom-[-1rem] left-1/2 transform -translate-x-1/2 text-sm hover:scale-105 transition-transform duration-300">
-//               Customise
-//             </button>
-//           </div>
-//         ))}
-//       </div>
-
-//       <img src={butterfly1.src} alt="Butterfly" width={30} height={30} className="absolute top-10 left-5 transform -rotate-12" />
-//       <img src={butterfly2.src} alt="Butterfly" width={25} height={25} className="absolute bottom-20 right-10 transform rotate-45" />
-//       <img src={butterfly4.src} alt="Butterfly" width={30} height={30} className="absolute top-16 right-24 transform rotate-45" />
-//     </div>
-//   )
-// } 
