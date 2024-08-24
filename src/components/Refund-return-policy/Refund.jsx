@@ -5,10 +5,10 @@ function Refund() {
         <div>
             <div className="min-h-screen p-8" style={({ backgroundImage: "url('/Home/nexibles-1.png')" })}>
                 <h1 className="text-4xl  mt-12 font-gotham-light font-bold text-white text-center mb-6">{`Return & Refund Policy`}</h1>
-                <div className="w-[90%] text-center mx-auto bg-white rounded-lg shadow-lg p-8">
+                <div className="w-[90%] text-center mx-auto bg-white rounded-3xl shadow-lg p-8">
                     <p className="mb-4">{`We strive to ensure that you have a satisfying shopping experience with us. Our Return Policy outlines guidelines for returns, applicable only in the case of damaged or wrong products.`}</p>
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`1. Eligibility for Returns:`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`1. Eligibility for Returns:`}</h2>
                         <p>{`You are eligible to request a return only in the following situations:`}</p>
                         <ul className="pl-6">
                             <li>{`Damaged Product: If the product you received is damaged during transit or has a manufacturing defect.`}</li>
@@ -17,7 +17,7 @@ function Refund() {
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`2. Return Process:`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`2. Return Process:`}</h2>
                         <p>{`To initiate a return, please follow these steps:`}</p>
                         <ul className="pl-6">
                             <li>{`Contact our Customer Support team at support@nexibles.com within 7 days of receiving the product.`}</li>
@@ -27,18 +27,18 @@ function Refund() {
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`3. Conditions for Return`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`3. Conditions for Return`}</h2>
                         <p>{`The product must be in its original packaging, unused, and in the same condition as when you received it.`}</p>
                         <p>{`All tags, labels, and accessories must be intact.`}</p>
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`4. Inspection and Approval`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`4. Inspection and Approval`}</h2>
                         <p>{`Once we receive your returned product, we will inspect it to verify if it meets the conditions for return. If approved, we will process the refund or replacement.`}</p>
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`5. Refund or Replacement`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`5. Refund or Replacement`}</h2>
                         <p>{`In the case of an approved return:`}</p>
                         <ul className="pl-6">
                             <li>{`Refund: We will process a refund to your original payment method within 7 days.`}</li>
@@ -47,7 +47,7 @@ function Refund() {
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`6. Non-Returnable Items:`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`6. Non-Returnable Items:`}</h2>
                         <p>{`Certain products may not be eligible for return. These include:`}</p>
                         <ul className="pl-6">
                             <li>{`Products without original packaging or tags.`}</li>
@@ -56,12 +56,12 @@ function Refund() {
                     </section>
 
                     <section className="mb-6">
-                        <h2 className="text-xl font-semibold mb-2">{`7. Contact Information`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`7. Contact Information`}</h2>
                         <p>{`If you have any questions or concerns about our Return Policy, please contact our Customer Support team at support@nexibles.com`}</p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold mb-2">{`8. Changes to this Return Policy:`}</h2>
+                        <h2 className="text-2xl font-semibold mb-2">{`8. Changes to this Return Policy:`}</h2>
                         <p>{`Nexibles.com reserves the right to modify or update this Return Policy at any time. Any changes will be effective upon posting on our website.`}</p>
                     </section>
 

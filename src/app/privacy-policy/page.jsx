@@ -1,5 +1,5 @@
 import Navbar from '@/components/Home/Navbar'
-import Privacy from '@/components/Privacy_policy/Privacy'
+import Privacy from '@/components/Privacy-policy/Privacy'
 import React from 'react'
 
 function page() {
