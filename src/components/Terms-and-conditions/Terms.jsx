@@ -3,7 +3,7 @@ import React from 'react';
 function Terms() {
     return (
         <div className="flex text-center flex-col items-center p-8" style={({ backgroundImage: "url('/Home/nexibles-1.png')" })} >
-            <h1 className="text-4xl font-bold text-center  text-white mb-8">Terms & Conditions</h1>
+            <h1 className="text-4xl  mt-12 font-bold text-center  text-white mb-8">Terms & Conditions</h1>
             <div className="bg-white p-8 rounded-2xl shadow-lg w-[90%]">
                 <section className="text-lg leading-relaxed">
                     <h2 className="text-2xl font-semibold mb-4">Introduction</h2>

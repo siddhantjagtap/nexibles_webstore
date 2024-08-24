@@ -1,9 +1,15 @@
-import Privacy from '@/components/Privacy-policy/Privacy'
+import Navbar from '@/components/Home/Navbar'
+import Privacy from '@/components/Privacy_policy/Privacy'
 import React from 'react'
 
 function page() {
   return (
-    <div><Privacy /></div>
+    <div>
+      <div>
+        <Navbar />
+      </div>
+      <div><Privacy /></div>
+    </div>
   )
 }
 
