@@ -58,7 +58,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-purple-600 to-purple-900 overflow-visible">
+    <section className="py-16 bg-[#464087] overflow-visible">
       <div className="container mx-auto px-4 overflow-visible">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-12">
           Blogs
