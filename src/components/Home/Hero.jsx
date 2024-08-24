@@ -17,12 +17,12 @@ export default function Hero() {
   }, [images.length]);
 
   return (
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/Home/nexibles-1.png')" }}>
+    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/Home/Main-Banner-Background.png')" }}>
      
-      <div className="container mx-auto  pt-24">
+      <div className=" pt-4 ">
         <div className="flex  items-center">
           <div className="md:w-1/2 mt-8 md:mt-0 relative">
-            <div className="overflow-hidden w-full h-[500px] relative">
+            <div className="overflow-hidden w-full h-[90vh] relative">
               {images.map((src, index) => (
                 <Image
                   key={index}
@@ -36,7 +36,7 @@ export default function Hero() {
                 />
               ))}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center ">
               {images.map((_, i) => (
                 <div
                   key={i}

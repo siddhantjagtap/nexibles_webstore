@@ -13,7 +13,7 @@ const Footer = () => {
       <footer
         className="text-white p-8"
         style={{
-          backgroundImage: "url('/Home/nexibles-1.png')",
+          backgroundImage: "url('/Home/Footer-Background.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
