@@ -41,7 +41,7 @@ export default function Mid() {
   return (
     <div className="bg-[#464087] text-white pt-2  relative">
       {/* Add Homepage-Arch-3 here */}
-      <div className="absolute right-[-116px]  h-full w-auto">
+      <div className="absolute end-0 h-full w-auto">
         <Image
           src={HomepageArch3}
           alt="Decorative Arch"
@@ -69,7 +69,7 @@ export default function Mid() {
       </p>
 
       {/* Celebration Icons */}
-      <div className="flex justify-center space-x-12 mb-16 relative z-10">
+      <div className="flex justify-center space-x-4 mb-16 relative z-10">
         <Image
           src={Butterflies4}
           alt="butterflies"
