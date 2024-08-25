@@ -115,7 +115,7 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="flex flex-wrap justify-center gap-12 mb-8 relative z-10">
+      <div className="flex flex-wrap justify-center gap-8 mb-8 relative z-10">
         <Image
           src={Butterflies6}
           alt="butterflies"
@@ -124,7 +124,7 @@ export default function Mid() {
           className="inline-block"
         />
         {pouches.map((pouch, index) => (
-          <div key={index} className="w-64 relative pt-4">
+          <div key={index} className="w-[14.9rem] relative pt-4">
             <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
               <div className="relative w-full h-full -mt-6">
                 <Image
