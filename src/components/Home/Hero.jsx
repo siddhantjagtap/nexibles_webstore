@@ -2,7 +2,7 @@
 import Image from 'next/image';
 
 import { useState, useEffect } from 'react';
-import BlogSection from './BlogSection';
+
 
 
 export default function Hero() {
@@ -58,7 +58,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-  {/* <BlogSection /> */}
+
     </div>
   );
 }
