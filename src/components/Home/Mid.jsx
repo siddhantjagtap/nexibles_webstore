@@ -131,7 +131,7 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="relative z-10 mb-16">
+      <div className="relative z-10 ">
         <Image
           src={Butterflies6}
           alt="butterflies"
@@ -152,8 +152,8 @@ export default function Mid() {
         >
           {pouches.map((pouch, index) => (
             <SwiperSlide key={index}>
-              <div className="w-[14.9rem] relative pt-4">
-                <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
+              <div className="w-[90%] relative h-full pt-12">
+                <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem]  flex items-center justify-center">
                   <div className="relative w-full h-full -mt-6">
                     <Image
                       src={pouch.image}
@@ -164,7 +164,7 @@ export default function Mid() {
                     />
                   </div>
                 </div>
-                <button className="bg-[#ffda40] text-[#464087] px-6 py-1 rounded-full font-bold text-xl absolute bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                <button className="bg-[#ffda40] mt-8 ml-[7.6rem] text-[#464087] px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                   Customise
                 </button>
               </div>

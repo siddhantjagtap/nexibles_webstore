@@ -1,16 +1,14 @@
 import Footer from '@/components/home/Footer'
 import Navbar from '@/components/home/Navbar'
-import Shipping from '@/components/shipping-and-delivery-policy/Shipping'
+import Shop from '@/components/shop/shop'
 import React from 'react'
 
-function page() {
+export default function page() {
   return (
     <div>
-      <Navbar />
-      <Shipping />
+      <Navbar/>
+      <Shop />
       <Footer/>
-    </div>
+      </div>
   )
 }
-
-export default page

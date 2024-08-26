@@ -55,7 +55,7 @@ const Navbar = () => {
 
         <div className="flex items-center space-x-4 sm:space-x-6">
           <Link
-            href="/search"
+            href="/shop"
             className={`hidden sm:flex items-center ${iconColor}`}
           >
             <IoSearchOutline size={28} />
@@ -129,7 +129,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/contact" onClick={toggleMenu}>
+              <Link href="/contact-us" onClick={toggleMenu}>
                 Contact Us
               </Link>
             </li>

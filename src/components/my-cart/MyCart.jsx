@@ -8,7 +8,7 @@ export default function MyCart() {
   const cartItems = [
     {
       name: "Product 1",
-      image: "/path-to-image1.jpg",
+      image: "/home/pouch-1.png",
       selectedOptions: {
         Size: { optionName: "Large", price: 100 },
         Color: { optionName: "Red", price: 50 }
@@ -24,9 +24,9 @@ export default function MyCart() {
   };
 
   return (
-    <div className="h-screen mt-[4rem]">
+    <div className="h-screen ">
     <div className="md:flex bg-white ">
-      <div className="md:w-1/2 w-full bg-white md:px-6 border-t">
+      <div className="md:w-1/2 w-full bg-white md:px-6">
         <h2 className="text-blue-3 py-4 px-8 font-bold md:text-3xl text-xl border-gray-200 flex">
           My Cart <BsCart3 className="ml-4" size={32} />
         </h2>
@@ -121,15 +121,17 @@ export default function MyCart() {
                 className="md:w-96 w-full px-6 py-2 rounded-md border-2 border-gray-900 text-gray-900"
                 placeholder="Enter Promo code"
               />
-              <button className="px-10 py-2 uppercase bg-gray-900 text-white rounded-md">
+              <button className="px-10 py-2 uppercase bg-[#ffda40] text-[#464087] font-bold rounded-md">
                 apply
               </button>
             </div>
           </div>
           <div className="mt-24 px-6">
-            <button className="px-14 py-2 uppercase bg-gray-900 text-white rounded-md">
+            <Link href='/checkout'>
+            <button className="px-14 py-2 uppercase bg-[#ffda40] text-[#464087] font-bold rounded-md">
               checkout
             </button>
+            </Link>
           </div>
         </div>
       </div>
