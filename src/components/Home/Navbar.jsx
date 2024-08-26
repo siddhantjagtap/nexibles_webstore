@@ -31,12 +31,12 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const iconColor = hasScrolled ? "text-black" : "text-white";
+  const iconColor = hasScrolled ? "text-black" : "text-black";
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        hasScrolled ? "bg-white shadow-xl" : "bg-transparent"
+        hasScrolled ? "bg-white shadow-xl" : "bg-white/[.4]"
       }`}
     >
       <div className="flex items-center justify-between px-4 py-2 sm:px-6">
