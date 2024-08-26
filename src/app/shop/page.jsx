@@ -1,6 +1,6 @@
 import Footer from '@/components/Home/Footer'
 import Navbar from '@/components/Home/Navbar'
-import Shop from '@/components/Shop/Shop'
+import Shop from '@/components/shop/Shop'
 import React from 'react'
 
 export default function page() {
