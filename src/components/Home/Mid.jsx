@@ -39,20 +39,20 @@ export default function Mid() {
   ];
 
   return (
-    <div className="bg-[#464087] text-white pt-2  relative">
-      {/* Add Homepage-Arch-3 here */}
-      <div className="absolute end-0 h-full w-auto">
+    <div className="bg-[#464087] text-white pt-2 relative">
+      {/* Homepage-Arch-3 */}
+      <div className="absolute end-0 h-full w-auto hidden md:block">
         <Image
           src={HomepageArch3}
           alt="Decorative Arch"
           layout="intrinsic"
-          height={650} // match height of the uploaded image
-          width={650} // match width of the uploaded image
+          height={650}
+          width={650}
           className=""
         />
       </div>
 
-      <h2 className="text-6xl font-bold text-center text-[#ffda40] mt-8 relative z-10">
+      <h2 className="text-4xl md:text-6xl font-bold text-center text-[#ffda40] mt-8 relative z-10">
         <Image
           src={Butterflies2}
           alt="butterflies"
@@ -63,13 +63,13 @@ export default function Mid() {
         Celebrate With Personalization
       </h2>
 
-      <p className="text-center mb-12 text-3xl max-w-6xl mx-auto relative z-10">
+      <p className="text-center mb-12 text-xl md:text-3xl max-w-6xl mx-auto relative z-10 px-4 md:px-0">
         Make your moments unforgettable with uniquely designed stand-up pouches
         Crafted just for You!
       </p>
 
       {/* Celebration Icons */}
-      <div className="flex justify-center space-x-4 mb-16 relative z-10">
+      <div className="flex flex-wrap justify-center md:space-x-4 mb-16 relative z-10">
         <Image
           src={Butterflies4}
           alt="butterflies"
@@ -78,11 +78,11 @@ export default function Mid() {
           className="inline-block"
         />
         {celebrations.map((celebration, index) => (
-          <div key={index} className="text-center">
-            <div className="w-64 h-64 bg-[#f7eee5] rounded-full flex items-center justify-center mb-2">
-              <span className="text-8xl">{celebration.icon}</span>
+          <div key={index} className="text-center w-1/2 md:w-auto mb-8 md:mb-0">
+            <div className="w-32 h-32 md:w-64 md:h-64 bg-[#f7eee5] rounded-full flex items-center justify-center mb-2 mx-auto">
+              <span className="text-5xl md:text-9xl">{celebration.icon}</span>
             </div>
-            <p className="text-3xl mt-4 font-bold text-[#ffda40]">
+            <p className="text-xl md:text-3xl mt-4 font-bold text-[#ffda40]">
               {celebration.name}
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function Mid() {
         />
       </div>
 
-      <h3 className="text-5xl font-bold text-center text-[#ffda40] relative z-10">
+      <h3 className="text-3xl md:text-5xl font-bold text-center text-[#ffda40] relative z-10">
         <Image
           src={FlowerIllustration}
           alt="flower illustration"
@@ -115,7 +115,7 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="flex flex-wrap justify-center gap-[2vw] mb-8 relative z-10">
+      <div className="flex flex-wrap justify-center gap-4 md:gap-[2vw] mb-8 relative z-10">
         <Image
           src={Butterflies6}
           alt="butterflies"
@@ -124,7 +124,7 @@ export default function Mid() {
           className="inline-block"
         />
         {pouches.map((pouch, index) => (
-          <div key={index} className="w-[14.9rem] relative pt-4">
+          <div key={index} className="w-[14.9rem] md:w-[14.9rem] relative pt-4">
             <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
               <div className="relative w-full h-full -mt-6">
                 <Image
@@ -151,44 +151,46 @@ export default function Mid() {
       </div>
 
       {/* Versatile Gifting section */}
-      <div className="flex items-center relative z-10">
-        <div className="">
-        <div className="absolute left-[0px] top-0 ml-auto h-full w-auto">
-        <Image
-          src={HomepageArch2}
-          alt="Decorative Arch"
-          layout="intrinsic"
-          height={1000} // match height of the uploaded image
-          width={1180} // match width of the uploaded image
-          className=""
-        />
-      </div>
-      <div className="items-center ml-[2rem]">
-          <h2 className="text-8xl font-bold text-white relative top-[-9rem]">
-            Versatile 
-          </h2><h2 className="text-8xl font-bold text-white relative top-[-9rem] mb-6">
-           Gifting
-          </h2>
-          <p className="text-3xl mb-8 max-w-xl top-[-9rem] relative">
-            Perfect Custom Pouches for gifting Chocolates, Coffee Beans, Dry
-            Fruits and more
-          </p>
+      <div className="flex flex-col md:flex-row items-center relative z-10">
+        <div className="w-full md:w-1/2">
+          <div className="absolute left-[0px] top-0 ml-auto h-full w-auto hidden md:block">
+            <Image
+              src={HomepageArch2}
+              alt="Decorative Arch"
+              layout="intrinsic"
+              height={1000}
+              width={1180}
+              className=""
+            />
           </div>
-          <div className="flex items-center absolute">
-            <div className="relative ml-20 bottom-[10rem]">
+          <div className="items-center ml-4 md:ml-[2rem]">
+            <h2 className="text-5xl md:text-8xl font-bold text-white md:relative md:top-[-9rem]">
+              Versatile 
+            </h2>
+            <h2 className="text-5xl md:text-8xl font-bold text-white md:relative md:top-[-9rem] mb-6">
+              Gifting
+            </h2>
+            <p className="text-xl md:text-3xl mb-8 max-w-xl md:top-[-9rem] md:relative">
+              Perfect Custom Pouches for gifting Chocolates, Coffee Beans, Dry
+              Fruits and more
+            </p>
+          </div>
+          <div className="flex items-center md:absolute">
+            <div className="relative ml-4 md:ml-20 md:bottom-[10rem]">
               <Image
                 src={human}
                 alt="Human"
                 layout="intrinsic"
-                height={400}
-                width={400}                
+                height={200}
+                width={200}
                 objectFit="contain"
+                className="md:h-[400px] md:w-[400px]"
               />
             </div>
           </div>
         </div>
-        <div className="w-1/2 relative">
-          <div className="absolute top-24 right-28 flex space-x-20">
+        <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
+          <div className="absolute top-24 right-28 hidden md:flex space-x-20">
             <div className="w-28 h-28 bg-white rounded-full"></div>
             <div className="w-28 h-28 bg-white rounded-full"></div>
             <div className="w-28 h-28 bg-white rounded-full"></div>
@@ -204,9 +206,9 @@ export default function Mid() {
         </div>
       </div>
 
-   {/* Celebrations section */}
-   <div className="text-center mt-[6rem] relative z-10 pb-16">
-        <h3 className="text-5xl font-bold text-[#ffda40] mb-12">
+      {/* Celebrations section */}
+      <div className="text-center mt-[6rem] relative  z-10 pb-16">
+        <h3 className="text-3xl md:text-5xl font-bold text-[#ffda40] mb-12">
           Celebrations     
           <Image
             src={BirdIllustration}
@@ -217,24 +219,26 @@ export default function Mid() {
           />  
         </h3>
 
-        <div className="flex justify-center space-x-8">
+        <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8">
           {celebrationCards.map((card, index) => (
-            <div key={index} className="w-64 flex flex-col">
-              <div className="bg-[#362c60] py-[4rem] px-4 text-[#ffda40] font-bold text-2xl rounded-t-3xl">
+            <div key={index} className="w-full md:w-64 flex flex-col mb-8 md:mb-0">
+              <div className="bg-[#362c60] py-[4rem] px-4 text-[#ffda40] font-bold text-xl rounded-t-3xl">
                 {card.name}
               </div>
-              <div className="flex-grow bg-white py-[8rem] flex items-center justify-center p-4">
+              <div className="flex-grow bg-white py-[6rem] flex items-center justify-center p-4">
                 <Image
                   src={card.image}
                   alt={card.name}
-                  width={150}
-                  height={150}
+                  width={260}
+                  height={260}
                   objectFit="contain"
                 />
               </div>
-              <button className="bg-[#ffda40] text-[#464087] w-full py-2 font-bold text-xl rounded-full mt-4">
+              <div className="bg-white pb-[1rem] rounded-b-3xl">
+              <button className="bg-[#ffda40] text-[#464087]  py-1 px-16 font-bold text-2xl rounded-full mt-4">
                 Explore
               </button>
+              </div>
             </div>
           ))}
         </div>
