@@ -1,5 +1,5 @@
-import Footer from '@/components/home/Footer'
-import Navbar from '@/components/home/Navbar'
+import Footer from '@/components/Home/Footer'
+import Navbar from '@/components/Home/Navbar'
 import Privacy from '@/components/Privacy-policy/Privacy'
 import React from 'react'
 

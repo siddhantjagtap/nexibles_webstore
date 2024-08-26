@@ -1,10 +1,10 @@
 "use client";
-import Navbar from "@/components/home/Navbar";
-import Footer from "@/components/home/Footer";
-import Hero from "@/components/home/Hero";
+import Navbar from "@/components/Home/Navbar";
+import Footer from "@/components/Home/Footer";
+import Hero from "@/components/Home/Hero";
 
-import Mid from "@/components/home/Mid";
-import TestimonialsAndBlogs from "@/components/home/TestimonialsAndBlogs";
+import Mid from "@/components/Home/Mid";
+import TestimonialsAndBlogs from "@/components/Home/TestimonialsAndBlogs";
 export default function Page() {
 return (
  <>

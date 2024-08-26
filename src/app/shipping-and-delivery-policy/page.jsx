@@ -1,6 +1,6 @@
-import Footer from '@/components/home/Footer'
-import Navbar from '@/components/home/Navbar'
-import Shipping from '@/components/shipping-and-delivery-policy/Shipping'
+import Footer from '@/components/Home/Footer'
+import Navbar from '@/components/Home/Navbar'
+import Shipping from '@/components/Shipping-and-Delivery-Policy/Shipping'
 import React from 'react'
 
 function page() {

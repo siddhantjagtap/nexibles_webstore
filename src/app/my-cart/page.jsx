@@ -1,5 +1,5 @@
-import Footer from '@/components/home/Footer'
-import Navbar from '@/components/home/Navbar'
+import Footer from '@/components/Home/Footer'
+import Navbar from '@/components/Home/Navbar'
 import MyCart from '@/components/my-cart/MyCart'
 import React from 'react'
 

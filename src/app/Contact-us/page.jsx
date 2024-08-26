@@ -1,6 +1,6 @@
-import ContactForm from '@/components/contact-us/ContactForm'
-import Footer from '@/components/home/Footer'
-import Navbar from '@/components/home/Navbar'
+import ContactForm from '@/components/Contact-us/ContactForm'
+import Footer from '@/components/Home/Footer'
+import Navbar from '@/components/Home/Navbar'
 import React from 'react'
 
 export default function page() {

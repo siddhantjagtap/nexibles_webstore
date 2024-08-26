@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Navbar from '../home/Navbar'
+import Navbar from '../Home/Navbar'
 import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg'
 
 export default function ContactForm() {
