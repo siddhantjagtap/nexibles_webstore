@@ -41,7 +41,7 @@ export default function Mid() {
   return (
     <div className="bg-[#464087] text-white pt-2  relative">
       {/* Add Homepage-Arch-3 here */}
-      <div className="absolute right-[-116px]  h-full w-auto">
+      <div className="absolute end-0 h-full w-auto">
         <Image
           src={HomepageArch3}
           alt="Decorative Arch"
@@ -69,7 +69,7 @@ export default function Mid() {
       </p>
 
       {/* Celebration Icons */}
-      <div className="flex justify-center space-x-12 mb-16 relative z-10">
+      <div className="flex justify-center space-x-4 mb-16 relative z-10">
         <Image
           src={Butterflies4}
           alt="butterflies"
@@ -115,7 +115,7 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="flex flex-wrap justify-center gap-12 mb-8 relative z-10">
+      <div className="flex flex-wrap justify-center gap-8 mb-8 relative z-10">
         <Image
           src={Butterflies6}
           alt="butterflies"
@@ -124,7 +124,7 @@ export default function Mid() {
           className="inline-block"
         />
         {pouches.map((pouch, index) => (
-          <div key={index} className="w-64 relative pt-4">
+          <div key={index} className="w-[14.9rem] relative pt-4">
             <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
               <div className="relative w-full h-full -mt-6">
                 <Image
