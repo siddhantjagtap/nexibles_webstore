@@ -71,7 +71,7 @@ const Footer = () => {
               <Link href="/blog" className="hover:underline">
                 Blog
               </Link>
-              <Link href="/contact" className="hover:underline">
+              <Link href="/contact-us" className="hover:underline">
                 Contact Us
               </Link>
               <Link href="/tracking" className="hover:underline">
@@ -86,19 +86,19 @@ const Footer = () => {
       </footer>
       {/* Bottom Links */}
       <div className="text-center text-sm mt-2 bg-white">
-        <Link href="/privacy" className="hover:underline">
+        <Link href="/privacy-policy" className="hover:underline">
           Privacy Policy
         </Link>{" "}
         |
-        <Link href="/returns" className="hover:underline">
+        <Link href="/refund-return-policy" className="hover:underline">
           Return & Refunds
         </Link>{" "}
         |
-        <Link href="/shipping" className="hover:underline">
+        <Link href="/shipping-and-delivery-policy" className="hover:underline">
           Shipping
         </Link>{" "}
         |
-        <Link href="/terms" className="hover:underline">
+        <Link href="/terms-and-conditions" className="hover:underline">
           Terms & Conditions
         </Link>
       </div>

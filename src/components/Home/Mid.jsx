@@ -15,6 +15,9 @@ import Butterflies3 from "../../../public/Home/Butterflies-3.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
 import TestinomalImg from "../../../public/Home/TestinomalImg.png";
+import kaju from "../../../public/Home/cashew.png";
+import almonds from "../../../public/Home/almonds.png";
+import pista from "../../../public/Home/pista.png";
 
 export default function Mid() {
   const celebrations = [
@@ -190,10 +193,16 @@ export default function Mid() {
           </div>
         </div>
         <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
-          <div className="absolute top-24 right-28 hidden md:flex space-x-20">
-            <div className="w-28 h-28 bg-white rounded-full"></div>
-            <div className="w-28 h-28 bg-white rounded-full"></div>
-            <div className="w-28 h-28 bg-white rounded-full"></div>
+          <div className="absolute top-24 right-[10rem] hidden md:flex space-x-20">
+            <div className="w-28 h-28 bg-white rounded-full">
+              <Image className="ml-1 h-30 w-40" src={kaju} alt="Small Pouch" width={100} height={100} />
+            </div>
+            <div className="w-28 h-28 bg-white rounded-full">
+            <Image className="" src={almonds} alt="Small Pouch" width={100} height={100} />
+            </div>
+            <div className="w-28 h-28 bg-white rounded-full">
+            <Image  className="mt-2 ml-1" src={pista} alt="Small Pouch" width={100} height={100} />
+            </div>
           </div>
           <Image
             src={pouch2}
