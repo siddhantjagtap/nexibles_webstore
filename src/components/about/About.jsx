@@ -8,7 +8,7 @@ export default function About() {
         <div className="w-[90%] bg-white p-6 rounded-3xl shadow-lg">
           <h2 className="text-2xl font-semibold mb-4">Next generation flexIBLES</h2>
           <p className="mb-4">
-            Under the brand name - 'NEXt generation flexIBLES', we look forward to taking the idea of flexible packaging to the next level by bringing in digital printing as a revolutionary alternative to conventional processes of producing flexible packaging. We utilize the room for experimentation and creativity to help clients with high yielding and quick-quality packaging solutions.
+            Under the brand name - NEXt generation flexIBLES, we look forward to taking the idea of flexible packaging to the next level by bringing in digital printing as a revolutionary alternative to conventional processes of producing flexible packaging. We utilize the room for experimentation and creativity to help clients with high yielding and quick-quality packaging solutions.
           </p>
           <p className="mb-4">
             With an efficient team of experts and experienced professionals, we provide converters and end-users with a wide range of custom flexible packaging solutions, including pouches, shrink sleeves, labels, and roll stock. Our broad range of product packaging solutions enables us to meet the demands of a diverse range of market segments.
