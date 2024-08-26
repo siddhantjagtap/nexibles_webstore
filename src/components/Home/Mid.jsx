@@ -115,7 +115,7 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="flex flex-wrap justify-center gap-8 mb-8 relative z-10">
+      <div className="flex flex-wrap justify-center gap-[2vw] mb-8 relative z-10">
         <Image
           src={Butterflies6}
           alt="butterflies"
