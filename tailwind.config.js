@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         'gotham-light': ['Gotham Light', 'sans-serif'],
+        'Mochiy': ['Mochiy Pop One', 'sans-serif']
       },
     },
   },

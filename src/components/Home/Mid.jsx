@@ -1,5 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 import pouch1 from "../../../public/Home/pouch-1.png";
 import pouch2 from "../../../public/Home/pouch-2.png";
 import pouch3 from "../../../public/Home/pouch-3.png";
@@ -29,7 +34,15 @@ export default function Mid() {
     { name: "Pouch 2", image: pouch2 },
     { name: "Pouch 3", image: pouch3 },
     { name: "Pouch 4", image: pouch4 },
-  ];
+    { name: "Pouch 1", image: pouch1 },
+    { name: "Pouch 2", image: pouch2 },
+    { name: "Pouch 3", image: pouch3 },
+    { name: "Pouch 4", image: pouch4 },
+    { name: "Pouch 1", image: pouch1 },
+    { name: "Pouch 2", image: pouch2 },
+    { name: "Pouch 3", image: pouch3 },
+    { name: "Pouch 4", image: pouch4 },
+  ]
 
   const celebrationCards = [
     { name: "Diwali", image: TestinomalImg },
@@ -115,38 +128,52 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="flex flex-wrap justify-center gap-4 md:gap-[2vw] mb-8 relative z-10">
+      <div className="relative z-10 mb-16">
         <Image
           src={Butterflies6}
           alt="butterflies"
-          width={50}
-          height={50}
-          className="inline-block"
+          width={100}
+          height={100}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-prev"
         />
-        {pouches.map((pouch, index) => (
-          <div key={index} className="w-[14.9rem] md:w-[14.9rem] relative pt-4">
-            <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
-              <div className="relative w-full h-full -mt-6">
-                <Image
-                  src={pouch.image}
-                  alt={pouch.name}
-                  layout="fill"
-                  objectFit="contain"
-                  className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
-                />
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={30}
+          slidesPerView={4}
+          navigation={{
+            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next',
+          }}
+          loop={true}
+          className="max-w-6xl mx-auto"
+        >
+          {pouches.map((pouch, index) => (
+            <SwiperSlide key={index}>
+              <div className="w-[14.9rem] relative pt-4">
+                <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
+                  <div className="relative w-full h-full -mt-6">
+                    <Image
+                      src={pouch.image}
+                      alt={pouch.name}
+                      layout="fill"
+                      objectFit="contain"
+                      className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
+                    />
+                  </div>
+                </div>
+                <button className="bg-[#ffda40] text-[#464087] px-6 py-1 rounded-full font-bold text-xl absolute bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                  Customise
+                </button>
               </div>
-            </div>
-            <button className="bg-[#ffda40] text-[#464087] px-6 py-1 rounded-full font-bold text-xl absolute bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-              Customise
-            </button>
-          </div>
-        ))}
-         <Image
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <Image
           src={Butterflies5}
           alt="butterflies"
-          width={50}
-          height={50}
-          className="inline-block"
+          width={100}
+          height={100}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-next"
         />
       </div>
 
@@ -163,11 +190,11 @@ export default function Mid() {
               className=""
             />
           </div>
-          <div className="items-center ml-4 md:ml-[2rem]">
-            <h2 className="text-5xl md:text-8xl font-bold text-white md:relative md:top-[-9rem]">
+          <div className="items-center ml-4   md:ml-[2rem] ">
+            <h2 className="text-5xl md:text-8xl font-Mochiy  text-white md:relative md:top-[-9rem]">
               Versatile 
             </h2>
-            <h2 className="text-5xl md:text-8xl font-bold text-white md:relative md:top-[-9rem] mb-6">
+            <h2 className="text-5xl md:text-8xl font-Mochiy text-white md:relative md:top-[-9rem] mb-6">
               Gifting
             </h2>
             <p className="text-xl md:text-3xl mb-8 max-w-xl md:top-[-9rem] md:relative">
@@ -207,7 +234,7 @@ export default function Mid() {
       </div>
 
       {/* Celebrations section */}
-      <div className="text-center mt-[6rem] relative  z-10 pb-16">
+      <div className="text-center mt-[6rem] relative z-10 pb-16">
         <h3 className="text-3xl md:text-5xl font-bold text-[#ffda40] mb-12">
           Celebrations     
           <Image
@@ -235,9 +262,9 @@ export default function Mid() {
                 />
               </div>
               <div className="bg-white pb-[1rem] rounded-b-3xl">
-              <button className="bg-[#ffda40] text-[#464087]  py-1 px-16 font-bold text-2xl rounded-full mt-4">
-                Explore
-              </button>
+                <button className="bg-[#ffda40] text-[#464087] py-1 px-16 font-bold text-2xl rounded-full mt-4">
+                  Explore
+                </button>
               </div>
             </div>
           ))}
