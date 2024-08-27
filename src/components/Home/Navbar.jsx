@@ -8,11 +8,17 @@ import {
   IoCloseOutline,
   IoSearchOutline,
 } from "react-icons/io5";
-
+import { IoPersonOutline } from "react-icons/io5";
+import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
+import { CiFolderOn } from "react-icons/ci";
+import { LuShoppingBag } from "react-icons/lu";
+import { useAuth } from "@/utils/authContext";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [showPersonDropdown, setShowPersonDropdown] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +36,8 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const handleToggleOpen = () => setShowPersonDropdown(!showPersonDropdown);
 
   const iconColor = hasScrolled ? "text-black" : "text-black";
 
@@ -49,6 +57,7 @@ const Navbar = () => {
               height={30}
               className="sm:w-[150px] sm:h-[25px]"
               priority
+              layout=""
             />
           </div>
         </Link>
@@ -67,17 +76,46 @@ const Navbar = () => {
             <IoCartOutline size={28} />
             {cartItemCount > 0 && (
               <span className="absolute  text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-            
+{cartItemCount}
               </span>
             )}
           </Link>
-
+          {user && (
+            <Link href="/my-orderhistory" className="hidden sm:flex items-center text-black">
+              <CiFolderOn size={28} />
+              <span className="ml-2">My Orders</span>
+            </Link>
+          )}
+          <div className="relative hidden sm:flex text-black items-center" onClick={handleToggleOpen}>
+            <IoPersonOutline size={24} />
+            <span className="ml-2 cursor-pointer text-sm sm:text-base">
+              {user ? `Hello, ${user?.result?.firstName || user?.firstName}` : "Sign In"}
+            </span>
+            {showPersonDropdown && (
+              <div className="absolute mt-0 top-8 right-0 bg-white text-gray-900 p-4 shadow-md flex flex-col items-center w-40 rounded-md">
+                {user ? (
+                  <>
+                    <Link href="/my-dashboard" className="text-[#464087] text-center px-4 py-2 w-full bg-yellow-400 rounded-md transition duration-300 ease-in-out mb-2">
+                      Profile
+                    </Link>
+                    <button onClick={logout} className="text-[#464087] text-center px-4 py-2 w-full bg-yellow-400 rounded-md transition duration-300 ease-in-out">
+                      Log out
+                    </button>
+                  </>
+                ) : (
+                  <Link href="/login" className="text-[#464087] px-2 text-center py-1 w-full bg-yellow-400 rounded-md transition duration-300 ease-in-out">
+                    Sign In
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
           {/* Menu Icon and Label */}
           <button
             className={`flex items-center space-x-2 ${iconColor}`}
             onClick={toggleMenu}
           >
-            <span className="text-lg mt-1">MENU</span>
+            <span className="text-md mt-1">MENU</span>
             <IoMenuOutline size={30} />
           </button>
         </div>

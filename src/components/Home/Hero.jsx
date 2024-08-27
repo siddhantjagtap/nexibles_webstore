@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/Home/Main-Banner-Background.png')" }}>
-     
+
       <div className=" pt-4 ">
         <div className="flex  items-center">
           <div className="md:w-1/2 mt-8 md:mt-0 relative">
@@ -52,7 +52,7 @@ export default function Hero() {
             <h1 className="text-8xl  font-extrabold mb-4">NEXIGIFTING</h1>
             <h2 className="text-2xl font-bold ">Indias First Customized Stand-Up Pouch Gifting Platform</h2>
             <p className="text-xl mb-6">Start with just 50 pouches & scale up to 500 for all your gifting needs!</p>
-            <button className="bg-yellow-400 text-[#464087] font-bold py-2 px-8 rounded-full text-2xl hover:bg-yellow-300 transition duration-300">
+            <button className="bg-yellow-400  font-bold py-2 px-8 rounded-full text-2xl hover:bg-yellow-300 transition duration-300">
               Shop Now
             </button>
           </div>

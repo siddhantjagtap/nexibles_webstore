@@ -1,17 +1,13 @@
 import Footer from '@/components/Home/Footer'
 import Navbar from '@/components/Home/Navbar'
-import Privacy from '@/components/Privacy-policy/Privacy'
+import Login from '@/components/login/Login'
 import React from 'react'
 
 function page() {
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-      <div>
-        <Privacy />
-      </div>
+      <Navbar />
+      <Login />
       <Footer />
     </div>
   )

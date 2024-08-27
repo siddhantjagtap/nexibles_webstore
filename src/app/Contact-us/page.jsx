@@ -1,4 +1,4 @@
-import ContactForm from '@/components/Contact-us/ContactForm'
+import ContactForm from '@/components/contact-us/ContactForm'
 import Footer from '@/components/Home/Footer'
 import Navbar from '@/components/Home/Navbar'
 import React from 'react'

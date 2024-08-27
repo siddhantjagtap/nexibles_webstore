@@ -72,6 +72,7 @@ export default function Mid() {
         <Image
           src={Butterflies2}
           alt="butterflies"
+          layout=""
           width={128}
           height={128}
           className="inline-block"
@@ -91,6 +92,7 @@ export default function Mid() {
           alt="butterflies"
           width={50}
           height={50}
+          layout=""
           className="inline-block"
         />
         {celebrations.map((celebration, index) => (
@@ -107,6 +109,7 @@ export default function Mid() {
           src={Butterflies3}
           alt="butterflies"
           width={50}
+          layout=""
           height={50}
           className="inline-block"
         />
@@ -118,6 +121,7 @@ export default function Mid() {
           alt="flower illustration"
           width={128}
           height={128}
+          layout=""
           className="inline-block"
         />
         Popular Products
@@ -125,6 +129,7 @@ export default function Mid() {
           src={Butterflies2}
           alt="butterflies"
           width={128}
+          layout=""
           height={128}
           className="inline-block mb-[2rem]"
         />
@@ -137,6 +142,7 @@ export default function Mid() {
           alt="butterflies"
           width={100}
           height={100}
+          layout=""
           className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-prev"
         />
         <Swiper
@@ -176,6 +182,7 @@ export default function Mid() {
           alt="butterflies"
           width={100}
           height={100}
+          layout=""
           className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-next"
         />
       </div>
@@ -195,7 +202,7 @@ export default function Mid() {
           </div>
           <div className="items-center ml-4   md:ml-[2rem] ">
             <h2 className="text-5xl md:text-8xl font-Mochiy  text-white md:relative md:top-[-9rem]">
-              Versatile 
+              Versatile
             </h2>
             <h2 className="text-5xl md:text-8xl font-Mochiy text-white md:relative md:top-[-9rem] mb-6">
               Gifting
@@ -245,14 +252,14 @@ export default function Mid() {
       {/* Celebrations section */}
       <div className="text-center mt-[6rem] relative z-10 pb-16">
         <h3 className="text-3xl md:text-5xl font-bold text-[#ffda40] mb-12">
-          Celebrations     
+          Celebrations
           <Image
             src={BirdIllustration}
             alt="Bird Illustration"
             width={300}
             height={300}
             className="inline-block ml-4"
-          />  
+          />
         </h3>
 
         <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8">
