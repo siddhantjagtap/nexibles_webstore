@@ -1,14 +1,14 @@
-import ContactForm from '@/components/contact-us/ContactForm'
 import Footer from '@/components/Home/Footer'
 import Navbar from '@/components/Home/Navbar'
+import Shop from '@/components/shop/Shop'
 import React from 'react'
 
 export default function page() {
   return (
-    <>
-    <Navbar />
-    <ContactForm/>
-    <Footer />
-    </>
+    <div>
+      <Navbar/>
+      <Shop />
+      <Footer/>
+      </div>
   )
 }

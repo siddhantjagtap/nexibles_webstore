@@ -37,7 +37,23 @@ const Footer = () => {
               </Link>
             </nav>
 
-            {/* Newsletter Signup */}
+            {/* Right Side Links (now in the middle) */}
+            <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-start">
+              <Link href="/blog" className="hover:underline">
+                Blog
+              </Link>
+              <Link href="/contact-us" className="hover:underline">
+                Contact Us
+              </Link>
+              <Link href="/tracking" className="hover:underline">
+                Tracking Link
+              </Link>
+              <Link href="/faqs" className="hover:underline">
+                FAQs
+              </Link>
+            </nav>
+
+            {/* Newsletter Signup (now on the right) */}
             <div className="mt-16 md:my-46px">
               <h3 className="text-xl font-semibold mb-2">
                 Sign up for our Newsletter!
@@ -65,22 +81,6 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-
-            {/* Right Side Links */}
-            <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-end">
-              <Link href="/blog" className="hover:underline">
-                Blog
-              </Link>
-              <Link href="/contact-us" className="hover:underline">
-                Contact Us
-              </Link>
-              <Link href="/tracking" className="hover:underline">
-                Tracking Link
-              </Link>
-              <Link href="/faqs" className="hover:underline">
-                FAQs
-              </Link>
-            </nav>
           </div>
         </div>
       </footer>
