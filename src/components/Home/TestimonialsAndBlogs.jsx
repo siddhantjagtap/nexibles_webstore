@@ -58,7 +58,7 @@ export default function TestimonialsAndBlogs() {
   ];
 
   return (
-    <div className="bg-[#464087] relative overflow-hidden">
+    <div className="bg-[#464087] relative overflow-hidden" >
       {/* <div className="absolute top-0 mr-2 w-full h-full">
         <Image
           src={HomepageArch1}
