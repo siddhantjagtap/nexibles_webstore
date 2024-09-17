@@ -1,10 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
-
-=======
->>>>>>> 7dff6057df8f012f6b2924741521e308457db904
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = ['/Home/pouch-1.png', '/Home/pouch-2.png', '/Home/pouch-3.png', '/Home/pouch-4.png'];
