@@ -71,7 +71,7 @@ export default function Mid() {
   return (
     <div className=" text-white pt-2 relative bg-no-repeat"style={{ 
       backgroundImage: "url('/Home/Background.svg')", 
-      backgroundSize: "100% 44%", // Increase the size of the background image
+      backgroundSize: "100% 38%", // Increase the size of the background image
     }}>
       {/* Homepage-Arch-3 */}
       <div className="absolute end-0 h-full w-auto hidden md:block" >
