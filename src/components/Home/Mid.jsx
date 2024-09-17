@@ -23,7 +23,6 @@ import TestinomalImg from "../../../public/Home/TestinomalImg.png";
 import kaju from "../../../public/Home/cashew.png";
 import almonds from "../../../public/Home/almonds.png";
 import pista from "../../../public/Home/pista.png";
-import diwali from "../../../public/HomePage_celebrations/Diwali_Icon.svg";
 
 export default function Mid() {
   const swiperRef = useRef(null);
