@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
+ 
 import pouch1 from "../../../public/Home/pouch-1.png";
 import pouch2 from "../../../public/Home/pouch-2.png";
 import pouch3 from "../../../public/Home/pouch-3.png";
@@ -13,7 +13,7 @@ import human from "../../../public/Home/human.png";
 import BirdIllustration from '../../../public/Home/Bird-Illustration.svg';
 import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
 import HomepageArch3 from "../../../public/Home/Homepage-Arch-3.svg";
-import HomepageArch2 from "../../../public/Home/Homepage-Arch-2.svg";
+import HomepageArch2 from "../../../public/Home/Background-3.svg";
 import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
 import Butterflies4 from "../../../public/Home/Butterflies-4.svg";
 import Butterflies3 from "../../../public/Home/Butterflies-3.svg";
@@ -25,6 +25,20 @@ import almonds from "../../../public/Home/almonds.png";
 import pista from "../../../public/Home/pista.png";
 
 export default function Mid() {
+  const swiperRef = useRef(null);
+
+  const goPrev = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const goNext = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
   const celebrations = [
     { name: "Diwali", icon: "🪔" },
     { name: "Birthday", icon: "🎂" },
@@ -45,7 +59,7 @@ export default function Mid() {
     { name: "Pouch 2", image: pouch2 },
     { name: "Pouch 3", image: pouch3 },
     { name: "Pouch 4", image: pouch4 },
-  ]
+  ];
 
   const celebrationCards = [
     { name: "Diwali", image: TestinomalImg },
@@ -55,9 +69,12 @@ export default function Mid() {
   ];
 
   return (
-    <div className="bg-[#464087] text-white pt-2 relative">
+    <div className=" text-white pt-2 relative bg-no-repeat"style={{ 
+      backgroundImage: "url('/Home/Background.svg')", 
+      backgroundSize: "100% 38%", // Increase the size of the background image
+    }}>
       {/* Homepage-Arch-3 */}
-      <div className="absolute end-0 h-full w-auto hidden md:block">
+      <div className="absolute end-0 h-full w-auto hidden md:block" >
         <Image
           src={HomepageArch3}
           alt="Decorative Arch"
@@ -115,7 +132,7 @@ export default function Mid() {
         />
       </div>
 
-      <h3 className="text-3xl md:text-5xl font-bold text-center text-[#ffda40] relative z-10">
+      <h3 className="text-3xl md:text-5xl font-bold text-center text-[#ffda40] relative z-10" >
         <Image
           src={FlowerIllustration}
           alt="flower illustration"
@@ -136,25 +153,27 @@ export default function Mid() {
       </h3>
 
       {/* Pouches */}
-      <div className="relative z-10 ">
-        <Image
-          src={Butterflies6}
-          alt="butterflies"
-          width={100}
-          height={100}
-          layout=""
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-prev"
-        />
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <button 
+          onClick={goPrev}
+          className="absolute left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          aria-label="Previous slide"
+        >
+          <Image
+            src={Butterflies6}
+            alt="Previous"
+            width={50}
+            height={50}
+            className="hover:scale-110 transition-transform duration-300"
+          />
+        </button>
         <Swiper
+          ref={swiperRef}
           modules={[Navigation]}
-          spaceBetween={30}
-          slidesPerView={4}
-          navigation={{
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next',
-          }}
+          spaceBetween={10}
+          slidesPerView={5}
           loop={true}
-          className="max-w-6xl mx-auto"
+          className="px-16"
         >
           {pouches.map((pouch, index) => (
             <SwiperSlide key={index}>
@@ -177,34 +196,38 @@ export default function Mid() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <Image
-          src={Butterflies5}
-          alt="butterflies"
-          width={100}
-          height={100}
-          layout=""
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer swiper-button-next"
-        />
+        <button 
+          onClick={goNext}
+          className="absolute right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          aria-label="Next slide"
+        >
+          <Image
+            src={Butterflies5}
+            alt="Next"
+            width={50}
+            height={50}
+            className="hover:scale-110  transition-transform duration-300"
+          />
+        </button>
       </div>
-
       {/* Versatile Gifting section */}
       <div className="flex flex-col md:flex-row items-center relative z-10">
         <div className="w-full md:w-1/2">
-          <div className="absolute left-[0px] top-0 ml-auto h-full w-auto hidden md:block">
+          <div className="absolute left-[-40px] top-0 ml-auto h-full w-auto hidden md:block">
             <Image
               src={HomepageArch2}
               alt="Decorative Arch"
               layout="intrinsic"
               height={1000}
-              width={1180}
+              width={1000}
               className=""
             />
           </div>
-          <div className="items-center ml-4   md:ml-[2rem] ">
-            <h2 className="text-5xl md:text-8xl font-Mochiy  text-white md:relative md:top-[-9rem]">
+          <div className="items-center mt-[10rem] md:ml-[2rem] ">
+            <h2 className="text-5xl md:text-7xl font-Mochiy  text-white md:relative md:top-[-9rem]">
               Versatile
             </h2>
-            <h2 className="text-5xl md:text-8xl font-Mochiy text-white md:relative md:top-[-9rem] mb-6">
+            <h2 className="text-5xl md:text-7xl font-Mochiy text-white md:relative md:top-[-9rem] mb-6">
               Gifting
             </h2>
             <p className="text-xl md:text-3xl mb-8 max-w-xl md:top-[-9rem] md:relative">
@@ -250,7 +273,9 @@ export default function Mid() {
       </div>
 
       {/* Celebrations section */}
-      <div className="text-center mt-[6rem] relative z-10 pb-16">
+      <div className="text-center  relative z-10 pb-16 bg-no-repeat"  style={{ 
+        backgroundImage: "url('/Home/Background-4.svg')",
+        backgroundSize: "100% 100%" }}>
         <h3 className="text-3xl md:text-5xl font-bold text-[#ffda40] mb-12">
           Celebrations
           <Image
@@ -262,9 +287,9 @@ export default function Mid() {
           />
         </h3>
 
-        <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8">
+        <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8" >
           {celebrationCards.map((card, index) => (
-            <div key={index} className="w-full md:w-64 flex flex-col mb-8 md:mb-0">
+            <div key={index} className="w-full md:w-64 flex flex-col mb-8 md:mb-0" >
               <div className="bg-[#362c60] py-[4rem] px-4 text-[#ffda40] font-bold text-xl rounded-t-3xl">
                 {card.name}
               </div>
@@ -277,7 +302,7 @@ export default function Mid() {
                   objectFit="contain"
                 />
               </div>
-              <div className="bg-white pb-[1rem] rounded-b-3xl">
+              <div className="bg-white pb-[1rem] rounded-b-3xl" >
                 <button className="bg-[#ffda40] text-[#464087] py-1 px-16 font-bold text-2xl rounded-full mt-4">
                   Explore
                 </button>
@@ -286,6 +311,9 @@ export default function Mid() {
           ))}
         </div>
       </div>
+      <div className="h-[600px]" style={{ 
+        backgroundImage: "url('/Home/Background-5.svg')",
+        backgroundSize: "100% 100%" }}></div>
     </div>
   );
 }
