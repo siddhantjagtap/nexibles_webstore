@@ -9,9 +9,9 @@ function Thankyou() {
                     <img
                         src={Envelope.src}
                         alt="Envelope Icon"
-                        className="w-40 h-40"
+                        className="w-[12rem] h-[12rem]"
                     />
-                    <h1 className="text-[10rem] font-bold text-yellow-400 ">Thank You!</h1>
+                    <h1 className="text-[10rem] font-bold text-yellow-400 ml-6">Thank You!</h1>
                     <img src={Butterfly.src} alt="Butterfly 1" className="absolute right-[14rem] top-40 w-[10rem] h-[10rem]" />
                 </div>
                 <div className=' px-64 text-center '>
