@@ -100,7 +100,7 @@ export default function Mid() {
   return (
     <div className=" text-white pt-2 relative bg-no-repeat" style={{
       backgroundImage: "url('/Home/Background.svg')",
-      backgroundSize: "100% 38%", // Increase the size of the background image
+      backgroundSize: "100% 40%", // Increase the size of the background image
     }}>
       {/* Homepage-Arch-3 */}
       <div className="absolute end-0 h-full w-auto hidden md:block" >
@@ -247,7 +247,10 @@ export default function Mid() {
                     />
                   </div>
                 </div>
-                <button className="bg-[#124e66] mt-8 ml-[7.6rem] text-white px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                <p className="text-[#db5c3c] mt-8 ml-[5.5rem]  px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                  Product Name
+                </p>
+                <button className="bg-[#124e66] mt-4 ml-[7.6rem] text-white px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                   Customise
                 </button>
               </div>
