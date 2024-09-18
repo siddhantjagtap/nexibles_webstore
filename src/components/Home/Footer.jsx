@@ -41,6 +41,34 @@ const Footer = () => {
                 Customization
               </Link>
             </nav>
+            {/* Newsletter Signup (now on the right) */}
+            <div className="mt-16 md:my-46px">
+              <h3 className="text-xl font-semibold mb-2 text-center">
+                Sign up for our Newsletter!
+              </h3>
+              <input
+                type="email"
+                placeholder="eg JohnSmith@gmail.com"
+                className="p-2 rounded-full w-full text-gray-800"
+              />
+              <div className="flex justify-center my-6">
+                <a href="#" className="hover:text-gray-300">
+                  <Image src={Instragram} />
+                </a>
+                <a href="#" className="hover:text-gray-300">
+                  <Image src={Whatsapp} />
+                </a>
+                <a href="#" className="hover:text-gray-300">
+                  <Image src={Linkedin} />
+                </a>
+                <a href="#" className="hover:text-gray-300">
+                  <Image src={Call} />
+                </a>
+                <a href="#" className="hover:text-gray-300">
+                  <Image src={Mail} />
+                </a>
+              </div>
+            </div>
 
             {/* Right Side Links (now in the middle) */}
             <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-start">
@@ -57,35 +85,6 @@ const Footer = () => {
                 FAQs
               </Link>
             </nav>
-
-            {/* Newsletter Signup (now on the right) */}
-            <div className="mt-16 md:my-46px">
-              <h3 className="text-xl font-semibold mb-2">
-                Sign up for our Newsletter!
-              </h3>
-              <input
-                type="email"
-                placeholder="eg JohnSmith@gmail.com"
-                className="p-2 rounded-full w-full text-gray-800"
-              />
-              <div className="flex justify-center my-6">
-                <a href="#" className="hover:text-gray-300">
-                  <Image src={Instragram}  />
-                </a>
-                <a href="#" className="hover:text-gray-300">
-                <Image src={Whatsapp}  />
-                </a>
-                <a href="#" className="hover:text-gray-300">
-                <Image src={Linkedin}  />
-                </a>
-                <a href="#" className="hover:text-gray-300">
-                <Image src={Call}  />
-                </a>
-                <a href="#" className="hover:text-gray-300">
-                <Image src={Mail}  />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </footer>

@@ -34,18 +34,23 @@ import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birth
 import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
 
 export default function Mid() {
-  
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
 
   const handlePersonalizationPrev = () => {
-    if (personalizationSwiperRef.current && personalizationSwiperRef.current.swiper) {
+    if (
+      personalizationSwiperRef.current &&
+      personalizationSwiperRef.current.swiper
+    ) {
       personalizationSwiperRef.current.swiper.slidePrev();
     }
   };
 
   const handlePersonalizationNext = () => {
-    if (personalizationSwiperRef.current && personalizationSwiperRef.current.swiper) {
+    if (
+      personalizationSwiperRef.current &&
+      personalizationSwiperRef.current.swiper
+    ) {
       personalizationSwiperRef.current.swiper.slideNext();
     }
   };
@@ -72,9 +77,8 @@ export default function Mid() {
     { name: "Pet Birthday", icon: Pet_Birthday_Icon },
     { name: "Inaugration", icon: New_Beginnings_Icon },
     { name: "Engagement", icon: Engagement },
-
   ];
- 
+
   const pouches = [
     { name: "Pouch 1", image: pouch1 },
     { name: "Pouch 2", image: pouch2 },
@@ -98,12 +102,15 @@ export default function Mid() {
   ];
 
   return (
-    <div className=" text-white pt-2 relative bg-no-repeat" style={{
-      backgroundImage: "url('/Home/Background.svg')",
-      backgroundSize: "100% 38%", // Increase the size of the background image
-    }}>
+    <div
+      className=" text-white pt-2 relative bg-no-repeat"
+      style={{
+        backgroundImage: "url('/Home/Background.svg')",
+        backgroundSize: "100% 34%", // Increase the size of the background image
+      }}
+    >
       {/* Homepage-Arch-3 */}
-      <div className="absolute end-0 h-full w-auto hidden md:block" >
+      <div className="absolute end-0 h-full w-auto hidden md:block">
         <Image
           src={HomepageArch3}
           alt="Decorative Arch"
@@ -176,7 +183,7 @@ export default function Mid() {
           ))}
         </Swiper>
         <button
-           onClick={handlePersonalizationNext}
+          onClick={handlePersonalizationNext}
           className="absolute right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Next slide"
         >
@@ -190,7 +197,7 @@ export default function Mid() {
         </button>
       </div>
 
-      <h3 className="text-3xl md:text-5xl font-bold text-center text-white relative z-10" >
+      <h3 className="text-3xl md:text-5xl font-bold text-center text-white relative z-10">
         <Image
           src={FlowerIllustration}
           alt="flower illustration"
@@ -213,7 +220,7 @@ export default function Mid() {
       {/* Pouches */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <button
-           onClick={handleProductsPrev}
+          onClick={handleProductsPrev}
           className="absolute left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Previous slide"
         >
@@ -268,8 +275,9 @@ export default function Mid() {
           />
         </button>
       </div>
+
       {/* Versatile Gifting section */}
-      <div className="flex flex-col md:flex-row items-center relative z-10">
+      {/* <div className="flex flex-col md:flex-row items-center relative z-10">
         <div className="w-full md:w-1/2">
           <div className="absolute left-[-40px] top-0 ml-auto h-full w-auto hidden md:block">
             <Image
@@ -310,13 +318,31 @@ export default function Mid() {
         <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
           <div className="absolute top-24 right-[10rem] hidden md:flex space-x-20">
             <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
-              <Image className="ml-1 h-30 w-40" src={kaju} alt="Small Pouch" width={100} height={100} />
+              <Image
+                className="ml-1 h-30 w-40"
+                src={kaju}
+                alt="Small Pouch"
+                width={100}
+                height={100}
+              />
             </div>
             <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
-              <Image className="" src={almonds} alt="Small Pouch" width={100} height={100} />
+              <Image
+                className=""
+                src={almonds}
+                alt="Small Pouch"
+                width={100}
+                height={100}
+              />
             </div>
             <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
-              <Image className="mt-2 ml-1" src={pista} alt="Small Pouch" width={100} height={100} />
+              <Image
+                className="mt-2 ml-1"
+                src={pista}
+                alt="Small Pouch"
+                width={100}
+                height={100}
+              />
             </div>
           </div>
           <Image
@@ -328,10 +354,11 @@ export default function Mid() {
             className="ml-auto mt-[10rem]"
           />
         </div>
-      </div>
+      </div> */}
 
-      {/* Celebrations section */}
-      <div className="text-center  relative z-10 pb-16 bg-no-repeat" style={{
+
+      {/* Celebrations section old one*/}
+      {/* <div className="text-center  relative z-10 pb-16 bg-no-repeat" style={{
         backgroundImage: "url('/Home/Background-4.svg')",
         backgroundSize: "100% 100%"
       }}>
@@ -374,6 +401,74 @@ export default function Mid() {
         backgroundImage: "url('/Home/Background-5.svg')",
         backgroundSize: "100% 100%"
       }}></div>
+    </div>
+  );
+} */}
+
+      {/* Celebrations section */}
+      {/* <div className="text-center relative overflow-hidden">
+
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            zIndex: -1,
+            top: "50%", // Adjust this value to move the background up or down
+            transform: "translateY(-50%)",
+          }}
+        >
+          <Image
+            src="/Homepage/Backgrounds/Background-3.svg"
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div> */}
+
+        {/* Content */}
+        {/* <div className="relative z-10">
+          <h3 className="text-3xl md:text-6xl font-bold text-[#0f1729] mb-12">
+            Celebrations
+            <Image
+              src={BirdIllustration}
+              alt="Bird Illustration"
+              width={300}
+              height={300}
+              className="inline-block ml-4"
+            />
+          </h3>
+
+          <div
+            className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8 px-4 md:px-16 relative"
+            style={{ maxWidth: "1200px", margin: "0 auto" }}
+          >
+            {celebrationCards.map((card, index) => (
+              <div
+                key={index}
+                className="w-full md:w-1/4 flex flex-col mb-8 md:mb-0"
+              >
+                <div className="bg-[#362c60] py-6 px-4 text-[#ffda40] font-bold text-xl rounded-t-3xl">
+                  {card.name}
+                </div>
+                <div className="flex-grow bg-white py-12 flex items-center justify-center p-4">
+                  <Image
+                    src={card.image}
+                    alt={card.name}
+                    width={200}
+                    height={200}
+                    objectFit="contain"
+                  />
+                </div>
+                <div className="bg-white pb-6 rounded-b-3xl">
+                  <button className="bg-[#ffda40] text-[#464087] py-2 px-12 font-bold text-xl rounded-full mt-4 hover:bg-[#ffd000] transition-colors duration-300">
+                    Explore
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div> */}
+
     </div>
   );
 }
