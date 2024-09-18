@@ -1,8 +1,8 @@
 import React from 'react';
-
+import BirdIllustration from '../../../public/Home/Bird-Illustration.svg';
 export default function About() {
   return (
-    <div className="min-h-screen p-8" style={{ backgroundImage: "url('/Home/nexibles-1.png')" }}>
+    <div className="h-full p-8" style={{ backgroundImage: "url('/About_Us_Page/Abou_Us_Background.jpg')" }}>
       <h1 className="text-4xl mt-14 font-gotham-light font-bold text-white text-center mb-6">About NEXIBLES</h1>
       <div className="flex items-center justify-center p-4">
         <div className="w-[90%] bg-white p-6 rounded-3xl shadow-lg">
@@ -21,6 +21,7 @@ export default function About() {
           </p>
         </div>
       </div>
+      
     </div>
   );
 }
