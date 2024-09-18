@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
- 
+
 import pouch1 from "../../../public/Home/pouch-1.png";
 import pouch2 from "../../../public/Home/pouch-2.png";
 import pouch3 from "../../../public/Home/pouch-3.png";
@@ -23,29 +23,58 @@ import TestinomalImg from "../../../public/Home/TestinomalImg.png";
 import kaju from "../../../public/Home/cashew.png";
 import almonds from "../../../public/Home/almonds.png";
 import pista from "../../../public/Home/pista.png";
+import Diwali_Icon from "../../../public/Homepage/Category Icons/Diwali_Icon.svg";
+import Anniversary from "../../../public/Homepage/Category Icons/Anniversary_Icon.svg";
+import Baby_Shower_Icon from "../../../public/Homepage/Category Icons/Baby_Shower_Icon.svg";
+import Birthday from "../../../public/Homepage/Category Icons/Birthday_Icon.svg";
+import Engagement from "../../../public/Homepage/Category Icons/Engagement_Icon.svg";
+import Graduation from "../../../public/Homepage/Category Icons/Graduation_Icon.svg";
+import New_Beginnings_Icon from "../../../public/Homepage/Category Icons/New_Beginnings_Icon.png";
+import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birthday_Icon.svg";
+import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
 
 export default function Mid() {
-  const swiperRef = useRef(null);
+  
+  const personalizationSwiperRef = useRef(null);
+  const productsSwiperRef = useRef(null);
 
-  const goPrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
+  const handlePersonalizationPrev = () => {
+    if (personalizationSwiperRef.current && personalizationSwiperRef.current.swiper) {
+      personalizationSwiperRef.current.swiper.slidePrev();
     }
   };
 
-  const goNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
+  const handlePersonalizationNext = () => {
+    if (personalizationSwiperRef.current && personalizationSwiperRef.current.swiper) {
+      personalizationSwiperRef.current.swiper.slideNext();
+    }
+  };
+
+  const handleProductsPrev = () => {
+    if (productsSwiperRef.current && productsSwiperRef.current.swiper) {
+      productsSwiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleProductsNext = () => {
+    if (productsSwiperRef.current && productsSwiperRef.current.swiper) {
+      productsSwiperRef.current.swiper.slideNext();
     }
   };
 
   const celebrations = [
-    { name: "Diwali", icon: "🪔" },
-    { name: "Birthday", icon: "🎂" },
-    { name: "Wedding", icon: "💐" },
-    { name: "Graduation", icon: "🎓" },
-  ];
+    { name: "Diwali", icon: Diwali_Icon },
+    { name: "Birthday", icon: Birthday },
+    { name: "Wedding", icon: Wedding_Icon },
+    { name: "Graduation", icon: Graduation },
+    { name: "Anniversary", icon: Anniversary },
+    { name: "Baby Shower", icon: Baby_Shower_Icon },
+    { name: "Pet Birthday", icon: Pet_Birthday_Icon },
+    { name: "Inaugration", icon: New_Beginnings_Icon },
+    { name: "Engagement", icon: Engagement },
 
+  ];
+ 
   const pouches = [
     { name: "Pouch 1", image: pouch1 },
     { name: "Pouch 2", image: pouch2 },
@@ -69,8 +98,8 @@ export default function Mid() {
   ];
 
   return (
-    <div className=" text-white pt-2 relative bg-no-repeat"style={{ 
-      backgroundImage: "url('/Home/Background.svg')", 
+    <div className=" text-white pt-2 relative bg-no-repeat" style={{
+      backgroundImage: "url('/Home/Background.svg')",
       backgroundSize: "100% 38%", // Increase the size of the background image
     }}>
       {/* Homepage-Arch-3 */}
@@ -85,7 +114,7 @@ export default function Mid() {
         />
       </div>
 
-      <h2 className="text-4xl md:text-6xl font-bold text-center text-[#ffda40] mt-8 relative z-10">
+      <h2 className="text-4xl md:text-6xl font-bold text-center text-white mt-8 relative z-10">
         <Image
           src={Butterflies2}
           alt="butterflies"
@@ -103,36 +132,65 @@ export default function Mid() {
       </p>
 
       {/* Celebration Icons */}
-      <div className="flex flex-wrap justify-center md:space-x-4 mb-16 relative z-10">
-        <Image
-          src={Butterflies4}
-          alt="butterflies"
-          width={50}
-          height={50}
-          layout=""
-          className="inline-block"
-        />
-        {celebrations.map((celebration, index) => (
-          <div key={index} className="text-center w-1/2 md:w-auto mb-8 md:mb-0">
-            <div className="w-32 h-32 md:w-64 md:h-64 bg-[#f7eee5] rounded-full flex items-center justify-center mb-2 mx-auto">
-              <span className="text-5xl md:text-9xl">{celebration.icon}</span>
-            </div>
-            <p className="text-xl md:text-3xl mt-4 font-bold text-[#ffda40]">
-              {celebration.name}
-            </p>
-          </div>
-        ))}
-        <Image
-          src={Butterflies3}
-          alt="butterflies"
-          width={50}
-          layout=""
-          height={50}
-          className="inline-block"
-        />
+      <div className="relative z-10 max-w-7xl mx-auto mb-12">
+        <button
+          onClick={handlePersonalizationPrev}
+          className="absolute left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          aria-label="Previous slide"
+        >
+          <Image
+            src={Butterflies6}
+            alt="Previous"
+            width={50}
+            height={50}
+            className="hover:scale-110 transition-transform duration-300"
+          />
+        </button>
+        <Swiper
+          ref={personalizationSwiperRef}
+          modules={[Navigation]}
+          spaceBetween={10}
+          slidesPerView={5} // Adjust as needed
+          loop={true}
+          className="px-16"
+        >
+          {celebrations.map((celebration, index) => (
+            <SwiperSlide key={index}>
+              <div className="text-center w-[90%] relative h-full pt-12">
+                <div className=" h-[20rem] flex items-center justify-center">
+                  <div className="relative w-full h-full -mt-6">
+                    <Image
+                      src={celebration.icon}
+                      alt={celebration.name}
+                      layout="fill"
+                      objectFit="contain"
+                      className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
+                    />
+                  </div>
+                </div>
+                <p className="text-xl md:text-3xl mt-4 font-bold text-white">
+                  {celebration.name}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <button
+           onClick={handlePersonalizationNext}
+          className="absolute right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          aria-label="Next slide"
+        >
+          <Image
+            src={Butterflies5}
+            alt="Next"
+            width={50}
+            height={50}
+            className="hover:scale-110 transition-transform duration-300"
+          />
+        </button>
       </div>
 
-      <h3 className="text-3xl md:text-5xl font-bold text-center text-[#ffda40] relative z-10" >
+      <h3 className="text-3xl md:text-5xl font-bold text-center text-white relative z-10" >
         <Image
           src={FlowerIllustration}
           alt="flower illustration"
@@ -154,8 +212,8 @@ export default function Mid() {
 
       {/* Pouches */}
       <div className="relative z-10 max-w-7xl mx-auto">
-        <button 
-          onClick={goPrev}
+        <button
+           onClick={handleProductsPrev}
           className="absolute left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Previous slide"
         >
@@ -168,7 +226,7 @@ export default function Mid() {
           />
         </button>
         <Swiper
-          ref={swiperRef}
+          ref={productsSwiperRef}
           modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={5}
@@ -178,7 +236,7 @@ export default function Mid() {
           {pouches.map((pouch, index) => (
             <SwiperSlide key={index}>
               <div className="w-[90%] relative h-full pt-12">
-                <div className="bg-[#f7eee5] rounded-t-3xl rounded-b-[50%] h-[20rem]  flex items-center justify-center">
+                <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-[20rem]  flex items-center justify-center">
                   <div className="relative w-full h-full -mt-6">
                     <Image
                       src={pouch.image}
@@ -189,15 +247,15 @@ export default function Mid() {
                     />
                   </div>
                 </div>
-                <button className="bg-[#ffda40] mt-8 ml-[7.6rem] text-[#464087] px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                <button className="bg-[#124e66] mt-8 ml-[7.6rem] text-white px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                   Customise
                 </button>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        <button 
-          onClick={goNext}
+        <button
+          onClick={handleProductsNext}
           className="absolute right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Next slide"
         >
@@ -251,14 +309,14 @@ export default function Mid() {
         </div>
         <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
           <div className="absolute top-24 right-[10rem] hidden md:flex space-x-20">
-            <div className="w-28 h-28 bg-white rounded-full">
+            <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
               <Image className="ml-1 h-30 w-40" src={kaju} alt="Small Pouch" width={100} height={100} />
             </div>
-            <div className="w-28 h-28 bg-white rounded-full">
-            <Image className="" src={almonds} alt="Small Pouch" width={100} height={100} />
+            <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
+              <Image className="" src={almonds} alt="Small Pouch" width={100} height={100} />
             </div>
-            <div className="w-28 h-28 bg-white rounded-full">
-            <Image  className="mt-2 ml-1" src={pista} alt="Small Pouch" width={100} height={100} />
+            <div className="w-28 h-28 bg-[#bae6fd] rounded-full">
+              <Image className="mt-2 ml-1" src={pista} alt="Small Pouch" width={100} height={100} />
             </div>
           </div>
           <Image
@@ -273,10 +331,11 @@ export default function Mid() {
       </div>
 
       {/* Celebrations section */}
-      <div className="text-center  relative z-10 pb-16 bg-no-repeat"  style={{ 
+      <div className="text-center  relative z-10 pb-16 bg-no-repeat" style={{
         backgroundImage: "url('/Home/Background-4.svg')",
-        backgroundSize: "100% 100%" }}>
-        <h3 className="text-3xl md:text-5xl font-bold text-[#ffda40] mb-12">
+        backgroundSize: "100% 100%"
+      }}>
+        <h3 className="text-3xl md:text-6xl font-bold text-[#0f1729] mb-12">
           Celebrations
           <Image
             src={BirdIllustration}
@@ -311,9 +370,10 @@ export default function Mid() {
           ))}
         </div>
       </div>
-      <div className="h-[600px]" style={{ 
+      <div className="h-[600px]" style={{
         backgroundImage: "url('/Home/Background-5.svg')",
-        backgroundSize: "100% 100%" }}></div>
+        backgroundSize: "100% 100%"
+      }}></div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   IoCloseOutline,
   IoSearchOutline,
 } from "react-icons/io5";
+
 import { IoPersonOutline } from "react-icons/io5";
 import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
 import { CiFolderOn } from "react-icons/ci";
@@ -67,7 +68,8 @@ const Navbar = () => {
             href="/shop"
             className={`hidden sm:flex items-center ${iconColor}`}
           >
-            <IoSearchOutline size={28} />
+            <LuShoppingBag size={23} />
+            {/* <span className="ml-2 text-sm sm:text-base">Shop</span> */}
           </Link>
           <Link
             href="/my-cart"
@@ -76,21 +78,25 @@ const Navbar = () => {
             <IoCartOutline size={28} />
             {cartItemCount > 0 && (
               <span className="absolute  text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-{cartItemCount}
+{/* {cartItemCount} */}
               </span>
+              
             )}
+             {/* <span className="ml-2 text-sm sm:text-base hidden sm:inline">
+                Cart
+              </span> */}
           </Link>
           {user && (
             <Link href="/my-orderhistory" className="hidden sm:flex items-center text-black">
               <CiFolderOn size={28} />
-              <span className="ml-2">My Orders</span>
+              {/* <span className="ml-2">My Orders</span> */}
             </Link>
           )}
           <div className="relative hidden sm:flex text-black items-center" onClick={handleToggleOpen}>
             <IoPersonOutline size={24} />
-            <span className="ml-2 cursor-pointer text-sm sm:text-base">
+            {/* <span className="ml-2 cursor-pointer text-sm sm:text-base">
               {user ? `Hello, ${user?.result?.firstName || user?.firstName}` : "Sign In"}
-            </span>
+            </span> */}
             {showPersonDropdown && (
               <div className="absolute mt-0 top-8 right-0 bg-white text-gray-900 p-4 shadow-md flex flex-col items-center w-40 rounded-md">
                 {user ? (
@@ -115,7 +121,7 @@ const Navbar = () => {
             className={`flex items-center space-x-2 ${iconColor}`}
             onClick={toggleMenu}
           >
-            <span className="text-md mt-1">MENU</span>
+            {/* <span className="text-md">MENU</span> */}
             <IoMenuOutline size={30} />
           </button>
         </div>
