@@ -1,19 +1,24 @@
 import Link from "next/link";
-import {
-  FaInstagram,
-  FaWhatsapp,
-  FaLinkedin,
-  FaRss,
-  FaEnvelope,
-} from "react-icons/fa";
-
+import Image from 'next/image';
+// import {
+//   FaInstagram,
+//   FaWhatsapp,
+//   FaLinkedin,
+//   FaRss,
+//   FaEnvelope,
+// } from "react-icons/fa";
+import Instragram from "../../../public/Homepage/Social_Icons/Insta_Icon.svg";
+import Whatsapp from "../../../public/Homepage/Social_Icons/Whatsapp_Icon.svg";
+import Linkedin from "../../../public/Homepage/Social_Icons/Linkedin_Icon.svg";
+import Call from "../../../public/Homepage/Social_Icons/Call_Icon.svg";
+import Mail from "../../../public/Homepage/Social_Icons/Mail_Icon.svg";
 const Footer = () => {
   return (
     <>
       <footer
         className="text-white p-8"
         style={{
-          backgroundImage: "url('/Home/Footer-Background.png')",
+          backgroundImage: "url('/Homepage/Backgrounds/Footer_Background.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -63,21 +68,21 @@ const Footer = () => {
                 placeholder="eg JohnSmith@gmail.com"
                 className="p-2 rounded-full w-full text-gray-800"
               />
-              <div className="flex justify-center space-x-6 my-6">
+              <div className="flex justify-center my-6">
                 <a href="#" className="hover:text-gray-300">
-                  <FaInstagram size={24} />
+                  <Image src={Instragram}  />
                 </a>
                 <a href="#" className="hover:text-gray-300">
-                  <FaWhatsapp size={24} />
+                <Image src={Whatsapp}  />
                 </a>
                 <a href="#" className="hover:text-gray-300">
-                  <FaLinkedin size={24} />
+                <Image src={Linkedin}  />
                 </a>
                 <a href="#" className="hover:text-gray-300">
-                  <FaRss size={24} />
+                <Image src={Call}  />
                 </a>
                 <a href="#" className="hover:text-gray-300">
-                  <FaEnvelope size={24} />
+                <Image src={Mail}  />
                 </a>
               </div>
             </div>

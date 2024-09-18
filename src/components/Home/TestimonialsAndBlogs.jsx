@@ -88,7 +88,7 @@ export default function TestimonialsAndBlogs() {
               width={150}
               height={10}
             />
-            <h1 className="text-5xl font-bold text-yellow-400">Testimonials</h1>
+            <h1 className="text-5xl font-bold text-[#db5c3c]">Testimonials</h1>
           </div>
         </div>
         <div className="flex flex-col">
@@ -102,7 +102,7 @@ export default function TestimonialsAndBlogs() {
                 </p>
                 <p className="mt-4 text-center text-black">{`- Ashish W`}</p>
               </div>
-              <div className="flex justify-center mt-4 text-yellow-400">
+              <div className="flex justify-center mt-4 text-[#197d8e]">
                 {[...Array(5)].map((_, index) => (
                   <FaStar key={index} size={20} />
                 ))}
@@ -117,7 +117,7 @@ export default function TestimonialsAndBlogs() {
                 </p>
                 <p className="mt-4 text-center text-black">{`- Disha S`}</p>
               </div>
-              <div className="flex justify-center mt-4 text-yellow-400">
+              <div className="flex justify-center mt-4 text-[#197d8e]">
                 {[...Array(5)].map((_, index) => (
                   <FaStar key={index} size={20} />
                 ))}
@@ -132,7 +132,7 @@ export default function TestimonialsAndBlogs() {
                 </p>
                 <p className="mt-4 text-center text-black">{`- Prasad N`}</p>
               </div>
-              <div className="flex justify-center mt-4 text-yellow-400">
+              <div className="flex justify-center mt-4 text-[#197d8e]">
                 {[...Array(5)].map((_, index) => (
                   <FaStar key={index} size={20} />
                 ))}
@@ -147,7 +147,7 @@ export default function TestimonialsAndBlogs() {
                 </p>
                 <p className="mt-4 text-center text-black">{`- Grishma C`}</p>
               </div>
-              <div className="flex justify-center mt-4 text-yellow-400">
+              <div className="flex justify-center mt-4 text-[#197d8e]">
                 {[...Array(5)].map((_, index) => (
                   <FaStar key={index} size={20} />
                 ))}
@@ -163,14 +163,14 @@ export default function TestimonialsAndBlogs() {
             height={50}
           />
           <div className="flex flex-col items-center">
-            <h1 className="text-5xl font-bold text-yellow-400 mb-4">
+            <h1 className="text-5xl font-bold text-[#197d8e] mb-4">
               {`Want your own design?`}
             </h1>
             <p className="text-white text-xl text-center">
               {`Not finding what you want exactly?`}
               <br />
               {`Reach out to us at`}{" "}
-              <a href="mailto:sales@artnext.in" className="text-yellow-400">
+              <a href="mailto:sales@artnext.in" className="text-[#0f1729]">
                 {`sales@artnext.in`}
               </a>
               <br />
@@ -184,7 +184,7 @@ export default function TestimonialsAndBlogs() {
       <section className="py-16 overflow-visible relative z-10">
         <div className="container mx-auto px-4 overflow-visible">
           <div className="flex items-center justify-center mb-12">
-            <h2 className="text-4xl font-bold text-yellow-400 mr- mt-12">
+            <h2 className="text-6xl font-bold text-[#0f1729] mr- mt-12">
               Blogs
             </h2>
             <Image
@@ -200,7 +200,7 @@ export default function TestimonialsAndBlogs() {
             ))}
           </div>
           <div className="flex items-center justify-center mt-8">
-            <button className="bg-yellow-400 px-4 py-2 rounded-full font-bold text-2xl text-[#464087] hover:bg-yellow-300 transition duration-300">
+            <button className="bg-[#124e66] px-4 py-2 rounded-full font-bold text-2xl text-white  transition duration-300">
               Show More
             </button>
           </div>
