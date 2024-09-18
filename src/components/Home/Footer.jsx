@@ -37,7 +37,23 @@ const Footer = () => {
               </Link>
             </nav>
 
-            {/* Newsletter Signup */}
+            {/* Right Side Links (now in the middle) */}
+            <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-start">
+              <Link href="/blog" className="hover:underline">
+                Blog
+              </Link>
+              <Link href="/contact-us" className="hover:underline">
+                Contact Us
+              </Link>
+              <Link href="/tracking" className="hover:underline">
+                Tracking Link
+              </Link>
+              <Link href="/faqs" className="hover:underline">
+                FAQs
+              </Link>
+            </nav>
+
+            {/* Newsletter Signup (now on the right) */}
             <div className="mt-16 md:my-46px">
               <h3 className="text-xl font-semibold mb-2">
                 Sign up for our Newsletter!
@@ -65,40 +81,24 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-
-            {/* Right Side Links */}
-            <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-end">
-              <Link href="/blog" className="hover:underline">
-                Blog
-              </Link>
-              <Link href="/contact" className="hover:underline">
-                Contact Us
-              </Link>
-              <Link href="/tracking" className="hover:underline">
-                Tracking Link
-              </Link>
-              <Link href="/faqs" className="hover:underline">
-                FAQs
-              </Link>
-            </nav>
           </div>
         </div>
       </footer>
       {/* Bottom Links */}
       <div className="text-center text-sm mt-2 bg-white">
-        <Link href="/privacy" className="hover:underline">
+        <Link href="/privacy-policy" className="hover:underline">
           Privacy Policy
         </Link>{" "}
         |
-        <Link href="/returns" className="hover:underline">
+        <Link href="/refund-return-policy" className="hover:underline">
           Return & Refunds
         </Link>{" "}
         |
-        <Link href="/shipping" className="hover:underline">
+        <Link href="/shipping-and-delivery-policy" className="hover:underline">
           Shipping
         </Link>{" "}
         |
-        <Link href="/terms" className="hover:underline">
+        <Link href="/terms-and-conditions" className="hover:underline">
           Terms & Conditions
         </Link>
       </div>

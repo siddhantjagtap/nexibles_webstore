@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Navbar from '../Home/Navbar'
-import SubmitFormIllustration from '../../../public/Home/submit-form-illustration.svg'
+import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg'
 
 export default function ContactForm() {
   return (
@@ -14,7 +14,7 @@ export default function ContactForm() {
           {/* <p className="text-xl text-[#fcfdfd] md:text-2xl font-semibold mb-4">easy with us.</p> */}
           <p className="text-xl text-[#fcfdfd] md:text-3xl font-semibold">Do you have any questions? Please contact us right away.</p>
           {/* <p className="text-xl text-[#fcfdfd] md:text-2xl font-semibold"> We'd be delighted to address any</p> */}
-          <p className="text-xl md:text-3xl text-[#fcfdfd] font-semibold mb-4"> We'd be delighted to address any queries you may have!</p>
+          <p className="text-xl md:text-3xl text-[#fcfdfd] font-semibold mb-4"> We be delighted to address any queries you may have!</p>
         </div>
         
         <div className="flex flex-col md:flex-row gap-8">

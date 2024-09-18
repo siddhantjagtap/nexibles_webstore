@@ -59,7 +59,7 @@ export default function TestimonialsAndBlogs() {
   ];
 
   return (
-    <div className="bg-[#464087] relative overflow-hidden">
+    <div className="bg-[#464087] relative overflow-hidden" >
       {/* <div className="absolute top-0 mr-2 w-full h-full">
         <Image
           src={HomepageArch1}
@@ -75,8 +75,8 @@ export default function TestimonialsAndBlogs() {
           src={HomepageArch1}
           alt="Decorative Arch"
           layout="intrinsic"
-          height={1300} // match height of the uploaded image
-          width={1262} // match width of the uploaded image
+          height={1500} // match height of the uploaded image
+          width={1550} // match width of the uploaded image
           className="mt-[10rem]"
         />
       </div>
