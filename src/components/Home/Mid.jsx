@@ -247,7 +247,10 @@ export default function Mid() {
                     />
                   </div>
                 </div>
-                <button className="bg-[#124e66] mt-8 ml-[7.6rem] text-white px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                <p className="text-[#db5c3c] mt-8 ml-[5.5rem]  px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                  Product Name
+                </p>
+                <button className="bg-[#124e66] mt-4 ml-[7.6rem] text-white px-6 py-1 rounded-full font-bold text-xl bottom-[-4rem] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                   Customise
                 </button>
               </div>

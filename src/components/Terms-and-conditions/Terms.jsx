@@ -2,11 +2,11 @@ import React from 'react';
 
 function Terms() {
     return (
-        <div className="flex text-center flex-col items-center p-8" style={({ backgroundImage: "url('/Home/nexibles-1.png')" })} >
+        <div className="flex text-center flex-col items-center p-8" style={({ backgroundImage: "url('/Contact_Us_Page/Contact_Us_Background.jpg')" })} >
             <h1 className="text-4xl  mt-12 font-bold text-center  text-white mb-8">Terms & Conditions</h1>
             <div className="bg-white p-8 rounded-3xl shadow-lg w-[90%]">
                 <section className="text-lg leading-relaxed">
-                    <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
+                    <h2 className="text-xl font-semibold ">Introduction</h2>
                     <span>
                         {`Welcome to `} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -19,7 +19,7 @@ and you should discontinue use immediately. `} <a href="http://www.nexibles.com"
 save or print a copy of these Terms and Conditions for future reference.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Agreement to Terms and Conditions</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Agreement to Terms and Conditions</h2>
                     <span>
                         {``} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -40,7 +40,7 @@ herein in full. Do not continue to use this Website if you have any objection to
  any of the Terms and Conditions stated on this page.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Definitions/Terminology</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Definitions/Terminology</h2>
                     <span>
                         {`The following definitions apply to these Terms and Conditions, Privacy Statement,
 Disclaimer Notice, and all Agreements: "User," "Visitor," "Client," "Customer," "You," and
@@ -60,7 +60,7 @@ definitions or other glossary terms in the singular, plural, capitalization, and
  pronoun are interchangeable but refer to the same.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Intellectual Property Rights</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Intellectual Property Rights</h2>
                     <span>
                         {`Other than the content you own and opted to include on this Website, under these
 Terms, `} <a href="http://www.nexibles.com">
@@ -70,7 +70,7 @@ rights of this Website. You are granted a limited license, subject to the restri
 entailed in these Terms and Conditions, for purposes of viewing this Website's content.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Services</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Services</h2>
                     <span>
                         {`The content of this Website is not intended for use or distribution to any person or
  entity in any jurisdiction, geographical location, or country/state where such use or
@@ -84,7 +84,7 @@ permission or consent. By agreeing to these Terms and Conditions, you have the
 necessary legal capacity to comply and be bound by these Terms and Conditions.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Acceptable Use</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Acceptable Use</h2>
                     <span>
                         {`You may use this Website as permitted by these Terms and Conditions and may
 not use this Website for any purpose other than for which `} <a href="http://www.nexibles.com">
@@ -93,7 +93,7 @@ not use this Website for any purpose other than for which `} <a href="http://www
 makes the Website and its services available.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Cookies</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Cookies</h2>
                     <span>
                         {``} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -104,7 +104,7 @@ Some of our affiliate partners may also use cookies.`}
                     </span>
 
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">License</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">License</h2>
                     <span>
                         {`Unless otherwise stated, `} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -147,7 +147,7 @@ password you may have on this Website are confidential, and you are
 responsible for maintaining such information confidentiality.`}
                         </p>
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Linking and Hyperlinking Rights</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Linking and Hyperlinking Rights</h2>
                     <span>
                         {`We reserve the right to file requests that you remove all links or any particular link
 created by you that redirect to our Website, and you approve to immediately remove
@@ -157,7 +157,7 @@ bound to and follow the terms of this linking policy. Feel free to contact us if
 any link on our Website that is offensive, and we may consider requests to remove
 such links. Still, we are not obligated to do so or respond to you directly or immediately.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Hyperlinking to our Content</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Hyperlinking to our Content</h2>
                     <span>
                         {`Organizations such as search engines, government agencies, news organizations, and
 online directories may link to our Website without prior written approval. We
@@ -172,7 +172,7 @@ endorsement, sponsorship, partnership, or approval by us of any kind.`}
                         {`No use of our logo or other design intellectual property will be allowed
 for linking, except a trademark license agreement.`}
                     </p>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Link to third-party content</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Link to third-party content</h2>
                     <span>
                         {`This Website may contain links to websites or applications operated by third parties.
 Please know that we do not control any such third-party websites or applications
@@ -190,7 +190,7 @@ goods and/or services from any such third party. The advertiser, and not us,
 remains responsible for such goods and/or services, and if you have any questions
 or complaints about them, you should contact the advertiser`}
                     </p>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">User Content</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">User Content</h2>
                     <span>
                         {`In these Website Standard Terms and Conditions, "User Content" shall mean any
 audio, video, text, images, or other material or content you choose to display on this
@@ -229,7 +229,7 @@ commercial activities or unlawful activity. You now grant `} <a href="http://www
 non-exclusive license to use, reproduce, edit and authorize others approved
 by us to use, reproduce and edit any of your content in any form, format, or media.`}</p>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Privacy Policy</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Privacy Policy</h2>
                     <span>
                         {`By using this Website and its services, you may provide us with certain personal
 information. By using `} <a href="http://www.nexibles.com">
@@ -251,7 +251,7 @@ purposes and will not be published for general access. `} <a href="http://www.ne
                         </a>{`, however,
 assumes no responsibility for the security of this information.`}</p>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Disclaimers/Warranties/Limitation of Liabilities</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Disclaimers/Warranties/Limitation of Liabilities</h2>
                     <span>
                         {``} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -298,7 +298,7 @@ whether, under contract, tort, or otherwise, and `} <a href="http://www.nexibles
 officers, directors, employees, and affiliates shall not be liable for any indirect,
 consequential or special liability arising out of your use of this Website.`}</p>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Indemnification</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Indemnification</h2>
                     <span>
                         {`As a condition for the use of this Website, the User agrees to indemnify
 `} <a href="http://www.nexibles.com">
@@ -310,7 +310,7 @@ without limitation, any claim related to the breach of any of the provisions of 
 Terms and Conditions. If dissatisfied with any or all of the content on this Website or
 any or all of its Terms and Conditions, the User may discontinue using this Website.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Termination</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Termination</h2>
                     <span>
                         {`The provisions of these Terms and Conditions shall remain in full force and effect
 while you use the `} <a href="http://www.nexibles.com">
@@ -340,7 +340,7 @@ appropriate legal action(s), including without limitation pursuing civil, crimin
 injunctive redress.`}
                     </p>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">General Provisions</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">General Provisions</h2>
                     <span>
                         {`Language`}
                     </span>
@@ -357,7 +357,7 @@ unconditionally submit to the non-exclusive jurisdiction of the courts located i
 Dwarka, New Delhi, India for the resolution of any disputes.`}
                     </p>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Severability</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Severability</h2>
                     <span>
                         {`Suppose any of Term or Condition is proven to be unenforceable or void under any
 applicable law. In that case, such shall not render the entirety of these Terms and
@@ -367,7 +367,7 @@ Conditions that are unlawful, void, or unenforceable are deemed severable from t
 Terms and Conditions and do not affect any remaining provisions' validity and
  enforceability.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Variation of Terms</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Variation of Terms</h2>
                     <span>
                         {``} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -377,7 +377,7 @@ using `} <a href="http://www.nexibles.com">
                         </a>{`, you are expected to review such Terms regularly to ensure
 you comprehend all the Terms and Conditions regarding the use of this Website`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Assignment</h2>
+                    <h2 className="text-xl font-semibold mt-8 ">Assignment</h2>
                     <span>
                         {``} <a href="http://www.nexibles.com">
                             www.nexibles.com
@@ -388,7 +388,7 @@ rights and/or obligations under these Terms. Furthermore, a person who is not a 
 to these Terms and Conditions shall have no right to enforce any provision contained
 therein.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Preservation of Immunities
+                    <h2 className="text-xl font-semibold mt-8 ">Preservation of Immunities
                     </h2>
                     <span>
                         {`Nothing herein shall constitute a limitation upon the privileges and immunities
@@ -397,13 +397,13 @@ of `} <a href="http://www.nexibles.com">
                         </a>{`, which are specifically reserved.`}
                     </span>
 
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Waiver
+                    <h2 className="text-xl font-semibold mt-8 ">Waiver
                     </h2>
                     <span>
                         {`Our failure to exercise any or all of these Terms and Conditions' provisions at
 any point in time shall not operate as a waiver of such right or provision.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Entire Agreement
+                    <h2 className="text-xl font-semibold mt-8 ">Entire Agreement
                     </h2>
                     <span>
                         {`These Terms and Conditions, including any legal notices and disclaimers on this Website,
@@ -413,7 +413,7 @@ constitute the entire Agreement between `} <a href="http://www.nexibles.com">
 use of this Website. Ultimately, this Agreement supersedes all prior agreements
 and understandings concerning the same.`}
                     </span>
-                    <h2 className="text-2xl font-semibold mt-8 mb-4">Contact us
+                    <h2 className="text-xl font-semibold mt-8 ">Contact us
                     </h2>
                     <span>
                         {`To resolve any complaint or clarification regarding the use of this Website or its services

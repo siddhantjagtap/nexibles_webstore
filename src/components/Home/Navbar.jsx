@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import cart from "../../../public/Homepage/Header_Icon/Cart_Icon.svg"
+import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg"
+import shop from "../../../public/Homepage/Header_Icon/Search_Button_Icon.svg"
+
+
 import {
   IoCartOutline,
   IoMenuOutline,
@@ -14,6 +19,7 @@ import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
 import { CiFolderOn } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { useAuth } from "@/utils/authContext";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -44,9 +50,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        hasScrolled ? "bg-white shadow-xl" : "bg-white/[.4]"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${hasScrolled ? "bg-white shadow-xl" : "bg-white/[.4]"
+        }`}
     >
       <div className="flex items-center justify-between px-4 py-2 sm:px-6">
         <Link href="/" className="mr-auto">
@@ -68,21 +73,33 @@ const Navbar = () => {
             href="/shop"
             className={`hidden sm:flex items-center ${iconColor}`}
           >
-            <LuShoppingBag size={23} />
+            <Image
+              src={shop}
+              alt="Shop"
+              width={23}
+              height={23}
+              className="sm:w-[30px] sm:h-[30px]"
+            />
             {/* <span className="ml-2 text-sm sm:text-base">Shop</span> */}
           </Link>
           <Link
             href="/my-cart"
             className={`relative flex items-center ${iconColor}`}
           >
-            <IoCartOutline size={28} />
+            <Image
+              src={cart}
+              alt="Cart"
+              width={23}
+              height={23}
+              className="sm:w-[30px] sm:h-[30px]"
+            />
             {cartItemCount > 0 && (
               <span className="absolute  text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-{/* {cartItemCount} */}
+                {/* {cartItemCount} */}
               </span>
-              
+
             )}
-             {/* <span className="ml-2 text-sm sm:text-base hidden sm:inline">
+            {/* <span className="ml-2 text-sm sm:text-base hidden sm:inline">
                 Cart
               </span> */}
           </Link>
@@ -93,7 +110,11 @@ const Navbar = () => {
             </Link>
           )}
           <div className="relative hidden sm:flex text-black items-center" onClick={handleToggleOpen}>
-            <IoPersonOutline size={24} />
+            <Image
+              src={profile}
+              width={23}
+              height={23}
+              className="sm:w-[30px] sm:h-[30px]" />
             {/* <span className="ml-2 cursor-pointer text-sm sm:text-base">
               {user ? `Hello, ${user?.result?.firstName || user?.firstName}` : "Sign In"}
             </span> */}
@@ -122,16 +143,15 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             {/* <span className="text-md">MENU</span> */}
-            <IoMenuOutline size={30} />
+            {/* <IoMenuOutline size={30} /> */}
           </button>
         </div>
       </div>
 
       {/* Full-screen menu with background image */}
       <div
-        className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-y-0" : "-translate-y-full"
+          }`}
         style={{
           backgroundImage: "url('/Home/nexibles-1.png')",
           backgroundSize: "cover",
