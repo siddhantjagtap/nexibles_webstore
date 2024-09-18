@@ -42,11 +42,14 @@ export default function Hero() {
               ))}
             </div>
           </div>
-          <div className="text-white" >
-            <h1 className="text-8xl  font-extrabold mb-4">NEXIGIFTING</h1>
+          <div className="" >
+            <div className='flex'>
+            <h1 className="text-8xl text-[#0f1729] font-extrabold mb-4">NEXI</h1>
+            <h1 className="text-8xl text-[#db5c3c] font-extrabold ">GIFTING</h1>
+            </div>
             <h2 className="text-2xl font-bold ">Indias First Customized Stand-Up Pouch Gifting Platform</h2>
             <p className="text-xl mb-6">Start with just 50 pouches & scale up to 500 for all your gifting needs!</p>
-            <button className="bg-yellow-400 text-[#362c60] font-bold py-2 px-8 rounded-full text-2xl hover:bg-yellow-300 transition duration-300" >
+            <button className="bg-[#124e66] text-white font-bold py-2 px-8 rounded-full text-2xl transition duration-300" >
               Shop Now
             </button>
           </div>
