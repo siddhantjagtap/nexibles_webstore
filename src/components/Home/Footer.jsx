@@ -1,12 +1,5 @@
 import Link from "next/link";
 import Image from 'next/image';
-// import {
-//   FaInstagram,
-//   FaWhatsapp,
-//   FaLinkedin,
-//   FaRss,
-//   FaEnvelope,
-// } from "react-icons/fa";
 import Instragram from "../../../public/Homepage/Social_Icons/Insta_Icon.svg";
 import Whatsapp from "../../../public/Homepage/Social_Icons/Whatsapp_Icon.svg";
 import Linkedin from "../../../public/Homepage/Social_Icons/Linkedin_Icon.svg";
