@@ -37,7 +37,8 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
     </Link>
   );
 };
-const Blogs = () => {
+
+const BlogCarousel = () => {
   const blogPosts = [
     {
       title: "Find the perfect diwali gift with NexiGifting stand up pouches",
@@ -62,18 +63,16 @@ const Blogs = () => {
   ];
 
   return (
-    // <section className="py-12 overflow-visible">
-    //   <div className="container mx-auto px-4">
     <section className=" overflow-visible relative ">
       <div className="container mx-auto px-4 overflow-visible">
         <div className="flex items-center justify-center mb-28">
-          <h2 className="text-6xl font-bold text-[#0f1729] mr- mt-12">Blogs</h2>
-          <Image
+          <h2 className="text-3xl font-bold text-[#0f1729] mr- mt-12">Read More</h2>
+          {/* <Image
             src="/Home/Blog Title Illustration.svg"
             alt="Blog Icon"
             width={120}
             height={100}
-          />
+          /> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center">
           {blogPosts.map((post, index) => (
@@ -90,4 +89,5 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default BlogCarousel;
+
