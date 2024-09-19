@@ -12,7 +12,9 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [images.length]);
   return (
-    <div className="h-screen bg-[#197d8e]  bg-cover bg-center"  style={{ backgroundImage: "url('/Home/BannerBackground.svg')" }}>
+    <div className="h-screen 
+    
+    bg-[#197d8e]  bg-cover bg-center"  style={{ backgroundImage: "url('/Homepage/Backgrounds/Banner_Background.png')" }}>
       <div className=" pt-4 " >
         <div className="flex  items-center">
           <div className="md:w-1/2 mt-8 md:mt-0 relative">

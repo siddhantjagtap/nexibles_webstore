@@ -5,11 +5,11 @@ import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustratio
 
 export default function ContactForm() {
   return (
-    <div className="contact-form min-h-screen bg-purple-900 text-white p-8" style={{backgroundImage: 'url("/Home/nexibles-1.png")', backgroundSize: 'cover'}}>
+    <div className="contact-form min-h-screen  text-white p-8" style={{backgroundImage: 'url("/Contact_Us_Page/Contact_Us_Background.jpg")', backgroundSize: 'cover'}}>
       <Navbar />
       <div className="max-w-7xl mx-auto mt-16">
         <div className="md:max-w-2/3">
-          <h1 className="text-[#ffda40] text-4xl md:text-5xl font-bold mb-4">Get in touch</h1>
+          <h1 className="text-[#f9e2b2] text-4xl md:text-5xl font-bold mb-4">Get in touch</h1>
           <p className="text-xl text-[#fcfdfd] md:text-3xl mb-4 font-semibold">Make your journey of personalised gifting easy with us.</p>
           {/* <p className="text-xl text-[#fcfdfd] md:text-2xl font-semibold mb-4">easy with us.</p> */}
           <p className="text-xl text-[#fcfdfd] md:text-3xl font-semibold">Do you have any questions? Please contact us right away.</p>
@@ -51,7 +51,7 @@ export default function ContactForm() {
                   height={140}
                   className="mr-4"
                 />
-                <button type="submit" className="bg-[#ffda40] text-[#464087] mb-[6rem] ml-[-1rem] px-24 py-1 rounded-full text-3xl font-bold">
+                <button type="submit" className="bg-[#db5c3c] text-[#fffdfdc] mb-[6rem] ml-[-1rem] px-24 py-1 rounded-full text-3xl font-bold">
                   Submit
                 </button>
               </div>
@@ -60,7 +60,7 @@ export default function ContactForm() {
 
           <div className="w-full md:w-[30%]">
             <div className="mb-6">
-              <h2 className="text-[#ffda40] font-bold text-3xl">Address</h2>
+              <h2 className="text-[#f9e2b2] font-bold text-3xl">Address</h2>
               <p className="text-lg text-[#fcfdfd]">
                 Art NEXT Pvt Ltd,<br />
                 A/463, Ground Floor, TTC Industrial Area,<br />
@@ -70,12 +70,12 @@ export default function ContactForm() {
             </div>
             
             <div className="mb-6">
-              <h2 className="text-[#ffda40] font-bold text-3xl">Call us</h2>
+              <h2 className="text-[#f9e2b2] font-bold text-3xl">Call us</h2>
               <p className="text-lg text-[#fcfdfd]">+91 9821045101</p>
             </div>
             
             <div>
-              <h2 className="text-[#ffda40] font-bold text-3xl">Write to us</h2>
+              <h2 className="text-[#f9e2b2] font-bold text-3xl">Write to us</h2>
               <p className="text-lg text-[#fcfdfd]">sales@artnext.in</p>
             </div>
           </div>
