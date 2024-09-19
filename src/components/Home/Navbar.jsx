@@ -146,6 +146,16 @@ const Navbar = () => {
             {/* <IoMenuOutline size={30} /> */}
           </button>
         </div>
+
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden flex items-center">
+          <button
+            className={`flex items-center space-x-2 ${iconColor}`}
+            onClick={toggleMenu}
+          >
+            <IoMenuOutline size={30} />
+          </button>
+        </div>
       </div>
 
       {/* Full-screen menu with background image */}
@@ -159,7 +169,7 @@ const Navbar = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="w-full bg-white bg-opacity-75 p-6 md:p-8 flex items-center justify-end min-h-screen relative">
+        <div className="w-full bg-transparent p-6 md:p-8 flex items-center justify-end min-h-screen relative">
           <button
             onClick={toggleMenu}
             className="absolute top-8 right-8 text-black"
