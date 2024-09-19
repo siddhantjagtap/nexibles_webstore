@@ -1,29 +1,34 @@
 import React from "react";
 import Image from "next/image";
 import BirdIllustration from "../../../public/Home/Bird-Illustration.svg";
-import TestinomalImg from "../../../public/Home/TestinomalImg.png";
+import DiwaliImg from "../../../public/Home/pouch-3.png";
+import BirthdayImg from "../../../public/Home/pouch-3.png";
+import WeddingImg from "../../../public/Home/pouch-3.png";
+import FindCelebrationImg from "../../../public/Home/pouch-3.png";
+import DiwaliIcon from "../../../public/Home/pouch-3.png";
+import BirthdayIcon from "../../../public/Home/pouch-3.png";
+import WeddingIcon from "../../../public/Home/pouch-3.png";
+import CelebrationIcon from "../../../public/Home/pouch-3.png";
 
 const celebrationCards = [
-  { name: "Diwali", image: TestinomalImg },
-  { name: "Birthday", image: TestinomalImg },
-  { name: "Wedding", image: TestinomalImg },
-  { name: "Find your Celebration", image: TestinomalImg },
+  { name: "Diwali", image: DiwaliImg, icon: DiwaliIcon },
+  { name: "Birthday", image: BirthdayImg, icon: BirthdayIcon },
+  { name: "Wedding", image: WeddingImg, icon: WeddingIcon },
+  {
+    name: "Find your Celebration",
+    image: FindCelebrationImg,
+    icon: CelebrationIcon,
+  },
 ];
 
 export default function Celebration() {
   return (
-    <div
-      className="text-center relative z-10 pb-16 bg-no-repeat mt-44"
-      // style={{
-      //   backgroundImage: "url('/Home/Background-4.svg')",
-      //   backgroundSize: "100% 100%",
-      // }}
-    >
+    <div className="text-center relative z-10 pb-16 bg-no-repeat mt-44">
       <div className="flex items-center justify-center mb-12">
-        <h3 className="text-3xl md:text-6xl font-bold text-[#0f1729] mt-20">
+        <h3 className="text-4xl md:text-5xl font-bold text-[#0f1729] mt-20 ml-[10rem]">
           Celebrations
-          </h3>
-       <Image
+        </h3>
+        <Image
           src={BirdIllustration}
           alt="Bird Illustration"
           width={300}
@@ -31,27 +36,27 @@ export default function Celebration() {
           className="inline-block "
         />
       </div>
-      {/* <h3 className="text-3xl md:text-6xl font-bold text-[#0f1729] mt-10">
-        Celebrations
-        <Image
-          src={BirdIllustration}
-          alt="Bird Illustration"
-          width={300}
-          height={300}
-          className="inline-block ml-4"
-        />
-      </h3> */}
 
-      <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-8">
+      <div className="flex flex-wrap md:flex-nowrap justify-center md:space-x-4">
         {celebrationCards.map((card, index) => (
           <div
             key={index}
             className="w-full md:w-64 flex flex-col mb-8 md:mb-0"
           >
-            <div className="bg-[#362c60] py-[4rem] px-4 text-[#ffda40] font-bold text-xl rounded-t-3xl">
-              {card.name}
+            <div
+              className="bg-[#d88473] py-[3rem] px-2 text-[#fafafa] font-bold text-2xl md:text-3xl rounded-t-3xl flex items-center justify-center relative overflow-hidden"
+              style={{ height: "150px" }}
+            >
+              <Image
+                src={card.icon}
+                alt={`${card.name} Icon`}
+                layout="fill"
+                objectFit="cover"
+                className="opacity-20"
+              />
+              <span className="relative z-10">{card.name}</span>
             </div>
-            <div className="flex-grow bg-white py-[6rem] flex items-center justify-center p-4">
+            <div className="flex-grow bg-white py-[5rem] flex items-center justify-center p-4">
               <Image
                 src={card.image}
                 alt={card.name}
@@ -61,9 +66,9 @@ export default function Celebration() {
               />
             </div>
             <div className="bg-white pb-[1rem] rounded-b-3xl">
-              <button className="bg-[#ffda40] text-[#464087] py-1 px-16 font-bold text-2xl rounded-full mt-4">
+              {/* <button className="bg-[#ffda40] text-[#464087] py-1 px-16 font-bold text-2xl md:text-3xl rounded-full mt-4">
                 Explore
-              </button>
+              </button> */}
             </div>
           </div>
         ))}

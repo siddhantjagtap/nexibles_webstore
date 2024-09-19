@@ -102,20 +102,10 @@ export default function Mid() {
   ];
 
   return (
-<<<<<<< HEAD
-    <div
-      className=" text-white pt-2 relative bg-no-repeat"
-      style={{
-        backgroundImage: "url('/Home/Background.svg')",
-        backgroundSize: "100% 34%", // Increase the size of the background image
-      }}
-    >
-=======
     <div className=" text-white pt-2 relative bg-no-repeat" style={{
       backgroundImage: "url('/Home/Background.svg')",
-      backgroundSize: "100% 40%", // Increase the size of the background image
+      backgroundSize: "100% 118%", // Increase the size of the background image
     }}>
->>>>>>> 48202215fcb0a679dd3d54de6333ce72b8a2018f
       {/* Homepage-Arch-3 */}
       <div className="absolute end-0 h-full w-auto hidden md:block">
         <Image
