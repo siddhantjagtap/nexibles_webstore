@@ -106,7 +106,7 @@ export default function Mid() {
       className=" text-white pt-2 relative bg-no-repeat"
       style={{
         backgroundImage: "url('/Home/Background.svg')",
-        backgroundSize: "100% 34%", // Increase the size of the background image
+        backgroundSize: "100% 120%", 
       }}
     >
       {/* Homepage-Arch-3 */}
