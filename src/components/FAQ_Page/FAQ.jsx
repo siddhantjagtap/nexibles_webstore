@@ -70,7 +70,7 @@ const FAQ = () => {
     <div
       className="min-h-screen bg-cover bg-center py-12 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: `url('/F&Q/nexibles-1.png')`, // Correct path for background image
+        backgroundImage: `url('/F&Q/FAQ_BG.jpg')`, // Correct path for background image
         backgroundSize: "cover",
         backgroundPosition: "center top",
         backgroundRepeat: "no-repeat",
