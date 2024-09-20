@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import Link from "next/link";
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = ['/Home/pouch-1.png', '/Home/pouch-2.png', '/Home/pouch-3.png', '/Home/pouch-4.png'];
@@ -51,9 +52,9 @@ export default function Hero() {
             </div>
             <h2 className="text-2xl font-bold ">Indias First Customized Stand-Up Pouch Gifting Platform</h2>
             <p className="text-xl mb-6">Start with just 50 pouches & scale up to 500 for all your gifting needs!</p>
-            <button className="bg-[#124e66] text-white font-bold py-2 px-8 rounded-full text-2xl transition duration-300" >
+            <Link href={`/shop`} passHref  className="bg-[#124e66] text-white font-bold py-2 px-8 rounded-full text-2xl transition duration-300" >
               Shop Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

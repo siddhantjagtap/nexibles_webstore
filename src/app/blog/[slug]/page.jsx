@@ -11,7 +11,7 @@ import Marriage from '../../../../public/Blog Page/Assets/Blog 7 Full.jpg'
 import DryFruits from '../../../../public/Blog Page/Assets/Blog 8 Full.jpg'
 import Navbar from '@/components/Home/Navbar';
 import Footer from '@/components/Home/Footer';
-import BlogCarousel from '@/components/Home/BlogsCarousel';
+import BlogCarousel from '@/components/Blog/BlogsCarousel';
 
 const BlogDetail = () => {
     const pathname = usePathname();

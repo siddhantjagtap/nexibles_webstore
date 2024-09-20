@@ -131,9 +131,9 @@ const Blogs = () => {
           ))}
         </Swiper>
         <div className="flex justify-center mt-12">
-          <button className="bg-[#107d98] text-white px-8 py-4 mb-4 rounded-full text-xl font-semibold hover:bg-[#0c5f73] transition-colors">
+          <Link href="/all-blog" className="bg-[#107d98] text-white px-8 py-4 mb-4 rounded-full text-xl font-semibold hover:bg-[#0c5f73] transition-colors">
             Show More
-          </button>
+          </Link>
         </div>
       </div>
     </section>
