@@ -1,8 +1,11 @@
 "use client";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
-import React, { useState } from "react";
-
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp, User } from 'lucide-react';
+import { useAuth } from "@/utils/authContext";
+import Image from "next/image";
+import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 export default function MyAccount() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -14,7 +17,7 @@ export default function MyAccount() {
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
-
+  const { user, logout } = useAuth();
   const handleSelectItem = (index) => {
     if (selectedIndex === index) {
       setSelectedIndex(null); // Deselect if clicked again
@@ -23,104 +26,44 @@ export default function MyAccount() {
     }
     setHoveredIndex(null); // Reset hoveredIndex when item is clicked
   };
-
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   return (
     <div className="bg-white mt-9">
       <div className="px-10 py-20">
-        <h3 className="text-gray-900 font-bold text-xl">My Account</h3>
+        {/* <h3 className="text-[#db5c3c]gray-900 font-bold text-[#db5c3c]xl">My Account</h3> */}
         <div className="">
-          <ul className="text-gray-900 font-bold mt-4 border-r-8 border-gray-900">
-            <Link href="/my-dashboard">
-              <li
-                className={`cursor-pointer p-3 ${
-                  hoveredIndex === 0 ? "hover:bg-gray-200" : ""
-                }`}
-                onMouseEnter={() => handleMouseEnter(0)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className="flex items-center">
-                  {hoveredIndex === 0 && <FaChevronRight className="mr-2" />}
-                  Dashboard
-                </span>
-              </li>
-            </Link>
-            {/*<Link href="/my-dashboard">
-                            <li
-                                className={`cursor-pointer p-3 ${
-                                    selectedIndex === 0 ? "bg-gray-200" : ""
-                                }`}
-                                onMouseEnter={() => handleMouseEnter(0)}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={() => handleSelectItem(0)}
-                            >
-                                <span className="flex items-center">
-                                    {(hoveredIndex === 0 || selectedIndex === 0) && <FaChevronRight className="mr-2" />}
-                                    Dashboard
-                                </span>
-                            </li>
-                        </Link>*/}
-            {/* Other list items */}
-            {/* <Link href="/my-projects">
-                            <li
-                                className={`cursor-pointer p-3 ${hoveredIndex === 1 ? "hover:bg-gray-200" : ""
-                                    }`}
-                                onMouseEnter={() => handleMouseEnter(1)}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                <span className="flex items-center">
-                                    {hoveredIndex === 1 && <FaChevronRight className="mr-2" />}
-                                    My Projects
-                                </span>
-                            </li>
-                        </Link> */}
-            <Link href="/my-orderhistory">
-              <li
-                className={`cursor-pointer p-3 ${
-                  hoveredIndex === 2 ? "hover:bg-gray-200" : ""
-                }`}
-                onMouseEnter={() => handleMouseEnter(2)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className="flex items-center">
-                  {hoveredIndex === 2 && <FaChevronRight className="mr-2" />}
-                  Order History & Reorders
-                </span>
-              </li>
-            </Link>
-            <Link href="/payment-delivery">
-              <li
-                className={`cursor-pointer p-3 ${
-                  hoveredIndex === 3 ? "hover:bg-gray-200" : ""
-                }`}
-                onMouseEnter={() => handleMouseEnter(3)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className="flex items-center">
-                  {hoveredIndex === 3 && <FaChevronRight className="mr-2" />}
-                  Delivery
-                </span>
-              </li>
-            </Link>
-            {/* <Link href="/my-uploads">
-                            <li
-                                className={`cursor-pointer p-3 ${hoveredIndex === 4 ? "hover:bg-gray-200" : ""
-                                    }`}
-                                onMouseEnter={() => handleMouseEnter(4)}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                <span className="flex items-center">
-                                    {hoveredIndex === 4 && <FaChevronRight className="mr-2" />}
-                                    My Uploads
-                                </span>
-                            </li>
-                        </Link>
-                        <li className="hover:bg-gray-200 cursor-pointer p-3">My Design Services</li>
-                        <li className="hover:bg-gray-200 cursor-pointer p-3">Account Settings</li>
-                        <li className="hover:bg-gray-200 cursor-pointer p-3">My Subsciption</li>
-                        <li className="hover:bg-gray-200 cursor-pointer p-3">Favorite Templates</li> */}
-            {/* <li className="hover:bg-gray-200 cursor-pointer p-3">Design Services</li>
-                        <li className="hover:bg-gray-200 cursor-pointer p-3">Brand Kit</li> */}
-          </ul>
+        <div className="mb-4 py-6 px-4 border border-[#197d8e] rounded-3xl flex items-center">
+        <Image src={profile.src} width={30} height={30} className="mr-4"/>
+        <span className="text-[#db5c3c] text-xl font-bold">{user?.result?.firstName}</span>
+      </div>
+      <div className="border border-[#197d8e] rounded-3xl overflow-hidden">
+        <button
+          className="w-full border-b border-[#197d8e] py-4 px-4 flex justify-between items-center bg-white"
+          onClick={() => setIsProfileOpen(!isProfileOpen)}
+        >
+          <span className="text-[#db5c3c] font-bold ">My Profile</span>
+          {isProfileOpen ? <ChevronUp className="text-[#db5c3c] " size={20} /> : <ChevronDown className="text-[#db5c3c]gray-400" size={20} />}
+        </button>
+        {isProfileOpen && (
+          <div className="px-4 py-2 ">
+            <p className="text-gray-500 text-sm py-1">Profile Details</p>
+            <p className="text-gray-500 text-sm py-1">Address Book</p>
+          </div>
+          
+        )}
+        <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
+        <span className="text-[#db5c3c] font-bold">My Orders</span>
+      </div>
+      
+      <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
+        <span className="text-[#db5c3c] font-bold">Contact Us</span>
+      </div>
+      
+      <div className="mt-2 py-2 px-4">
+        <span className="text-[#db5c3c] font-bold">Logout</span>
+      </div>
+      </div>
+      
         </div>
       </div>
     </div>
