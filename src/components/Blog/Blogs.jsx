@@ -106,6 +106,12 @@ const Blogs = () => {
       <div className="container mx-auto px-4 overflow-visible">
         <div className="flex items-center justify-center ">
           <h2 className="text-6xl font-bold text-[#0f1729]  mt-12">Blogs</h2>
+          <Image
+            src="/Home/Blog Title Illustration.svg"
+            alt="Blog Icon"
+            width={120}
+            height={100}
+          />
         </div>
         <Swiper
           modules={[Autoplay]}

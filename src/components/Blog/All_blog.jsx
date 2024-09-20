@@ -95,6 +95,12 @@ function All_blog() {
     <div className="container mx-auto ">
       <div className="flex items-center justify-center">
         <h2 className="text-6xl font-bold text-[#0f1729] mt-20">Blogs</h2>
+        <Image
+            src="/Home/Blog Title Illustration.svg"
+            alt="Blog Icon"
+            width={120}
+            height={100}
+          />
       </div>
       <div className="px-20 flex flex-wrap justify-center mt-12">
         {blogPosts.map((post, index) => (
