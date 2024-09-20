@@ -8,9 +8,17 @@ import 'swiper/css';
 
 const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
   const backgroundColor = index % 2 === 0 ? "bg-[#db847d]" : "bg-[#66C1C2]";
-  const encodedTitle = encodeURIComponent(title);
+  const createSlug = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/--+/g, '-')
+      .trim();
+  };
+  const slug = createSlug(title);
   return (
-    <Link href={`/blog/${encodedTitle}`} passHref>
+    <Link href={`/blog/${slug}`} passHref>
       <div
         className={`mt-40 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 pt-24 pb-6 h-80 w-60 flex flex-col justify-between`}
       >
