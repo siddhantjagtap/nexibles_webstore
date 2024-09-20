@@ -5,15 +5,14 @@ import VersatileGifting from "./VersatileGifting";
 export const VersatileAndCelebration = () => {
   return (
     <>
-      <VersatileGifting />
       <div
         style={{
           backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
-          backgroundSize: "100% 110%", // Ensures the full image is shown, fitting within the container
-          backgroundPosition: "center", // Centers the image
+          backgroundSize: "100% auto", // Ensures the image covers the width, adjusts height automatically
+          backgroundPosition: "center 100%", // Moves the image down by 20%
           backgroundRepeat: "no-repeat", // Prevents repeating of the image
-          // Ensures the section takes at least full viewport height
-          // Ensures the background spans the full width
+          minHeight: "100vh", // Ensures the section takes at least full viewport height
+          width: "98.6vw", // Ensures the background spans the full width of the viewport
           display: "flex",
           flexDirection: "column",
           justifyContent: "center", // Centers content vertically
@@ -21,6 +20,7 @@ export const VersatileAndCelebration = () => {
         }}
         className="pt-[15rem] "
       >
+        <VersatileGifting />
         <Celebration />
       </div>
     </>
