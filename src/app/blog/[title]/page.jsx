@@ -1,5 +1,4 @@
 "use client";
-// src/app/blog/[title]/page.jsx
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Diwaliphoto from '../../../../public/Blog Page/Assets/Blog 5 Full.jpg'
