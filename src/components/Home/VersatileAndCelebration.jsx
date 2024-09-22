@@ -20,7 +20,7 @@ export const VersatileAndCelebration = () => {
         }}
         className="pt-[15rem] "
       >
-        <VersatileGifting />
+     
         <Celebration />
       </div>
     </>

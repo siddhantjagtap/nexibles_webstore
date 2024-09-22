@@ -7,6 +7,7 @@ import Testimonials from "@/components/Home/Testinomials";
 import Blogs from "@/components/Home/Blogs";
 import OwnDesign from "@/components/Home/OwnDesign";
 import { VersatileAndCelebration } from "@/components/Home/VersatileAndCelebration"; // Correct import
+import VersatileGifting from "@/components/Home/VersatileGifting";
 
 export default function Page() {
   return (
@@ -14,7 +15,9 @@ export default function Page() {
       <Navbar />
       <Hero />
       <Mid />
-      <VersatileAndCelebration /> {/* Correct usage */}
+      <VersatileGifting/>
+      <VersatileAndCelebration />
+       {/* Correct usage */}
       <Testimonials />
       <OwnDesign />
       <Blogs />
