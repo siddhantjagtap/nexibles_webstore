@@ -30,8 +30,8 @@ const Footer = () => {
               <Link href="/celebrations" className="hover:underline">
                 Celebrations
               </Link>
-              <Link href="/customization" className="hover:underline">
-                Customization
+              <Link href="/customisation" className="hover:underline">
+                Customisation
               </Link>
             </nav>
             {/* Newsletter Signup (now on the right) */}
