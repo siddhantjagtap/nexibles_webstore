@@ -19,7 +19,7 @@ const Content = () => (
       <h1 className="text-4xl md:text-5xl font-bold text-[#197d8e] mb-16 mr-[12rem]">
         Want your own design?
       </h1>
-      <p className="text-white text-lg md:text-2xl mr-[15rem]">
+      <div className="text-white text-lg md:text-2xl mr-[15rem]">
         Not finding what you want exactly?
         <br />
         Reach out to us at{" "}
@@ -33,7 +33,7 @@ const Content = () => (
         and our designers will customise
         <br />
         the pouch as per your specific needs.
-      </p>
+      </div>
     </div>
   </div>
 );
