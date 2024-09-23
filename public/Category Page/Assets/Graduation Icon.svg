@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 236.94 258.04">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fefcfd;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+        stroke-width: 2.05px;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: url(#radial-gradient-2);
+        stroke-width: 2.04px;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="142.82" cy="135.03" fx="142.82" fy="135.03" r="81.45" gradientTransform="translate(-24)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f8d82"/>
+      <stop offset="1" stop-color="#5e2f81"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="149.3" cy="130.06" fx="149.3" fy="130.06" r="39.38" gradientTransform="translate(-30) scale(.99 1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ee6e0f"/>
+      <stop offset=".21" stop-color="#ed6a12"/>
+      <stop offset=".42" stop-color="#ec5e1e"/>
+      <stop offset=".63" stop-color="#ea4a32"/>
+      <stop offset=".84" stop-color="#e72e4d"/>
+      <stop offset="1" stop-color="#e41369"/>
+    </radialGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Layer_1">
+      <g>
+        <circle class="cls-1" cx="118.47" cy="130.04" r="106.62"/>
+        <g>
+          <path class="cls-2" d="M212.64,109.25l-89.16-38.34c-3.46-1.49-7.38-1.5-10.85-.02L24.6,108.38c-.76.32-1,1.16-.73,1.81h-.03c.05.11.1.22.15.34.05.06.1.12.15.18,0,0,0,0,.01,0,.1.04.19.08.3.13.05.03.08.06.14.09,5.03,2.18,15.52,6.71,24.21,10.45l-.29,12.8c-10.45,3.49-1.41,8.39-1.41,8.39l.09,7.99c.01,1.05.41,2,.93,2.87.69,1.15.27,3.34.27,3.34l-4.7,41.18,3.76-.13c.94,3.74,4.34,2.07,4.34,2.07l5.67-2.84-4.61-39.89c-.68-1.71-.35-2.91.12-3.66.59-.96.91-2.08.88-3.23l-.18-7.43c9.51-6.07-1.88-8.91-1.88-8.91v-11.26c6.07,2.6,10.68,4.55,10.83,4.55h0s0,0,0,0l.47-7.53c25.36-14.75,54.95-14.56,54.95-14.56,0,0,29.59.16,54.95,15.05l.47,7.6c.41,0,31.25-13.47,39.17-16.94.7-.31.69-1.3-.01-1.6Z"/>
+          <path class="cls-3" d="M66.13,122.09v27.54c54.73-28.01,103.17,0,103.17,0v-27.54c-58.22-26.13-103.17,0-103.17,0Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
