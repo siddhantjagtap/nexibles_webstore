@@ -7,6 +7,7 @@ import { PaymentDelivery } from '@/components/dashboard/PaymentDelivery'
 //import RelatedCategory from '@/components/Home/unused/Relatedcategory'
 import { useEffect } from 'react'
 import { useAuth } from '@/utils/authContext'
+import MyDashboard from '@/components/dashboard/MyDashboard'
 
 const Page = () => {
     const [savedAddresses, setSavedAddresses] = useState([]);
@@ -46,6 +47,7 @@ const Page = () => {
                 </div>
                 <div className="md:w-full w-full">
                 <PaymentDelivery savedAddresses={savedAddresses} />
+
                 </div>
             </div>
             {/* <RelatedCategory /> */}
