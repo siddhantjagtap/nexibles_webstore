@@ -1,13 +1,9 @@
 // components/message/AddMessage.jsx
+'use client';  // Add this to mark it as a Client Component
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-
 export default function AddMessage({ pouchId, size }) {
-  const searchParams = useSearchParams();
-  const image = searchParams.get('image'); // Get the image from query params
-
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
@@ -47,9 +43,10 @@ export default function AddMessage({ pouchId, size }) {
           <p className="text-sm text-gray-500 mt-1">Up to 60 words maximum</p>
         </div>
         <div className="flex justify-between items-center">
-          {image && (
+          {/* Render the selected pouch image if available */}
+          {pouchId && size && (
             <Image
-              src={image}
+              src={`/Home/pouch-${pouchId}.png`} // Assuming image naming is consistent
               alt="Selected Pouch"
               width={150}
               height={200}

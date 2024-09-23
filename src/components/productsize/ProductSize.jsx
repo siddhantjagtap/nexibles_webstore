@@ -35,6 +35,7 @@ const pouches = [
   { id: 8, name: "Pouch 8", image: "/Home/pouch-2.png" },
 ];
 
+// ProductSize.jsx
 export default function ProductSize() {
   const searchParams = useSearchParams(); // Get search params
   const pouchId = searchParams.get('pouchId'); // Extract pouchId from query string
@@ -52,17 +53,16 @@ export default function ProductSize() {
       
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
       
-      <div className="flex justify-center items-center space-x-56"> {/* Spacing between the pouches */}
+      <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
           <Link 
             key={index} 
-            href={`/customize/${pouchId}/message?size=${size.name}`} 
-            className="text-center group" // Group class for hover effect
+            href={`/message?size=${size.name}&pouchId=${pouchId}`} // Correctly link to /message page with query params
+            className="text-center group" 
           >
-            <div className="relative p-4  transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
-              {/* Render the same image but change the width and height dynamically */}
+            <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
               <Image
-                src={selectedPouch.image}  // Use the same image for both sizes
+                src={selectedPouch.image}  
                 alt={size.name}
                 width={size.width}
                 height={size.height}
