@@ -2,9 +2,9 @@ import React from 'react';
 
 function Contact() {
     return (
-        <div className="md:mt-28 flex mb-4 gap-6 flex-col md:flex-row justify-between items-start p-6 border rounded-3xl border-[#197d8e] max-w-4xl mx-auto">
+        <div className="md:mt-32 flex mb-4 gap-6 flex-col md:flex-row justify-between items-start p-6 border rounded-3xl border-[#197d8e] max-w-4xl mx-auto">
             {/* Left side (Get in touch) */}
-            <div className="bg-yellow-200 p-6 rounded-3xl md:w-1/2 w-full ">
+            <div className="bg-orange-100 p-6 rounded-3xl md:w-1/2 w-full ">
                 <h2 className="text-xl font-bold text-[#db5c3c] mb-4">Get in touch</h2>
                 <p className="text-gray-700 font-bold mb-4">
                     Please look through our FAQs section to get answers for some common queries.
@@ -40,33 +40,34 @@ function Contact() {
                             required
                         />
                     </div>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="w-full p-3 border border-[#197d8e] rounded-lg focus:ring-2 focus:ring-[#197d8e] focus:outline-none"
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Phone Number"
-                        className="w-full p-3 border border-[#197d8e] rounded-lg focus:ring-2 focus:ring-[#197d8e] focus:outline-none"
-                        required
-                    />
+                    <div className='flex space-x-4'>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            className="w-1/2 p-3 border border-[#197d8e] rounded-lg focus:ring-2 focus:ring-[#197d8e] focus:outline-none"
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Phone Number"
+                            className="w-1/2 p-3 space-x-4 border border-[#197d8e] rounded-lg focus:ring-2 focus:ring-[#197d8e] focus:outline-none"
+                            required
+                        />
+                    </div>
                     <textarea
                         placeholder="Subject"
                         className="w-full p-3 border border-[#197d8e] rounded-lg focus:ring-2 focus:ring-[#197d8e] focus:outline-none"
                         rows="4"
                         required
                     ></textarea>
-                    <button
-                            type="submit"
-                            className=" px-3 py-3 bg-[#db5c3c] text-white rounded-lg"
-                        >
-                            Submit
-                        </button>
-                    <div className='flex justify-between'>
-                        
-                    </div>
+                   <div className='flex justify-center'>
+                   <button
+                        type="submit"
+                        className=" px-3 py-3 bg-[#db5c3c] text-white rounded-lg"
+                    >
+                        Submit
+                    </button>
+                   </div>
                 </form>
             </div>
         </div>

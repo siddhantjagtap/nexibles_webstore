@@ -45,9 +45,9 @@ export default function MyAccount() {
           {isProfileOpen ? <ChevronUp className="text-[#db5c3c] " size={20} /> : <ChevronDown className="text-[#db5c3c]gray-400" size={20} />}
         </button>
         {isProfileOpen && (
-          <div className="px-4 py-2 ">
-            <p className="text-gray-500 text-sm py-1">Profile Details</p>
-            <p className="text-gray-500 text-sm py-1">Address Book</p>
+          <div className="px-4 py-2 flex flex-col ">
+            <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Profile Details</Link>
+            <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Address Book</Link>
           </div>
           
         )}
