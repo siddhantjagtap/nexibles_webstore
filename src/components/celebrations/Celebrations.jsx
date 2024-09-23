@@ -30,17 +30,17 @@ export default function CelebrationsContent() {
   return (
     <div className="relative w-full h-full overflow-hidden">
       {/* White Background Section */}
-      <div className="relative w-full  bg-[#197d8e] pt-10" style={{ position: 'relative', zIndex: '1' }}>
+      <div className="relative w-full  bg-[#197d8e]  " style={{ position: 'relative', zIndex: '1' }}>
         <Image
           src={WhiteBackground}
           alt="White Textured Background"
           layout="fill"
-          objectFit="cover"
-          style={{ position: 'absolute', top: 0, left: 0, zIndex: '-1' }}
+          objectFit="contain"
+          style={{ position: 'absolute', top: -22, left: 0, zIndex: '-1' }}
         />
         
         {/* Main Content */}
-        <main className="relative z-10 pt-24 px-4 pb-32">
+        <main className="relative z-10 pt-24 px-4 pb-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-6xl font-bold text-gray-800 mb-4">Celebrations</h1>
             <h2 className="text-3xl font-semibold text-orange-500 mb-6">Make Every Gift Unforgettable</h2>
@@ -65,7 +65,7 @@ export default function CelebrationsContent() {
             height={400}
           />
         </div>
-        <div className="relative z-10 max-w-6xl mx-auto flex justify-center items-center px-4 py-16 ">
+        <div className="relative z-10 max-w-6xl mx-auto flex justify-center items-center px-4  ">
           <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
             {celebrations.map((celebration, index) => (
               <div key={index} className="flex flex-col items-center">
