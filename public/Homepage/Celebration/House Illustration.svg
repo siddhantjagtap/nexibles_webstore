@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 158.04 139.24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-7);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-6);
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="76.33" y1="21.85" x2="116.32" y2="21.85" gradientTransform="translate(192.66 43.7) rotate(180)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ee6e0f"/>
+      <stop offset="1" stop-color="#e41369"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="2.11" y1="52.79" x2="115.89" y2="52.79" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cfdc2a"/>
+      <stop offset="1" stop-color="#1ea6c4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="79.25" y1="109.08" x2="134.95" y2="109.08" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="23.7" y1="109.31" x2="51.78" y2="109.31" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-5" x1="23.7" y1="95.12" x2="79.25" y2="95.12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f8d82"/>
+      <stop offset="1" stop-color="#5e2f81"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="23.7" y1="109.05" x2="134.95" y2="109.05" xlink:href="#linear-gradient-5"/>
+    <linearGradient id="linear-gradient-7" x1="76.29" y1="61.39" x2="155.94" y2="61.39" xlink:href="#linear-gradient-5"/>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Layer_1">
+      <g>
+        <rect class="cls-7" x="76.33" y="1.85" width="39.99" height="39.99" transform="translate(192.66 43.7) rotate(-180)"/>
+        <polygon class="cls-1" points="115.89 81.24 59 24.34 2.11 81.24 115.89 81.24"/>
+        <polygon class="cls-3" points="134.94 136.93 134.95 81.24 79.25 81.24 134.94 136.93"/>
+        <polygon class="cls-2" points="23.7 137.39 51.78 109.32 23.7 81.24 23.7 137.39"/>
+        <polygon class="cls-4" points="23.7 81.24 51.47 109.01 79.25 81.24 23.7 81.24"/>
+        <polygon class="cls-6" points="134.95 136.86 79.33 81.24 23.7 136.86 134.95 136.86"/>
+        <polygon class="cls-5" points="116.35 41.55 155.94 81.14 115.88 81.24 76.29 41.65 116.35 41.55"/>
+      </g>
+    </g>
+  </g>
+</svg>

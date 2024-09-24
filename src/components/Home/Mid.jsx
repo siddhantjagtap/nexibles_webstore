@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
 import pouch1 from "../../../public/Home/pouch-1.png";
 import pouch2 from "../../../public/Home/pouch-2.png";
 import pouch3 from "../../../public/Home/pouch-3.png";
@@ -32,10 +31,14 @@ import Graduation from "../../../public/Homepage/Category Icons/Graduation_Icon.
 import New_Beginnings_Icon from "../../../public/Homepage/Category Icons/New_Beginnings_Icon.png";
 import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birthday_Icon.svg";
 import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
-
+import useFetchCategories from '../../app/usefetchcategories';
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
+  const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
+  
+  // Use the custom hook to fetch category data
+  const { data: categoryData, loading, error } = useFetchCategories(token);
 
   const handlePersonalizationPrev = () => {
     if (
@@ -158,14 +161,14 @@ export default function Mid() {
           loop={true}
           className="px-16"
         >
-          {celebrations.map((celebration, index) => (
+          {categoryData.map((category, index) => (
             <SwiperSlide key={index}>
-              <div className="text-center w-[90%] relative h-full pt-12">
-                <div className=" h-[20rem] flex items-center justify-center">
-                  <div className="relative w-full h-full -mt-6">
+              <div className="text-center w-[90%] relative">
+                <div className="h-[20rem] flex items-center justify-center">
+                  <div className="relative w-full h-full">
                     <Image
-                      src={celebration.icon}
-                      alt={celebration.name}
+                      src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
+                      alt={category.name}
                       layout="fill"
                       objectFit="contain"
                       className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
@@ -173,7 +176,7 @@ export default function Mid() {
                   </div>
                 </div>
                 <p className="text-xl md:text-3xl mt-4 font-bold text-white">
-                  {celebration.name}
+                  {category.name}
                 </p>
               </div>
             </SwiperSlide>
@@ -193,7 +196,6 @@ export default function Mid() {
           />
         </button>
       </div>
-
       <h3 className="text-3xl md:text-5xl font-bold text-center text-white relative z-10">
         <Image
           src={FlowerIllustration}
