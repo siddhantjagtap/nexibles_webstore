@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // Import your images here
 import WhiteBackground from "../../../public/Celebrations_Page/White_Textured_Background.png";
-import BlueBackground from "../../../public/Celebrations_Page/Blue_Wavy_Backgrond.svg";
+import BlueBackground from "../../../public/Celebrations_Page/Find your celebration bg.svg";
 import Graduation from "../../../public/Homepage/Category Icons/Graduation_Icon.svg";
 import Engagement from "../../../public/Homepage/Category Icons/Engagement_Icon.svg";
 import Anniversary from "../../../public/Homepage/Category Icons/Anniversary_Icon.svg";
@@ -25,7 +25,7 @@ export default function FindYourCelebration() {
     <div className="relative w-full h-full overflow-hidden">
       {/* White Background Section */}
       <div
-        className="relative w-full bg-[#197d8e]"
+        className="relative w-full bg-[#d88473]"
         style={{ position: "relative", zIndex: "1" }}
       >
         <Image
@@ -33,16 +33,16 @@ export default function FindYourCelebration() {
           alt="White Textured Background"
           layout="fill"
           objectFit="contain"
-          style={{ position: "absolute", top: -22, left: 0, zIndex: "-1" }}
+          style={{ position: "absolute", top: -52, left: 0, zIndex: "-1" }}
         />
 
         {/* Main Content */}
-        <main className="relative z-10 pt-24 px-4 pb-24">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-6xl font-bold text-gray-800 mb-4">
-              Celebrations
+        <main className="relative z-10 pt-24 px-4 pb-24 ">
+          <div className="max-w-4xl mx-auto text-center ">
+            <h1 className="text-5xl font-bold text-gray-800 mb-4 ">
+              Find Your Celebrations
             </h1>
-            <h2 className="text-3xl font-semibold text-orange-500 mb-6">
+            <h2 className="text-3xl font-bold text-[#197d8e] mb-6">
               Make Every Gift Unforgettable
             </h2>
             <p className="text-gray-600 text-lg mb-12">
@@ -105,7 +105,7 @@ export default function FindYourCelebration() {
 
 // // Import your images here
 // import WhiteBackground from "../../../public/Celebrations_Page/White_Textured_Background.png";
-// import BlueBackground from "../../../public/Celebrations_Page/Blue_Wavy_Backgrond.svg";
+// import BlueBackground from "../../../public/Celebrations_Page/Find your celebration bg.svg";
 // import Diwali_Icon from "../../../public/Homepage/Category Icons/Diwali_Icon.svg";
 // import Birthday from "../../../public/Homepage/Category Icons/Birthday_Icon.svg";
 // import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
