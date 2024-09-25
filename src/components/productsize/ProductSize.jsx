@@ -3,9 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'; // Import useSearchParams to get query params
+import { useSearchParams } from 'next/navigation';
 
-// Same image used for different sizes
 const sizes = [
   { 
     name: "NexiSmall", 
@@ -23,26 +22,16 @@ const sizes = [
   },
 ];
 
-// Pouches data
-const pouches = [
-  { id: 1, name: "Pouch 1", image: "/Home/pouch-1.png" }, // Example image
-  { id: 2, name: "Pouch 2", image: "/Home/pouch-2.png" },
-  { id: 3, name: "Pouch 3", image: "/Home/pouch-3.png" },
-  { id: 4, name: "Pouch 4", image: "/Home/pouch-1.png" },
-  { id: 5, name: "Pouch 5", image: "/Home/pouch-2.png" },
-  { id: 6, name: "Pouch 6", image: "/Home/pouch-3.png" },
-  { id: 7, name: "Pouch 7", image: "/Home/pouch-1.png" },
-  { id: 8, name: "Pouch 8", image: "/Home/pouch-2.png" },
-];
-
-// ProductSize.jsx
 export default function ProductSize() {
-  const searchParams = useSearchParams(); // Get search params
-  const pouchId = searchParams.get('pouchId'); // Extract pouchId from query string
-  const selectedPouch = pouches.find(pouch => pouch.id === parseInt(pouchId));
+  const searchParams = useSearchParams();
+  const pouchId = searchParams.get('pouchId');
+  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-');  // Replace %20 with -
 
-  if (!selectedPouch) {
-    return <div>Pouch not found</div>;
+  // Construct the full image URL using the server URL
+  const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
+
+  if (!imageFileName) {
+    return <div>Product image not found</div>;
   }
 
   return (
@@ -56,25 +45,25 @@ export default function ProductSize() {
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
           <Link 
-          key={index} 
-          href={`/message?size=${size.name}&pouchId=${pouchId}&image=${selectedPouch.image}`} // Pass image URL in the query string
-          className="text-center group"
-        >
-          <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
-            <Image
-              src={selectedPouch.image}  
-              alt={size.name}
-              width={size.width}
-              height={size.height}
-              className="mx-auto"
-            />
-            <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
-              {size.name}
-            </h2>
-            <p className="text-gray-600 mb-1">{size.dimensions}</p>
-            <p className="text-gray-600 mb-4">{size.capacity}</p>
-          </div>
-        </Link>
+            key={index} 
+            href={`/message?size=${size.name}&id=${pouchId}&image=${encodeURIComponent(imageUrl)}`}
+            className="text-center group"
+          >
+            <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
+              <Image
+                src={imageUrl} // Using the full absolute URL here
+                alt={size.name}
+                width={size.width}
+                height={size.height}
+                className="mx-auto"
+              />
+              <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
+                {size.name}
+              </h2>
+              <p className="text-gray-600 mb-1">{size.dimensions}</p>
+              <p className="text-gray-600 mb-4">{size.capacity}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

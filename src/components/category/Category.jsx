@@ -1,36 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useFetchCategories from '../../app/usefetchcategories';
-
-// Define pouches with sample images
-const pouches = [
-  { id: 1, name: "Pouch 1", image: "/Home/pouch-1.png" },
-  { id: 2, name: "Pouch 2", image: "/Home/pouch-2.png" },
-  { id: 3, name: "Pouch 3", image: "/Home/pouch-3.png" },
-  { id: 4, name: "Pouch 4", image: "/Home/pouch-1.png" },
-  { id: 5, name: "Pouch 5", image: "/Home/pouch-2.png" },
-  { id: 6, name: "Pouch 6", image: "/Home/pouch-3.png" },
-  { id: 7, name: "Pouch 7", image: "/Home/pouch-1.png" },
-  { id: 8, name: "Pouch 8", image: "/Home/pouch-2.png" },
-];
+import useFetchProducts from '../../app/fetchproduct';
 
 export default function CelebrationCategoryPage() {
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
-  
-  // Use the custom hook to fetch categories
-  const { data: categoryData, loading, error } = useFetchCategories(token);
+
+  const { data: categoryData, loading: categoriesLoading, error: categoriesError } = useFetchCategories(token);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // Set the first category as selected by default if data is available
-  if (categoryData.length > 0 && !selectedCategory) {
-    setSelectedCategory(categoryData[0]);
-  }
+  const { products, loading: productsLoading, error: productsError } = useFetchProducts(token, selectedCategory?.name);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error fetching categories: {error}</p>;
+  useEffect(() => {
+    if (categoryData.length > 0 && !selectedCategory) {
+      const diwaliCategory = categoryData.find(cat => cat.name.toLowerCase() === 'diwali');
+      setSelectedCategory(diwaliCategory || categoryData[0]);
+    }
+  }, [categoryData, selectedCategory]);
+
+  if (categoriesLoading || productsLoading) return <p>Loading...</p>;
+  if (categoriesError) return <p>Error fetching categories: {categoriesError}</p>;
+  if (productsError) return <p>Error fetching products: {productsError}</p>;
 
   return (
     <div className="flex min-h-screen bg-[#fdf5e7] pt-[7rem] relative">
@@ -39,11 +32,10 @@ export default function CelebrationCategoryPage() {
         {categoryData.map((category, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center mb-6 cursor-pointer transition-colors duration-200 ${
-              selectedCategory?.name === category.name
-                ? "bg-[#124e66] text-white rounded-lg"
-                : "hover:bg-[#f9d3a2] rounded-lg"
-            } p-4`}
+            className={`flex flex-col items-center mb-6 cursor-pointer transition-colors duration-200 ${selectedCategory?.name === category.name
+              ? "bg-[#124e66] text-white rounded-lg"
+              : "hover:bg-[#f9d3a2] rounded-lg"
+              } p-4`}
             onClick={() => setSelectedCategory(category)}
           >
             <div className="rounded-full bg-white w-[90%] aspect-square p-4 flex justify-center items-center overflow-hidden">
@@ -76,32 +68,37 @@ export default function CelebrationCategoryPage() {
             />
           </div>
 
-          {/* Pouch display grid */}
+          {/* Product display grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Example static pouch images, you can update this section dynamically if needed */}
-            {pouches.map((pouch) => (
-              <div key={pouch.id} className="relative h-full pt-12">
-                <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-80 flex items-center justify-center">
-                  <div className="relative w-full h-full -mt-6">
-                    <Image
-                      src={pouch.image}
-                      alt={pouch.name}
-                      layout="fill"
-                      objectFit="contain"
-                      className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115"
-                    />
+            {products.length > 0 ? (
+              products.map((product) => (
+                <div key={product.id} className="relative h-full pt-12">
+                  <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-80 flex items-center justify-center">
+                    <div className="relative w-full h-full -mt-6">
+                      <Image
+                        src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
+                        alt={product.name}
+                        layout="fill"
+                        objectFit="contain"
+                        className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115"
+                      />
+                    </div>
                   </div>
+                  <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-xl">
+                    {product.name}
+                  </p>
+                  <Link href={`/productsize?pouchId=${product.id}&image=${encodeURIComponent(product.image.replace(/%20/g, '-'))}`}>
+                    <button className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block">
+                      Customise
+                    </button>
+                  </Link>
                 </div>
-                <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-xl">
-                  {pouch.name}
-                </p>
-                <Link href={`/productsize?pouchId=${pouch.id}`}>
-                  <button className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block">
-                    Customise
-                  </button>
-                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-8">
+                <p className="text-xl text-gray-600">No products found for this category.</p>
               </div>
-            ))}
+            )}
           </div>
         </main>
       )}
