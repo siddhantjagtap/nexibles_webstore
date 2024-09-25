@@ -47,7 +47,7 @@ export default function ProductSize() {
 
   return (
     <div className="h-full px-8 pt-28">
-      <Link href="/" className="text-[#124e66] font-bold">
+      <Link href="/category" className="text-[#124e66] font-bold">
         ← Back
       </Link>
       
@@ -56,26 +56,25 @@ export default function ProductSize() {
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
           <Link 
-            key={index} 
-            href={`/message?size=${size.name}&pouchId=${pouchId}`} // Correctly link to /message page with query params
-            className="text-center group" 
-          >
-            <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
-              <Image
-                src={selectedPouch.image}  
-                alt={size.name}
-                width={size.width}
-                height={size.height}
-                className="mx-auto"
-              />
-              <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
-                {size.name}
-                <span className="text-[#ee6e73]">{size.name.includes("Small") ? "Small" : "Medium"}</span>
-              </h2>
-              <p className="text-gray-600 mb-1">{size.dimensions}</p>
-              <p className="text-gray-600 mb-4">{size.capacity}</p>
-            </div>
-          </Link>
+          key={index} 
+          href={`/message?size=${size.name}&pouchId=${pouchId}&image=${selectedPouch.image}`} // Pass image URL in the query string
+          className="text-center group"
+        >
+          <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
+            <Image
+              src={selectedPouch.image}  
+              alt={size.name}
+              width={size.width}
+              height={size.height}
+              className="mx-auto"
+            />
+            <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
+              {size.name}
+            </h2>
+            <p className="text-gray-600 mb-1">{size.dimensions}</p>
+            <p className="text-gray-600 mb-4">{size.capacity}</p>
+          </div>
+        </Link>
         ))}
       </div>
     </div>
