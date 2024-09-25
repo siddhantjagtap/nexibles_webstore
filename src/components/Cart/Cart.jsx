@@ -2,7 +2,7 @@ import React from "react";
 
 const Cart = () => {
   return (
-    <div className="min-h-screen bg-[url('/Home/nexibles-1.png')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
+    <div className="min-h-screen bg-[url('/Cart/cart.jpg')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
       <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg max-w-6xl mt-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Cart Section */}

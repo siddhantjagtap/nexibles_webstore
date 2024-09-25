@@ -15,7 +15,7 @@ export default function Page() {
       <Navbar />
       <Hero />
       <Mid />
-      <VersatileGifting/>
+      {/* <VersatileGifting/> */}
       <VersatileAndCelebration />
        {/* Correct usage */}
       <Testimonials />
