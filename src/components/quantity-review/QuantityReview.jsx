@@ -56,7 +56,6 @@ export default function QuantityReview() {
       setQuantity(value);
     }
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -107,7 +106,6 @@ export default function QuantityReview() {
               readOnly
             />
           </div>
-
           <div className="mb-6">
             <label htmlFor="message" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your message
@@ -124,7 +122,6 @@ export default function QuantityReview() {
             />
             <p className="text-sm text-gray-500 mt-1">upto 60 words maximum</p>
           </div>
-
           <div className="mb-6">
         <h2 className="text-xl font-bold text-[#ee6e73] mb-2">Add your picture</h2>
         <input
@@ -141,7 +138,6 @@ export default function QuantityReview() {
         <p className="text-sm text-gray-500 mt-1">Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg</p>
         <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
       </div>
-
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#ee6e73] mb-2">Add list of receivers</h2>
         <input
@@ -176,7 +172,6 @@ export default function QuantityReview() {
             />
             <span className="text-gray-700">I've reviewed and approved my design</span>
           </label>
-
           <div className="flex items-center justify-end">
             <Image
               src="/Home/Submit-Form-Illustration.svg"

@@ -90,7 +90,11 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
             </Link>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
             <div
             className="relative hidden sm:flex text-black items-center cursor-pointer group"
             onClick={handleProfileClick}

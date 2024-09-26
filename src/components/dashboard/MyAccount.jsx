@@ -49,16 +49,28 @@ export default function MyAccount() {
             <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Profile Details</Link>
             <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Address Book</Link>
           </div>
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
         )}
         <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
         <Link href="my-orderhistory" className="text-[#db5c3c] font-bold">My Orders</Link>
       </div>
+<<<<<<< HEAD
 
       <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
         <Link href="contact" className="text-[#db5c3c] font-bold">Contact Us</Link>
       </div>
 
+=======
+      
+      <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
+        <Link href="contact" className="text-[#db5c3c] font-bold">Contact Us</Link>
+      </div>
+  
+>>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
       <div className="mt-2 py-2 px-4">
         <button onClick={logout} className="text-[#db5c3c] font-bold">Logout</button>
       </div>
