@@ -5,7 +5,11 @@ import Link from "next/link";
 import cart from "../../../public/Homepage/Header_Icon/Cart_Icon.svg";
 import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 import shop from "../../../public/Homepage/Header_Icon/Search_Button_Icon.svg";
+<<<<<<< HEAD
 // import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
+=======
+
+>>>>>>> 5e401a5884675ea6cef3bab48d94ccc7a981b83b
 import {
   IoCartOutline,
   IoMenuOutline,
@@ -92,6 +96,7 @@ const Navbar = () => {
             </Link>
             
             <div
+<<<<<<< HEAD
             className="relative hidden sm:flex text-black items-center cursor-pointer group"
             onClick={handleProfileClick}
           >
@@ -106,6 +111,19 @@ const Navbar = () => {
               Sign in to view your profile and track your orders.
             </div>
           </div>
+=======
+              className="relative hidden sm:flex text-black items-center cursor-pointer"
+              onClick={handleProfileClick}
+            >
+              <Image
+                src={profile}
+                width={23}
+                height={23}
+                alt="Profile"
+                className="sm:w-[30px] sm:h-[30px]"
+              />
+            </div>
+>>>>>>> 5e401a5884675ea6cef3bab48d94ccc7a981b83b
             <Link
               href="/my-cart"
               className={`relative flex items-center ${iconColor}`}
@@ -118,7 +136,11 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
               {cartItemCount > 0 && (
+<<<<<<< HEAD
                 <span className="absolute text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
+=======
+                <span className="absolute  text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
+>>>>>>> 5e401a5884675ea6cef3bab48d94ccc7a981b83b
               )}
             </Link>
             <button
