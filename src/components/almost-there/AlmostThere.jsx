@@ -3,43 +3,85 @@
 import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg';
 
 export default function AlmostThere() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  
+  const size = searchParams.get('size');
+  const imageFileName = searchParams.get('image');
+
   const [picture, setPicture] = useState(null);
   const [receivers, setReceivers] = useState(null);
 
-  const handlePictureUpload = (e) => {
-    setPicture(e.target.files[0]);
+  const handleFileUpload = async (file, type) => {
+    const formData = new FormData();
+    formData.append('File', file);
+
+    try {
+      const response = await fetch('https://nexiblesapp.barecms.com/api/product/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const fileName = result.data.originalname;
+        console.log(fileName); // Adjust based on actual API response
+        localStorage.setItem(type, fileName);
+        return fileName;
+      } else {
+        console.error('File upload failed');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      return null;
+    }
   };
 
-  const handleReceiversUpload = (e) => {
-    setReceivers(e.target.files[0]);
+  const handlePictureUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const uploadedFileName = await handleFileUpload(file, 'picture');
+      if (uploadedFileName) {
+        setPicture(uploadedFileName);
+      }
+    }
   };
+
+  const handleReceiversUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const uploadedFileName = await handleFileUpload(file, 'receivers');
+      if (uploadedFileName) {
+        setReceivers(uploadedFileName);
+      }
+    }
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Prepare data to pass (could also send these via state management if needed)
-    const pictureUrl = picture ? URL.createObjectURL(picture) : null;
-    const receiversUrl = receivers ? URL.createObjectURL(receivers) : null;
-    
+    // Prepare data to pass
+    //const pictureUrl = picture ? URL.createObjectURL(picture) : null;
+    //const receiversUrl = receivers ? URL.createObjectURL(receivers) : null;
+
     // Redirect to the Quantity and Review page
-    router.push(`/quantity-review?pouchId=${pouchId}&picture=${pictureUrl}&receivers=${receiversUrl}`);
+    router.push(`/quantity-review?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
   };
 
   return (
     <div className="min-h-screen bg-white px-4 py-8 mt-[5rem]">
-      <button
-        onClick={() => window.history.back()}
+      <Link
+        href={`/message?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`}
         className="text-[#124e66] ml-[1rem] font-bold"
       >
         ← Back
-      </button>
+      </Link>
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Almost There</h1>
       <div className="max-w-4xl mx-auto flex">
         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
@@ -104,9 +146,9 @@ export default function AlmostThere() {
           </div>
         </form>
         <div className="w-1/3 mt-[3rem]">
-          {pouchId && (
+          {imageFileName && (
             <Image
-              src={`/Home/pouch-${pouchId}.png`}
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
               alt="Selected Pouch"
               width={300}
               height={400}

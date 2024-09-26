@@ -1,6 +1,20 @@
-import React from "react";
+"use client"
+import React ,{useEffect,useState} from "react";
 
 const Cart = () => {
+  const [cartData, setCartData] = useState({});
+  useEffect(() => {
+    // Retrieve all data from localStorage
+    const storedData = {
+      productSize: localStorage.getItem('productSize'),
+      name: localStorage.getItem('name'),
+      message: localStorage.getItem('message'),
+      picture: localStorage.getItem('picture'),
+      quantity: localStorage.getItem('quantity'),
+    };
+    setCartData(storedData);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[url('/Cart/cart.jpg')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
       <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg max-w-6xl mt-28">
@@ -10,14 +24,13 @@ const Cart = () => {
             <h2 className="text-2xl ml-14 font-bold text-[#db5c3c] mb-4 ">
               Cart
             </h2>
-
             <div>
               <div>
                 <h3 className="text-xl font-semibold text-[#db5c3c]">
-                  Product Name
+                {cartData.name || "Product Name"}
                 </h3>
                 <button className="border border-gray-400 py-1 px-3 rounded-xl text-lg font-semibold text-[#db5c3c]">
-                  Quantity
+                {cartData.quantity ||"Quantity"}
                 </button>
               </div>
 
@@ -27,16 +40,19 @@ const Cart = () => {
                   <input
                     type="text"
                     placeholder="Size"
+                    value={cartData.productSize || ""}
                     className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
                   />
                   <input
                     type="text"
                     placeholder="Name (From)"
+                    value={cartData.name || ""}
                     className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
                   />
                   <input
                     type="text"
                     placeholder="Custom Message"
+                    value={cartData.message || ""}
                     className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
                   />
                   <input
@@ -47,7 +63,15 @@ const Cart = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="border border-[#464087] w-32 h-32 flex items-center justify-center rounded-xl">
-                    <span className="text-[#464087]">Image Preview</span>
+                  {cartData.picture ? (
+                      <img
+                        src={`https://nexiblesapp.barecms.com/uploads/${cartData.picture}`}
+                        alt="Product"
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <span className="text-[#464087]">No Image</span>
+                    )}
                   </div>
                   <button className="mt-2 border border-[#464087] px-4 py-1 rounded-xl text-sm text-[#464087] font-bold">
                     View Mockup
