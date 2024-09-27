@@ -36,11 +36,7 @@ export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
   // Use the custom hook to fetch category data
   const { data: categoryData, loading, error } = useFetchCategories(token);
 
@@ -73,21 +69,6 @@ export default function Mid() {
       productsSwiperRef.current.swiper.slideNext();
     }
   };
-<<<<<<< HEAD
-=======
-
-  const celebrations = [
-    { name: "Diwali", icon: Diwali_Icon },
-    { name: "Birthday", icon: Birthday },
-    { name: "Wedding", icon: Wedding_Icon },
-    { name: "Graduation", icon: Graduation },
-    { name: "Anniversary", icon: Anniversary },
-    { name: "Baby Shower", icon: Baby_Shower_Icon },
-    { name: "Pet Birthday", icon: Pet_Birthday_Icon },
-    { name: "Inaugration", icon: New_Beginnings_Icon },
-    { name: "Engagement", icon: Engagement },
-  ];
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
 
   const pouches = [
     { name: "Pouch 1", image: pouch1 },
@@ -149,23 +130,14 @@ export default function Mid() {
       <div className="relative z-10 max-w-7xl mx-auto mb-12">
         <button
           onClick={handlePersonalizationPrev}
-<<<<<<< HEAD
           className="absolute left-[-2rem] sm:left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
-=======
-          className="absolute left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
           aria-label="Previous slide"
         >
           <Image
             src={Butterflies6}
             alt="Previous"
-<<<<<<< HEAD
             width={40} // Adjust size for smaller screens
             height={40}
-=======
-            width={50}
-            height={50}
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
             className="hover:scale-110 transition-transform duration-300"
           />
         </button>
@@ -173,7 +145,6 @@ export default function Mid() {
           ref={personalizationSwiperRef}
           modules={[Navigation]}
           spaceBetween={10}
-<<<<<<< HEAD
           slidesPerView={1} // Adjust for mobile views
           breakpoints={{
             640: { slidesPerView: 3 }, // Small screens (tablet)
@@ -182,20 +153,11 @@ export default function Mid() {
           }}
           loop={true}
           className="px-4 sm:px-16"
-=======
-          slidesPerView={5} // Adjust as needed
-          loop={true}
-          className="px-16"
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
         >
           {categoryData.map((category, index) => (
             <SwiperSlide key={index}>
               <div className="text-center w-[90%] relative">
-<<<<<<< HEAD
                 <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
-=======
-                <div className="h-[20rem] flex items-center justify-center">
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
                   <div className="relative w-full h-full">
                     <Image
                       src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
@@ -206,11 +168,7 @@ export default function Mid() {
                     />
                   </div>
                 </div>
-<<<<<<< HEAD
                 <p className="text-base sm:text-xl md:text-3xl mt-4 font-bold text-white">
-=======
-                <p className="text-xl md:text-3xl mt-4 font-bold text-white">
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
                   {category.name}
                 </p>
               </div>
@@ -219,32 +177,19 @@ export default function Mid() {
         </Swiper>
         <button
           onClick={handlePersonalizationNext}
-<<<<<<< HEAD
           className="absolute right-[-2rem] sm:right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
-=======
-          className="absolute right-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
           aria-label="Next slide"
         >
           <Image
             src={Butterflies5}
             alt="Next"
-<<<<<<< HEAD
             width={40} // Adjust size for smaller screens
             height={40}
-=======
-            width={50}
-            height={50}
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
             className="hover:scale-110 transition-transform duration-300"
           />
         </button>
       </div>
-<<<<<<< HEAD
       <h3 className="text-xl sm:text-3xl md:text-5xl font-bold text-center text-white relative z-10">
-=======
-      <h3 className="text-3xl md:text-5xl font-bold text-center text-white relative z-10">
->>>>>>> 34ad5f8cece771087819216dd6c6a422b86befb6
         <Image
           src={FlowerIllustration}
           alt="flower illustration"
