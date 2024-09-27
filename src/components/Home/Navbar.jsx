@@ -5,7 +5,7 @@ import Link from "next/link";
 import cart from "../../../public/Homepage/Header_Icon/Cart_Icon.svg";
 import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 import shop from "../../../public/Homepage/Header_Icon/Search_Button_Icon.svg";
-
+// import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import {
   IoCartOutline,
   IoMenuOutline,
@@ -90,19 +90,21 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
             </Link>
-            
             <div
-              className="relative hidden sm:flex text-black items-center cursor-pointer"
-              onClick={handleProfileClick}
-            >
-              <Image
-                src={profile}
-                width={23}
-                height={23}
-                alt="Profile"
-                className="sm:w-[30px] sm:h-[30px]"
-              />
+            className="relative hidden sm:flex text-black items-center cursor-pointer group"
+            onClick={handleProfileClick}
+          >
+            <Image
+              src={profile}
+              width={23}
+              height={23}
+              alt="Profile"
+              className="sm:w-[30px] sm:h-[30px]"
+            />
+            <div className="absolute p-4 top-10 right-0 font-bold bg-white border border-[#197d8e] rounded-xl w-[15rem] h-auto text-[#db5c3c] flex items-center  shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-wrap">
+              Sign in to view your profile and track your orders.
             </div>
+          </div>
             <Link
               href="/my-cart"
               className={`relative flex items-center ${iconColor}`}
@@ -115,7 +117,7 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
               {cartItemCount > 0 && (
-                <span className="absolute  text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
+                <span className="absolute text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
               )}
             </Link>
             <button

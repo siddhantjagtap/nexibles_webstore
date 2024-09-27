@@ -75,57 +75,68 @@ export const PaymentDelivery = ({ savedAddresses }) => {
     return (
         <div>
             <div className="bg-white py-8 px-10 mt-20 ">
-                <h3 className="mb-6 font-bold text-2xl text-gray-900">Delivery</h3>
+                {/* <h3 className="mb-6 font-bold text-2xl text-gray-900">Delivery</h3>
                 <p className="text-gray-900 font-semibold text-lg mb-4">Saved Addresses</p>
                 <div className="mt-4">
                     <button onClick={handleAddAddressClick} className="bg-[#30384E] rounded-md text-white px-7 py-3 flex items-center">
                         <FiPlus className="mr-2" />
                         Add a new address
                     </button>
-                </div>
+                </div> */}
                 {savedAddresses && savedAddresses.data && savedAddresses.data.length > 0 && (
                     <div className="flex flex-wrap gap-6 mt-6">
                         {savedAddresses.data.map((address, index) => (
                             <div
                                 key={index}
-                                className={`h-auto w-[20rem] border rounded-lg py-2 px-4 ${address.isDefault === "1" ? 'bg-gray-100' : ''}`}
+                                className={`h-auto w-full border border-[#197d8e] rounded-3xl py-2 px-4`}
                             >
-                                {address.isDefault === "1" && (
-                                    <span className="text-sm text-gray-500">Default Address</span>
-                                )}
-                                <p className="text-gray-900 font-bold">{address.title}</p>
-                                <p className="text-gray-900">{address.address}</p>
-                                <p className="text-gray-900">{address.address2}</p>
-                                <p className="text-gray-900">{address.city}</p>
-                                <p className="text-gray-900">{address.state}</p>
-                                <p className="text-gray-900">{address.zip}</p>
-                                <p className="text-gray-900">{address.country}</p>
-                                <p className="text-gray-900">{address.phone}</p>
 
-                                <div className="flex mt-2">
-                                    <button
-                                        onClick={() => handleEditAddress(address.id)}
-                                        className="text-2xl place-self-end mb-2"
-                                    >
-                                        <BiSolidEdit />
-                                    </button>
-                                    <button
-                                        onClick={() => handleDeleteAddress(address.id)}
-                                        className="text-2xl place-self-end text-red-600 mb-2"
-                                    >
-                                        <MdDelete />
-                                    </button>
-                                    <button
-                                        className="text-sm place-self-end text-blue-900 underline"
-                                        onClick={() => handleSetDefaultAddress(user?.result?.customerId || user?.customerId, address.id)}
-                                    >
-                                        Make Default
-                                    </button>
+                                <div >
+                                    <div className='flex justify-between'>
+                                        <div>
+                                            {address.isDefault === "1" && (
+                                                <span className="text-sm text-gray-500">Default Address</span>
+                                            )}
+                                            <p className="text-gray-900 font-bold">{address.title}</p>
+                                            <p className="text-gray-900">{address.address}</p>
+                                            <p className="text-gray-900">{address.address2}</p>
+                                            <p className="text-gray-900">{address.city}</p>
+                                            <p className="text-gray-900">{address.state}</p>
+                                            <p className="text-gray-900">{address.zip}</p>
+                                            <p className="text-gray-900">{address.country}</p>
+                                            <p className="text-gray-900">{address.phone}</p>
+                                        </div>
+                                        <div className="mt-2">
+                                            <button
+                                                onClick={() => handleEditAddress(address.id)}
+                                                className="text-2xl place-self-end mb-2"
+                                            >
+                                                <BiSolidEdit />
+                                            </button>
+                                            <button
+                                                onClick={() => handleDeleteAddress(address.id)}
+                                                className="text-2xl place-self-end text-red-600 mb-2"
+                                            >
+                                                <MdDelete />
+                                            </button>
+                                            {address.isDefault !== "1" && (
+                                                <button
+                                                    className="text-sm place-self-end text-blue-900 underline"
+                                                    onClick={() => handleSetDefaultAddress(user?.result?.customerId || user?.customerId, address.id)}
+                                                >
+                                                    Make Default
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
                         ))}
                     </div>
                 )}
+
 
                 {showAddAddress && (
                     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">

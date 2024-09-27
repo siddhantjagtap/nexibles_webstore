@@ -41,29 +41,27 @@ export default function MyAccount() {
           className="w-full border-b border-[#197d8e] py-4 px-4 flex justify-between items-center bg-white"
           onClick={() => setIsProfileOpen(!isProfileOpen)}
         >
-          <span className="text-[#db5c3c] font-bold ">My Profile</span>
+          <Link href="my-dashboard" className="text-[#db5c3c] font-bold ">My Profile</Link>
           {isProfileOpen ? <ChevronUp className="text-[#db5c3c] " size={20} /> : <ChevronDown className="text-[#db5c3c]gray-400" size={20} />}
         </button>
         {isProfileOpen && (
-          <div className="px-4 py-2 ">
-            <p className="text-gray-500 text-sm py-1">Profile Details</p>
-            <p className="text-gray-500 text-sm py-1">Address Book</p>
+          <div className="px-4 py-2 flex flex-col ">
+            <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Profile Details</Link>
+            <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Address Book</Link>
           </div>
-          
         )}
         <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
-        <span className="text-[#db5c3c] font-bold">My Orders</span>
+        <Link href="my-orderhistory" className="text-[#db5c3c] font-bold">My Orders</Link>
       </div>
-      
+
       <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
-        <span className="text-[#db5c3c] font-bold">Contact Us</span>
+        <Link href="contact" className="text-[#db5c3c] font-bold">Contact Us</Link>
       </div>
-      
+
       <div className="mt-2 py-2 px-4">
-        <span className="text-[#db5c3c] font-bold">Logout</span>
+        <button onClick={logout} className="text-[#db5c3c] font-bold">Logout</button>
       </div>
       </div>
-      
         </div>
       </div>
     </div>

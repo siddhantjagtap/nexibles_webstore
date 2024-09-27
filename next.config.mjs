@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images:{
+        domains:["nexiblesapp.barecms.com"]
+    }
+}
+
 
 export default nextConfig;
