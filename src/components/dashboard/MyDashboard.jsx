@@ -27,7 +27,7 @@ const MyDashboard = ({ savedAddresses }) => {
             <p className="text-gray-700  ">{user?.result?.emailAddress || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-gray-700 ">{user?.result?.mobile || 'N/A'}</p>
+            <p className="text-gray-700 ">{user?.result?.mobile}</p>
           </div>
         </div>  
       </div>

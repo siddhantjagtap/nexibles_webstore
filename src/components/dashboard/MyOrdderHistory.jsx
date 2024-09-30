@@ -38,7 +38,7 @@ const MyOrderHistory = () => {
         fetchOrderHistory();
     }, [user]);
     const handleAddToCart = (orderNo) => {
-        console.log("orderNo",orderNo);
+        console.log("orderNo", orderNo);
         const ordersToAdd = orders.filter(order => order.orderNo === orderNo);
         if (ordersToAdd.length === 0) {
             console.error('Orders not found.');
@@ -57,14 +57,14 @@ const MyOrderHistory = () => {
                 typeName: order.typeName || null,
             };
         });
-    const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-     existingCartItems.push(...productsToAdd);
-     localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
-     router.push('/my-cart');
+        const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        existingCartItems.push(...productsToAdd);
+        localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+        router.push('/my-cart');
     };
 
 
-        const groupOrdersByOrderNo = () => {
+    const groupOrdersByOrderNo = () => {
         const groupedOrders = {};
         orders.forEach(order => {
             if (!groupedOrders[order.orderNo]) {
@@ -78,49 +78,46 @@ const MyOrderHistory = () => {
 
     const handleKeylineDownload = async (productId) => {
         try {
-           if (!user) return;
-           const order = orders[0];
-          const response = await fetch("https://nexiblesapp.barecms.com/api/keylineimage", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              product_id: productId,
-              customer_id: user?.result?.customerId || user?.customerId,
-              order_id: order.orderNo,
-            }),
-          });
-          if (!response.ok) {
-            throw new Error(`Failed to get keyline PDF URL: ${response.statusText}`);
-          }
-          const data = await response.json();
-          const pdfUrl = data;
-          const downloadLink = document.createElement('a');
-          downloadLink.href = pdfUrl;
-          downloadLink.download = "keyline.pdf";
-          downloadLink.click();
+            if (!user) return;
+            const order = orders[0];
+            const response = await fetch("https://nexiblesapp.barecms.com/api/keylineimage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    customer_id: user?.result?.customerId || user?.customerId,
+                    order_id: order.orderNo,
+                }),
+            });
+            if (!response.ok) {
+                throw new Error(`Failed to get keyline PDF URL: ${response.statusText}`);
+            }
+            const data = await response.json();
+            const pdfUrl = data;
+            const downloadLink = document.createElement('a');
+            downloadLink.href = pdfUrl;
+            downloadLink.download = "keyline.pdf";
+            downloadLink.click();
 
         } catch (error) {
-          console.error("Error downloading keyline PDF:", error);
-          alert("Failed to download keyline PDF. Please try again later.");
+            console.error("Error downloading keyline PDF:", error);
+            alert("Failed to download keyline PDF. Please try again later.");
         }
-      };
+    };
+    const [visibleOrder, setVisibleOrder] = useState(null); // State to track visible order details
+
+    const toggleOrderDetails = (orderNo) => {
+        // Toggle the visibility of order details
+        setVisibleOrder(visibleOrder === orderNo ? null : orderNo);
+    };
 
     return (
         <div>
-            <div className="bg-white mt-4 py-20 px-10">
-                <h2 className="mb-6 font-bold md:text-2xl text-gray-900">Order History & Re-Order</h2>
-                <div className="text-gray-900 flex md:justify-end items-center mb-4 space-x-2">
-                    {/* <FiChevronLeft />
-                    <p className="">1 of 2</p>
-                    <FiChevronRight /> */}
-                    {/* <select name="" id="" className="border-2 border-gray-900 rounded-full md:px-6 py-2 cursor-pointer">
-                        <option value="1">5 per page</option>
-                        <option value="2">2 per page</option>
-                        <option value="3">4 per page</option>
-                    </select> */}
-                </div>
+            <div className="bg-white mt-10 py-20 px-10">
+                {/* <h2 className="mb-6 font-bold md:text-2xl text-gray-900">Order History & Re-Order</h2> */}
+
 
                 <div className="space-y-6">
                     {orders.length === 0 ? (
@@ -128,31 +125,57 @@ const MyOrderHistory = () => {
                     ) : (
                         Object.entries(groupOrdersByOrderNo()).map(([orderNo, orderGroup]) => (
                             <div key={orderNo} className="w-full">
-                                <div className="h-auto border border-gray-500 rounded-lg p-6">
-                                    <h2 className="font-bold text-xl">Order #{orderNo}</h2>
+                                <div className="h-auto border border-[#197d8e] rounded-3xl">
+                                    <div className="font-bold text-xl text-[#db5c3c] border-b border-[#197d8e] p-6">All Orders</div>
                                     {orderGroup.map(order => (
-                                        <div key={order.id} className="flex flex-col lg:flex-row lg:space-x-10 py-2 md:py-2">
-                                            <div className="lg:w-[350px]">
-                                                <img src={`https://nexiblesapp.barecms.com/uploads/${order.image}`} alt="image" className="h-52 w-full object-cover lg:h-auto lg:w-[350px]" />
-                                            </div>
+                                        <div key={order.id} className="flex flex-col p-4 lg:flex-row lg:space-x-10 py-2 md:py-2">
+                                            {/* Order Info */}
                                             <div className="text-gray-900">
-                                                <h2 className="font-bold text-xl">{order.product_name}</h2>
                                                 <div className="space-y-2 mt-2">
-                                                    <p><span className="font-bold">Order Date:</span> {order.orderDate}</p>
-                                                    <p><span className="font-bold">Status:</span> {order.payment_status}</p>
-                                                    <p><span className="font-bold">Order #:</span> {order.orderNo}</p>
-                                                    <p><span className="font-bold">Total Paid: &#8377; {order.price}</span></p>
+                                                    <p><span className="text-sm">Order Number:</span> </p>
+                                                    <p className="font-bold text-md">#{order.orderNo}</p>
+                                                    <p className="text-sm">Status</p>
+                                                    <p className="font-bold text-[#db5c3c]">{order.payment_status}</p>
+
+                                                    {/* Order Details & Track Shipment buttons */}
+                                                    <div className='flex flex-col space-y-4 w-auto'>
+                                                        <button
+                                                            className='bg-[#db5c3c] p-3 md:w-[20rem] font-bold rounded-full text-white'
+                                                            onClick={() => toggleOrderDetails(orderNo)}
+                                                        >
+                                                            {visibleOrder === orderNo ? "Hide Details" : "Order Details"}
+                                                        </button>
+                                                        <button className='bg-[#0f1729] p-3 md:w-[20rem] font-bold rounded-full text-white'>
+                                                            Track Shipment
+                                                        </button>
+                                                    </div>
+
+                                                    {/* Order details - Show image, price, and name if visible */}
+                                                    {visibleOrder === orderNo && (
+                                                        <div className="mt-4 p-4 ">
+                                                            {/* Image */}
+                                                            <img
+                                                                src={`https://nexiblesapp.barecms.com/uploads/${order.image}`}
+                                                                alt={order.product_name}
+                                                                className="h-52 w-full object-cover lg:h-auto lg:w-[350px]"
+                                                            />
+                                                            {/* Name & Price */}
+                                                            <h2 className="font-bold text-md mt-4">{order.product_name}</h2>
+                                                            <p className="font-bold text-md mt-2">Price: ₹{order.price}</p>
+                                                            <p className="font-bold text-md mt-2">Quantity: {order.quantity}</p>
+                                                            <p className="font-bold text-md mt-2">
+                                                                Ordered Date: {new Date(order.orderDate).toLocaleDateString('en-GB', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: 'numeric',
+                                                                })}
+                                                            </p>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <button className="mt-2 bg-[#30384E] rounded-md text-white uppercase px-6 py-2 flex items-center" onClick={() => handleKeylineDownload(order.product_id)}>
-                                              <FiDownload className="mr-2" size={20} />
-                                              keyline
-                                              </button>
                                             </div>
                                         </div>
                                     ))}
-                                    <div className="flex justify-end mt-4">
-                                        <button className="bg-[#30384E] rounded-md text-white px-8 py-2 uppercase " onClick={() => handleAddToCart(orderNo)}>add to cart</button>
-                                    </div>
                                 </div>
                             </div>
                         ))

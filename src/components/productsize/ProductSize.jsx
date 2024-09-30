@@ -1,48 +1,48 @@
 'use client';
 
-import React from 'react';
+import React ,{useEffect,useState}from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'; // Import useSearchParams to get query params
+import { useSearchParams } from 'next/navigation';
 
-// Same image used for different sizes
 const sizes = [
-  { 
-    name: "NexiSmall", 
-    dimensions: "130mm x 210mm + 80mm", 
-    capacity: "Can hold up to 200gms", 
-    width: 280, 
-    height: 380 
+  {
+    name: "NexiSmall",
+    dimensions: "130mm x 210mm + 80mm",
+    capacity: "Can hold up to 200gms",
+    width: 280,
+    height: 380
   },
-  { 
-    name: "NexiMedium", 
-    dimensions: "160mm x 240mm + 90mm", 
-    capacity: "Can hold up to 300gms", 
-    width: 400, 
-    height: 570 
+  {
+    name: "NexiMedium",
+    dimensions: "160mm x 240mm + 90mm",
+    capacity: "Can hold up to 300gms",
+    width: 400,
+    height: 570
   },
 ];
 
-// Pouches data
-const pouches = [
-  { id: 1, name: "Pouch 1", image: "/Home/pouch-1.png" }, // Example image
-  { id: 2, name: "Pouch 2", image: "/Home/pouch-2.png" },
-  { id: 3, name: "Pouch 3", image: "/Home/pouch-3.png" },
-  { id: 4, name: "Pouch 4", image: "/Home/pouch-1.png" },
-  { id: 5, name: "Pouch 5", image: "/Home/pouch-2.png" },
-  { id: 6, name: "Pouch 6", image: "/Home/pouch-3.png" },
-  { id: 7, name: "Pouch 7", image: "/Home/pouch-1.png" },
-  { id: 8, name: "Pouch 8", image: "/Home/pouch-2.png" },
-];
-
-// ProductSize.jsx
 export default function ProductSize() {
-  const searchParams = useSearchParams(); // Get search params
-  const pouchId = searchParams.get('pouchId'); // Extract pouchId from query string
-  const selectedPouch = pouches.find(pouch => pouch.id === parseInt(pouchId));
+  const searchParams = useSearchParams();
+  const pouchId = searchParams.get('pouchId');
+  const imageFileName = searchParams.get('image');
+  const productName = searchParams.get('name');
 
-  if (!selectedPouch) {
-    return <div>Pouch not found</div>;
+  useEffect(() => {
+    if (pouchId && productName) {
+      // Store productId and productName in localStorage
+      localStorage.setItem('productId', pouchId);
+      localStorage.setItem('productName', productName);
+    }
+  }, [pouchId, productName]);
+
+  const handleSizeSelection = (size) => {
+    // Store selected size in localStorage
+    localStorage.setItem('productSize', size.name);
+  };
+
+  if (!imageFileName) {
+    return <div>Product image not found</div>;
   }
 
   return (
@@ -50,31 +50,32 @@ export default function ProductSize() {
       <Link href="/category" className="text-[#124e66] font-bold">
         ← Back
       </Link>
-      
+
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
-      
+
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
-          <Link 
-          key={index} 
-          href={`/message?size=${size.name}&pouchId=${pouchId}&image=${selectedPouch.image}`} // Pass image URL in the query string
-          className="text-center group"
-        >
-          <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
-            <Image
-              src={selectedPouch.image}  
-              alt={size.name}
-              width={size.width}
-              height={size.height}
-              className="mx-auto"
-            />
-            <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
-              {size.name}
-            </h2>
-            <p className="text-gray-600 mb-1">{size.dimensions}</p>
-            <p className="text-gray-600 mb-4">{size.capacity}</p>
-          </div>
-        </Link>
+          <Link
+            key={index}
+            href={`/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`}
+            className="text-center group"
+            onClick={() => handleSizeSelection(size)}
+          >
+            <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
+              <Image
+                src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+                alt={size.name}
+                width={size.width}
+                height={size.height}
+                className="mx-auto"
+              />
+              <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
+                {size.name}
+              </h2>
+              <p className="text-gray-600 mb-1">{size.dimensions}</p>
+              <p className="text-gray-600 mb-4">{size.capacity}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

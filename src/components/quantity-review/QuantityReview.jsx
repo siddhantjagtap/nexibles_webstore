@@ -6,41 +6,36 @@ import Image from 'next/image';
 export default function QuantityReview() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [imageFile, setImageFile] = useState(null);
   const [quantity, setQuantity] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [pictureName, setPictureName] = useState('');
   const [receivers, setReceivers] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
-
-  useEffect(() => {
+  const imageFileName = searchParams.get('image');
+   useEffect(() => {
     // Retrieve data from localStorage
     const storedName = localStorage.getItem('name');
     const storedMessage = localStorage.getItem('message');
-
+    const storedPicture = localStorage.getItem('picture');
+    const storedReceivers = localStorage.getItem('receivers');
+    const storedQuantity = localStorage.getItem('quantity');
     // Set state with retrieved data
     if (storedName) setName(storedName);
     if (storedMessage) setMessage(storedMessage);
-
-    // Pre-fill form fields with data from URL parameters
+    if (storedPicture) setPictureName(storedPicture);
+    if (storedReceivers) setReceivers(storedReceivers);
+    if (storedQuantity) setQuantity(storedQuantity);
+    // Pre-fill quantity from URL parameters
     const queryQuantity = searchParams.get('quantity');
     setQuantity(queryQuantity || '');
-
-    // Get the picture file name from the URL parameter
-    const pictureParam = searchParams.get('picture');
-    if (pictureParam) {
-      const fileName = pictureParam.split('\\').pop().split('/').pop();
-      setPictureName(fileName);
-    }
-
-    // Get the receivers file name from the URL parameter
-    const receiversParam = searchParams.get('receivers');
-    if (receiversParam) {
-      const fileName = receiversParam.split('\\').pop().split('/').pop();
-      setReceivers(fileName);
-    }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (quantity) {
+      localStorage.setItem('quantity', quantity);
+    }
+  }, [quantity]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +46,7 @@ export default function QuantityReview() {
     }
     console.log({ quantity: numQuantity, name, message, pictureName, receivers, agreeToTerms });
     // Redirect to next page or process order
-    router.push('/order-confirmation');
+    router.push('/cart');
   };
 
   const handleQuantityChange = (e) => {
@@ -73,9 +68,9 @@ export default function QuantityReview() {
       <button onClick={() => router.back()} className="text-[#124e66] ml-[1rem] font-bold">
         ← Back
       </button>
-      
+
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Quantity and Review</h1>
-      
+
       <div className="max-w-4xl mx-auto flex">
         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
           <div className="mb-6">
@@ -92,10 +87,10 @@ export default function QuantityReview() {
               required
             />
           </div>
-          
+
           <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Yay you're done!</h2>
           <p className="text-gray-600 mb-4">Let's review everything once so your pouches are perfect!</p>
-          
+
           <div className="mb-6">
             <label htmlFor="name" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your name
@@ -111,7 +106,6 @@ export default function QuantityReview() {
               readOnly
             />
           </div>
-          
           <div className="mb-6">
             <label htmlFor="message" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your message
@@ -128,25 +122,22 @@ export default function QuantityReview() {
             />
             <p className="text-sm text-gray-500 mt-1">upto 60 words maximum</p>
           </div>
-          
           <div className="mb-6">
         <h2 className="text-xl font-bold text-[#ee6e73] mb-2">Add your picture</h2>
         <input
           type="file"
           accept=".jpeg,.jpg,.png,.heic,.svg"
           onChange={handleImageChange}
-          className="mb-2 w-full p-2 border border-[#68a398] rounded-3xl" 
+          className="mb-2 w-full p-2 border border-[#68a398] rounded-3xl"
         />
-        {pictureName && (
-          <div>
-            <p className="text-gray-600">Current image: {pictureName}</p>
-            <p className="text-sm text-blue-500">Click 'Choose File' again to change the image</p>
-          </div>
+        {pictureName ? (
+          <p className="text-gray-600">Uploaded image: {pictureName}</p>
+        ) : (
+          <p className="text-gray-600">No image uploaded</p>
         )}
         <p className="text-sm text-gray-500 mt-1">Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg</p>
         <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
       </div>
-      
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#ee6e73] mb-2">Add list of receivers</h2>
         <input
@@ -158,20 +149,19 @@ export default function QuantityReview() {
           }}
           className="mb-2 w-full p-2 border border-[#68a398] rounded-3xl"
         />
-        {receivers && (
-          <div>
-            <p className="text-gray-600">Current file: {receivers}</p>
-            <p className="text-sm text-blue-500">Click 'Choose File' again to change the file</p>
-          </div>
+        {receivers ? (
+          <p className="text-gray-600">Uploaded file: {receivers}</p>
+        ) : (
+          <p className="text-gray-600">No file uploaded</p>
         )}
         <p className="text-sm text-gray-500 mt-1">Acceptable formats: Excel (.xlsx, .xls)</p>
         <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
       </div>
-          
+
           <p className="text-[#ee6e73] font-bold mb-4">
             Please make sure you've uploaded the correct picture & document & there are no spelling errors anywhere!
           </p>
-          
+
           <label className="flex items-center mb-6">
             <input
               type="checkbox"
@@ -182,7 +172,6 @@ export default function QuantityReview() {
             />
             <span className="text-gray-700">I've reviewed and approved my design</span>
           </label>
-          
           <div className="flex items-center justify-end">
             <Image
               src="/Home/Submit-Form-Illustration.svg"
@@ -198,11 +187,11 @@ export default function QuantityReview() {
             </button>
           </div>
         </form>
-        
+
         <div className="w-1/3">
-          {searchParams.get('pouchId') && (
+        {imageFileName && (
             <Image
-              src={`/Home/pouch-${searchParams.get('pouchId')}.png`}
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
               alt="Selected Pouch"
               width={300}
               height={400}
