@@ -25,21 +25,10 @@ const sizes = [
 export default function ProductSize() {
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  const imageFileName = searchParams.get('image');
-  const productName = searchParams.get('name');
+  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-');  // Replace %20 with -
 
-  useEffect(() => {
-    if (pouchId && productName) {
-      // Store productId and productName in localStorage
-      localStorage.setItem('productId', pouchId);
-      localStorage.setItem('productName', productName);
-    }
-  }, [pouchId, productName]);
-
-  const handleSizeSelection = (size) => {
-    // Store selected size in localStorage
-    localStorage.setItem('productSize', size.name);
-  };
+  // Construct the full image URL using the server URL
+  const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
 
   if (!imageFileName) {
     return <div>Product image not found</div>;
@@ -52,18 +41,17 @@ export default function ProductSize() {
       </Link>
 
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
-
+      
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
-          <Link
-            key={index}
-            href={`/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`}
+          <Link 
+            key={index} 
+            href={`/message?size=${size.name}&id=${pouchId}&image=${encodeURIComponent(imageUrl)}`}
             className="text-center group"
-            onClick={() => handleSizeSelection(size)}
           >
             <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
               <Image
-                src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+                src={imageUrl} // Using the full absolute URL here
                 alt={size.name}
                 width={size.width}
                 height={size.height}

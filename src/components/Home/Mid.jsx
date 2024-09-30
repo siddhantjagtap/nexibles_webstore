@@ -32,12 +32,11 @@ import New_Beginnings_Icon from "../../../public/Homepage/Category Icons/New_Beg
 import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birthday_Icon.svg";
 import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
 import useFetchCategories from '../../app/usefetchcategories';
-
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
-
+  
   // Use the custom hook to fetch category data
   const { data: categoryData, loading, error } = useFetchCategories(token);
 
