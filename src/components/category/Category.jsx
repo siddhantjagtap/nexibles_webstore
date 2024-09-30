@@ -11,7 +11,7 @@ export default function CelebrationCategoryPage() {
 
   const { data: categoryData, loading: categoriesLoading, error: categoriesError } = useFetchCategories(token);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
+  
   const { products, loading: productsLoading, error: productsError } = useFetchProducts(token, selectedCategory?.name);
 
   useEffect(() => {
@@ -20,6 +20,36 @@ export default function CelebrationCategoryPage() {
       setSelectedCategory(diwaliCategory || categoryData[0]);
     }
   }, [categoryData, selectedCategory]);
+
+  const addToCart = (product) => {
+    // Retrieve existing cart from localStorage or initialize a new one
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Create new product entry
+    const newCartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      category: selectedCategory?.name,
+      quantity: 1,  // Default quantity to 1
+      image: product.image
+    };
+
+    // Check if the product already exists in the cart
+    const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      // If the product already exists, update its quantity
+      existingCart[existingItemIndex].quantity += 1;
+    } else {
+      // Otherwise, add the new product to the cart
+      existingCart.push(newCartItem);
+    }
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+
+  };
 
   if (categoriesLoading || productsLoading) return <p>Loading...</p>;
   if (categoriesError) return <p>Error fetching categories: {categoriesError}</p>;
@@ -88,7 +118,10 @@ export default function CelebrationCategoryPage() {
                     {product.name}
                   </p>
                   <Link href={`/productsize?pouchId=${product.id}&image=${encodeURIComponent(product.image.replace(/%20/g, '-'))}`}>
-                    <button className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block">
+                    <button
+                      className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
+                      onClick={() => addToCart(product)}
+                    >
                       Customise
                     </button>
                   </Link>

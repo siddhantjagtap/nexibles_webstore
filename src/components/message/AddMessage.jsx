@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState ,useEffect} from 'react';
+import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,21 +16,36 @@ export default function AddMessage() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
-  // useEffect(() => {
-  //   // Load name and message from localStorage if available
-  //   const storedName = localStorage.getItem('name');
-  //   const storedMessage = localStorage.getItem('message');
-  //   if (storedName) setName(storedName);
-  //   if (storedMessage) setMessage(storedMessage);
-  // }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('name', name);
-    localStorage.setItem('message', message);
-    router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
-  };
+    
+    // Get the existing cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    // Create a new cart array with updated product details
+    const updatedCart = cart.map(item => {
+        // Check if the current item matches the selected pouchId and size
+        if (item.id === parseInt(pouchId, 10)) {
+            return {
+                ...item,
+                customer_name: name || null,     // Update the name
+                custom_message: message || null // Update the message
+            };
+        }
+        return item; // Return the item as is if it doesn't match
+    });
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Optionally show a confirmation
+    // alert('Your message has been saved!');
+
+    // Redirect to the next page
+    router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
+};
+
+  
   if (!imageFileName) {
     return <div>Product image not found</div>;
   }
