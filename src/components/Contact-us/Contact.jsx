@@ -8,8 +8,8 @@ function Contact() {
                 <h2 className="text-xl font-bold text-[#db5c3c] mb-4">Get in touch</h2>
                 <p className="text-gray-700 font-bold mb-4">
                     Please look through our FAQs section to get answers for some common queries.
-                    In case you don't find what you're looking for do reach out to us from any of
-                    the means below and we'll do our best to sort your issue.
+                    {`In case you don't find what you're looking for do reach out to us from any of
+                    the means below and we'll do our best to sort your issue.`}
                 </p>
                 <div className='mb-4'>
                     <p className='text-[#db5c3c] font-bold'>Call us</p>
