@@ -49,7 +49,7 @@ export default function QuantityReview() {
     }
 
     // Get existing cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) ;
 
     // Find existing product in the cart
     const existingProductIndex = cart.findIndex(
@@ -86,7 +86,7 @@ export default function QuantityReview() {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     // Redirect to the cart page
-    router.push('/cart');
+    router.push('/my-cart');
   };
 
   const handleQuantityChange = (e) => {
@@ -115,9 +115,9 @@ export default function QuantityReview() {
       <button onClick={() => router.back()} className="text-[#124e66] ml-[1rem] font-bold">
         ← Back
       </button>
-      
-      <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">{`Quantity and Review`}</h1>
-      
+
+      <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Quantity and Review</h1>
+
       <div className="max-w-4xl mx-auto flex">
         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
           <div className="mb-6">
@@ -134,10 +134,10 @@ export default function QuantityReview() {
               required
             />
           </div>
-          
-          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">{`Yay you're done!`}</h2>
-          <p className="text-gray-600 mb-4">{`Let's review everything once so your pouches are perfect!`}</p>
-          
+
+          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Yay you're done!</h2>
+          <p className="text-gray-600 mb-4">Let's review everything once so your pouches are perfect!</p>
+
           <div className="mb-6">
             <label htmlFor="customerName" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your name
@@ -165,7 +165,7 @@ export default function QuantityReview() {
               maxLength={60}
               required
             />
-            <p className="text-sm text-gray-500 mt-1">{`up to 60 words maximum`}</p>
+            <p className="text-sm text-gray-500 mt-1">up to 60 words maximum</p>
           </div>
 
           <div className="mb-6">
@@ -179,14 +179,14 @@ export default function QuantityReview() {
             {uploadedPicture ? (
               <p className="text-gray-600">Uploaded image: {uploadedPicture}</p>
             ) : (
-              <p className="text-gray-600">{`No image uploaded`}</p>
+              <p className="text-gray-600">No image uploaded</p>
             )}
-            <p className="text-sm text-gray-500 mt-1">{`Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg`}</p>
-            <p className="text-sm text-gray-500">{`Please keep the size under 5MB`}</p>
+            <p className="text-sm text-gray-500 mt-1">Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg</p>
+            <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
           </div>
 
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-[#ee6e73] mb-2">{`Add list of receivers`}</h2>
+            <h2 className="text-xl font-bold text-[#ee6e73] mb-2">Add list of receivers</h2>
             <input
               type="file"
               accept=".xlsx,.xls"
@@ -198,14 +198,14 @@ export default function QuantityReview() {
             ) : (
               <p className="text-gray-600">No file uploaded</p>
             )}
-            <p className="text-sm text-gray-500 mt-1">{`Acceptable formats: Excel (.xlsx, .xls)`}</p>
-            <p className="text-sm text-gray-500">{`Please keep the size under 5MB`}</p>
+            <p className="text-sm text-gray-500 mt-1">Acceptable formats: Excel (.xlsx, .xls)</p>
+            <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
           </div>
 
           <p className="text-[#ee6e73] font-bold mb-4">
-            {`Please make sure you've uploaded the correct picture & document & there are no spelling errors anywhere!`}
+            Please make sure you've uploaded the correct picture & document & there are no spelling errors anywhere!
           </p>
-          
+
           <label className="flex items-center mb-6">
             <input
               type="checkbox"
@@ -214,9 +214,9 @@ export default function QuantityReview() {
               className="mr-2"
               required
             />
-            <span className="text-gray-700">{`I've reviewed and approved my design`}</span>
+            <span className="text-gray-700">I've reviewed and approved my design</span>
           </label>
-          
+
           <div className="flex items-center justify-end">
             <Image
               src="/Home/Submit-Form-Illustration.svg"
@@ -232,7 +232,7 @@ export default function QuantityReview() {
             </button>
           </div>
         </form>
-        
+
         <div className="w-1/3">
           <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Product Preview</h2>
           <div className="border p-4 rounded-lg">

@@ -9,13 +9,13 @@ export default function AlmostThere() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  
+  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-');
   const [picture, setPicture] = useState(null);
   const [receivers, setReceivers] = useState(null);
   const [skipPicture, setSkipPicture] = useState(false);
   const [skipReceivers, setSkipReceivers] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const size = searchParams.get('size');
   // Function to upload files
   const handleFileUpload = async (file) => {
     const formData = new FormData();
@@ -103,7 +103,7 @@ export default function AlmostThere() {
     // Update the cart in localStorage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     // Redirect to the Quantity and Review page
-    router.push(`/quantity-review?pouchId=${pouchId}&picture=${pictureUrl}&receivers=${receiversUrl}`);
+    router.push(`/quantity-review?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
   };
 
   return (
@@ -189,7 +189,7 @@ export default function AlmostThere() {
         <div className="w-1/3 mt-[3rem]">
           {pouchId && (
             <Image
-              src={`/Home/pouch-${pouchId}.png`}
+            src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
               alt="Selected Pouch"
               width={300}
               height={400}

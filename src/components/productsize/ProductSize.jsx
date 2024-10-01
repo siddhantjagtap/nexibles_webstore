@@ -60,7 +60,7 @@ export default function ProductSize() {
       </Link>
 
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
-      
+
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
           <div
@@ -70,7 +70,7 @@ export default function ProductSize() {
           >
             <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
               <Image
-                src={imageUrl} // Using the full absolute URL here
+                src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
                 alt={size.name}
                 width={size.width}
                 height={size.height}

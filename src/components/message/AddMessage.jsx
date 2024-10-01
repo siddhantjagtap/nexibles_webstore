@@ -10,6 +10,7 @@ export default function AddMessage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
+  const size = searchParams.get('size');
   const imageFileName = searchParams.get('image')?.replace(/%20/g, '-'); // Replace %20 with -
 
   // Construct the full image URL using the server URL
@@ -20,7 +21,7 @@ export default function AddMessage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Get the existing cart from localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -47,7 +48,7 @@ export default function AddMessage() {
     router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
 };
 
-  
+
   if (!imageFileName) {
     return <div>Product image not found</div>;
   }
@@ -108,7 +109,7 @@ export default function AddMessage() {
         <div className="w-1/3 mt-[3rem]">
           {pouchId && (
             <Image
-              src={imageUrl} // Using the full absolute URL here
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
               alt="Selected Pouch"
               width={300}
               height={400}
