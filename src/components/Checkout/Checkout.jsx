@@ -35,27 +35,21 @@ export default function Checkout({ defaultAddress }) {
     street_no: "",
     isDefault: "1",
   });
-
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Retrieve cart items from localStorage
-      const items = JSON.parse(localStorage.getItem("cart")) || [];
-      let total = 0;
-  
-      // Calculate total price
-      items.forEach(item => {
-        total += parseFloat(item.price) || 0;
-      });
-  
-      // Set totalPrice and store it back in cart
-      const updatedItems = items.map(item => ({ ...item, totalPrice: total.toFixed(2) }));
-      localStorage.setItem("cart", JSON.stringify(updatedItems));
-  
-      // Update state
-      setCartItems(updatedItems);
-      setTotalPrice(total.toFixed(2));
-    }
+    // Safely access localStorage on the client side
+    const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedOrderNo = localStorage.getItem("orderNo");
+    
+    let total = 0;
+    storedItems.forEach(item => {
+      total += parseFloat(item.price) || 0;
+    });
+
+    setCartItems(storedItems);
+    setTotalPrice(total.toFixed(2));
+    setOrderNo(storedOrderNo);
   }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
