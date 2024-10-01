@@ -5,7 +5,7 @@ import Navbar from "@/components/Home/Navbar";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/utils/authContext";
 
-function page() {  // Keep the function name lowercase
+function Page() {  // Keep the function name lowercase
   const [defaultAddress, setDefaultAddress] = useState();
   const { user } = useAuth();
 
@@ -45,4 +45,4 @@ function page() {  // Keep the function name lowercase
   );
 }
 
-export default page;  // Export it directly as lowercase, React will still recognize it as a component
+export default Page;  // Export it directly as lowercase, React will still recognize it as a component
