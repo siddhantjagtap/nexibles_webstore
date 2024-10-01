@@ -354,8 +354,8 @@ export default function Checkout({ defaultAddress }) {
 
             <div>
               {cartItems.map((item, index) => (
-                <div>
-                  <div key={index} className="mb-4">
+                <div key={index}>
+                  <div  className="mb-4">
                     <h3 className="text-xl font-semibold text-[#464087]">
                       {item.name}
                     </h3>
