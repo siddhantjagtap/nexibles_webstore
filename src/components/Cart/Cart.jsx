@@ -1,20 +1,172 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
-
+import { FaTrash } from "react-icons/fa"; // Import trash icon from react-icons
+import Link from 'next/link';
+import { useAuth } from '../../utils/authContext'; // Adjust the import path accordingly
+import { toast } from "react-toastify";
+import jwt from "jsonwebtoken";
+import { BsCart3 } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
+import { useRouter } from "next/navigation";
 const Cart = () => {
+  const { user, logout } = useAuth(); // Get user info from AuthContext
   const [cartItems, setCartItems] = useState([]);
-
+  const router = useRouter();
+  const [shippingCost, setShippingCost] = useState(50);
+  const isLoggedIn = () => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      return !!token;
+    }
+    return false;
+  };
+  // Load cart items from localStorage on component mount
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(cart);
   }, []);
 
+  // Calculate subtotal and store in localStorage
   const calculateSubtotal = () => {
-    // This is a placeholder calculation. You'll need to implement the actual pricing logic.
-    return cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
+    const subtotal = cartItems.reduce(
+      (total, item) => total + Number(item.price),
+      0
+    ); // Convert item.price to a number
+    localStorage.setItem("subtotal", subtotal); // Store subtotal in localStorage
+    return subtotal;
   };
 
+  // Update subtotal when cartItems change
+  useEffect(() => {
+    calculateSubtotal();
+  }, [cartItems]);
 
+  // Calculate total (Subtotal + Shipping)
+  const calculateTotal = () => {
+    return calculateSubtotal() + parseFloat(shippingCost || 50); // Total = Subtotal + Shipping
+  };
+
+  // Handle removing item from cart
+  const handleRemoveItem = (indexToRemove) => {
+    const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
+    setCartItems(updatedCart); // Update state
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+  };
+
+  // Handle checkout button click
+  // const handleProceedToCheckout = () => {
+  //   if (!user) {
+  //     // User is not logged in, redirect to login page
+  //     toast('You need to log in to proceed to checkout.'); // You can also use a toast notification
+  //     window.location.href = '/login'; // Redirect to login
+  //   } else {
+  //     // User is logged in, navigate to checkout
+  //     window.location.href = '/checkout';
+  //   }
+  // };
+  const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
+  const getOrderDetailsFromLocalStorage = () => {
+    return cartItems.map((product) => ({
+      id: product.id,
+      name: product.name,
+      image: product.picture,
+      price: product.price,
+      quantity: product.quantity,
+      category: product.category,
+      size: product.productSize,
+      custom_message: product.custom_message,
+      customer_name: product.customer_name,
+      uploaded_receivers: product.uploaded_receivers,
+      uploaded_picture: product.uploaded_picture
+    }));
+  };
+
+  const orderDetails = getOrderDetailsFromLocalStorage();
+  const createOrder = async (e) => {
+    e.preventDefault();
+    try {
+      if (!isLoggedIn()) {
+        toast.success("You need to login first");
+        router.push("/login");
+        return;
+      }
+      let userDetails;
+      const authToken = await new Promise((resolve, reject) => {
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("token");
+          if (token) {
+            resolve(token);
+          } else {
+            reject("Auth token not found in localStorage");
+          }
+        } else {
+          reject("Window object not available");
+        }
+      });
+      if (authToken) {
+        const decodedToken = await jwt.decode(authToken);
+        userDetails = decodedToken;
+        console.log("userDetailsinAuthToken", userDetails);
+      }
+      if (userDetails && userDetails.result) {
+        const orderNo = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+        const orderDate = new Date().toISOString();
+        const requestBody = {
+          orderNo: orderNo,
+          orderDate: orderDate,
+          pmtMethod: "",
+          customerID: userDetails.result.customerId || "",
+          salutation: userDetails.result.salutation || "",
+          firstName: userDetails?.result?.firstName || "",
+          lastName: userDetails.result.lastName || "",
+          mobile: userDetails.result.mobile || "",
+          eMail: userDetails.result.emailAddress || "",
+          street: userDetails.result.street || "",
+          address: userDetails.result.address || "",
+          city: userDetails.result.city || "",
+          state: userDetails.result.state || "",
+          company: userDetails.result.company || "",
+          zipcode: userDetails.result.zip || "",
+          country: userDetails.result.country || "",
+          remark: "",
+          coupon: "",
+          currency: "",
+          invamt: "",
+          tax: "",
+          ordstatus: "",
+          discount: "",
+          disamt: "",
+          promoDiscount: "",
+          minDeliveryAmt: "",
+          orderCharge: "",
+          ipAddress: "",
+          confirm_status: "",
+          orderDetails: orderDetails,
+        };
+        const response = await fetch("https://nexiblesapp.barecms.com/api/createorder", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "API-Key": token,
+          },
+          body: JSON.stringify(requestBody),
+        });
+        const responseData = await response.json();
+        if (typeof window !== "undefined") {
+          localStorage.setItem("orderNo", responseData.orderNo);
+        }
+        if (responseData.success === true) {
+          router.push("/checkout");
+          toast.success("ORDER CREATED SUCCESSFULLY");
+        }
+        console.log("responseData", responseData);
+      } else {
+        console.error("User details are not available");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="min-h-screen bg-[url('/Cart/cart.jpg')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
       <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg max-w-6xl mt-28">
@@ -25,80 +177,73 @@ const Cart = () => {
               Cart
             </h2>
             {cartItems.map((item, index) => (
-              <div key={index}>
+              <div className="border border-[#db5c3c] p-4 rounded-xl" key={index}>
                 <div>
-                  <h3 className="text-xl font-semibold text-[#db5c3c]">
-                    {item.name || "Product Name"}
-                  </h3>
-                  <button className="border border-gray-400 py-1 px-3 rounded-xl text-lg font-semibold text-[#db5c3c]">
-                    {item.quantity || "Quantity"}
-                  </button>
-                </div>
-
-                <div className="flex justify-between items-start mt-4">
-                  <div className="flex-1 space-y-2">
-                    <h3 className="font-semibold text-[#db5c3c]">Details</h3>
-                    <input
-                      type="text"
-                      placeholder="Size"
-                      value={item.size || ""}
-                      className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Name (From)"
-                      value={item.name || ""}
-                      className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Custom Message"
-                      value={item.message || ""}
-                      className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm"
-                    />
-                    {/* <input
-                      type="text"
-                      placeholder="List Of Names (To)"
-                      className="w-3/4 border border-[#464087] rounded-lg p-1 text-sm"
-                    /> */}
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="border border-[#464087] w-32 h-32 flex items-center justify-center rounded-xl">
-                      {item.picture ? (
-                        <img
-                          src={`https://nexiblesapp.barecms.com/uploads/${item.picture}`}
-                          alt="Product"
-                          className="object-cover w-full h-full"
-                        />
-                      ) : (
-                        <span className="text-[#464087]">No Image</span>
-                      )}
-                    </div>
-                    <button className="mt-2 border border-[#464087] px-4 py-1 rounded-xl text-sm text-[#464087] font-bold">
-                      View Mockup
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-semibold text-[#db5c3c]">
+                      {item.name || "Product Name"}
+                    </h3>
+                    <button
+                      className="border border-gray-400 py-1 px-3 rounded-xl text-lg font-semibold text-[#db5c3c]"
+                    >
+                      {item.quantity || "Quantity"}
+                    </button>
+                    {/* Delete button */}
+                    <button
+                      onClick={() => handleRemoveItem(index)}
+                      className="text-red-600"
+                    >
+                      <FaTrash /> {/* Trash icon for delete */}
                     </button>
                   </div>
+
+                  <div className="flex justify-between items-start mt-4">
+                    <div className="flex-1 space-y-2">
+                      <h3 className="font-semibold text-[#db5c3c]">Details</h3>
+                      <h3 className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.productSize || "Size"}
+                      </h3>
+                      <h3 className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.customer_name || "Name (From)"}
+                      </h3>
+                      <h3 className="w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.custom_message || "Custom Message"}
+                      </h3>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="border border-[#464087] w-32 h-32 flex items-center justify-center rounded-xl">
+                        {item.uploaded_picture ? (
+                          <img
+                            src={`https://nexiblesapp.barecms.com/uploads/${item.uploaded_picture}`}
+                            alt="Product"
+                            className="object-cover w-full h-full"
+                          />
+                        ) : (
+                          <span className="text-[#464087]">No Image</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <button className="p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
+                    Product Total : ₹ {item.price}
+                  </button>
                 </div>
-                <button className="p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
-                  Product Total 
-                </button>
               </div>
             ))}
           </div>
+
           {/* Summary Information Section */}
           <div>
             <h2 className="text-2xl font-bold text-[#db5c3c] mb-6">Summary</h2>
             <h2 className="text-xl font-bold text-[#db5c3c] mb-4 border border-[#464087] p-1 rounded-xl ">
-              Subtotal: ${calculateSubtotal()}
+              Subtotal: ₹{calculateSubtotal()}
             </h2>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <input
-                    type="text"
-                    placeholder="Shipping"
-                    className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] "
-                  />
+                  <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087]">
+                    {shippingCost || "Shipping"}
+                  </h3>
                 </div>
                 <div>
                   <input
@@ -109,7 +254,7 @@ const Cart = () => {
                 </div>
               </div>
               <h2 className="text-xl font-bold text-[#db5c3c] mb-4 border border-[#464087] p-1 rounded-xl ">
-                Total: ${calculateSubtotal()} {/* Add shipping cost here if applicable */}
+                Total: ₹{calculateTotal()} {/* Subtotal + Shipping */}
               </h2>
               <div className="flex justify-between items-center mt-4">
                 <img
@@ -117,7 +262,10 @@ const Cart = () => {
                   alt="SVG"
                   className="w-28 h-40 "
                 />
-                <button className="bg-yellow-400 flex items-center px-4 py-2 rounded-full text-2xl font-bold text-[#464087] mr-[5rem] w-full mb-20">
+                <button
+                  onClick={createOrder}
+                  className="bg-yellow-400 flex items-center px-4 py-2 rounded-full text-2xl font-bold text-[#464087] mr-[5rem] w-full mb-20"
+                >
                   Proceed to Checkout
                 </button>
               </div>

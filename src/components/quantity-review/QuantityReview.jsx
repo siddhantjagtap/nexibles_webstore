@@ -115,9 +115,9 @@ export default function QuantityReview() {
       <button onClick={() => router.back()} className="text-[#124e66] ml-[1rem] font-bold">
         ← Back
       </button>
-
+      
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Quantity and Review</h1>
-
+      
       <div className="max-w-4xl mx-auto flex">
         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
           <div className="mb-6">
@@ -134,10 +134,10 @@ export default function QuantityReview() {
               required
             />
           </div>
-
+          
           <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Yay you're done!</h2>
           <p className="text-gray-600 mb-4">Let's review everything once so your pouches are perfect!</p>
-
+          
           <div className="mb-6">
             <label htmlFor="customerName" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your name
@@ -152,7 +152,6 @@ export default function QuantityReview() {
               required
             />
           </div>
-
           <div className="mb-6">
             <label htmlFor="customMessage" className="block text-[#ee6e73] text-xl font-bold mb-2">
               Add your message
@@ -206,7 +205,7 @@ export default function QuantityReview() {
           <p className="text-[#ee6e73] font-bold mb-4">
             Please make sure you've uploaded the correct picture & document & there are no spelling errors anywhere!
           </p>
-
+          
           <label className="flex items-center mb-6">
             <input
               type="checkbox"
@@ -217,8 +216,14 @@ export default function QuantityReview() {
             />
             <span className="text-gray-700">I've reviewed and approved my design</span>
           </label>
-
-          <div className="flex items-center justify-center">
+          
+          <div className="flex items-center justify-end">
+            <Image
+              src="/Home/Submit-Form-Illustration.svg"
+              alt="Submit Illustration"
+              width={80}
+              height={80}
+            />
             <button
               type="submit"
               className="bg-[#ee6e73] text-white px-6 py-2 rounded-full hover:bg-[#124e66] transition duration-300"
@@ -227,7 +232,7 @@ export default function QuantityReview() {
             </button>
           </div>
         </form>
-
+        
         <div className="w-1/3">
           <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Product Preview</h2>
           <div className="border p-4 rounded-lg">

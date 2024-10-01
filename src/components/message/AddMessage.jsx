@@ -10,8 +10,10 @@ export default function AddMessage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  const size = searchParams.get('size');
-  const imageFileName = searchParams.get('image');
+  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-'); // Replace %20 with -
+
+  // Construct the full image URL using the server URL
+  const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
 
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -52,7 +54,7 @@ export default function AddMessage() {
 
   return (
     <div className="min-h-screen mt-[5rem] bg-white px-4 py-8">
-      <Link href={`/productsize?pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`} className="text-[#124e66] ml-[1rem] font-bold">
+      <Link href={`/productsize?pouchId=${pouchId}`} className="text-[#124e66] ml-[1rem] font-bold">
         ← Back
       </Link>
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Add Your Message</h1>
@@ -104,9 +106,9 @@ export default function AddMessage() {
           </div>
         </form>
         <div className="w-1/3 mt-[3rem]">
-          {imageFileName && (
+          {pouchId && (
             <Image
-              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+              src={imageUrl} // Using the full absolute URL here
               alt="Selected Pouch"
               width={300}
               height={400}

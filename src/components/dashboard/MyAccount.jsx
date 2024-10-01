@@ -57,7 +57,7 @@ export default function MyAccount() {
       <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
         <Link href="contact" className="text-[#db5c3c] font-bold">Contact Us</Link>
       </div>
-
+  
       <div className="mt-2 py-2 px-4">
         <button onClick={logout} className="text-[#db5c3c] font-bold">Logout</button>
       </div>

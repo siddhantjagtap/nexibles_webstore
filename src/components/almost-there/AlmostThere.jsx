@@ -3,16 +3,13 @@
 import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg';
 
 export default function AlmostThere() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  const size = searchParams.get('size');
-  const imageFileName = searchParams.get('image');
-
+  
   const [picture, setPicture] = useState(null);
   const [receivers, setReceivers] = useState(null);
   const [skipPicture, setSkipPicture] = useState(false);
@@ -106,17 +103,17 @@ export default function AlmostThere() {
     // Update the cart in localStorage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     // Redirect to the Quantity and Review page
-    router.push(`/quantity-review?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
+    router.push(`/quantity-review?pouchId=${pouchId}&picture=${pictureUrl}&receivers=${receiversUrl}`);
   };
 
   return (
     <div className="min-h-screen bg-white px-4 py-8 mt-[5rem]">
-      <Link
-        href={`/message?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`}
+      <button
+        onClick={() => window.history.back()}
         className="text-[#124e66] ml-[1rem] font-bold"
       >
         ← Back
-      </Link>
+      </button>
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Almost There</h1>
       <div className="max-w-4xl mx-auto flex">
         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
@@ -190,9 +187,9 @@ export default function AlmostThere() {
           </div>
         </form>
         <div className="w-1/3 mt-[3rem]">
-          {imageFileName && (
+          {pouchId && (
             <Image
-              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+              src={`/Home/pouch-${pouchId}.png`}
               alt="Selected Pouch"
               width={300}
               height={400}

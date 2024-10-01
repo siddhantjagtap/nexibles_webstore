@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // import Image from 'next/image';
 
@@ -155,7 +154,6 @@ export default function CelebrationsContent() {
                     height={80}
                     layout="responsive"
                     objectFit="contain"
-                    className=''
                   />
                 </div>
                 <p className="text-white text-lg font-semibold mt-2">{celebration.name}</p>
