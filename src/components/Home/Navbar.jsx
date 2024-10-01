@@ -79,7 +79,7 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4 sm:space-x-6">
             <Link
-              href="/shop"
+              href="/category"
               className={`hidden sm:flex items-center ${iconColor}`}
             >
               <Image
