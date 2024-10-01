@@ -12,7 +12,7 @@ const useFetchProducts = (token, categoryName) => {
         const response = await fetch(`https://nexiblesapp.barecms.com/api/product/get_list/${categoryName}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
-            'API-Key': 'irrv211vui9kuwn11efsb4xd4zdkuq', // Add the API key here
+            'API-Key': 'irrv211vui9kuwn11efsb4xd4zdkuq',
           },
         });
         if (!response.ok) {

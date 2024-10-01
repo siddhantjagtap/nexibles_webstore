@@ -1,4 +1,3 @@
-// useFetchCategories.js
 import { useEffect, useState } from 'react';
 
 const useFetchCategories = (token) => {
@@ -18,7 +17,11 @@ const useFetchCategories = (token) => {
         });
         const result = await response.json();
         if (result.status === 'success') {
-          setData(result.data);
+          // Filter the data where origin is 'gifting' (case-insensitive)
+          const filteredData = result.data.filter(item => 
+            item.origin && item.origin.toLowerCase() === 'gifting'
+          );
+          setData(filteredData);
         } else {
           setError(result.error);
         }

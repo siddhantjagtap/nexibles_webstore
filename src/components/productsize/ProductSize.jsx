@@ -1,6 +1,6 @@
 'use client';
 
-import React ,{useEffect,useState}from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -26,19 +26,27 @@ export default function ProductSize() {
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
   const imageFileName = searchParams.get('image');
-  const productName = searchParams.get('name');
-
-  useEffect(() => {
-    if (pouchId && productName) {
-      // Store productId and productName in localStorage
-      localStorage.setItem('productId', pouchId);
-      localStorage.setItem('productName', productName);
-    }
-  }, [pouchId, productName]);
 
   const handleSizeSelection = (size) => {
-    // Store selected size in localStorage
-    localStorage.setItem('productSize', size.name);
+    // Retrieve the existing cart from localStorage
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Find the product by pouchId and update it
+    const updatedCart = existingCart.map(item => {
+      if (item.id === parseInt(pouchId, 10)) { // Ensure IDs are compared as numbers
+        return {
+          ...item,
+          productSize: size.name // Add or update the productSize field
+        };
+      }
+      return item; // Return the item as is if it doesn't match
+    });
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Navigate to the message page after updating localStorage
+    window.location.href = `/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
   };
 
   if (!imageFileName) {
@@ -52,18 +60,17 @@ export default function ProductSize() {
       </Link>
 
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
-
+      
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
-          <Link
+          <div
             key={index}
-            href={`/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`}
-            className="text-center group"
-            onClick={() => handleSizeSelection(size)}
+            className="text-center group cursor-pointer"
+            onClick={() => handleSizeSelection(size)} // Update size on click
           >
             <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
               <Image
-                src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+                src={imageUrl} // Using the full absolute URL here
                 alt={size.name}
                 width={size.width}
                 height={size.height}
@@ -75,7 +82,7 @@ export default function ProductSize() {
               <p className="text-gray-600 mb-1">{size.dimensions}</p>
               <p className="text-gray-600 mb-4">{size.capacity}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
