@@ -2,8 +2,8 @@
 import Checkout from "@/components/Checkout/Checkout";
 import Footer from "@/components/Home/Footer";
 import Navbar from "@/components/Home/Navbar";
-import React from "react";
-import { useEffect,useState } from 'react'
+// import React from "react";
+import React,{ useEffect,useState } from 'react'
 import { useAuth } from '@/utils/authContext'
 
 export default function page() {
