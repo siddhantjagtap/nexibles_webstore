@@ -1,18 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa"; // Import trash icon from react-icons
+import { FaTrash } from "react-icons/fa";
 import Link from 'next/link';
-import { useAuth } from '../../utils/authContext'; // Adjust the import path accordingly
+import { useAuth } from '../../utils/authContext';
 import { toast } from "react-toastify";
 import jwt from "jsonwebtoken";
 import { BsCart3 } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
+
 const Cart = () => {
-  const { user, logout } = useAuth(); // Get user info from AuthContext
+  const { user, logout } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
   const [shippingCost, setShippingCost] = useState(50);
+
   const isLoggedIn = () => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
@@ -20,51 +22,44 @@ const Cart = () => {
     }
     return false;
   };
-  // Load cart items from localStorage on component mount
+
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(cart);
+    // Load cart items from localStorage on client-side only
+    const loadCartItems = () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItems(cart);
+    };
+
+    loadCartItems();
   }, []);
 
-  // Calculate subtotal and store in localStorage
   const calculateSubtotal = () => {
     const subtotal = cartItems.reduce(
       (total, item) => total + Number(item.price),
       0
-    ); // Convert item.price to a number
-    localStorage.setItem("subtotal", subtotal); // Store subtotal in localStorage
+    );
+    if (typeof window !== "undefined") {
+      localStorage.setItem("subtotal", subtotal.toString());
+    }
     return subtotal;
   };
 
-  // Update subtotal when cartItems change
   useEffect(() => {
     calculateSubtotal();
   }, [cartItems]);
 
-  // Calculate total (Subtotal + Shipping)
   const calculateTotal = () => {
-    return calculateSubtotal() + parseFloat(shippingCost || 50); // Total = Subtotal + Shipping
+    return calculateSubtotal() + parseFloat(shippingCost || 50);
   };
 
-  // Handle removing item from cart
   const handleRemoveItem = (indexToRemove) => {
     const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
-    setCartItems(updatedCart); // Update state
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+    setCartItems(updatedCart);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   };
 
-  // Handle checkout button click
-  // const handleProceedToCheckout = () => {
-  //   if (!user) {
-  //     // User is not logged in, redirect to login page
-  //     toast('You need to log in to proceed to checkout.'); // You can also use a toast notification
-  //     window.location.href = '/login'; // Redirect to login
-  //   } else {
-  //     // User is logged in, navigate to checkout
-  //     window.location.href = '/checkout';
-  //   }
-  // };
-  const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
   const getOrderDetailsFromLocalStorage = () => {
     return cartItems.map((product) => ({
       id: product.id,
@@ -81,7 +76,6 @@ const Cart = () => {
     }));
   };
 
-  const orderDetails = getOrderDetailsFromLocalStorage();
   const createOrder = async (e) => {
     e.preventDefault();
     try {
@@ -90,27 +84,21 @@ const Cart = () => {
         router.push("/login");
         return;
       }
+
       let userDetails;
-      const authToken = await new Promise((resolve, reject) => {
-        if (typeof window !== "undefined") {
-          const token = localStorage.getItem("token");
-          if (token) {
-            resolve(token);
-          } else {
-            reject("Auth token not found in localStorage");
-          }
-        } else {
-          reject("Window object not available");
+      if (typeof window !== "undefined") {
+        const authToken = localStorage.getItem("token");
+        if (authToken) {
+          const decodedToken = jwt.decode(authToken);
+          userDetails = decodedToken;
         }
-      });
-      if (authToken) {
-        const decodedToken = await jwt.decode(authToken);
-        userDetails = decodedToken;
-        console.log("userDetailsinAuthToken", userDetails);
       }
+
       if (userDetails && userDetails.result) {
         const orderNo = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
         const orderDate = new Date().toISOString();
+        const orderDetails = getOrderDetailsFromLocalStorage();
+
         const requestBody = {
           orderNo: orderNo,
           orderDate: orderDate,
@@ -143,30 +131,32 @@ const Cart = () => {
           confirm_status: "",
           orderDetails: orderDetails,
         };
+
         const response = await fetch("https://nexiblesapp.barecms.com/api/createorder", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "API-Key": token,
+            "API-Key": "irrv211vui9kuwn11efsb4xd4zdkuq",
           },
           body: JSON.stringify(requestBody),
         });
+
         const responseData = await response.json();
         if (typeof window !== "undefined") {
           localStorage.setItem("orderNo", responseData.orderNo);
         }
+
         if (responseData.success === true) {
           router.push("/checkout");
           toast.success("ORDER CREATED SUCCESSFULLY");
         }
-        console.log("responseData", responseData);
       } else {
         console.error("User details are not available");
       }
     } catch (error) {
       console.error(error);
     }
-  };
+  }
   return (
     <div className="min-h-screen bg-[url('/Cart/cart.jpg')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
       <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg max-w-6xl mt-28">

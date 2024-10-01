@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/utils/authContext";
 import { useRouter } from "next/navigation";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import axios from "axios";
+
 export default function Checkout({ defaultAddress }) {
-  console.log("isDefaultAddressInshipping", defaultAddress);
-  //const [defaultAddress, setDefaultAddress] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [orderNo, setOrderNo] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const router = useRouter();
@@ -35,21 +35,31 @@ export default function Checkout({ defaultAddress }) {
     street_no: "",
     isDefault: "1",
   });
+
   useEffect(() => {
-    // Safely access localStorage on the client side
-    const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const storedOrderNo = localStorage.getItem("orderNo");
-    
-    let total = 0;
-    storedItems.forEach(item => {
-      total += parseFloat(item.price) || 0;
-    });
+    const loadCartData = () => {
+      if (typeof window !== 'undefined') {
+        try {
+          const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
+          const storedOrderNo = localStorage.getItem("orderNo");
+          const storedSubtotal = localStorage.getItem("subtotal");
 
-    setCartItems(storedItems);
-    setTotalPrice(total.toFixed(2));
-    setOrderNo(storedOrderNo);
+          let total = parseFloat(storedSubtotal) || 0;
+          if (isNaN(total)) {
+            total = storedItems.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+          }
+
+          setCartItems(storedItems);
+          setTotalPrice(total.toFixed(2));
+          setOrderNo(storedOrderNo);
+        } catch (error) {
+          console.error("Error loading cart data:", error);
+        }
+      }
+    };
+
+    loadCartData();
   }, []);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,8 +71,11 @@ export default function Checkout({ defaultAddress }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      if (!user) return;
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
       let customerId = user?.result?.customerId || user?.customerId;
       const formDataWithCustomerId = { ...formData, customerId };
       const response = await fetch(
@@ -81,20 +94,18 @@ export default function Checkout({ defaultAddress }) {
       }
       const data = await response.json();
       console.log("Address inserted successfully:", data);
-      window.location.reload();
+      router.reload();
     } catch (error) {
       console.error("Error inserting address:", error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  const intamount = totalPrice * 100;
-  const orderNo =
-    typeof window !== "undefined" ? localStorage.getItem("orderNo") : null;
-  console.log("orderNo in shipping", orderNo);
 
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
+    const intamount = Math.round(totalPrice * 100);
     const data = {
       orderNo: orderNo,
       name: user?.result?.firstName ?? user?.firstName,
@@ -114,7 +125,6 @@ export default function Checkout({ defaultAddress }) {
       // Set up a listener for the payment completion
       window.addEventListener('message', async function (event) {
         if (event.origin === "https://nexiblesapp.barecms.com" && event.data.paymentComplete) {
-          // Payment is complete, now check the status
           try {
             const statusResponse = await axios.post(`https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`);
             const { redirectUrl } = statusResponse.data;
@@ -122,18 +132,16 @@ export default function Checkout({ defaultAddress }) {
               window.location.href = redirectUrl;
             } else {
               console.error('No redirect URL provided in the status response');
-              // Handle this error case appropriately
             }
           } catch (statusError) {
             console.error('Error checking payment status:', statusError);
-            // Handle this error case appropriately
           }
         }
       });
     } catch (error) {
-      setLoading2(false);
       console.error('Error initiating payment:', error);
-      // Handle this error case appropriately
+    } finally {
+      setLoading2(false);
     }
   };
 
@@ -420,7 +428,7 @@ export default function Checkout({ defaultAddress }) {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] font-semibold">
-                  Product Total {`₹ ${localStorage.getItem("subtotal")}`}
+                Product Total {`₹ ${totalPrice}`}
                 </h3>
               </div>
 
