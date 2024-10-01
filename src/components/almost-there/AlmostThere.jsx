@@ -104,8 +104,7 @@ export default function AlmostThere() {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     // Redirect to the Quantity and Review page
     router.push(`/quantity-review?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
-  };
-
+  }
   return (
     <div className="min-h-screen bg-white px-4 py-8 mt-[5rem]">
       <button

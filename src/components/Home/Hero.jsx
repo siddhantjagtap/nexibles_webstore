@@ -74,7 +74,7 @@ export default function Hero() {
             needs!
           </p>
           <Link
-            href={`/shop`}
+            href={`/category`}
             passHref
             className="bg-[#124e66] text-white font-bold py-2 px-6 md:px-8 rounded-full text-xl md:text-2xl transition duration-300"
           >

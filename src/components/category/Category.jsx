@@ -11,7 +11,7 @@ export default function CelebrationCategoryPage() {
 
   const { data: categoryData, loading: categoriesLoading, error: categoriesError } = useFetchCategories(token);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  
+
   const { products, loading: productsLoading, error: productsError } = useFetchProducts(token, selectedCategory?.name);
 
   useEffect(() => {
@@ -39,17 +39,25 @@ export default function CelebrationCategoryPage() {
     const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
 
     if (existingItemIndex !== -1) {
-      // If the product already exists, update its quantity
-      existingCart[existingItemIndex].quantity += 1;
+      // If the product exists, update its quantity and ensure other details are current
+      const existingItem = existingCart[existingItemIndex];
+
+      // Update the quantity
+      existingItem.quantity += 1;
+
+      // Optional: Update other product details in case they have changed
+      existingItem.name = product.name;
+      existingItem.price = product.price;
+      existingItem.category = selectedCategory?.name;
+      existingItem.image = product.image;
     } else {
       // Otherwise, add the new product to the cart
       existingCart.push(newCartItem);
     }
 
-    // Save the updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(existingCart));
+};
 
-  };
 
   if (categoriesLoading || productsLoading) return <p>Loading...</p>;
   if (categoriesError) return <p>Error fetching categories: {categoriesError}</p>;
