@@ -49,7 +49,7 @@ export default function QuantityReview() {
     }
 
     // Get existing cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) ;
+    const cart = JSON.parse(localStorage.getItem('cart'));
 
     // Find existing product in the cart
     const existingProductIndex = cart.findIndex(
@@ -238,16 +238,27 @@ export default function QuantityReview() {
           <div className="border p-4 rounded-lg">
             {productDetails.image && (
               <Image
-              src={`https://nexiblesapp.barecms.com/uploads/${productDetails.image}`}
+                src={`https://nexiblesapp.barecms.com/uploads/${productDetails.image}`}
                 alt={productDetails.name}
                 width={200}
                 height={200}
                 className="mb-4"
               />
             )}
+
             <p className="font-bold text-lg">{productDetails.name || "Unnamed Product"}</p>
             <p className="text-gray-700">Category: {productDetails.category || "Uncategorized"}</p>
             <p className="text-gray-700">Price: ₹{productDetails.price || "0"}</p>
+            <p className='text-gray-700'>Uploaded Picture</p>
+            {productDetails.uploaded_picture && (
+              <Image
+                src={`https://nexiblesapp.barecms.com/uploads/${productDetails.uploaded_picture}`}
+                alt={productDetails.name}
+                width={200}
+                height={200}
+                className="mb-4"
+              />
+            )}
           </div>
         </div>
       </div>

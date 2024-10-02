@@ -201,7 +201,7 @@ const Cart = () => {
                       </h3>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="border border-[#464087] w-32 h-32 flex items-center justify-center rounded-xl">
+                      <div className=" w-32 h-32 flex items-center justify-center rounded-xl">
                         {item.uploaded_picture ? (
                           <img
                             src={`https://nexiblesapp.barecms.com/uploads/${item.uploaded_picture}`}

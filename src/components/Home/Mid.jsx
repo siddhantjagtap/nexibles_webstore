@@ -4,40 +4,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import pouch1 from "../../../public/Home/pouch-1.png";
-import pouch2 from "../../../public/Home/pouch-2.png";
-import pouch3 from "../../../public/Home/pouch-3.png";
-import pouch4 from "../../../public/Home/pouch-4.png";
-import human from "../../../public/Home/human.png";
-import BirdIllustration from '../../../public/Home/Bird-Illustration.svg';
 import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
 import HomepageArch3 from "../../../public/Home/Homepage-Arch-3.svg";
-import HomepageArch2 from "../../../public/Home/Background-3.svg";
 import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
-import Butterflies4 from "../../../public/Home/Butterflies-4.svg";
-import Butterflies3 from "../../../public/Home/Butterflies-3.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
-import TestinomalImg from "../../../public/Home/TestinomalImg.png";
-import kaju from "../../../public/Home/cashew.png";
-import almonds from "../../../public/Home/almonds.png";
-import pista from "../../../public/Home/pista.png";
-import Diwali_Icon from "../../../public/Homepage/Category Icons/Diwali_Icon.svg";
-import Anniversary from "../../../public/Homepage/Category Icons/Anniversary_Icon.svg";
-import Baby_Shower_Icon from "../../../public/Homepage/Category Icons/Baby_Shower_Icon.svg";
-import Birthday from "../../../public/Homepage/Category Icons/Birthday_Icon.svg";
-import Engagement from "../../../public/Homepage/Category Icons/Engagement_Icon.svg";
-import Graduation from "../../../public/Homepage/Category Icons/Graduation_Icon.svg";
-import New_Beginnings_Icon from "../../../public/Homepage/Category Icons/New_Beginnings_Icon.png";
-import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birthday_Icon.svg";
-import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
 import useFetchCategories from '../../app/usefetchcategories';
+
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
-  
-  // Use the custom hook to fetch category data
   const { data: categoryData, loading, error } = useFetchCategories(token);
 
   const handlePersonalizationPrev = () => {
@@ -70,27 +47,66 @@ export default function Mid() {
     }
   };
 
-  const pouches = [
-    { name: "Pouch 1", image: pouch1 },
-    { name: "Pouch 2", image: pouch2 },
-    { name: "Pouch 3", image: pouch3 },
-    { name: "Pouch 4", image: pouch4 },
-    { name: "Pouch 1", image: pouch1 },
-    { name: "Pouch 2", image: pouch2 },
-    { name: "Pouch 3", image: pouch3 },
-    { name: "Pouch 4", image: pouch4 },
-    { name: "Pouch 1", image: pouch1 },
-    { name: "Pouch 2", image: pouch2 },
-    { name: "Pouch 3", image: pouch3 },
-    { name: "Pouch 4", image: pouch4 },
-  ];
+  const [products, setProducts] = useState([]);
 
-  const celebrationCards = [
-    { name: "Diwali", image: TestinomalImg },
-    { name: "Birthday", image: TestinomalImg },
-    { name: "Wedding", image: TestinomalImg },
-    { name: "Find your Celebration", image: TestinomalImg },
-  ];
+  useEffect(() => {
+    // Fetch products from the API
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://nexiblesapp.barecms.com/api/product/get_list/All', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'API-Key': 'irrv211vui9kuwn11efsb4xd4zdkuq',
+          },
+        });
+        const result = await response.json();
+        if (result.status === "success") {
+          const filteredProducts = result.data.filter(product =>
+            product.origin?.toLowerCase() === 'nexigifting'
+          );
+          setProducts(filteredProducts);
+        } else {
+          setError('Failed to fetch products');
+        }
+      } catch (err) {
+        setError('Error fetching products');
+      } finally {
+        //setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [token]);
+
+  const handleCustomizeClick = (product) => {
+    // Prepare product details
+    const productDetails = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      category: product.category,
+      quantity: 1,
+      image: product.image,
+    };
+
+    // Retrieve the existing cart from localStorage, or initialize as an empty array
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if the product is already in the cart
+    const productExists = existingCart.some(item => item.id === product.id);
+
+    if (!productExists) {
+      // Add the new product to the cart if it doesn't exist
+      existingCart.push(productDetails);
+    }
+
+    // Save the updated cart array to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+
+    // Redirect to the product size page with product details in the URL
+    window.location.href = `/productsize?pouchId=${product.id}&image=${product.image}`;
+  };
+
 
   return (
     <div className="text-white pt-2 relative bg-no-repeat" style={{
@@ -158,7 +174,7 @@ export default function Mid() {
             <SwiperSlide key={index}>
               <div className="text-center w-[90%] relative">
                 <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full  ml-4 h-full">
                     <Image
                       src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
                       alt={category.name}
@@ -236,14 +252,14 @@ export default function Mid() {
           loop={true}
           className="px-4 sm:px-16"
         >
-          {pouches.map((pouch, index) => (
-            <SwiperSlide key={index}>
+          {products.map((product, index) => (
+            <SwiperSlide key={product.id}>
               <div className="w-[90%] relative h-full pt-12">
                 <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-[20rem] flex items-center justify-center">
                   <div className="relative w-full h-full -mt-6">
                     <Image
-                      src={pouch.image}
-                      alt={pouch.name}
+                      src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
+                      alt={product.name}
                       layout="fill"
                       objectFit="contain"
                       className="scale-110 transition-transform duration-300 hover:-translate-y-16 hover:scale-115"
@@ -251,9 +267,13 @@ export default function Mid() {
                   </div>
                 </div>
                 <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-xl whitespace-nowrap">
-                  Product Name
+                  {product.name}
                 </p>
-                <button className="bg-[#124e66] mt-4 mx-auto block text-white px-6 py-1 rounded-full font-bold text-xl whitespace-nowrap">
+                {/* <p className="text-[#124e66] text-center">Price: ₹{product.price}</p> */}
+                <button
+                  onClick={() => handleCustomizeClick(product)}
+                  className="bg-[#124e66] mt-4 mx-auto block text-white px-6 py-1 rounded-full font-bold text-xl whitespace-nowrap"
+                >
                   Customise
                 </button>
               </div>

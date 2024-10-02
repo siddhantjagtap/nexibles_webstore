@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,39 +21,28 @@ export default function CelebrationCategoryPage() {
   }, [categoryData, selectedCategory]);
 
   const addToCart = (product) => {
-    // Retrieve existing cart from localStorage or initialize a new one
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Create new product entry
     const newCartItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       category: selectedCategory?.name,
-      quantity: 1,  // Default quantity to 1
+      quantity: 1,
       image: product.image
     };
-
-    // Check if the product already exists in the cart
     const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
 
     if (existingItemIndex !== -1) {
-      // If the product exists, update its quantity and ensure other details are current
       const existingItem = existingCart[existingItemIndex];
-
-      // Update the quantity
       existingItem.quantity += 1;
-
-      // Optional: Update other product details in case they have changed
       existingItem.name = product.name;
       existingItem.price = product.price;
       existingItem.category = selectedCategory?.name;
       existingItem.image = product.image;
     } else {
-      // Otherwise, add the new product to the cart
       existingCart.push(newCartItem);
     }
-
     localStorage.setItem('cart', JSON.stringify(existingCart));
 };
 
@@ -65,7 +53,6 @@ export default function CelebrationCategoryPage() {
 
   return (
     <div className="flex min-h-screen bg-[#fdf5e7] pt-[7rem] relative">
-      {/* Sidebar for category icons */}
       <aside className="w-[20%] bg-[#f9a287] ml-[3rem] p-6 relative rounded-2xl z-10">
         {categoryData.map((category, index) => (
           <div

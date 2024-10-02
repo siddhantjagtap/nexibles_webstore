@@ -31,6 +31,15 @@ export default function ProductSize() {
     // Retrieve the existing cart from localStorage
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    // Debugging step: log the existing cart to ensure it's an array
+    console.log('Existing Cart:', existingCart);
+
+    // Ensure existingCart is an array before mapping
+    if (!Array.isArray(existingCart)) {
+      console.error('Cart is not an array:', existingCart);
+      return; // Exit early if it's not an array
+    }
+
     // Find the product by pouchId and update it
     const updatedCart = existingCart.map(item => {
       if (item.id === parseInt(pouchId, 10)) { // Ensure IDs are compared as numbers
@@ -49,9 +58,6 @@ export default function ProductSize() {
     window.location.href = `/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
   };
 
-  if (!imageFileName) {
-    return <div>Product image not found</div>;
-  }
 
   return (
     <div className="h-full px-8 pt-28">
