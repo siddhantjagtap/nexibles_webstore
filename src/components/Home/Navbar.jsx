@@ -6,25 +6,25 @@ import cart from "../../../public/Homepage/Header_Icon/Cart_Icon.svg";
 import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 import shop from "../../../public/Homepage/Header_Icon/Search_Button_Icon.svg";
 import {
-  IoCartOutline,
   IoMenuOutline,
   IoCloseOutline,
-  IoSearchOutline,
 } from "react-icons/io5";
-
-import { IoPersonOutline } from "react-icons/io5";
-import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
-import { CiFolderOn } from "react-icons/ci";
-import { LuShoppingBag } from "react-icons/lu";
 import { useAuth } from "@/utils/authContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [showPersonDropdown, setShowPersonDropdown] = useState(false);
   const { user, logout } = useAuth();
 
+  // Function to retrieve and update cart count from localStorage
+  const updateCartCount = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const uniqueProductsCount = cartItems.length;
+    setCartItemCount(uniqueProductsCount);
+  };
+
+  // Scroll effect to change the navbar background
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);
@@ -34,16 +34,24 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Effect to update cart count on load and when the cart is updated
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const uniqueProductsCount = cartItems.length;
-    setCartItemCount(uniqueProductsCount);
-  }, []);
+    updateCartCount(); // Initial update on component load
+
+    // Event listener to detect changes in localStorage for real-time updates
+    const handleStorageChange = () => {
+      updateCartCount(); // Update the count when localStorage changes
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [updateCartCount]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const handleToggleOpen = () => setShowPersonDropdown(!showPersonDropdown);
 
-  const iconColor = hasScrolled ? "text-black" : "text-black";
   const handleProfileClick = () => {
     if (user) {
       window.location.href = "/my-dashboard";
@@ -51,6 +59,8 @@ const Navbar = () => {
       window.location.href = "/login";
     }
   };
+
+  const iconColor = hasScrolled ? "text-black" : "text-black";
 
   return (
     <nav
@@ -115,7 +125,9 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
               {cartItemCount > 0 && (
-                <span className="absolute text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
+                <span className="absolute text-white text-xs font-bold bg-red-500 rounded-full h-5 w-5 flex items-center justify-center top-[-5px] right-[-5px]">
+                  {cartItemCount}
+                </span>
               )}
             </Link>
             <button

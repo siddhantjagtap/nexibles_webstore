@@ -174,7 +174,7 @@ export default function Mid() {
             <SwiperSlide key={index}>
               <div className="text-center w-[90%] relative">
                 <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
-                  <div className="relative w-full  ml-4 h-full">
+                  <div className="relative w-full ml-4 h-full">
                     <Image
                       src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
                       alt={category.name}

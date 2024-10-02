@@ -38,16 +38,16 @@
 //           objectFit="contain"
 //           style={{ position: 'absolute', top: -22, left: 0, zIndex: '-1' }}
 //         />
-        
+
 //         {/* Main Content */}
 //         <main className="relative z-10 pt-24 px-4 pb-24">
 //           <div className="max-w-4xl mx-auto text-center">
 //             <h1 className="text-6xl font-bold text-gray-800 mb-4">Celebrations</h1>
 //             <h2 className="text-3xl font-semibold text-orange-500 mb-6">Make Every Gift Unforgettable</h2>
 //             <p className="text-gray-600 text-lg mb-12">
-//               Explore our collection of custom stand-up pouches, perfect for adding a personal touch to any celebration. 
-//               Each pouch is uniquely designed to reflect your style and make your moments memorable. Whatever the 
-//               celebration, our bespoke pouches are crafted with care just for you. Explore our options and create a 
+//               Explore our collection of custom stand-up pouches, perfect for adding a personal touch to any celebration.
+//               Each pouch is uniquely designed to reflect your style and make your moments memorable. Whatever the
+//               celebration, our bespoke pouches are crafted with care just for you. Explore our options and create a
 //               one-of-a-kind experience for your loved ones!
 //             </p>
 //           </div>
@@ -76,7 +76,7 @@
 //                     width={80}
 //                     height={80}
 //                     layout="responsive"
-//                     objectFit="contain" 
+//                     objectFit="contain"
 //                     className=''
 //                   />
 //                 </div>
@@ -115,16 +115,16 @@ export default function CelebrationsContent() {
           objectFit="contain"
           style={{ position: 'absolute', top: -22, left: 0, zIndex: '-1' }}
         />
-        
+
         {/* Main Content */}
         <main className="relative z-10 pt-24 px-4 pb-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-6xl font-bold text-gray-800 mb-4">Celebrations</h1>
             <h2 className="text-3xl font-semibold text-orange-500 mb-6">Make Every Gift Unforgettable</h2>
             <p className="text-gray-600 text-lg mb-12">
-              Explore our collection of custom stand-up pouches, perfect for adding a personal touch to any celebration. 
-              Each pouch is uniquely designed to reflect your style and make your moments memorable. Whatever the 
-              celebration, our bespoke pouches are crafted with care just for you. Explore our options and create a 
+              Explore our collection of custom stand-up pouches, perfect for adding a personal touch to any celebration.
+              Each pouch is uniquely designed to reflect your style and make your moments memorable. Whatever the
+              celebration, our bespoke pouches are crafted with care just for you. Explore our options and create a
               one-of-a-kind experience for your loved ones!
             </p>
           </div>
@@ -145,8 +145,8 @@ export default function CelebrationsContent() {
         <div className="relative z-10 max-w-6xl mx-auto flex justify-center items-center px-4">
           <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
             {celebrations.map((celebration, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="bg-white p-4 mb-2 shadow-lg" style={{ width: '200px', height: '200px' }}>
+              <div key={index} className="flex flex-col items-center ">
+                <div className="bg-white p-4 mb-2 shadow-lg " style={{ width: '200px', height: '200px' }}>
                   <Image
                     src={`https://nexiblesapp.barecms.com/uploads/${celebration.bg_Img}`} // Assuming this is the image URL structure
                     alt={celebration.name}

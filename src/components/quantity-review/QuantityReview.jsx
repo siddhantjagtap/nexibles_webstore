@@ -249,16 +249,22 @@ export default function QuantityReview() {
             <p className="font-bold text-lg">{productDetails.name || "Unnamed Product"}</p>
             <p className="text-gray-700">Category: {productDetails.category || "Uncategorized"}</p>
             <p className="text-gray-700">Price: ₹{productDetails.price || "0"}</p>
-            <p className='text-gray-700'>Uploaded Picture</p>
-            {productDetails.uploaded_picture && (
-              <Image
-                src={`https://nexiblesapp.barecms.com/uploads/${productDetails.uploaded_picture}`}
-                alt={productDetails.name}
-                width={200}
-                height={200}
-                className="mb-4"
-              />
+
+            {productDetails.uploaded_picture && productDetails.uploaded_picture !== "Not uploaded" ? (
+              <div>
+                <p className='text-gray-700'>Uploaded Picture</p>
+                <Image
+                  src={`https://nexiblesapp.barecms.com/uploads/${productDetails.uploaded_picture}`}
+                  alt={productDetails.name}
+                  width={200}
+                  height={200}
+                  className="mb-4"
+                />
+              </div>
+            ) : (
+              <p className='text-gray-500'>No picture uploaded</p>
             )}
+
           </div>
         </div>
       </div>

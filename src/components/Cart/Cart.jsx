@@ -202,7 +202,7 @@ const Cart = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className=" w-32 h-32 flex items-center justify-center rounded-xl">
-                        {item.uploaded_picture ? (
+                        {item.uploaded_picture && item.uploaded_picture !== "Not uploaded" ? (
                           <img
                             src={`https://nexiblesapp.barecms.com/uploads/${item.uploaded_picture}`}
                             alt="Product"
@@ -211,6 +211,7 @@ const Cart = () => {
                         ) : (
                           <span className="text-[#464087]">No Image</span>
                         )}
+
                       </div>
                     </div>
                   </div>
@@ -232,16 +233,16 @@ const Cart = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087]">
-                    {shippingCost || "Shipping"}
+                    Shipping Cost : {shippingCost || "Shipping"}
                   </h3>
                 </div>
-                <div>
+                {/* <div>
                   <input
                     type="text"
                     placeholder="Enter Pincode"
                     className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] "
                   />
-                </div>
+                </div> */}
               </div>
               <h2 className="text-xl font-bold text-[#db5c3c] mb-4 border border-[#464087] p-1 rounded-xl ">
                 Total: ₹{calculateTotal()} {/* Subtotal + Shipping */}
