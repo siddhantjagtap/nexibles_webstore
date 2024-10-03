@@ -2,7 +2,7 @@
 import Checkout from "@/components/Checkout/Checkout";
 import Footer from "@/components/Home/Footer";
 import Navbar from "@/components/Home/Navbar";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useAuth } from "@/utils/authContext";
 
 function Page() {  // Keep the function name lowercase
@@ -39,10 +39,12 @@ function Page() {  // Keep the function name lowercase
   return (
     <>
       <Navbar />
+      <Suspense fallback={<div>Loading...</div>}>
       <Checkout defaultAddress={defaultAddress} />
+      </Suspense>
       <Footer />
     </>
   );
 }
 
-export default Page; 
+export default Page;  // Export it directly as lowercase, React will still recognize it as a component

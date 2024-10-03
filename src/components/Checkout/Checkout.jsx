@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/utils/authContext";
 import { useRouter } from "next/navigation";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import axios from "axios";
+
 export default function Checkout({ defaultAddress }) {
-  console.log("isDefaultAddressInshipping", defaultAddress);
-  //const [defaultAddress, setDefaultAddress] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [orderNo, setOrderNo] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const router = useRouter();
@@ -37,24 +37,28 @@ export default function Checkout({ defaultAddress }) {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Retrieve cart items from localStorage
-      const items = JSON.parse(localStorage.getItem("cart")) || [];
-      let total = 0;
-  
-      // Calculate total price
-      items.forEach(item => {
-        total += parseFloat(item.price) || 0;
-      });
-  
-      // Set totalPrice and store it back in cart
-      const updatedItems = items.map(item => ({ ...item, totalPrice: total.toFixed(2) }));
-      localStorage.setItem("cart", JSON.stringify(updatedItems));
-  
-      // Update state
-      setCartItems(updatedItems);
-      setTotalPrice(total.toFixed(2));
-    }
+    const loadCartData = () => {
+      if (typeof window !== 'undefined') {
+        try {
+          const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
+          const storedOrderNo = localStorage.getItem("orderNo");
+          const storedSubtotal = localStorage.getItem("subtotal");
+
+          let total = parseFloat(storedSubtotal) || 0;
+          if (isNaN(total)) {
+            total = storedItems.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+          }
+
+          setCartItems(storedItems);
+          setTotalPrice(total.toFixed(2));
+          setOrderNo(storedOrderNo);
+        } catch (error) {
+          console.error("Error loading cart data:", error);
+        }
+      }
+    };
+
+    loadCartData();
   }, []);
 
   const handleChange = (e) => {
@@ -67,8 +71,11 @@ export default function Checkout({ defaultAddress }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      if (!user) return;
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
       let customerId = user?.result?.customerId || user?.customerId;
       const formDataWithCustomerId = { ...formData, customerId };
       const response = await fetch(
@@ -87,27 +94,25 @@ export default function Checkout({ defaultAddress }) {
       }
       const data = await response.json();
       console.log("Address inserted successfully:", data);
-      window.location.reload();
+      router.reload();
     } catch (error) {
       console.error("Error inserting address:", error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  const intamount = totalPrice * 100;
-  const orderNo =
-    typeof window !== "undefined" ? localStorage.getItem("orderNo") : null;
-  console.log("orderNo in shipping", orderNo);
 
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
+    const intamount = Math.round(totalPrice * 100);
     const data = {
       orderNo: orderNo,
       name: user?.result?.firstName ?? user?.firstName,
       number: user?.result?.mobile ?? user?.mobile,
       MUID: user?.result?.customerId ?? user?.customerId,
       amount: intamount,
-      transactionId: "T" + Date.now(),
+      transactionId: "G" + Date.now(),
     };
 
     try {
@@ -120,7 +125,6 @@ export default function Checkout({ defaultAddress }) {
       // Set up a listener for the payment completion
       window.addEventListener('message', async function (event) {
         if (event.origin === "https://nexiblesapp.barecms.com" && event.data.paymentComplete) {
-          // Payment is complete, now check the status
           try {
             const statusResponse = await axios.post(`https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`);
             const { redirectUrl } = statusResponse.data;
@@ -128,24 +132,22 @@ export default function Checkout({ defaultAddress }) {
               window.location.href = redirectUrl;
             } else {
               console.error('No redirect URL provided in the status response');
-              // Handle this error case appropriately
             }
           } catch (statusError) {
             console.error('Error checking payment status:', statusError);
-            // Handle this error case appropriately
           }
         }
       });
     } catch (error) {
-      setLoading2(false);
       console.error('Error initiating payment:', error);
-      // Handle this error case appropriately
+    } finally {
+      setLoading2(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-[url('/Contact_Us_Page/Contact_Us_Background.jpg')] bg-cover bg-center bg-no-repeat flex justify-center py-10">
-      <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg max-w-6xl mt-24">
+      <div className="bg-white w-full max-w-5xl rounded-xl p-8 shadow-lg  mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Shipping Information Section */}
           <div>
@@ -387,7 +389,7 @@ export default function Checkout({ defaultAddress }) {
                       </h3> */}
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="border border-[#464087] w-32 h-32 flex items-center justify-center rounded-xl">
+                      <div className=" w-32 h-32 flex items-center justify-center rounded-xl">
                         {item.uploaded_picture ? (
                           <img
                             src={`https://nexiblesapp.barecms.com/uploads/${item.uploaded_picture}`}
@@ -426,7 +428,7 @@ export default function Checkout({ defaultAddress }) {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] font-semibold">
-                  Product Total {`₹ ${localStorage.getItem("subtotal")}`}
+                Product Total {`₹ ${totalPrice}`}
                 </h3>
               </div>
 
