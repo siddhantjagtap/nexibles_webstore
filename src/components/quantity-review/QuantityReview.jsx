@@ -135,8 +135,8 @@ export default function QuantityReview() {
             />
           </div>
 
-          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Yay you're done!</h2>
-          <p className="text-gray-600 mb-4">Let's review everything once so your pouches are perfect!</p>
+          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">Yay youre done!</h2>
+          <p className="text-gray-600 mb-4">Lets review everything once so your pouches are perfect!</p>
 
           <div className="mb-6">
             <label htmlFor="customerName" className="block text-[#ee6e73] text-xl font-bold mb-2">
@@ -203,7 +203,7 @@ export default function QuantityReview() {
           </div>
 
           <p className="text-[#ee6e73] font-bold mb-4">
-            Please make sure you've uploaded the correct picture & document & there are no spelling errors anywhere!
+            Please make sure you have uploaded the correct picture & document & there are no spelling errors anywhere!
           </p>
 
           <label className="flex items-center mb-6">
@@ -214,7 +214,7 @@ export default function QuantityReview() {
               className="mr-2"
               required
             />
-            <span className="text-gray-700">I've reviewed and approved my design</span>
+            <span className="text-gray-700">I have reviewed and approved my design</span>
           </label>
 
           <div className="flex items-center justify-end">
