@@ -4,21 +4,28 @@ import VersatileGifting from "./VersatileGifting";
 
 export const VersatileAndCelebration = () => {
   return (
-    <div
-      style={{
-        backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
-        backgroundSize: "100% auto",
-        backgroundPosition: "center 100%",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-        width: "98.6vw",
-        position: "relative", // Add this
-        overflow: "hidden", // Add this to prevent potential overflow issues
-      }}
-    >
-      <VersatileGifting />
-      <Celebration />
-    </div>
+    <>
+      <div
+        style={{
+          backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center 100%",
+          backgroundRepeat: "no-repeat",
+          minHeight: "100vh",
+          width: "98.6vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          "@media (max-width: 768px)": {
+            backgroundSize: "100% 190%", // Increases the height of the background image on mobile
+          },
+        }}
+      >
+        <VersatileGifting />
+        <Celebration />
+      </div>
+    </>
   );
 };
 
@@ -30,6 +37,7 @@ export const VersatileAndCelebration = () => {
 //   return (
 //     <>
 //       <div
+//         clas
 //         style={{
 //           backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
 //           backgroundSize: "100% auto", // Ensures the image covers the width, adjusts height automatically

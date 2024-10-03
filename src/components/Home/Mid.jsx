@@ -93,10 +93,13 @@ export default function Mid() {
   ];
 
   return (
-    <div className="text-white pt-2 relative bg-no-repeat" style={{
-      backgroundImage: "url('/Home/Background.svg')",
-      backgroundSize: "100% 120%",
-    }}>
+    <div
+      className="text-white pt-2 relative bg-no-repeat"
+      style={{
+        backgroundImage: "url('/Home/Background.svg')",
+        backgroundSize: "100% 120%",
+      }}
+    >
       {/* Homepage-Arch-3 */}
       <div className="absolute end-0 h-full w-auto hidden md:block">
         <Image
@@ -109,19 +112,19 @@ export default function Mid() {
         />
       </div>
 
-      <h2 className="text-4xl md:text-6xl font-bold text-center text-white mt-8 relative z-10">
+      <h2 className="text-4xl md:text-6xl font-bold text-center text-black md:text-white mt-8 relative z-10">
         <Image
           src={Butterflies2}
           alt="butterflies"
-          layout=""
-          width={128}
-          height={128}
-          className="inline-block"
+          layout="intrinsic"
+          width={64} // Smaller size for mobile
+          height={64}
+          className="inline-block md:w-[128px] md:h-[128px]" // Larger size for larger screens
         />
         Celebrate With Personalization
       </h2>
 
-      <p className="text-center mb-12 text-xl md:text-3xl max-w-6xl mx-auto relative z-10 px-4 md:px-0">
+      <p className="text-center mb-12 text-lg md:text-3xl max-w-6xl mx-auto relative z-10 px-4 md:px-0 text-black md:text-white">
         Make your moments unforgettable with uniquely designed stand-up pouches
         Crafted just for You!
       </p>
