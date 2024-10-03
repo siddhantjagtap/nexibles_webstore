@@ -10,6 +10,7 @@ export default function AddMessage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
+  const size = searchParams.get('size');
   const imageFileName = searchParams.get('image')?.replace(/%20/g, '-'); // Replace %20 with -
 
   // Construct the full image URL using the server URL
@@ -18,23 +19,35 @@ export default function AddMessage() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
-  // useEffect(() => {
-  //   // Load name and message from localStorage if available
-  //   const storedName = localStorage.getItem('name');
-  //   const storedMessage = localStorage.getItem('message');
-  //   if (storedName) setName(storedName);
-  //   if (storedMessage) setMessage(storedMessage);
-  // }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Save name and message to local storage
-    localStorage.setItem('name', name);
-    localStorage.setItem('message', message);
+    // Get the existing cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    router.push(`/almost-there?pouchId=${pouchId}`);
-  };
+    // Create a new cart array with updated product details
+    const updatedCart = cart.map(item => {
+        // Check if the current item matches the selected pouchId and size
+        if (item.id === parseInt(pouchId, 10)) {
+            return {
+                ...item,
+                customer_name: name || null,     // Update the name
+                custom_message: message || null // Update the message
+            };
+        }
+        return item; // Return the item as is if it doesn't match
+    });
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Optionally show a confirmation
+    // alert('Your message has been saved!');
+
+    // Redirect to the next page
+    router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
+};
+
 
   if (!imageFileName) {
     return <div>Product image not found</div>;
@@ -96,7 +109,7 @@ export default function AddMessage() {
         <div className="w-1/3 mt-[3rem]">
           {pouchId && (
             <Image
-              src={imageUrl} // Using the full absolute URL here
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
               alt="Selected Pouch"
               width={300}
               height={400}

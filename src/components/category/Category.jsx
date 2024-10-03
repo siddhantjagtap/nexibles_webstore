@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,13 +20,39 @@ export default function CelebrationCategoryPage() {
     }
   }, [categoryData, selectedCategory]);
 
+  const addToCart = (product) => {
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const newCartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      category: selectedCategory?.name,
+      quantity: 1,
+      image: product.image
+    };
+    const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      const existingItem = existingCart[existingItemIndex];
+      existingItem.quantity += 1;
+      existingItem.name = product.name;
+      existingItem.price = product.price;
+      existingItem.category = selectedCategory?.name;
+      existingItem.image = product.image;
+    } else {
+      existingCart.push(newCartItem);
+    }
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+};
+
+
   if (categoriesLoading || productsLoading) return <p>Loading...</p>;
   if (categoriesError) return <p>Error fetching categories: {categoriesError}</p>;
   if (productsError) return <p>Error fetching products: {productsError}</p>;
 
   return (
     <div className="flex min-h-screen bg-[#fdf5e7] pt-[7rem] relative">
-      {/* Sidebar for category icons */}
       <aside className="w-[20%] bg-[#f9a287] ml-[3rem] p-6 relative rounded-2xl z-10">
         {categoryData.map((category, index) => (
           <div
@@ -88,7 +113,10 @@ export default function CelebrationCategoryPage() {
                     {product.name}
                   </p>
                   <Link href={`/productsize?pouchId=${product.id}&image=${encodeURIComponent(product.image.replace(/%20/g, '-'))}`}>
-                    <button className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block">
+                    <button
+                      className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
+                      onClick={() => addToCart(product)}
+                    >
                       Customise
                     </button>
                   </Link>

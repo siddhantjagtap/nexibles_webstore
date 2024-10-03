@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import Instragram from "../../../public/Homepage/Social_Icons/Insta_Icon.svg";
 import Whatsapp from "../../../public/Homepage/Social_Icons/Whatsapp_Icon.svg";
-import Linkedin from "../../../public/Homepage/Social_Icons/Linkedin_Icon.svg";
+// import Linkedin from "../../../public/Homepage/Social_Icons/Linkedin_Icon.svg";
 import Call from "../../../public/Homepage/Social_Icons/Call_Icon.svg";
 import Mail from "../../../public/Homepage/Social_Icons/Mail_Icon.svg";
 const Footer = () => {
@@ -51,9 +51,9 @@ const Footer = () => {
                 <a href="#" className="hover:text-gray-300">
                   <Image src={Whatsapp} />
                 </a>
-                <a href="#" className="hover:text-gray-300">
+                {/* <a href="#" className="hover:text-gray-300">
                   <Image src={Linkedin} />
-                </a>
+                </a> */}
                 <a href="#" className="hover:text-gray-300">
                   <Image src={Call} />
                 </a>

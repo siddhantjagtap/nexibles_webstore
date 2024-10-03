@@ -5,9 +5,10 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div><Navbar/>
-   <Celebrations/>
-   <Footer/>
+    <div>
+      <Navbar />
+      <Celebrations />
+      <Footer />
     </div>
-  )
+  );
 }

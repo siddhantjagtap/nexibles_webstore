@@ -1,6 +1,6 @@
 'use client';
 
-import React ,{useEffect,useState}from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -25,14 +25,39 @@ const sizes = [
 export default function ProductSize() {
   const searchParams = useSearchParams();
   const pouchId = searchParams.get('pouchId');
-  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-');  // Replace %20 with -
+  const imageFileName = searchParams.get('image');
 
-  // Construct the full image URL using the server URL
-  const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
+  const handleSizeSelection = (size) => {
+    // Retrieve the existing cart from localStorage
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  if (!imageFileName) {
-    return <div>Product image not found</div>;
-  }
+    // Debugging step: log the existing cart to ensure it's an array
+    console.log('Existing Cart:', existingCart);
+
+    // Ensure existingCart is an array before mapping
+    if (!Array.isArray(existingCart)) {
+      console.error('Cart is not an array:', existingCart);
+      return; // Exit early if it's not an array
+    }
+
+    // Find the product by pouchId and update it
+    const updatedCart = existingCart.map(item => {
+      if (item.id === parseInt(pouchId, 10)) { // Ensure IDs are compared as numbers
+        return {
+          ...item,
+          productSize: size.name // Add or update the productSize field
+        };
+      }
+      return item; // Return the item as is if it doesn't match
+    });
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Navigate to the message page after updating localStorage
+    window.location.href = `/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
+  };
+
 
   return (
     <div className="h-full px-8 pt-28">
@@ -41,17 +66,17 @@ export default function ProductSize() {
       </Link>
 
       <h1 className="text-4xl font-bold text-[#ee6e73] text-center">Choose Your Size</h1>
-      
+
       <div className="flex justify-center items-center space-x-56">
         {sizes.map((size, index) => (
-          <Link 
-            key={index} 
-            href={`/message?size=${size.name}&id=${pouchId}&image=${encodeURIComponent(imageUrl)}`}
-            className="text-center group"
+          <div
+            key={index}
+            className="text-center group cursor-pointer"
+            onClick={() => handleSizeSelection(size)} // Update size on click
           >
             <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
               <Image
-                src={imageUrl} // Using the full absolute URL here
+                src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
                 alt={size.name}
                 width={size.width}
                 height={size.height}
@@ -63,7 +88,7 @@ export default function ProductSize() {
               <p className="text-gray-600 mb-1">{size.dimensions}</p>
               <p className="text-gray-600 mb-4">{size.capacity}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

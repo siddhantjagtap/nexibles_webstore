@@ -5,27 +5,26 @@ import Link from "next/link";
 import cart from "../../../public/Homepage/Header_Icon/Cart_Icon.svg";
 import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 import shop from "../../../public/Homepage/Header_Icon/Search_Button_Icon.svg";
-// import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import {
-  IoCartOutline,
   IoMenuOutline,
   IoCloseOutline,
-  IoSearchOutline,
 } from "react-icons/io5";
-
-import { IoPersonOutline } from "react-icons/io5";
-import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
-import { CiFolderOn } from "react-icons/ci";
-import { LuShoppingBag } from "react-icons/lu";
 import { useAuth } from "@/utils/authContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [showPersonDropdown, setShowPersonDropdown] = useState(false);
   const { user, logout } = useAuth();
 
+  // Function to retrieve and update cart count from localStorage
+  const updateCartCount = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const uniqueProductsCount = cartItems.length;
+    setCartItemCount(uniqueProductsCount);
+  };
+
+  // Scroll effect to change the navbar background
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);
@@ -35,31 +34,39 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Effect to update cart count on load and when the cart is updated
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const uniqueProductsCount = cartItems.length;
-    setCartItemCount(uniqueProductsCount);
-  }, []);
+    updateCartCount(); // Initial update on component load
+
+    // Event listener to detect changes in localStorage for real-time updates
+    const handleStorageChange = () => {
+      updateCartCount(); // Update the count when localStorage changes
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [updateCartCount]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const handleToggleOpen = () => setShowPersonDropdown(!showPersonDropdown);
 
-  const iconColor = hasScrolled ? "text-black" : "text-black";
   const handleProfileClick = () => {
     if (user) {
-      // If user is logged in, redirect to profile page
       window.location.href = "/my-dashboard";
     } else {
-      // If user is not logged in, redirect to login page
       window.location.href = "/login";
     }
   };
 
+  const iconColor = hasScrolled ? "text-black" : "text-black";
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${hasScrolled ? "bg-white shadow-xl" : ""
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        hasScrolled ? "bg-white shadow-xl" : ""
+      }`}
     >
       <div className="flex flex-col justify-between px-4 py-2 sm:px-6">
         <div className="w-full flex justify-between">
@@ -72,14 +79,13 @@ const Navbar = () => {
                 height={30}
                 className="sm:w-[150px] sm:h-[25px]"
                 priority
-                layout=""
               />
             </div>
           </Link>
 
           <div className="flex items-center space-x-4 sm:space-x-6">
             <Link
-              href="/shop"
+              href="/category"
               className={`hidden sm:flex items-center ${iconColor}`}
             >
               <Image
@@ -91,20 +97,22 @@ const Navbar = () => {
               />
             </Link>
             <div
-            className="relative hidden sm:flex text-black items-center cursor-pointer group"
-            onClick={handleProfileClick}
-          >
-            <Image
-              src={profile}
-              width={23}
-              height={23}
-              alt="Profile"
-              className="sm:w-[30px] sm:h-[30px]"
-            />
-            <div className="absolute p-4 top-10 right-0 font-bold bg-white border border-[#197d8e] rounded-xl w-[15rem] h-auto text-[#db5c3c] flex items-center  shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-wrap">
-              Sign in to view your profile and track your orders.
+              className="relative hidden sm:flex text-black items-center cursor-pointer group"
+              onClick={handleProfileClick}
+            >
+              <Image
+                src={profile}
+                width={23}
+                height={23}
+                alt="Profile"
+                className="sm:w-[30px] sm:h-[30px]"
+              />
+              {!user && (
+                <div className="absolute p-4 top-10 right-0 font-bold bg-white border border-[#197d8e] rounded-xl w-[15rem] h-auto text-[#db5c3c] flex items-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-wrap">
+                  Sign in to view your profile and track your orders.
+                </div>
+              )}
             </div>
-          </div>
             <Link
               href="/my-cart"
               className={`relative flex items-center ${iconColor}`}
@@ -117,7 +125,9 @@ const Navbar = () => {
                 className="sm:w-[30px] sm:h-[30px]"
               />
               {cartItemCount > 0 && (
-                <span className="absolute text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"></span>
+                <span className="absolute text-white text-xs font-bold bg-red-500 rounded-full h-5 w-5 flex items-center justify-center top-[-5px] right-[-5px]">
+                  {cartItemCount}
+                </span>
               )}
             </Link>
             <button
@@ -129,8 +139,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* New line for navigation links */}
-        {/* Updated navigation links */}
         <div className="hidden md:flex space-x-8 text-[#197d8e] text-2xl font-bold mt-2 justify-end">
           <Link href="/celebrations">Celebrations</Link>
           <Link href="/customisation">Customisations</Link>
@@ -139,10 +147,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Full-screen menu with background image */}
       <div
-        className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
+        className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
         style={{
           backgroundImage: "url('/Home/nexibles-1.png')",
           backgroundSize: "cover",
@@ -196,10 +204,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
-
-
-
