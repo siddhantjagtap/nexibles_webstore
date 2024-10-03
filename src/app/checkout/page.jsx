@@ -45,4 +45,4 @@ function Page() {  // Keep the function name lowercase
   );
 }
 
-export default Page;  // Export it directly as lowercase, React will still recognize it as a component
+export default Page; 
