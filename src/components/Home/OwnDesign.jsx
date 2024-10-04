@@ -18,7 +18,7 @@ const Content = () => (
       <h1 className="text-2xl font-bold text-[#197d8e] md:text-4xl lg:text-5xl md:mb-6 md:mr-[8rem]">
         Want your own design?
       </h1>
-      <div className="text-white text-base md:text-lg lg:text-2xl md:mr-[8rem] md:ml-4 md:mt-6">
+      <div className="text-white text-base md:text-lg lg:text-2xl md:mr-[8rem] md:ml-4 md:mt-12 md:mb-0 mb-2">
         Not finding what you want exactly?
         <br />
         Reach out to us at{" "}

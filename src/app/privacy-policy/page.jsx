@@ -5,16 +5,15 @@ import React from 'react'
 
 function page() {
   return (
-    <div>
-      <div>
+    <div className="[&>nav]:!bg-white">
+    
         <Navbar />
-      </div>
-      <div>
+          
         <Privacy />
-      </div>
       <Footer />
-    </div>
-  )
+
+      </div>
+  );
 }
 
 export default page

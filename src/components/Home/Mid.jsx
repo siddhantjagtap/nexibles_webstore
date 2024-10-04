@@ -9,25 +9,8 @@ import HomepageArch3 from "../../../public/Home/Homepage-Arch-3.svg";
 import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
-<<<<<<< HEAD
-import TestinomalImg from "../../../public/Home/TestinomalImg.png";
-import kaju from "../../../public/Home/cashew.png";
-import almonds from "../../../public/Home/almonds.png";
-import pista from "../../../public/Home/pista.png";
-import Diwali_Icon from "../../../public/Homepage/Category Icons/Diwali_Icon.svg";
-import Anniversary from "../../../public/Homepage/Category Icons/Anniversary_Icon.svg";
-import Baby_Shower_Icon from "../../../public/Homepage/Category Icons/Baby_Shower_Icon.svg";
-import Birthday from "../../../public/Homepage/Category Icons/Birthday_Icon.svg";
-import Engagement from "../../../public/Homepage/Category Icons/Engagement_Icon.svg";
-import Graduation from "../../../public/Homepage/Category Icons/Graduation_Icon.svg";
-import New_Beginnings_Icon from "../../../public/Homepage/Category Icons/New_Beginnings_Icon.png";
-import Pet_Birthday_Icon from "../../../public/Homepage/Category Icons/Pet_Birthday_Icon.svg";
-import Wedding_Icon from "../../../public/Homepage/Category Icons/Wedding_Icon.svg";
-import useFetchCategories from '../../app/usefetchcategories';
-=======
 import useFetchCategories from '../../app/usefetchcategories';
 
->>>>>>> 535652c8211c10e8f49e638be9cff176722ac5bf
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
@@ -63,11 +46,8 @@ export default function Mid() {
       productsSwiperRef.current.swiper.slideNext();
     }
   };
-<<<<<<< HEAD
-=======
 
   const [products, setProducts] = useState([]);
->>>>>>> 535652c8211c10e8f49e638be9cff176722ac5bf
 
   useEffect(() => {
     // Fetch products from the API
