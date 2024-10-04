@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import useFetchCategories from '../../app/usefetchcategories';
 import useFetchProducts from '../../app/fetchproduct';
-
+import { useRouter } from 'next/navigation';
 export default function CelebrationCategoryPage() {
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
+  const router = useRouter();
+  const { name } = router.query;
 
   const { data: categoryData, loading: categoriesLoading, error: categoriesError } = useFetchCategories(token);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -14,11 +16,12 @@ export default function CelebrationCategoryPage() {
   const { products, loading: productsLoading, error: productsError } = useFetchProducts(token, selectedCategory?.name);
 
   useEffect(() => {
-    if (categoryData.length > 0 && !selectedCategory) {
-      const diwaliCategory = categoryData.find(cat => cat.name.toLowerCase() === 'diwali');
-      setSelectedCategory(diwaliCategory || categoryData[0]);
+    if (categoryData.length > 0 && name) {
+      const selected = categoryData.find(cat => cat.name === name);
+      setSelectedCategory(selected);
     }
-  }, [categoryData, selectedCategory]);
+  }, [categoryData, name]);
+
 
   const addToCart = (product) => {
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];

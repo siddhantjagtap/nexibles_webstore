@@ -10,10 +10,13 @@ import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
 import useFetchCategories from '../../app/usefetchcategories';
+import { useRouter } from 'next/navigation';
 
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
+  const router = useRouter();
+
   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
   const { data: categoryData, loading, error } = useFetchCategories(token);
 
@@ -172,7 +175,7 @@ export default function Mid() {
         >
           {categoryData.map((category, index) => (
             <SwiperSlide key={index}>
-              <div className="text-center w-[90%] relative">
+              <div className="text-center w-[90%] relative cursor-pointer" onClick={() => router.push(`/category?name=${category.name}`)} >
                 <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
                   <div className="relative w-full ml-4 h-full">
                     <Image
