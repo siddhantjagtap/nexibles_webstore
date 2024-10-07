@@ -6,11 +6,13 @@ import React, { Suspense} from "react";
 export default function page() {
   return (
     <>
+    <div className="[&>nav]:!bg-white">
       <Navbar />
       <Suspense fallback={<div>Loading...</div>}>
       <Cart />
       </Suspense>
       <Footer />
+    </div>
     </>
   );
 }

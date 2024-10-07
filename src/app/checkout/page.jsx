@@ -38,11 +38,13 @@ function Page() {  // Keep the function name lowercase
 
   return (
     <>
-      <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
-      <Checkout defaultAddress={defaultAddress} />
-      </Suspense>
-      <Footer />
+      <div className="[&>nav]:!bg-white">
+        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Checkout defaultAddress={defaultAddress} />
+        </Suspense>
+        <Footer />
+      </div>
     </>
   );
 }

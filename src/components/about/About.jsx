@@ -14,7 +14,7 @@ export default function About() {
     >
       {/* First Section (About NexiGifting) */}
       <div className="relative flex flex-col lg:flex-row items-start justify-between pt-16 md:pt-24 gap-6 md:gap-8 px-4 md:px-6 lg:px-24 py-8 md:py-12">
-        <div className="lg:w-1/2 text-white">
+        <div className="lg:w-1/2 text-white md:mt-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 md:mb-6 text-[#f9e2b2]">
             About NexiGifting
           </h2>
