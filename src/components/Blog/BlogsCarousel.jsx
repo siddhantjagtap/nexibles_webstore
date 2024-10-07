@@ -19,6 +19,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
   const slug = createSlug(title);
   return (
     <Link href={`/blog/${slug}`} passHref>
+        <a>
       <div
         className={`mt-40 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 pt-24 pb-6 h-80 w-60 flex flex-col justify-between`}
       >
@@ -38,15 +39,16 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
             <h3 className="text-white text-lg mb-4">{title}</h3>
           </div>
           <div className="text-center">
-            <a
+            <Link
               href={readMoreLink}
               className="inline-block text-black px-4 py-2 rounded-full font-semibold text-xl hover:text-white transition duration-300"
             >
               Read More
-            </a>
+            </Link>
           </div>
         </div>
       </div>
+      </a>
     </Link>
   );
 };

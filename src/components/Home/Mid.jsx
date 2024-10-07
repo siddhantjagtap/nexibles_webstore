@@ -175,7 +175,7 @@ export default function Mid() {
         >
           {categoryData.map((category, index) => (
             <SwiperSlide key={index}>
-              <div className="text-center w-[90%] relative cursor-pointer" onClick={() => router.push(`/category?name=${category.name}`)} >
+              <div className="text-center w-[90%] relative cursor-pointer" onClick={() => router.push(`/category`)} >
                 <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
                   <div className="relative w-full ml-4 h-full">
                     <Image
