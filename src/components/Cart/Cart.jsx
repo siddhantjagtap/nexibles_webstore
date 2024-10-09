@@ -248,15 +248,15 @@ const Cart = () => {
               <h2 className="text-xl font-bold text-[#db5c3c] mb-4 border border-[#464087] p-1 rounded-xl">
                 Total: ₹{calculateTotal()}
               </h2>
-              <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-4 sm:space-y-0">
+              <div className="flex justify-between items-center mt-4">
                 <img
                   src="/Home/Proceed to Cart Illustration.svg"
                   alt="SVG"
-                  className="w-28 h-40"
+                  className="w-28 h-40 "
                 />
                 <button
                   onClick={createOrder}
-                  className="bg-yellow-400 flex items-center justify-center px-4 py-2 rounded-full text-xl sm:text-2xl font-bold text-[#464087] w-full sm:w-auto"
+                  className="bg-yellow-400 flex items-center px-4 py-2 rounded-full md:text-2xl font-bold text-[#464087] md:mr-[5rem] w-full mb-20"
                 >
                   Proceed to Checkout
                 </button>
@@ -270,6 +270,9 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
+
 
 // // // old
 // "use client";
@@ -521,19 +524,19 @@ export default Cart;
 //               <h2 className="text-xl font-bold text-[#db5c3c] mb-4 border border-[#464087] p-1 rounded-xl ">
 //                 Total: ₹{calculateTotal()} {/* Subtotal + Shipping */}
 //               </h2>
-//               <div className="flex justify-between items-center mt-4">
-//                 <img
-//                   src="/Home/Proceed to Cart Illustration.svg"
-//                   alt="SVG"
-//                   className="w-28 h-40 "
-//                 />
-//                 <button
-//                   onClick={createOrder}
-//                   className="bg-yellow-400 flex items-center px-4 py-2 rounded-full text-2xl font-bold text-[#464087] mr-[5rem] w-full mb-20"
-//                 >
-//                   Proceed to Checkout
-//                 </button>
-//               </div>
+              // <div className="flex justify-between items-center mt-4">
+              //   <img
+              //     src="/Home/Proceed to Cart Illustration.svg"
+              //     alt="SVG"
+              //     className="w-28 h-40 "
+              //   />
+              //   <button
+              //     onClick={createOrder}
+              //     className="bg-yellow-400 flex items-center px-4 py-2 rounded-full text-2xl font-bold text-[#464087] mr-[5rem] w-full mb-20"
+              //   >
+              //     Proceed to Checkout
+              //   </button>
+              // </div>
 //             </div>
 //           </div>
 //         </div>

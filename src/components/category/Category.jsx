@@ -52,7 +52,7 @@ export default function CelebrationCategoryPage() {
   if (productsError) return <p>Error fetching products: {productsError}</p>;
 
   return (
-    <div className="flex min-h-screen bg-[#fdf5e7] pt-[7rem] relative">
+    <div className="flex min-h-screen bg-white pt-[7rem] relative my-4">
       <aside className="w-[20%] bg-[#f9a287] ml-[3rem] p-6 relative rounded-2xl z-10">
         {categoryData.map((category, index) => (
           <div

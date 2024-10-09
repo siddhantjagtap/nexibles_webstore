@@ -43,7 +43,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
           <div className="text-center">
             <a
               href={readMoreLink}
-              className="inline-block text-black text-sm md:text-xl px-4 py-2 rounded-full font-semibold hover:text-white transition duration-300"
+              className="inline-block text-white   text-sm md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
             >
               Read More
             </a>
@@ -170,7 +170,17 @@ export default Blogs;
 
 
 
-//olf
+
+
+
+
+
+
+
+
+
+
+// //old
 
 // "use client";
 // import Link from "next/link";

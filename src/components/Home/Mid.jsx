@@ -1,20 +1,20 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
-import HomepageArch3 from "../../../public/Home/Homepage-Arch-3.svg";
+// import HomepageArch3 from "../../../public/Home/Homepage-Arch-3.svg";
 import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
-import useFetchCategories from '../../app/usefetchcategories';
+import useFetchCategories from "../../app/usefetchcategories";
 
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
   const productsSwiperRef = useRef(null);
-  const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
+  const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
   const { data: categoryData, loading, error } = useFetchCategories(token);
 
   const handlePersonalizationPrev = () => {
@@ -53,23 +53,26 @@ export default function Mid() {
     // Fetch products from the API
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://nexiblesapp.barecms.com/api/product/get_list/All', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'API-Key': 'irrv211vui9kuwn11efsb4xd4zdkuq',
-          },
-        });
+        const response = await fetch(
+          "https://nexiblesapp.barecms.com/api/product/get_list/All",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "API-Key": "irrv211vui9kuwn11efsb4xd4zdkuq",
+            },
+          }
+        );
         const result = await response.json();
         if (result.status === "success") {
-          const filteredProducts = result.data.filter(product =>
-            product.origin?.toLowerCase() === 'nexigifting'
+          const filteredProducts = result.data.filter(
+            (product) => product.origin?.toLowerCase() === "nexigifting"
           );
           setProducts(filteredProducts);
         } else {
-          setError('Failed to fetch products');
+          setError("Failed to fetch products");
         }
       } catch (err) {
-        setError('Error fetching products');
+        setError("Error fetching products");
       } finally {
         //setLoading(false);
       }
@@ -90,10 +93,10 @@ export default function Mid() {
     };
 
     // Retrieve the existing cart from localStorage, or initialize as an empty array
-    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
 
     // Check if the product is already in the cart
-    const productExists = existingCart.some(item => item.id === product.id);
+    const productExists = existingCart.some((item) => item.id === product.id);
 
     if (!productExists) {
       // Add the new product to the cart if it doesn't exist
@@ -101,12 +104,11 @@ export default function Mid() {
     }
 
     // Save the updated cart array to localStorage
-    localStorage.setItem('cart', JSON.stringify(existingCart));
+    localStorage.setItem("cart", JSON.stringify(existingCart));
 
     // Redirect to the product size page with product details in the URL
     window.location.href = `/productsize?pouchId=${product.id}&image=${product.image}`;
   };
-
 
   return (
     <div
@@ -118,14 +120,14 @@ export default function Mid() {
     >
       {/* Homepage-Arch-3 */}
       <div className="absolute end-0 h-full w-auto hidden md:block">
-        <Image
+        {/* <Image
           src={HomepageArch3}
           alt="Decorative Arch"
           layout="intrinsic"
           height={650}
           width={650}
           className=""
-        />
+        /> */}
       </div>
 
       <h2 className="text-4xl md:text-6xl font-bold text-center text-black md:text-white mt-8 relative z-10">
@@ -146,7 +148,7 @@ export default function Mid() {
       </p>
 
       {/* Celebration Icons */}
-      <div className="relative z-10 max-w-7xl mx-auto mb-12 px-4 md:px-12 lg:px-0">
+      <div className="relative z-10 max-w-7xl mx-auto mb-12 px-8 md:px-12 lg:px-0">
         <button
           onClick={handlePersonalizationPrev}
           className="absolute left-0 md:left-[-2rem] lg:left-[-5rem] top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
@@ -175,8 +177,8 @@ export default function Mid() {
         >
           {categoryData.map((category, index) => (
             <SwiperSlide key={index}>
-              <div className="text-center w-[90%] relative">
-                <div className="h-[15rem] sm:h-[20rem] flex items-center justify-center">
+              <div className="text-center w-[76%] relative">
+                <div className="h-[19rem] sm:h-[20rem] flex items-center justify-center">
                   <div className="relative w-full ml-4 h-full">
                     <Image
                       src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
@@ -301,13 +303,7 @@ export default function Mid() {
   );
 }
 
-
-
-
-
-
 //old
-
 
 // import React, { useRef, useState, useEffect } from "react";
 // import Image from "next/image";

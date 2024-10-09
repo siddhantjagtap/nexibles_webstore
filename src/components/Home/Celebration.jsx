@@ -117,7 +117,7 @@ export default function Celebration() {
   return (
     <div className="text-center relative z-10 pb-16 bg-no-repeat md:mt-44 ">
       <div className="flex items-center justify-center mb-12">
-        <h3 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#0f1729] md:mt-20 ml-[10rem] flex items-center ">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold md:text-white text-[#0f1729] md:mt-20 ml-[10rem] flex items-center ">
           Celebrations
           <Image
             src={BirdIllustration}

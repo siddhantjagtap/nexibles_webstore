@@ -65,7 +65,7 @@ const Footer = () => {
 
             {/* Right Side Links (now in the middle) */}
             <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-start">
-              <Link href="/blog" className="hover:underline">
+              <Link href="/all-blog" className="hover:underline">
                 Blog
               </Link>
               <Link href="/contact-us" className="hover:underline">

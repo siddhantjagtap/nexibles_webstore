@@ -36,7 +36,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
           <div className="text-center">
             <a
               href={readMoreLink}
-              className="inline-block text-5xl text-black px-4 py-2 rounded-full font-semibold text-xl hover:text-white transition duration-300"
+              className="inline-block text-5xl text-white hover:text-black t px-4 py-2 rounded-full font-semibold text-xl transition duration-300"
             >
               Read More
             </a>
