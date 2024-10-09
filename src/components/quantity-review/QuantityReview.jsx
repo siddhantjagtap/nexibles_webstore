@@ -99,7 +99,7 @@ export default function QuantityReview() {
   };
 
   return (
-    <div className="min-h-screen bg-white mt-20 px-4 py-8">
+    <div className="min-h-screen bg-white md:mt-20 mt-4 px-4 py-8">
       <button
         onClick={() => router.back()}
         className="text-[#124e66] ml-4 font-bold"
@@ -107,7 +107,7 @@ export default function QuantityReview() {
         ← Back
       </button>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">
+      <h1 className="text-2xl md:text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">
         Quantity and Review
       </h1>
 
@@ -116,7 +116,7 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="quantity"
-              className="block text-[#ee6e73] text-xl font-bold mb-2"
+              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
             >
               Quantity
             </label>
@@ -131,7 +131,7 @@ export default function QuantityReview() {
             />
           </div>
 
-          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">
+          <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-4">
             Yay you're done!
           </h2>
           <p className="text-gray-600 mb-4">
@@ -141,7 +141,7 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="customerName"
-              className="block text-[#ee6e73] text-xl font-bold mb-2"
+              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
             >
               Add your name
             </label>
@@ -158,7 +158,7 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="customMessage"
-              className="block text-[#ee6e73] text-xl font-bold mb-2"
+              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
             >
               Add your message
             </label>
@@ -175,7 +175,7 @@ export default function QuantityReview() {
           </div>
 
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-[#ee6e73] mb-2">
+            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
               Add your picture
             </h2>
             <input
@@ -198,7 +198,7 @@ export default function QuantityReview() {
           </div>
 
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-[#ee6e73] mb-2">
+            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
               Add list of receivers
             </h2>
             <input
@@ -248,7 +248,7 @@ export default function QuantityReview() {
             />
             <button
               type="submit"
-              className="bg-[#ee6e73] text-white px-6 py-2 rounded-full hover:bg-[#124e66] transition duration-300"
+              className="bg-[#ee6e73] text-white px-6 py-2 mb-10 rounded-full hover:bg-[#124e66] transition duration-300"
             >
               Continue
             </button>
@@ -256,7 +256,7 @@ export default function QuantityReview() {
         </form>
 
         <div className="w-full md:w-1/3 mt-8 md:mt-0">
-          <h2 className="text-2xl font-bold text-[#ee6e73] mb-4">
+          <h2 className="md:text-2xl text-xl font-bold text-[#ee6e73] ">
             Product Preview
           </h2>
           <div className="border p-4 rounded-lg">

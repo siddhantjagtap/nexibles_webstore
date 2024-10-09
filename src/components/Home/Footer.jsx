@@ -82,20 +82,23 @@ const Footer = () => {
         </div>
       </footer>
       {/* Bottom Links */}
-      <div className="text-center text-sm mt-2 bg-white">
-        <Link href="/privacy-policy" className="hover:underline">
+      <div className="text-center md:text-sm text-xs mt-2 bg-white ">
+        <Link href="/privacy-policy" className="hover:underline md:mx-2">
           Privacy Policy
         </Link>{" "}
         |
-        <Link href="/refund-return-policy" className="hover:underline">
+        <Link href="/refund-return-policy" className="hover:underline md:mx-2">
           Return & Refunds
         </Link>{" "}
         |
-        <Link href="/shipping-and-delivery-policy" className="hover:underline">
+        <Link
+          href="/shipping-and-delivery-policy"
+          className="hover:underline md:mx-2"
+        >
           Shipping
         </Link>{" "}
         |
-        <Link href="/terms-and-conditions" className="hover:underline">
+        <Link href="/terms-and-conditions" className="hover:underline md:mx-2">
           Terms & Conditions
         </Link>
       </div>
