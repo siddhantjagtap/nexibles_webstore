@@ -11,6 +11,7 @@ export const VersatileAndCelebration = () => {
           backgroundSize: "100% auto",
           backgroundPosition: "center 100%",
           backgroundRepeat: "no-repeat",
+        
           minHeight: "100vh",
           width: "98.6vw",
           display: "flex",

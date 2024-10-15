@@ -162,6 +162,10 @@ export default function Celebration() {
   );
 }
 
+
+
+
+
 // import React from "react";
 // import Image from "next/image";
 // import BirdIllustration from "../../../public/Home/Bird-Illustration.svg";
