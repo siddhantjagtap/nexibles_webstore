@@ -17,23 +17,23 @@ export default function Mid() {
   const { data: categoryData, loading, error } = useFetchCategories(token);
   const [products, setProducts] = useState([]);
 
-  const handlePersonalizationPrev = useCallback(() => {
-    if (
-      personalizationSwiperRef.current &&
-      personalizationSwiperRef.current.swiper
-    ) {
-      personalizationSwiperRef.current.swiper.slidePrev();
-    }
-  }, []);
+  // const handlePersonalizationPrev = useCallback(() => {
+  //   if (
+  //     personalizationSwiperRef.current &&
+  //     personalizationSwiperRef.current.swiper
+  //   ) {
+  //     personalizationSwiperRef.current.swiper.slidePrev();
+  //   }
+  // }, []);
 
-  const handlePersonalizationNext = useCallback(() => {
-    if (
-      personalizationSwiperRef.current &&
-      personalizationSwiperRef.current.swiper
-    ) {
-      personalizationSwiperRef.current.swiper.slideNext();
-    }
-  }, []);
+  // const handlePersonalizationNext = useCallback(() => {
+  //   if (
+  //     personalizationSwiperRef.current &&
+  //     personalizationSwiperRef.current.swiper
+  //   ) {
+  //     personalizationSwiperRef.current.swiper.slideNext();
+  //   }
+  // }, []);
 
   const handleProductsPrev = useCallback(() => {
     if (productsSwiperRef.current && productsSwiperRef.current.swiper) {
@@ -95,6 +95,29 @@ export default function Mid() {
     localStorage.setItem("cart", JSON.stringify(existingCart));
     window.location.href = `/productsize?pouchId=${product.id}&image=${product.image}`;
   };
+  useEffect(() => {
+    if (personalizationSwiperRef.current && categoryData) {
+      personalizationSwiperRef.current.swiper.update();
+    }
+  }, [categoryData]);
+
+const handlePersonalizationPrev = useCallback(() => {
+  if (
+    personalizationSwiperRef.current &&
+    personalizationSwiperRef.current.swiper
+  ) {
+    personalizationSwiperRef.current.swiper.slidePrev();
+  }
+}, []);
+
+const handlePersonalizationNext = useCallback(() => {
+  if (
+    personalizationSwiperRef.current &&
+    personalizationSwiperRef.current.swiper
+  ) {
+    personalizationSwiperRef.current.swiper.slideNext();
+  }
+}, []);
 
   const ProductCard = ({ product }) => (
     <div className="w-full relative h-full pt-12">
@@ -161,40 +184,45 @@ export default function Mid() {
                 className="hover:scale-110 transition-transform duration-300"
               />
             </button>
-            <Swiper
-              ref={personalizationSwiperRef}
-              modules={[Navigation]}
-              spaceBetween={10}
-              slidesPerView={1}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 },
-                1280: { slidesPerView: 5 },
-              }}
-              loop={true}
-            >
-              {categoryData.map((category, index) => (
-                <SwiperSlide key={index}>
-                  <div className="text-center w-full relative group pt-4 pb-8">
-                    <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
-                          alt={category.name}
-                          layout="fill"
-                          objectFit="contain"
-                          className="transition-transform duration-300 group-hover:scale-115"
-                        />
+
+            {/* Swiper Configuration */}
+            {categoryData && (
+              <Swiper
+                ref={personalizationSwiperRef}
+                modules={[Navigation]} // Use the same modules as 'Popular Products'
+                spaceBetween={20} // Same spacing as 'Popular Products'
+                slidesPerView={1} // Same logic for responsiveness
+                breakpoints={{
+                  640: { slidesPerView: 2 },
+                  768: { slidesPerView: 3 },
+                  1024: { slidesPerView: 4 },
+                  1280: { slidesPerView: 5 },
+                }}
+                loop={true} // Enable looping just like 'Popular Products'
+              >
+                {categoryData.map((category, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="text-center w-full relative group pt-4 pb-8">
+                      <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
+                            alt={category.name}
+                            layout="fill"
+                            objectFit="contain"
+                            className="transition-transform duration-300 group-hover:scale-115"
+                          />
+                        </div>
                       </div>
+                      <p className="text-base md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
+                        {category.name}
+                      </p>
                     </div>
-                    <p className="text-base md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
-                      {category.name}
-                    </p>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
+
             <button
               onClick={handlePersonalizationNext}
               className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
@@ -282,8 +310,8 @@ export default function Mid() {
                 />
               </button> */}
               <button
-                // onClick={handleProductsNext}
-                onClick={handleProductsPrev}
+                onClick={handleProductsNext}
+                // onClick={handleProductsPrev}
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
                 aria-label="Next slide"
               >
