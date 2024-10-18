@@ -25,7 +25,7 @@ export default function ContactForm() {
             Do you have any questions? Please contact us right away.
           </p>
           <p className="text-lg md:text-3xl text-[#fcfdfd] font-semibold mb-4">
-            We'd be delighted to address any queries you may have!
+            We&aposd be delighted to address any queries you may have!
           </p>
         </div>
 
