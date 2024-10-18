@@ -5,12 +5,12 @@ import Footer from '@/components/Home/Footer'
 
 function page() {
     return (
-        <div>
-            <Navbar />
-            <Refund />
-            <Footer/>
-        </div>
-    )
+      <div className="[&>nav]:!bg-white">
+        <Navbar />
+        <Refund />
+        <Footer />
+      </div>
+    );
 }
 
 export default page

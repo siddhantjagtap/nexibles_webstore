@@ -5,10 +5,10 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>
-        <Navbar/>
-        <About />
-        <Footer/>
-        </div>
-  )
+      <div className="[&>nav]:!bg-white">
+      <Navbar />
+      <About />
+      <Footer />
+    </div>
+  );
 }

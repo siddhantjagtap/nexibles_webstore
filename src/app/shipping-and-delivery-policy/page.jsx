@@ -5,7 +5,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div>
+    <div className="[&>nav]:!bg-white">
       <Navbar />
       <Shipping />
       <Footer/>

@@ -169,20 +169,20 @@ function Login() {
   return (
     <>
       {loading && <Loader btnLoad={false} />}
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="w-full max-w-md p-8  rounded-lg ">
-          <h2 className="text-4xl font-bold text-center text-[#db5c3c] mb-8 mt-24">
+      <div className="flex items-center justify-center min-h-screen bg-white px-4 md:px-0">
+        <div className="w-full max-w-md p-6 md:p-8 rounded-lg ">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#db5c3c] mb-6 md:mb-8 mt-16 md:mt-24">
             Sign in
           </h2>
           <div className="space-y-4">
-            <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg">
-              <FaGoogle className="mr-3" /> Continue With Google
+            <button className="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-base md:text-lg">
+              <FaGoogle className="mr-2 md:mr-3" /> Continue With Google
             </button>
-            <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg ">
-              <FaFacebook className="mr-3" /> Continue With Facebook
+            <button className="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-base md:text-lg">
+              <FaFacebook className="mr-2 md:mr-3" /> Continue With Facebook
             </button>
-            <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg">
-              <FaApple className="mr-3" /> Continue With Apple
+            <button className="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-base md:text-lg">
+              <FaApple className="mr-2 md:mr-3" /> Continue With Apple
             </button>
           </div>
           <div className="text-center my-4 text-[#db5c3c] font-semibold">
@@ -195,7 +195,7 @@ function Login() {
               required
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
-              className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+              className="w-full p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
             />
             <input
               type="password"
@@ -203,11 +203,11 @@ function Login() {
               required
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
-              className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+              className="w-full p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
             />
             <button
               type="submit"
-              className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-3 rounded-2xl text-lg"
+              className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-2 md:py-3 rounded-2xl text-base md:text-lg"
             >
               Log In
             </button>
@@ -216,7 +216,7 @@ function Login() {
             Or create a new account
           </div>
           <form onSubmit={handleRegister} className="space-y-4">
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
               <input
                 type="text"
                 placeholder="First Name"
@@ -225,7 +225,7 @@ function Login() {
                 onChange={(e) => {
                   setUserDetails({ ...userDetails, firstName: e.target.value });
                 }}
-                className="w-1/2 p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+                className="w-full md:w-1/2 p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
               />
               <input
                 type="text"
@@ -235,7 +235,7 @@ function Login() {
                 onChange={(e) => {
                   setUserDetails({ ...userDetails, lastName: e.target.value });
                 }}
-                className="w-1/2 p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+                className="w-full md:w-1/2 p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
               />
             </div>
             <input
@@ -249,7 +249,7 @@ function Login() {
                   emailAddress: e.target.value,
                 });
               }}
-              className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+              className="w-full p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
             />
             <input
               type="password"
@@ -259,25 +259,27 @@ function Login() {
               onChange={(e) => {
                 setUserDetails({ ...userDetails, password: e.target.value });
               }}
-              className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+              className="w-full p-2 md:p-3 border border-1 border-[#197d8e] rounded-2xl text-base md:text-lg"
             />
             <button
               type="submit"
-              className="w-full bg-[#db5c3c] text-white py-3 rounded-2xl text-lg font-bold"
+              className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-2 md:py-3 rounded-2xl text-base md:text-lg"
             >
               Create Account
             </button>
           </form>
         </div>
       </div>
-      {showModal && <ForgotPassword onClose={() => setShowModal(false)} />}
     </>
   );
 }
 
 export default Login;
 
-//current
+
+
+
+//old
 // "use client";
 // import Link from "next/link";
 // import React from "react";
@@ -292,11 +294,12 @@ export default Login;
 // import ForgotPassword from "./ForgotPassword";
 // import signupimg from "../../../public/login/signup-placeholder-nexibles.jpg";
 // import Image from "next/image";
+
 // function Login() {
-//   const [email, setEmail] = useState();
+//   const [loginEmail, setLoginEmail] = useState("");
+//   const [loginPassword, setLoginPassword] = useState("");
 //   const [loading, setLoading] = useState(false);
 //   const [showModal, setShowModal] = useState(false);
-//   const [password, setPassword] = useState();
 //   const router = useRouter();
 //   const { login } = useAuth();
 
@@ -312,8 +315,8 @@ export default Login;
 //           "Content-type": "application/json",
 //         },
 //         body: JSON.stringify({
-//           emailAddress: email,
-//           password: password,
+//           emailAddress: loginEmail,
+//           password: loginPassword,
 //         }),
 //       });
 //       const data = await response.json();
@@ -447,74 +450,111 @@ export default Login;
 
 //   return (
 //     <>
-//         {loading && <Loader btnLoad={false} />}
-//         <div className="flex items-center justify-center min-h-screen bg-[#FFF7F3]">
-//             <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-//                 <h2 className="text-4xl font-bold text-center text-[#197d8e] mb-8">Sign in</h2>
-//                 <div className="space-y-4">
-//                     <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-[#197d8e] text-lg font-semibold">
-//                         <FaGoogle className="mr-3" /> Continue With Google
-//                     </button>
-//                     <button className="w-full flex items-center justify-center px-4 py-3 border-2 border-[#197d8e] rounded-full text-[#197d8e] text-lg font-semibold">
-//                         <FaFacebook className="mr-3" /> Continue With Facebook
-//                     </button>
-//                     <button className="w-full flex items-center justify-center px-4 py-3 border-2 border-[#197d8e] rounded-full text-[#197d8e] text-lg font-semibold">
-//                         <FaApple className="mr-3" /> Continue With Apple
-//                     </button>
-//                 </div>
-//                 <div className="text-center my-4 text-[#197d8e] font-semibold">Or sign in with email</div>
-//                 <div className="space-y-4">
-//                     <button className="w-full flex items-center justify-center px-4 py-3 border-2 border-[#197d8e] rounded-full text-[#197d8e] text-lg font-semibold">
-//                         Log In
-//                     </button>
-//                     <button className="w-full flex items-center justify-center px-4 py-3 border-2 border-[#197d8e] rounded-full text-[#197d8e] text-lg font-semibold">
-//                         Create Account
-//                     </button>
-//                 </div>
-//                 <form onSubmit={handleRegister} className="space-y-4 mt-6">
-//                     <div className="flex gap-4">
-//                         <input
-//                             type="text"
-//                             placeholder="First Name"
-//                             required
-//                             value={userDetails.firstName}
-//                             onChange={(e) => { setUserDetails({ ...userDetails, firstName: e.target.value }) }}
-//                             className="w-1/2 p-3 border-2 border-[#197d8e] rounded-full text-lg"
-//                         />
-//                         <input
-//                             type="text"
-//                             placeholder="Last Name"
-//                             required
-//                             value={userDetails.lastName}
-//                             onChange={(e) => { setUserDetails({ ...userDetails, lastName: e.target.value }) }}
-//                             className="w-1/2 p-3 border-2 border-[#197d8e] rounded-full text-lg"
-//                         />
-//                     </div>
-//                     <input
-//                         type="email"
-//                         placeholder="Email"
-//                         required
-//                         value={userDetails.emailAddress}
-//                         onChange={(e) => { setUserDetails({ ...userDetails, emailAddress: e.target.value }) }}
-//                         className="w-full p-3 border-2 border-[#197d8e] rounded-full text-lg"
-//                     />
-//                     <input
-//                         type="password"
-//                         placeholder="Password"
-//                         required
-//                         value={userDetails.password}
-//                         onChange={(e) => { setUserDetails({ ...userDetails, password: e.target.value }) }}
-//                         className="w-full p-3 border-2 border-[#197d8e] rounded-full text-lg"
-//                     />
-//                     <button type="submit" className="w-full bg-[#197d8e] text-white py-3 rounded-full text-lg font-bold">
-//                         Create Account
-//                     </button>
-//                 </form>
+//       {loading && <Loader btnLoad={false} />}
+//       <div className="flex items-center justify-center min-h-screen bg-white">
+//         <div className="w-full max-w-md p-8  rounded-lg ">
+//           <h2 className="text-4xl font-bold text-center text-[#db5c3c] mb-8 mt-24">
+//             Sign in
+//           </h2>
+//           <div className="space-y-4">
+//             <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg">
+//               <FaGoogle className="mr-3" /> Continue With Google
+//             </button>
+//             <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg ">
+//               <FaFacebook className="mr-3" /> Continue With Facebook
+//             </button>
+//             <button className="w-full flex items-center justify-center px-4 py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-lg">
+//               <FaApple className="mr-3" /> Continue With Apple
+//             </button>
+//           </div>
+//           <div className="text-center my-4 text-[#db5c3c] font-semibold">
+//             Or sign in with email
+//           </div>
+//           <form onSubmit={handleLogin} className="space-y-4">
+//             <input
+//               type="email"
+//               placeholder="Email"
+//               required
+//               value={loginEmail}
+//               onChange={(e) => setLoginEmail(e.target.value)}
+//               className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//             />
+//             <input
+//               type="password"
+//               placeholder="Password"
+//               required
+//               value={loginPassword}
+//               onChange={(e) => setLoginPassword(e.target.value)}
+//               className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//             />
+//             <button
+//               type="submit"
+//               className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-3 rounded-2xl text-lg"
+//             >
+//               Log In
+//             </button>
+//           </form>
+//           <div className="text-center my-4 text-[#197d8e] font-semibold">
+//             Or create a new account
+//           </div>
+//           <form onSubmit={handleRegister} className="space-y-4">
+//             <div className="flex gap-4">
+//               <input
+//                 type="text"
+//                 placeholder="First Name"
+//                 required
+//                 value={userDetails.firstName}
+//                 onChange={(e) => {
+//                   setUserDetails({ ...userDetails, firstName: e.target.value });
+//                 }}
+//                 className="w-1/2 p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//               />
+//               <input
+//                 type="text"
+//                 placeholder="Last Name"
+//                 required
+//                 value={userDetails.lastName}
+//                 onChange={(e) => {
+//                   setUserDetails({ ...userDetails, lastName: e.target.value });
+//                 }}
+//                 className="w-1/2 p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//               />
 //             </div>
+//             <input
+//               type="email"
+//               placeholder="Email"
+//               required
+//               value={userDetails.emailAddress}
+//               onChange={(e) => {
+//                 setUserDetails({
+//                   ...userDetails,
+//                   emailAddress: e.target.value,
+//                 });
+//               }}
+//               className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//             />
+//             <input
+//               type="password"
+//               placeholder="Password"
+//               required
+//               value={userDetails.password}
+//               onChange={(e) => {
+//                 setUserDetails({ ...userDetails, password: e.target.value });
+//               }}
+//               className="w-full p-3 border border-1 border-[#197d8e] rounded-2xl text-lg"
+//             />
+//             <button
+//               type="submit"
+//               className="w-full bg-[#db5c3c] text-white py-3 rounded-2xl text-lg font-bold"
+//             >
+//               Create Account
+//             </button>
+//           </form>
 //         </div>
-//         {showModal && <ForgotPassword onClose={() => setShowModal(false)} />}
+//       </div>
+//       {showModal && <ForgotPassword onClose={() => setShowModal(false)} />}
 //     </>
-// );
+//   );
 // }
 
 // export default Login;

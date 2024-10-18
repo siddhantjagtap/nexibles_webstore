@@ -6,19 +6,20 @@ const Testimonials = () => {
   return (
     <div className="bg-white relative px-8">
       {/* Testimonial Heading */}
-      <div className="text-center mb-8">
-        <div className="flex justify-center items-center">
-          <Image
-            src="/Home/Walking Illustration.svg"
-            alt="Testimonial Icon"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-5xl font-bold text-[#db5c3c] ml-4">
-            Testimonials
-          </h1>
-        </div>
-      </div>
+   <div className="text-center mb-8">
+    <div className="flex justify-center items-center">
+      <Image
+        src="/Home/Walking Illustration.svg"
+        alt="Testimonial Icon"
+        width={100}
+        height={100}
+        className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[140px] md:h-[140px]"
+      />
+      <h1 className="text-4xl sm:text-4xl md:text-5xl font-bold text-[#db5c3c] mx-4 sm:mx-6 my-4 sm:my-6 ">
+        Testimonials
+      </h1>
+    </div>
+    </div>
 
       {/* Testimonial Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 ">
@@ -43,9 +44,7 @@ const Testimonials = () => {
 
         {/* Card 2 */}
         <div>
-          <div
-            className="bg-[#db847d] text-white p-6 rounded-3xl shadow-md flex flex-col"
-          >
+          <div className="bg-[#db847d] text-white p-6 rounded-3xl shadow-md flex flex-col">
             <p className="text-base mb-4">
               “I used these pouches for wedding favors and they were a hit! It
               looked great with our pictures on the pouch, the guests got to
@@ -102,7 +101,6 @@ const Testimonials = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 

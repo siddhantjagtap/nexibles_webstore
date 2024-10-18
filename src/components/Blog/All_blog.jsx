@@ -36,7 +36,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
           <div className="text-center">
             <a
               href={readMoreLink}
-              className="inline-block text-5xl text-black px-4 py-2 rounded-full font-semibold text-xl hover:text-white transition duration-300"
+              className="inline-block text-5xl text-white hover:text-black t px-4 py-2 rounded-full font-semibold text-xl transition duration-300"
             >
               Read More
             </a>
@@ -93,13 +93,26 @@ function All_blog() {
 
   return (
     <div className="container mx-auto ">
-      <div className="flex items-center justify-center mt-36">
+      {/* <div className="flex items-center justify-center md:mt-36">
         <h2 className="text-6xl font-bold text-[#0f1729] ">Blogs</h2>
         <Image
           src="/Home/Blog Title Illustration.svg"
           alt="Blog Icon"
           width={120}
           height={100}
+        />
+      </div> */}
+
+      <div className="flex items-center justify-center space-x-2 md:space-x-4 md:mt-36 mt-12">
+        {/* Blog heading */}
+        <h2 className="text-4xl md:text-6xl font-bold text-[#0f1729]">Blogs</h2>
+        {/* Image next to the heading */}
+        <Image
+          src="/Home/Blog Title Illustration.svg"
+          alt="Blog Icon"
+          width={40}
+          height={30}
+          className="w-20 h-20 md:w-32 md:h-32"
         />
       </div>
       <div className="px-20 flex flex-wrap justify-center mt-12">
