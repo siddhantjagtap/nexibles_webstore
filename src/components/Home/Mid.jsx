@@ -101,23 +101,23 @@ export default function Mid() {
     }
   }, [categoryData]);
 
-const handlePersonalizationPrev = useCallback(() => {
-  if (
-    personalizationSwiperRef.current &&
-    personalizationSwiperRef.current.swiper
-  ) {
-    personalizationSwiperRef.current.swiper.slidePrev();
-  }
-}, []);
+  const handlePersonalizationPrev = useCallback(() => {
+    if (
+      personalizationSwiperRef.current &&
+      personalizationSwiperRef.current.swiper
+    ) {
+      personalizationSwiperRef.current.swiper.slidePrev();
+    }
+  }, []);
 
-const handlePersonalizationNext = useCallback(() => {
-  if (
-    personalizationSwiperRef.current &&
-    personalizationSwiperRef.current.swiper
-  ) {
-    personalizationSwiperRef.current.swiper.slideNext();
-  }
-}, []);
+  const handlePersonalizationNext = useCallback(() => {
+    if (
+      personalizationSwiperRef.current &&
+      personalizationSwiperRef.current.swiper
+    ) {
+      personalizationSwiperRef.current.swiper.slideNext();
+    }
+  }, []);
 
   const ProductCard = ({ product }) => (
     <div className="w-full relative h-full pt-12">
@@ -137,7 +137,7 @@ const handlePersonalizationNext = useCallback(() => {
       </p>
       <button
         onClick={() => handleCustomizeClick(product)}
-        className="bg-[#124e66] mt-4 mx-auto block text-white px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap"
+        className="bg-[#124e66] mt-4 mx-auto block text-white px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap mb-4 "
       >
         Customise
       </button>
@@ -146,13 +146,28 @@ const handlePersonalizationNext = useCallback(() => {
 
   return (
     // <div className="text-white pt-2 relative bg-[url('/Contact_Us_Page/Contact_Us_Background.jpg')] md:bg-[url('/Home/Background.svg')] bg-cover bg-center min-h-screen">
+    // <div
+    //   className=" text-white pt-2 relative bg-no-repeat"
+    //   style={{
+    //     backgroundImage: "url('/Home/Background.svg')",
+    //     backgroundSize: "100% 115%",
+    //   }}
+    // >
     <div
-      className=" text-white pt-2 relative bg-no-repeat"
+      className="text-white pt-2 relative bg-no-repeat bg-[#4bb2bc] md:bg-transparent"
       style={{
-        backgroundImage: "url('/Home/Background.svg')",
-        backgroundSize: "100% 115%",
+        backgroundImage: "none",
       }}
     >
+      <div
+        className="hidden md:block absolute inset-0 bg-no-repeat"
+        style={{
+          backgroundImage: "url('/Home/Background.svg')",
+          backgroundSize: "100% 115%",
+          zIndex: -1,
+        }}
+      ></div>
+
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center text-black md:text-white mt-8 relative z-10">
           <Image
@@ -169,7 +184,7 @@ const handlePersonalizationNext = useCallback(() => {
           pouches Crafted just for You!
         </p>
 
-        <div className="relative z-10 max-w-7xl mx-auto mb-12">
+        <div className="relative z-10 max-w-7xl mx-auto md:mb-12">
           <div className="relative px-12 md:px-16">
             <button
               onClick={handlePersonalizationPrev}
@@ -239,91 +254,72 @@ const handlePersonalizationNext = useCallback(() => {
           </div>
         </div>
 
-        <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white relative z-10 mb-8">
+        <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-black md:text-white relative z-10 mb-8">
           <Image
             src={FlowerIllustration}
             alt="flower illustration"
-            width={48}
-            height={48}
-            className="inline-block mr-2"
+            width={40}
+            height={40}
+            // className="inline-block mr-2"
+            className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24"
           />
           Popular Products
           <Image
             src={Butterflies2}
             alt="butterflies"
-            width={48}
-            height={48}
+            width={60}
+            height={60}
             className="inline-block ml-2"
           />
         </h3>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {products.slice(0, 4).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <div className="hidden md:block relative">
-            <div className="relative px-12 md:px-16">
-              <button
-                onClick={handleProductsPrev}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
-                aria-label="Previous slide"
-              >
-                <Image
-                  src={Butterflies6}
-                  alt="Previous"
-                  width={50}
-                  height={50}
-                  className="hover:scale-110 transition-transform duration-300"
-                />
-              </button>
-              <Swiper
-                ref={productsSwiperRef}
-                modules={[Navigation]}
-                spaceBetween={20}
-                slidesPerView={1}
-                breakpoints={{
-                  768: { slidesPerView: 3 },
-                  1024: { slidesPerView: 4 },
-                  1280: { slidesPerView: 5 },
-                }}
-                loop={true}
-              >
-                {products.map((product) => (
-                  <SwiperSlide key={product.id}>
-                    <ProductCard product={product} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              {/* <button
-                onClick={handleProductsNext}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
-                aria-label="Next slide"
-              >
-                <Image
-                  src={Butterflies5}
-                  alt="Next"
-                  width={50}
-                  height={50}
-                  className="hover:scale-110 transition-transform duration-300"
-                />
-              </button> */}
-              <button
-                onClick={handleProductsNext}
-                // onClick={handleProductsPrev}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
-                aria-label="Next slide"
-              >
-                <Image
-                  src={Butterflies5}
-                  alt="Next"
-                  width={50}
-                  height={50}
-                  className="hover:scale-110 transition-transform duration-300"
-                />
-              </button>
-            </div>
+          <div className="relative px-12 md:px-16">
+            <button
+              onClick={handleProductsPrev}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+              aria-label="Previous slide"
+            >
+              <Image
+                src={Butterflies6}
+                alt="Previous"
+                width={50}
+                height={50}
+                className="hover:scale-110 transition-transform duration-300"
+              />
+            </button>
+            <Swiper
+              ref={productsSwiperRef}
+              modules={[Navigation]}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1280: { slidesPerView: 5 },
+              }}
+              loop={true}
+            >
+              {products.map((product) => (
+                <SwiperSlide key={product.id}>
+                  <ProductCard product={product} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button
+              onClick={handleProductsNext}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+              aria-label="Next slide"
+            >
+              <Image
+                src={Butterflies5}
+                alt="Next"
+                width={50}
+                height={50}
+                className="hover:scale-110 transition-transform duration-300"
+              />
+            </button>
           </div>
         </div>
       </div>
