@@ -120,7 +120,7 @@ export default function Mid() {
   }, []);
 
   const ProductCard = ({ product }) => (
-    <div className="w-full relative h-full pt-12">
+      <div className="w-full relative h-full pt-12">
       <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-64 flex items-center justify-center">
         <div className="relative w-full h-full -mt-6">
           <Image
@@ -128,7 +128,7 @@ export default function Mid() {
             alt={product.name}
             layout="fill"
             objectFit="contain"
-            className="scale-110 transition-transform duration-300 hover:-translate-y-4 hover:scale-115"
+            className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115 max-w-[90%] max-h-[90%] mx-auto"
           />
         </div>
       </div>
@@ -137,7 +137,7 @@ export default function Mid() {
       </p>
       <button
         onClick={() => handleCustomizeClick(product)}
-        className="bg-[#124e66] mt-4 mx-auto block text-white px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap mb-4 "
+        className="bg-[#124e66] mt-4 mx-auto block text-white px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap mb-4"
       >
         Customise
       </button>
@@ -309,8 +309,9 @@ export default function Mid() {
             </Swiper>
             <button
               onClick={handleProductsNext}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-50 cursor-pointer focus:outline-none"
               aria-label="Next slide"
+              style={{ display: "block", pointerEvents: "auto" }} // Ensure it can be clicked
             >
               <Image
                 src={Butterflies5}
