@@ -60,7 +60,7 @@ export default function ProductSize() {
         ← Back
       </Link>
 
-      <h1 className="text-4xl font-bold text-[#ee6e73] text-center">
+      <h1 className="text-2xl md:text-4xl font-bold text-[#ee6e73] text-center">
         Choose Your Size
       </h1>
 
