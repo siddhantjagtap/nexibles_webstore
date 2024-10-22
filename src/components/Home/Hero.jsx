@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -60,7 +61,15 @@ export default function Hero() {
             <h1 className="text-4xl md:text-7xl text-[#db5c3c] font-extrabold">
               GIFTING
             </h1>
+            <Image
+              src={Butterflies2}
+              alt="butterflies"
+              width={64}
+              height={64}
+              className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-3rem] "
+            />
           </div>
+
           <h2 className="text-xl md:text-2xl font-bold">
             {`India's First Customized Stand-Up Pouch Gifting Platform`}
           </h2>

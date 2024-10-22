@@ -121,18 +121,18 @@ export default function Mid() {
 
   const ProductCard = ({ product }) => (
       <div className="w-full relative h-full pt-12">
-      <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-64 flex items-center justify-center">
-        <div className="relative w-full h-full -mt-6">
+      <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[45%] h-64 flex items-center justify-center">
+        <div className="relative w-full h-full mt-8">
           <Image
             src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
             alt={product.name}
             layout="fill"
             objectFit="contain"
-            className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115 max-w-[90%] max-h-[90%] mx-auto"
+            className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115 max-w-[75%] max-h-[83%] mx-auto"
           />
         </div>
       </div>
-      <p className="text-[#db5c3c] mt-4 text-center px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap">
+      <p className="text-white md:text-[#db5c3c] mt-4 text-center px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap">
         {product.name}
       </p>
       <button
@@ -261,7 +261,7 @@ export default function Mid() {
             width={40}
             height={40}
             // className="inline-block mr-2"
-            className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24"
+            className="inline-block md:w-30 md:h-30 lg:w-36 lg:h-36"
           />
           Popular Products
           <Image

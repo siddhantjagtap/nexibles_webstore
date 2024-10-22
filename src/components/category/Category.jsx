@@ -72,7 +72,7 @@ export default function CelebrationCategoryPage() {
         className="md:hidden fixed top-20 right-4 mt-[-1rem] z-20 bg-[#] p-2 rounded-full shadow-lg"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24}  />}
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Sidebar */}
@@ -87,7 +87,7 @@ export default function CelebrationCategoryPage() {
             className={`flex md:flex-col items-center mb-4 md:mb-6 cursor-pointer transition-colors duration-200 ${
               selectedCategory?.name === category.name
                 ? "bg-[#124e66] text-white rounded-lg"
-                : "hover:bg-[#f9d3a2] rounded-lg"
+                : "hover:bg-[#] rounded-lg"
             } p-2 md:p-4`}
             onClick={() => {
               setSelectedCategory(category);
@@ -133,14 +133,21 @@ export default function CelebrationCategoryPage() {
             {products.length > 0 ? (
               products.map((product) => (
                 <div key={product.id} className="relative h-full pt-12">
-                  <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-80 flex items-center justify-center">
-                    <div className="relative w-full h-full -mt-6">
-                      <Image
+                  <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[40%] h-80 w-22 flex items-center justify-center">
+                    <div className="relative w-full h-full mt-4">
+                      {/* <Image
                         src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
                         alt={product.name}
                         layout="fill"
                         objectFit="contain"
                         className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115"
+                      /> */}
+                      <Image
+                        src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
+                        alt={product.name}
+                        layout="fill"
+                        objectFit="contain"
+                        className="scale-110 transition-transform duration-300 hover:-translate-y-12 hover:scale-115 max-w-[85%] max-h-[85%] mx-auto"
                       />
                     </div>
                   </div>

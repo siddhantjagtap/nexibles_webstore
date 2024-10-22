@@ -1,10 +1,13 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/navigation";
+import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
+import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
 
 // Hook to get window size
 const useWindowSize = () => {
@@ -40,13 +43,13 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
       .trim();
   };
 
-  const backgroundColor = index % 2 === 0 ? "bg-[#db847d]" : "bg-[#66C1C2]";
+  const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const slug = createSlug(title);
 
   return (
     <Link href={`/blog/${slug}`} passHref>
       <div
-        className={`mt-20 md:mt-40 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 md:pt-24 pt-20 pb-6 h-60 w-44 md:h-80 md:w-60 flex flex-col justify-between`}
+        className={`mt-20 md:mt-20 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 md:pt-24 pt-20 pb-6 h-60 w-44 md:h-80 md:w-60 flex flex-col justify-between`}
       >
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden">
@@ -80,12 +83,28 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
 };
 
 const Blogs = () => {
+  const swiperRef = useRef(null);
+  const size = useWindowSize();
+
+  const handlePrev = useCallback(() => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  }, []);
+
   const blogPosts = [
     {
       title: "Perfect holiday gifting idea for your next party!",
       imageSrc: "/Blog Page/Assets/Blog 1 Circle.png",
       readMoreLink: "#",
     },
+
     {
       title: "Small and Unique gift ideas for your next birthday bash",
       imageSrc: "/Blog Page/Assets/Blog 2 Circle.png",
@@ -123,8 +142,6 @@ const Blogs = () => {
     },
   ];
 
-  const size = useWindowSize();
-
   // Randomize blog posts for desktop view
   const getRandomBlogs = (count) => {
     const shuffled = [...blogPosts].sort(() => 0.5 - Math.random());
@@ -151,27 +168,57 @@ const Blogs = () => {
         </div>
 
         {isMobile ? (
-          // Swiper for mobile view
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={0}
-            slidesPerView={1}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            className="flex justify-center mt-8"
-          >
-            {blogPosts.map((post, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex justify-center">
-                  <BlogCard index={index} {...post} />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <div className="relative px-12">
+            <button
+              onClick={handlePrev}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+              aria-label="Previous slide"
+            >
+              <Image
+                src={Butterflies6}
+                alt="Previous"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition-transform duration-300 mt-12"
+              />
+            </button>
+
+            <Swiper
+              ref={swiperRef}
+              modules={[Autoplay, Navigation]}
+              spaceBetween={0}
+              slidesPerView={1}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              className="flex justify-center "
+            >
+              {blogPosts.map((post, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex justify-center">
+                    <BlogCard index={index} {...post} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <button
+              onClick={handleNext}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+              aria-label="Next slide"
+            >
+              <Image
+                src={Butterflies5}
+                alt="Next"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition-transform duration-300 mt-12"
+              />
+            </button>
+          </div>
         ) : (
-          // Random 4 cards for desktop view
+          // Desktop view remains unchanged
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {getRandomBlogs(4).map((post, index) => (
               <div key={index} className="flex justify-center">
@@ -195,11 +242,6 @@ const Blogs = () => {
 };
 
 export default Blogs;
-
-
-
-
-
 
 
 //working
