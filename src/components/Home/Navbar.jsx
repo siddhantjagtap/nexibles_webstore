@@ -75,13 +75,19 @@ const Navbar = () => {
                 alt="Nexibles"
                 width={150}
                 height={30}
-                className="sm:w-[160px] sm:h-[27px]"
+                className="sm:w-[220px] sm:h-[27px]"
                 priority
               />
             </div>
           </Link>
 
           <div className="flex items-center space-x-4 sm:space-x-6">
+            <div className="hidden md:flex space-x-8 text-[#197d8e] text-xl mt-2 justify-end">
+              <Link href="/celebrations">Occasions</Link>
+              <Link href="/customisation">Customise</Link>
+              <Link href="/about">About Us</Link>
+              <Link href="/contact-us">Contact Us</Link>
+            </div>
             <Link
               href="/category"
               className={`hidden sm:flex items-center ${iconColor}`}
@@ -91,7 +97,7 @@ const Navbar = () => {
                 alt="Shop"
                 width={23}
                 height={23}
-                className="sm:w-[30px] sm:h-[30px]"
+                className="sm:w-[25px] sm:h-[25px]"
               />
             </Link>
             <div
@@ -103,7 +109,7 @@ const Navbar = () => {
                 width={23}
                 height={23}
                 alt="Profile"
-                className="sm:w-[30px] sm:h-[30px]"
+                className="sm:w-[25px] sm:h-[25px]"
               />
               {!user && (
                 <div className="absolute p-4 top-10 right-0 font-bold bg-white border border-[#197d8e] rounded-xl w-[15rem] h-auto text-[#db5c3c] flex items-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-wrap">
@@ -120,7 +126,7 @@ const Navbar = () => {
                 alt="Cart"
                 width={23}
                 height={23}
-                className="sm:w-[30px] sm:h-[30px]"
+                className="sm:w-[25px] sm:h-[25px]"
               />
               {cartItemCount > 0 && (
                 <span className="absolute text-white text-xs font-bold bg-red-500 rounded-full h-5 w-5 flex items-center justify-center top-[-5px] right-[-5px]">
@@ -136,13 +142,13 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-
+        {/* 
         <div className="hidden md:flex space-x-8 text-[#197d8e] text-2xl font-bold mt-2 justify-end">
           <Link href="/celebrations">Occasions</Link>
           <Link href="/customisation">Customise</Link>
           <Link href="/about">About Us</Link>
           <Link href="/contact-us">Contact Us</Link>
-        </div>
+        </div> */}
       </div>
 
       <div
@@ -176,19 +182,19 @@ const Navbar = () => {
             </li>
             <li>
               <Link href="/celebrations" onClick={toggleMenu}>
-                Celebrations
+                Occasions
               </Link>
             </li>
             <li>
               <Link href="/customisation" onClick={toggleMenu}>
-                Customisation
+                Customise
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/blog" onClick={toggleMenu}>
                 Blog
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/contact-us" onClick={toggleMenu}>
                 Contact Us
