@@ -8,6 +8,7 @@ import Blogs from "@/components//Blog/Blogs";
 import OwnDesign from "@/components/Home/OwnDesign";
 import { VersatileAndCelebration } from "@/components/Home/VersatileAndCelebration"; // Correct import
 import VersatileGifting from "@/components/Home/VersatileGifting";
+import BrandValues from "@/components/Home/BrandValue";
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <Mid />
       {/* <VersatileGifting/> */}
       <VersatileAndCelebration />
+      {/* <BrandValues /> */}
        {/* Correct usage */}
       <Testimonials />
       <OwnDesign />

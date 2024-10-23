@@ -155,15 +155,17 @@ const Blogs = () => {
     <section className="overflow-visible relative">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl overflow-visible">
         <div className="flex items-center justify-center space-x-2 md:space-x-4">
-          <h2 className="text-4xl md:text-6xl font-bold text-[#0f1729]">
+          {/* <h2 className="text-4xl md:text-6xl font-bold text-[#0f1729]"> */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#db5c3c] mx-2 sm:mx- my-2 md:mb-[14px] sm:my-6 ">
             Blogs
           </h2>
           <Image
             src="/Home/Blog Title Illustration.svg"
             alt="Blog Icon"
-            width={40}
+            width={30}
             height={30}
-            className="w-20 h-20 md:w-32 md:h-32"
+            // className="w-20 h-20 md:w-32 md:h-32"
+            className="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px]"
           />
         </div>
 

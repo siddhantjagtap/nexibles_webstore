@@ -146,14 +146,6 @@ export default function Mid() {
   );
 
   return (
-    // <div className="text-white pt-2 relative bg-[url('/Contact_Us_Page/Contact_Us_Background.jpg')] md:bg-[url('/Home/Background.svg')] bg-cover bg-center min-h-screen">
-    // <div
-    //   className=" text-white pt-2 relative bg-no-repeat"
-    //   style={{
-    //     backgroundImage: "url('/Home/Background.svg')",
-    //     backgroundSize: "100% 115%",
-    //   }}
-    // >
     <div
       className="text-white pt-2 relative bg-no-repeat bg-[#4bb2bc] md:bg-transparent"
       style={{
@@ -197,7 +189,6 @@ export default function Mid() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto md:mb-12">
-          {/* Increase padding for navigation buttons */}
           <div className="relative px-16 md:px-20">
             <button
               onClick={handlePersonalizationPrev}
@@ -213,26 +204,37 @@ export default function Mid() {
               />
             </button>
 
-            {/* Swiper Configuration */}
             {categoryData && (
               <Swiper
                 ref={personalizationSwiperRef}
-                modules={[Navigation]} // Use the same modules as 'Popular Products'
-                spaceBetween={20} // Same spacing as 'Popular Products'
-                slidesPerView={1} // Same logic for responsiveness
+                modules={[Navigation]}
+                spaceBetween={20} // Default spacing for mobile
+                slidesPerView={1}
                 breakpoints={{
-                  640: { slidesPerView: 2 },
-                  768: { slidesPerView: 3 },
-                  1024: { slidesPerView: 4 },
-                  1280: { slidesPerView: 5 },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 15, // Reduced spacing for tablet
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 10, // Further reduced spacing for desktop
+                  },
+                  1280: {
+                    slidesPerView: 5,
+                    spaceBetween: 5, // Minimal spacing for large desktop
+                  },
                 }}
-                loop={true} // Enable looping just like 'Popular Products'
+                loop={true}
               >
                 {categoryData.map((category, index) => (
                   <SwiperSlide key={index}>
                     <div className="text-center w-full relative group pt-4 pb-8">
                       <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
-                        <div className="relative w-full h-full">
+                        <div className="relative w-full h-[86%]">
                           <Image
                             src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
                             alt={category.name}
@@ -250,6 +252,7 @@ export default function Mid() {
                 ))}
               </Swiper>
             )}
+
             <button
               onClick={handlePersonalizationNext}
               className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
@@ -266,6 +269,7 @@ export default function Mid() {
           </div>
         </div>
 
+        
         <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-center text-black md:text-white relative z-10 mb-8">
           <Image
             src={FlowerIllustration}
