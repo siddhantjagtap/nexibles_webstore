@@ -18,7 +18,6 @@ export default function Page() {
       <Mid />
       {/* <VersatileGifting/> */}
       <VersatileAndCelebration />
-      {/* <BrandValues /> */}
        {/* Correct usage */}
       <Testimonials />
       <OwnDesign />

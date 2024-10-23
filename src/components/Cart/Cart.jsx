@@ -256,7 +256,7 @@ const Cart = () => {
                 />
                 <button
                   onClick={createOrder}
-                  className="bg-yellow-400 flex items-center px-4 py-2 rounded-full md:text-2xl font-bold text-[#464087] md:mr-[5rem] w-full mb-20"
+                  className="bg-[#197d8e] flex items-center px-4 py-2 rounded-full md:text-2xl font-bold text-white md:mr-[5rem] w-full mb-20"
                 >
                   Proceed to Checkout
                 </button>

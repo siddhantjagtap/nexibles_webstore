@@ -1,11 +1,11 @@
 import React from "react";
-import Image from "next/image"; // Assuming you use Next.js
+import Image from "next/image";
 import BirdIllustration from "../../../public/Home/Bird-Illustration.svg";
 
 const BrandValues = () => {
   const values = [
     {
-      icon: "/path-to-icons/lowest-moq-icon.svg", // Replace with the actual icon paths
+      icon: "/path-to-icons/lowest-moq-icon.svg",
       title: "Lowest MOQ",
     },
     {
@@ -27,39 +27,45 @@ const BrandValues = () => {
   ];
 
   return (
-    <div className="bg-[#197d8e] pb-12 relative overflow-hidden mt-24">
-      <div className="text-center mb-8 flex justify-center items-center space-x-4">
-       <div className="w-[120px] h-[120px] relative mt-[-49px] z-50">
-            <Image
+    <>
+      {/* Bird Illustration */}
+      <div className="relative">
+        <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10 ml-[-10rem]">
+          <Image
             src={BirdIllustration}
             alt="Bird Illustration"
-            layout="fill"
-            objectFit="contain"
-            className="z-50"  
-            />
+            width={120} // Adjust the width for smaller size
+            height={120} // Adjust the height for smaller size
+            className="bird-illustration"
+          />
         </div>
-        {/* Brand Values Heading */}
-        <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
-          Brand Values
-        </h2>
       </div>
 
-      {/* Grid for Values */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-        {values.map((value, index) => (
-          <div key={index} className="flex flex-col items-center text-white">
-            <Image
-              src={value.icon}
-              alt={`${value.title} Icon`}
-              width={70}
-              height={70}
-              className="mb-4"
-            />
-            <p className="text-lg font-semibold">{value.title}</p>
-          </div>
-        ))}
+      {/* Brand Values Section */}
+      <div className="bg-[#197d8e] pb-12 relative overflow-hidden mt-24 z-0">
+        <div className="flex items-center justify-center mb-12">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mt-4">
+            Brand Values
+          </h2>
+        </div>
+
+        {/* Grid for Values */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+          {values.map((value, index) => (
+            <div key={index} className="flex flex-col items-center text-white">
+              <Image
+                src={value.icon}
+                alt={`${value.title} Icon`}
+                width={70}
+                height={70}
+                className="mb-4"
+              />
+              <p className="text-lg font-semibold">{value.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

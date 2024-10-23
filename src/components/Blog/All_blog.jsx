@@ -6,21 +6,23 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
   const createSlug = (title) => {
     return title
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/--+/g, '-')
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/--+/g, "-")
       .trim();
   };
-  const backgroundColor = index % 2 === 0 ? "bg-[#66C1C2]" : "bg-[#db847d]";
+
+  const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const slug = createSlug(title);
+
   return (
     <Link href={`/blog/${slug}`} passHref>
       <div
-        className={`relative mt-20 mb-20 cursor-pointer ${backgroundColor} shadow-lg p-4 pt-24 pb-6 
-        md:h-[25rem] md:w-[18rem] h-[22rem] w-[15rem] flex flex-col justify-between m-4`}
+        className={`relative mt-10 mb-10 cursor-pointer ${backgroundColor} shadow-lg p-4 pt-16 pb-4 
+        md:h-[20rem] md:w-[15rem] h-[18rem] w-[12rem] flex flex-col justify-between m-2`}
       >
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="md:w-60 md:h-60 rounded-full overflow-hidden w-[12rem] h-[12rem]">
+          <div className="md:w-40 md:h-40 rounded-full overflow-hidden w-[10rem] h-[10rem]">
             <Image
               src={imageSrc}
               alt={title}
@@ -31,15 +33,15 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
           </div>
         </div>
         <div className="flex flex-col flex-grow justify-between">
-          <div className="text-center mt-4 px-2">
-            <h3 className="text-white md:text-3xl text-xl mb-4 mt-8">
+          <div className="text-center mt-2 px-1">
+            <h3 className="text-white md:text-2xl text-lg mb-2 mt-4">
               {title}
             </h3>
           </div>
           <div className="text-center">
             <a
               href={readMoreLink}
-              className="inline-block text-white hover:text-black t px-4 py-2 rounded-full font-semibold text-xl transition duration-300"
+              className="inline-block text-white hover:text-black px-3 py-1 rounded-full font-semibold text-lg transition duration-300"
             >
               Read More
             </a>
@@ -96,20 +98,8 @@ function All_blog() {
 
   return (
     <div className="container mx-auto ">
-      {/* <div className="flex items-center justify-center md:mt-36">
-        <h2 className="text-6xl font-bold text-[#0f1729] ">Blogs</h2>
-        <Image
-          src="/Home/Blog Title Illustration.svg"
-          alt="Blog Icon"
-          width={120}
-          height={100}
-        />
-      </div> */}
-
       <div className="flex items-center justify-center space-x-2 md:space-x-4 md:mt-36 mt-12">
-        {/* Blog heading */}
-        <h2 className="text-4xl md:text-6xl font-bold text-[#0f1729]">Blogs</h2>
-        {/* Image next to the heading */}
+        <h2 className="text-3xl md:text-4xl font-bold text-[#0f1729]">Blogs</h2>
         <Image
           src="/Home/Blog Title Illustration.svg"
           alt="Blog Icon"
@@ -118,7 +108,7 @@ function All_blog() {
           className="w-20 h-20 md:w-32 md:h-32"
         />
       </div>
-      <div className="px-20 flex flex-wrap justify-center mt-12">
+      <div className="px-10 flex flex-wrap justify-center mt-8">
         {blogPosts.map((post, index) => (
           <BlogCard key={index} index={index} {...post} />
         ))}

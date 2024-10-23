@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Celebration from "./Celebration";
 import VersatileGifting from "./VersatileGifting";
+import BrandValues from "./BrandValue";
 
 export const VersatileAndCelebration = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -16,30 +17,65 @@ export const VersatileAndCelebration = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const containerStyle = {
-    backgroundImage: isMobile
-      ? "none"
-      : "url('/Homepage/Backgrounds/Background 3.svg')",
-    backgroundSize: "100% auto",
-    backgroundPosition: "center 100%",
-    backgroundRepeat: "no-repeat",
-    minHeight: "100vh",
-    width: "98.6vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
   return (
-    <div style={containerStyle}>
+    <div>
       <VersatileGifting />
-      <Celebration />
+      <div className="mt-[22rem]">
+      <BrandValues />
+      </div>
     </div>
   );
 };
 
 export default VersatileAndCelebration;
+
+
+
+
+
+//without new changes..
+// import React, { useState, useEffect } from "react";
+// import Celebration from "./Celebration";
+// import VersatileGifting from "./VersatileGifting";
+
+// export const VersatileAndCelebration = () => {
+//   const [isMobile, setIsMobile] = useState(false);
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+
+//     checkMobile();
+//     window.addEventListener("resize", checkMobile);
+
+//     return () => window.removeEventListener("resize", checkMobile);
+//   }, []);
+
+//   const containerStyle = {
+//     backgroundImage: isMobile
+//       ? "none"
+//       : "url('/Homepage/Backgrounds/Background 3.svg')",
+//     backgroundSize: "100% auto",
+//     backgroundPosition: "center 100%",
+//     backgroundRepeat: "no-repeat",
+//     minHeight: "100vh",
+//     width: "98.6vw",
+//     display: "flex",
+//     flexDirection: "column",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   };
+
+//   return (
+//     <div style={containerStyle}>
+//       <VersatileGifting />
+//       <Celebration />
+//     </div>
+//   );
+// };
+
+// export default VersatileAndCelebration;
 // import React from "react";
 // import Celebration from "./Celebration";
 // import VersatileGifting from "./VersatileGifting";
