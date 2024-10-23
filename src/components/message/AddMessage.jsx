@@ -1,68 +1,88 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg';
+import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import SubmitFormIllustration from "../../../public/Home/Submit-Form-Illustration.svg";
 
 export default function AddMessage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pouchId = searchParams.get('pouchId');
-  const size = searchParams.get('size');
-  const imageFileName = searchParams.get('image')?.replace(/%20/g, '-'); // Replace %20 with -
+  const pouchId = searchParams.get("pouchId");
+  const size = searchParams.get("size");
+  const imageFileName = searchParams.get("image")?.replace(/%20/g, "-"); // Replace %20 with -
 
-  // Construct the full image URL using the server URL
   const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
 
-  const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Get the existing cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Create a new cart array with updated product details
-    const updatedCart = cart.map(item => {
-        // Check if the current item matches the selected pouchId and size
-        if (item.id === parseInt(pouchId, 10)) {
-            return {
-                ...item,
-                customer_name: name || null,     // Update the name
-                custom_message: message || null // Update the message
-            };
-        }
-        return item; // Return the item as is if it doesn't match
+    const updatedCart = cart.map((item) => {
+      if (item.id === parseInt(pouchId, 10)) {
+        return {
+          ...item,
+          customer_name: name || null,
+          custom_message: message || null,
+        };
+      }
+      return item;
     });
 
-    // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // Optionally show a confirmation
-    // alert('Your message has been saved!');
-
-    // Redirect to the next page
-    router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
-};
-
+    router.push(
+      `/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(
+        imageFileName
+      )}`
+    );
+  };
 
   if (!imageFileName) {
     return <div>Product image not found</div>;
   }
 
   return (
-    <div className="min-h-screen mt-[5rem] bg-white px-4 py-8">
-      <Link href={`/productsize?pouchId=${pouchId}`} className="text-[#124e66] ml-[1rem] font-bold">
+    <div className="min-h-screen mt-[5rem] bg-white px-4 md:py-8">
+      <Link
+        href={`/productsize?pouchId=${pouchId}`}
+        className="text-[#124e66] ml-[1rem] font-bold"
+      >
         ← Back
       </Link>
-      <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Add Your Message</h1>
-      <div className="max-w-4xl mx-auto flex">
-        <form onSubmit={handleSubmit} className="w-2/3 pr-8">
+      <h1 className="text-3xl md:text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">
+        Add Your Message
+      </h1>
+
+      {/* Adjusting layout based on screen size */}
+      <div className="max-w-4xl mx-auto flex flex-col lg:flex-row md:flex-row sm:flex-col">
+        {/* Image on top for mobile screens */}
+        <div className="block lg:hidden md:hidden sm:block w-full flex justify-center mb-6">
+          {pouchId && (
+            <Image
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
+              alt="Selected Pouch"
+              width={200}
+              height={300}
+              className="rounded max-w-[200px] max-h-[300px] object-contain"
+            />
+          )}
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="lg:w-2/3 lg:pr-8 mb-8 lg:mb-0 md:w-1/2 sm:w-full"
+        >
           <div className="mb-6">
-            <label htmlFor="name" className="block text-[#ee6e73] text-2xl font-bold mb-2">
+            <label
+              htmlFor="name"
+              className="block text-[#ee6e73] text-2xl font-bold mb-2"
+            >
               Add your name
             </label>
             <input
@@ -76,7 +96,10 @@ export default function AddMessage() {
             />
           </div>
           <div className="">
-            <label htmlFor="message" className="block text-[#ee6e73] text-2xl font-bold mb-2">
+            <label
+              htmlFor="message"
+              className="block text-[#ee6e73] text-2xl font-bold mb-2"
+            >
               Add your message
             </label>
             <textarea
@@ -90,6 +113,7 @@ export default function AddMessage() {
             />
             <p className="text-md text-[#ee6e73]">up to 60 words maximum</p>
           </div>
+
           <div className="flex items-center justify-end">
             <Image
               src={SubmitFormIllustration}
@@ -106,14 +130,16 @@ export default function AddMessage() {
             </button>
           </div>
         </form>
-        <div className="w-1/3 mt-[3rem]">
+
+        {/* Image section for desktop/tablet screens */}
+        <div className="hidden lg:flex md:flex sm:hidden lg:w-1/3 md:w-1/2 sm:w-full flex justify-center mt-8 lg:mt-[3rem]">
           {pouchId && (
             <Image
-              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
+              src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
               alt="Selected Pouch"
               width={300}
               height={400}
-              className="rounded"
+              className="rounded max-w-[300px] max-h-[400px] object-contain"
             />
           )}
         </div>
@@ -121,3 +147,142 @@ export default function AddMessage() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//old
+
+// 'use client';
+
+// import React, { useState } from 'react';
+// import { useRouter, useSearchParams } from 'next/navigation';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import SubmitFormIllustration from '../../../public/Home/Submit-Form-Illustration.svg';
+
+// export default function AddMessage() {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const pouchId = searchParams.get('pouchId');
+//   const size = searchParams.get('size');
+//   const imageFileName = searchParams.get('image')?.replace(/%20/g, '-'); // Replace %20 with -
+
+//   // Construct the full image URL using the server URL
+//   const imageUrl = `https://nexiblesapp.barecms.com/uploads/${imageFileName}`;
+
+//   const [name, setName] = useState('');
+//   const [message, setMessage] = useState('');
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//     // Get the existing cart from localStorage
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//     // Create a new cart array with updated product details
+//     const updatedCart = cart.map(item => {
+//         // Check if the current item matches the selected pouchId and size
+//         if (item.id === parseInt(pouchId, 10)) {
+//             return {
+//                 ...item,
+//                 customer_name: name || null,     // Update the name
+//                 custom_message: message || null // Update the message
+//             };
+//         }
+//         return item; // Return the item as is if it doesn't match
+//     });
+
+//     // Save the updated cart back to localStorage
+//     localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+//     // Optionally show a confirmation
+//     // alert('Your message has been saved!');
+
+//     // Redirect to the next page
+//     router.push(`/almost-there?pouchId=${pouchId}&size=${size}&image=${encodeURIComponent(imageFileName)}`);
+// };
+
+//   if (!imageFileName) {
+//     return <div>Product image not found</div>;
+//   }
+
+//   return (
+//     <div className="min-h-screen mt-[5rem] bg-white px-4 py-8">
+//       <Link href={`/productsize?pouchId=${pouchId}`} className="text-[#124e66] ml-[1rem] font-bold">
+//         ← Back
+//       </Link>
+//       <h1 className="text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">Add Your Message</h1>
+//       <div className="max-w-4xl mx-auto flex">
+//         <form onSubmit={handleSubmit} className="w-2/3 pr-8">
+//           <div className="mb-6">
+//             <label htmlFor="name" className="block text-[#ee6e73] text-2xl font-bold mb-2">
+//               Add your name
+//             </label>
+//             <input
+//               type="text"
+//               id="name"
+//               value={name}
+//               onChange={(e) => setName(e.target.value)}
+//               placeholder="eg. Karan & Jinal Doshi"
+//               className="w-[90%] p-2 border border-[#197d8e] rounded-3xl"
+//               required
+//             />
+//           </div>
+//           <div className="">
+//             <label htmlFor="message" className="block text-[#ee6e73] text-2xl font-bold mb-2">
+//               Add your message
+//             </label>
+//             <textarea
+//               id="message"
+//               value={message}
+//               onChange={(e) => setMessage(e.target.value)}
+//               placeholder="As the festival of lights approaches, we're filled with joy and excitement, and we can't wait to share it with you!"
+//               className="w-[90%] p-2 border border-[#197d8e] rounded-3xl h-60"
+//               maxLength={60}
+//               required
+//             />
+//             <p className="text-md text-[#ee6e73]">up to 60 words maximum</p>
+//           </div>
+// <div className="flex items-center justify-end">
+//   <Image
+//     src={SubmitFormIllustration}
+//     alt="Colorful Graphic"
+//     width={80}
+//     height={80}
+//     className=""
+//   />
+//   <button
+//     type="submit"
+//     className="bg-[#124e66] text-white px-6 py-2 mb-12 rounded-full hover:bg-[#0e3e51] transition duration-300"
+//   >
+//     Next
+//   </button>
+// </div>
+//         </form>
+//         <div className="w-1/3 mt-[3rem]">
+//           {pouchId && (
+//             <Image
+//               src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`} // Using the full absolute URL here
+//               alt="Selected Pouch"
+//               width={300}
+//               height={400}
+//               className="rounded"
+//             />
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

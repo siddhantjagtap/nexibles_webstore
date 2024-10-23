@@ -1,27 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Celebration from "./Celebration";
 import VersatileGifting from "./VersatileGifting";
 
 export const VersatileAndCelebration = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const containerStyle = {
+    backgroundImage: isMobile
+      ? "none"
+      : "url('/Homepage/Backgrounds/Background 3.svg')",
+    backgroundSize: "100% auto",
+    backgroundPosition: "center 100%",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "98.6vw",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   return (
-    <div
-      style={{
-        backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
-        backgroundSize: "100% auto",
-        backgroundPosition: "center 100%",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-        width: "98.6vw",
-        position: "relative", // Add this
-        overflow: "hidden", // Add this to prevent potential overflow issues
-      }}
-    >
+    <div style={containerStyle}>
       <VersatileGifting />
       <Celebration />
     </div>
   );
 };
 
+export default VersatileAndCelebration;
 // import React from "react";
 // import Celebration from "./Celebration";
 // import VersatileGifting from "./VersatileGifting";
@@ -30,6 +48,7 @@ export const VersatileAndCelebration = () => {
 //   return (
 //     <>
 //       <div
+//         clas
 //         style={{
 //           backgroundImage: "url('/Homepage/Backgrounds/Background 3.svg')",
 //           backgroundSize: "100% auto", // Ensures the image covers the width, adjusts height automatically

@@ -16,10 +16,11 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
   return (
     <Link href={`/blog/${slug}`} passHref>
       <div
-        className={`relative mt-20 mb-20 cursor-pointer ${backgroundColor} shadow-lg p-4 pt-24 pb-6 h-[25rem] w-[18rem] flex flex-col justify-between m-4`}
+        className={`relative mt-20 mb-20 cursor-pointer ${backgroundColor} shadow-lg p-4 pt-24 pb-6 
+        md:h-[25rem] md:w-[18rem] h-[22rem] w-[15rem] flex flex-col justify-between m-4`}
       >
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-60 h-60 rounded-full overflow-hidden">
+          <div className="md:w-60 md:h-60 rounded-full overflow-hidden w-[12rem] h-[12rem]">
             <Image
               src={imageSrc}
               alt={title}
@@ -31,12 +32,14 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
         </div>
         <div className="flex flex-col flex-grow justify-between">
           <div className="text-center mt-4 px-2">
-            <h3 className="text-white text-3xl mb-4 mt-8">{title}</h3>
+            <h3 className="text-white md:text-3xl text-xl mb-4 mt-8">
+              {title}
+            </h3>
           </div>
           <div className="text-center">
             <Link
               href={readMoreLink}
-              className="inline-block text-5xl text-black px-4 py-2 rounded-full font-semibold text-xl hover:text-white transition duration-300"
+              className="inline-block text-white hover:text-black t px-4 py-2 rounded-full font-semibold text-xl transition duration-300"
             >
               Read More
             </Link>
@@ -93,13 +96,26 @@ function All_blog() {
 
   return (
     <div className="container mx-auto ">
-      <div className="flex items-center justify-center mt-36">
+      {/* <div className="flex items-center justify-center md:mt-36">
         <h2 className="text-6xl font-bold text-[#0f1729] ">Blogs</h2>
         <Image
           src="/Home/Blog Title Illustration.svg"
           alt="Blog Icon"
           width={120}
           height={100}
+        />
+      </div> */}
+
+      <div className="flex items-center justify-center space-x-2 md:space-x-4 md:mt-36 mt-12">
+        {/* Blog heading */}
+        <h2 className="text-4xl md:text-6xl font-bold text-[#0f1729]">Blogs</h2>
+        {/* Image next to the heading */}
+        <Image
+          src="/Home/Blog Title Illustration.svg"
+          alt="Blog Icon"
+          width={40}
+          height={30}
+          className="w-20 h-20 md:w-32 md:h-32"
         />
       </div>
       <div className="px-20 flex flex-wrap justify-center mt-12">
