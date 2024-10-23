@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React,{ useState } from "react";
 import Image from "next/image";
 import Navbar from "../Home/Navbar";
 import SubmitFormIllustration from "../../../public/Home/Submit-Form-Illustration.svg";
