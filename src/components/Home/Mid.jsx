@@ -10,6 +10,7 @@ import FlowerIllustration from "../../../public/Home/Flower-Illustration.svg";
 import Butterflies5 from "../../../public/Home/Butterflies-5.svg";
 import Butterflies6 from "../../../public/Home/Butterflies-6.svg";
 import useFetchCategories from "../../app/usefetchcategories";
+import Link from "next/link";
 
 export default function Mid() {
   const personalizationSwiperRef = useRef(null);
@@ -232,6 +233,7 @@ export default function Mid() {
               >
                 {categoryData.map((category, index) => (
                   <SwiperSlide key={index}>
+                  <Link href={`/category`}>
                     <div className="text-center w-full relative group pt-4 pb-8">
                       <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
                         <div className="relative w-full h-[86%]">
@@ -244,11 +246,12 @@ export default function Mid() {
                           />
                         </div>
                       </div>
-                      <p className="text-base md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
+                      <p className="text-[#f9e2b2] md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
                         {category.name}
                       </p>
                     </div>
-                  </SwiperSlide>
+                  </Link>
+                </SwiperSlide>
                 ))}
               </Swiper>
             )}

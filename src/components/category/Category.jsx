@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import useFetchCategories from "../../app/usefetchcategories";
 import useFetchProducts from "../../app/fetchproduct";
+import Loader from "../comman/Loader";
 
 export default function CelebrationCategoryPage() {
   const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
@@ -60,7 +61,7 @@ export default function CelebrationCategoryPage() {
     localStorage.setItem("cart", JSON.stringify(existingCart));
   };
 
-  if (categoriesLoading || productsLoading) return <p>Loading...</p>;
+  if (categoriesLoading || productsLoading) return <p><Loader/></p>;
   if (categoriesError)
     return <p>Error fetching categories: {categoriesError}</p>;
   if (productsError) return <p>Error fetching products: {productsError}</p>;

@@ -11,7 +11,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
       .replace(/--+/g, '-')
       .trim();
   };
-  const backgroundColor = index % 2 === 0 ? "bg-[#66C1C2]" : "bg-[#db847d]";
+  const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const slug = createSlug(title);
   return (
     <Link href={`/blog/${slug}`} passHref>

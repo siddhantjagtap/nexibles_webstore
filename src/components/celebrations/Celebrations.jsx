@@ -4,12 +4,13 @@ import Image from "next/image";
 import useFetchCategories from "../../app/usefetchcategories"; // Import your custom hook
 import WhiteBackground from "../../../public/Celebrations_Page/White_Textured_Background.png";
 import BlueBackground from "../../../public/Celebrations_Page/Blue_Wavy_Backgrond.svg";
+import Loader from "../comman/Loader";
 
 export default function CelebrationsContent() {
   const token = "irrv211vui9kuwn11efsb4xd4zdkuq"; // Your API token
   const { data: celebrations, loading, error } = useFetchCategories(token); // Use the custom hook to fetch celebrations
 
-  if (loading) return <p>Loading celebrations...</p>; // Loading state
+  if (loading) return <p><Loader/></p>; // Loading state
   if (error) return <p>Error fetching celebrations: {error}</p>; // Error handling
 
   return (
@@ -67,7 +68,7 @@ export default function CelebrationsContent() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8">
             {celebrations.map((celebration, index) => (
               <div key={index} className="flex flex-col items-center">
-                <div className="bg-white p-4 mb-2 shadow-lg">
+                <div className="bg-white p-4 mb-2 shadow-lg rounded-full">
                   <Image
                     src={`https://nexiblesapp.barecms.com/uploads/${celebration.bg_Img}`}
                     alt={celebration.name}
