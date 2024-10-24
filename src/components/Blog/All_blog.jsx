@@ -11,7 +11,6 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
       .replace(/--+/g, "-")
       .trim();
   };
-
   const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const slug = createSlug(title);
 
@@ -39,12 +38,12 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
             </h3>
           </div>
           <div className="text-center">
-            <a
+            <Link
               href={readMoreLink}
               className="inline-block text-white hover:text-black px-3 py-1 rounded-full font-semibold text-lg transition duration-300"
             >
               Read More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -130,11 +130,7 @@ export default function Checkout({ defaultAddress }) {
         transactionId,
         merchantId,
       } = paymentResponse.data;
-
-      // Redirect to the payment URL
       window.location.href = paymentUrl;
-
-      // Set up a listener for the payment completion
       window.addEventListener("message", async function (event) {
         if (
           event.origin === "https://nexiblesapp.barecms.com" &&

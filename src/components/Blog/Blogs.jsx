@@ -69,12 +69,12 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
             </h3>
           </div>
           <div className="text-center">
-            <a
+            <Link
               href={readMoreLink}
               className="inline-block text-white text-sm md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
             >
               Read More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

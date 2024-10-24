@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const DesktopBlogCard = ({ title, imageSrc, readMoreLink, index }) => {
-  const backgroundColor = index % 2 === 0 ? "bg-[#db847d]" : "bg-[#66C1C2]";
+  const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const createSlug = (title) => {
     return title
       .toLowerCase()

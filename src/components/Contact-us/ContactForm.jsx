@@ -1,10 +1,65 @@
-
-import React from "react";
+"use client";
+import React,{ useState } from "react";
 import Image from "next/image";
 import Navbar from "../Home/Navbar";
 import SubmitFormIllustration from "../../../public/Home/Submit-Form-Illustration.svg";
 
 export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    full_name: '',
+    email: '',
+    contact_no: '',
+    subject: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [responseMessage, setResponseMessage] = useState('');
+  const token = 'irrv211vui9kuwn11efsb4xd4zdkuq'; // API token
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://nexiblesapp.barecms.com/api/contactus', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          'API-Key': token,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setResponseMessage('Thank you! Your message has been sent.');
+        toast('Thank you! Your message has been sent.');
+        setFormData({
+          full_name: '',
+          email: '',
+          contact_no: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setResponseMessage('Error sending message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponseMessage('Error sending message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div
       className="contact-form min-h-screen text-white p-4 md:p-8 md:px-24"
@@ -32,7 +87,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           <div className="w-full md:w-2/3">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label
@@ -122,6 +177,11 @@ export default function ContactForm() {
                   Submit
                 </button>
               </div>
+              {responseMessage && (
+                <div className="text-white mt-4">
+                  {responseMessage}
+                </div>
+              )}
             </form>
           </div>
 

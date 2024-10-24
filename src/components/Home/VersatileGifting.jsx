@@ -12,7 +12,7 @@ const VersatileGifting = () => {
     <div className="flex flex-col md:flex-row items-center relative z-10">
       {/* Left Section */}
       <div className="w-full md:w-1/2">
-        <div className="absolute left-[-40px] top-0 ml-auto h-full w-auto hidden md:block">
+        <div className="absolute left-[-120px] top-0 ml-auto h-full w-auto hidden md:block">
           <Image
             src={HomepageArch2}
             alt="Decorative Arch"
@@ -21,12 +21,12 @@ const VersatileGifting = () => {
             width={1000}
           />
         </div>
-        <div className="items-center md:mt-[10rem] mt-20 md:ml-[2rem] ml-4">
+        <div className="items-center md:mt-[10rem] mt-20 md:ml-[2rem] ">
           {/* Versatile Gifting Text */}
-          <h2 className="text-5xl md:text-7xl font-Mochiy text-black md:text-white md:relative md:top-[-9rem]">
+          <h2 className="text-5xl md:text-6xl font-Mochiy text-black md:text-white md:relative md:top-[-9rem]">
             Versatile
           </h2>
-          <h2 className="text-5xl md:text-7xl font-Mochiy text-black md:text-white md:relative md:top-[-9rem] mb-6">
+          <h2 className="text-5xl md:text-6xl font-Mochiy text-black md:text-white md:relative md:top-[-9rem] mb-6">
             Gifting
           </h2>
           <p className="text-xl md:text-3xl mb-8 max-w-xl md:top-[-9rem] md:relative text-black md:text-white">
