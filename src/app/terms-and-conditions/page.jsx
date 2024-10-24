@@ -5,12 +5,12 @@ import React from 'react'
 
 function page() {
   return (
-    <div>
-      <Navbar/>
-      <Terms/>
-      <Footer/>
-      </div>
-  )
+    <div className="[&>nav]:!bg-white">
+      <Navbar />
+      <Terms />
+      <Footer />
+    </div>
+  );
 }
 
 export default page;
