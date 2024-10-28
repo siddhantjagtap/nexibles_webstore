@@ -20,9 +20,9 @@ export const VersatileAndCelebration = () => {
   return (
     <div>
       <VersatileGifting />
-      <div className="mt-[22rem]">
+      
       <BrandValues />
-      </div>
+      
     </div>
   );
 };

@@ -42,7 +42,7 @@ const BrandValues = () => {
       </div>
 
       {/* Brand Values Section */}
-      <div className="relative pb-12 overflow-hidden mt-24 z-0 min-h-[300px] lg:min-h-[380px]">
+      <div className="relative pb-12 overflow-hidden mt-12 z-0 min-h-[300px] lg:min-h-[380px]">
         {/* Background Image using Next.js Image component */}
         <Image
           src="/Homepage/Brand_icons/Brand Values Bakground.svg"
