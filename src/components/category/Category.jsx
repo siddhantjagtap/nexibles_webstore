@@ -86,7 +86,7 @@ export default function CelebrationCategoryPage() {
       <aside
         className={`w-full md:w-[15%] bg-[#d88473] md:ml-[3rem] md:mt-6 p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 rounded-3xl`}
+        } md:translate-x-0 rounded-[2.5rem]`}
       >
         {categoryData.map((category, index) => (
           <div
