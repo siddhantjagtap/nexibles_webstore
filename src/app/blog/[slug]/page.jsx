@@ -79,10 +79,15 @@ const BlogDetail = () => {
           layout="fill"
           objectFit="cover"
         /> */}
-        <Image
+        {/* <Image
           src={currentBlog.imageSrc}
           alt={currentBlog.title}
           className="w-full md:h-[500px] h-[200px] object-contain md:mt-4"
+        /> */}
+        <Image
+          src={currentBlog.imageSrc}
+          alt={currentBlog.title}
+          className="md:w-full md:h-full h-full object-cover md:mt-4"
         />
       </div>
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl md:mt-0 mt-8 px-4 sm:px-8 md:px-16 lg:px-32 italic text-center text-[#db5c3c]">
