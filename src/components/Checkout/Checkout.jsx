@@ -110,14 +110,20 @@ export default function Checkout({ defaultAddress }) {
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
-    const intamount = Math.round(totalPrice * 100);
+    const intamount = 100 ; //Math.round(totalPrice * 100);
+    var baseUrl = "https://main--nexionline.netlify.app";
+    if (typeof window !== 'undefined') {
+      baseUrl = window.location.origin;
+   }
+   const transactionId = "G" + Date.now();
     const data = {
       orderNo: orderNo,
       name: user?.result?.firstName ?? user?.firstName,
       number: user?.result?.mobile ?? user?.mobile,
       MUID: user?.result?.customerId ?? user?.customerId,
       amount: intamount,
-      transactionId: "G" + Date.now(),
+      transactionId: transactionId,
+      redirectUrl:`${baseUrl}/api/check-status?transactionId=${transactionId}&url=${baseUrl}`
     };
 
     try {
@@ -125,36 +131,35 @@ export default function Checkout({ defaultAddress }) {
         "https://nexiblesapp.barecms.com/api/payment",
         data
       );
-      const {
-        url: paymentUrl,
-        transactionId,
-        merchantId,
-      } = paymentResponse.data;
+
+      const { url: paymentUrl, transactionId, merchantId } = paymentResponse.data;
+
       window.location.href = paymentUrl;
-      window.addEventListener("message", async function (event) {
-        if (
-          event.origin === "https://nexiblesapp.barecms.com" &&
-          event.data.paymentComplete
-        ) {
-          try {
-            const statusResponse = await axios.post(
-              `https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`
-            );
-            const { redirectUrl } = statusResponse.data;
-            if (redirectUrl) {
-              window.location.href = redirectUrl;
-            } else {
-              console.error("No redirect URL provided in the status response");
-            }
-          } catch (statusError) {
-            console.error("Error checking payment status:", statusError);
-          }
-        }
-      });
+
+      // window.addEventListener("message", async function (event) {
+      //   if (
+      //     event.origin === "https://nexiblesapp.barecms.com" &&
+      //     event.data.paymentComplete
+      //   ) {
+      //     try {
+      //       const statusResponse = await axios.post(
+      //         `https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`
+      //       );
+      //       const { redirectUrl } = statusResponse.data;
+      //       if (redirectUrl) {
+      //         window.location.href = redirectUrl;
+      //       } else {
+      //         console.error("No redirect URL provided in the status response");
+      //       }
+      //     } catch (statusError) {
+      //       console.error("Error checking payment status:", statusError);
+      //     }
+      //   }
+      // });
     } catch (error) {
-      console.error("Error initiating payment:", error);
-    } finally {
       setLoading2(false);
+      console.error('Error initiating payment:', error);
+      // Handle this error case appropriately
     }
   };
 
@@ -394,6 +399,12 @@ export default function Checkout({ defaultAddress }) {
                       <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
                         {item.custom_message}
                       </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_picture}
+                      </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_receivers}
+                      </h3>
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
                       <div className="w-full sm:w-32 h-32 flex items-center justify-center rounded-xl">
@@ -428,7 +439,7 @@ export default function Checkout({ defaultAddress }) {
               </div>
               <Link
                 href="/category"
-                className="bg-[#197d8e] rounded-lg text-md p-1 font-semibold text-white w-full sm:w-auto text-center"
+                className="bg-[#197d8e] rounded-lg text-md font-semibold text-white w-full sm:w-auto text-center"
               >
                 Add more products
               </Link>
@@ -456,7 +467,7 @@ export default function Checkout({ defaultAddress }) {
                 {loading2 ? "Processing..." : "Proceed To Pay"}
               </button>
             </div>
-            <div className="w-full text-center">
+            {/* <div className="w-full text-center">
               <p className="text-sm text-[#db5c3c] mb-2">
                 Available Payment Options
               </p>
@@ -468,7 +479,7 @@ export default function Checkout({ defaultAddress }) {
                   ></div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

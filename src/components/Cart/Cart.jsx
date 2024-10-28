@@ -73,6 +73,7 @@ const Cart = () => {
       customer_name: product.customer_name,
       uploaded_receivers: product.uploaded_receivers,
       uploaded_picture: product.uploaded_picture,
+      origin:"Nexigifting"
     }));
   };
 
@@ -207,6 +208,13 @@ const Cart = () => {
                       <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
                         {item.custom_message || "Custom Message"}
                       </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_picture || "Uploaded Picture"}
+                      </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_receivers || "Uploaded Receivers"}
+                      </h3>
+
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
                       <div className="w-full sm:w-32 h-32 flex items-center justify-center rounded-xl">
