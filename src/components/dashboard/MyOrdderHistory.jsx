@@ -48,7 +48,7 @@ const MyOrderHistory = () => {
         // Extract products from the filtered orders
         const productsToAdd = ordersToAdd.flatMap(order => {
             return {
-                id: order.product_id, // Use product_id as the actual product ID
+                id: order.product_id,
                 name: order.product_name,
                 image: order.image,
                 price: order.price,

@@ -246,7 +246,7 @@ export default function Mid() {
                           />
                         </div>
                       </div>
-                      <p className="text-[#f9e2b2] md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
+                      <p className="text-[#197d8e] text-base md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
                         {category.name}
                       </p>
                     </div>

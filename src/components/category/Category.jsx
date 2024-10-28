@@ -65,7 +65,7 @@ export default function CelebrationCategoryPage() {
   if (categoriesLoading || productsLoading)
     return (
       <p>
-        <Loader />
+        <Loader/>
       </p>
     );
   if (categoriesError)
