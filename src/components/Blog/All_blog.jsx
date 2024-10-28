@@ -18,7 +18,7 @@ const BlogCard = ({ title, imageSrc, readMoreLink, index }) => {
     <Link href={`/blog/${slug}`} passHref>
       <div
         className={`relative mt-10 mb-10 cursor-pointer ${backgroundColor} shadow-lg p-4 pt-16 pb-4 
-        md:h-[20rem] md:w-[15rem] h-[18rem] w-[12rem] flex flex-col justify-between m-2`}
+        md:h-[20rem] md:w-[15rem] h-[18rem] w-[12rem] flex flex-col justify-between m-2 mt-24`}
       >
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="md:w-40 md:h-40 rounded-full overflow-hidden w-[10rem] h-[10rem]">
