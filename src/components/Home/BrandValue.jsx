@@ -30,7 +30,7 @@ const BrandValues = () => {
     <>
       {/* Bird Illustration */}
       <div className="relative">
-        <div className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-10 ml-[-10rem]">
+        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-10 ml-[-10rem]">
           <Image
             src={BirdIllustration}
             alt="Bird Illustration"
