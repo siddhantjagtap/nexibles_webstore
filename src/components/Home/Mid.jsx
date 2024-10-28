@@ -103,23 +103,30 @@ export default function Mid() {
     }
   }, [categoryData]);
 
-  const handlePersonalizationPrev = useCallback(() => {
-    if (
-      personalizationSwiperRef.current &&
-      personalizationSwiperRef.current.swiper
-    ) {
-      personalizationSwiperRef.current.swiper.slidePrev();
-    }
-  }, []);
+const handlePersonalizationPrev = useCallback(() => {
+  if (
+    personalizationSwiperRef.current &&
+    personalizationSwiperRef.current.swiper
+  ) {
+    console.log("Going to previous slide");
+    personalizationSwiperRef.current.swiper.slidePrev();
+  } else {
+    console.log("Swiper instance is not defined");
+  }
+}, []);
 
-  const handlePersonalizationNext = useCallback(() => {
-    if (
-      personalizationSwiperRef.current &&
-      personalizationSwiperRef.current.swiper
-    ) {
-      personalizationSwiperRef.current.swiper.slideNext();
-    }
-  }, []);
+const handlePersonalizationNext = useCallback(() => {
+  if (
+    personalizationSwiperRef.current &&
+    personalizationSwiperRef.current.swiper
+  ) {
+    console.log("Going to next slide");
+    personalizationSwiperRef.current.swiper.slideNext();
+  } else {
+    console.log("Swiper instance is not defined");
+  }
+}, []);
+
 
   const ProductCard = ({ product }) => (
     <div className="w-full relative h-full pt-12">
@@ -233,25 +240,25 @@ export default function Mid() {
               >
                 {categoryData.map((category, index) => (
                   <SwiperSlide key={index}>
-                  <Link href={`/category`}>
-                    <div className="text-center w-full relative group pt-4 pb-8">
-                      <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
-                        <div className="relative w-full h-[86%]">
-                          <Image
-                            src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
-                            alt={category.name}
-                            layout="fill"
-                            objectFit="contain"
-                            className="transition-transform duration-300 group-hover:scale-115"
-                          />
+                    <Link href={`/category`}>
+                      <div className="text-center w-full relative group pt-4 pb-8">
+                        <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
+                          <div className="relative w-full h-[86%]">
+                            <Image
+                              src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
+                              alt={category.name}
+                              layout="fill"
+                              objectFit="contain"
+                              className="transition-transform duration-300 group-hover:scale-115"
+                            />
+                          </div>
                         </div>
+                        <p className="text-[#f9e2b2] md:text-xl lg:text-2xl font-bold mt-2 transition-all duration-300 group-hover:-translate-y-4">
+                          {category.name}
+                        </p>
                       </div>
-                      <p className="text-[#197d8e] text-base md:text-xl lg:text-2xl font-bold text-white mt-2 transition-all duration-300 group-hover:-translate-y-4">
-                        {category.name}
-                      </p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
+                    </Link>
+                  </SwiperSlide>
                 ))}
               </Swiper>
             )}
@@ -272,7 +279,6 @@ export default function Mid() {
           </div>
         </div>
 
-        
         <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-center text-black md:text-white relative z-10 mb-8">
           <Image
             src={FlowerIllustration}
@@ -347,9 +353,6 @@ export default function Mid() {
     </div>
   );
 }
-
-
-
 
 //old changes
 // import React, { useRef, useState, useEffect, useCallback } from "react";
