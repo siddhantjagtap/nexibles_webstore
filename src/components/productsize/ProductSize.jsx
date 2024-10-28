@@ -49,9 +49,8 @@ export default function ProductSize() {
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    window.location.href = `/message?size=${
-      size.name
-    }&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
+    window.location.href = `/message?size=${size.name
+      }&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
   };
 
   return (
@@ -79,8 +78,11 @@ export default function ProductSize() {
                 height={size.height}
                 className="mx-auto"
               />
-              <h2 className="text-2xl font-semibold text-[#124e66] mt-4 mb-2">
-                {size.name}
+              <h2 className="text-2xl font-bold mt-4 mb-2">
+                <span className="text-[#124e66]">Nexi</span>
+                <span className="text-[#ee6e73]">
+                  {size.name.replace("Nexi", "")}
+                </span>
               </h2>
               <p className="text-gray-600 mb-1">{size.dimensions}</p>
               <p className="text-gray-600 mb-4">{size.capacity}</p>

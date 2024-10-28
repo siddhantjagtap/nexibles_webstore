@@ -116,19 +116,27 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="quantity"
-              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
+              className=" text-[#d1585a] md:text-2xl font-bold mb-2"
             >
               Quantity
             </label>
-            <input
-              type="text"
-              id="quantity"
-              value={quantity}
-              onChange={handleQuantityChange}
-              className="w-full p-2 border border-[#68a398] rounded-3xl"
-              placeholder="Enter quantity"
-              required
-            />
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                id="quantity"
+                value={quantity}
+                onChange={handleQuantityChange}
+                className="block w-20 h-8 p-2 border border-[#d1585a]"
+                placeholder="Enter quantity"
+                required
+              />
+              <label
+                htmlFor="quantity"
+                className="text-[#d1585a] md:text-xs mb-2"
+              >
+                (minimum order of 50 pouches)
+              </label>
+            </div>
           </div>
 
           <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-4">
@@ -171,13 +179,16 @@ export default function QuantityReview() {
               maxLength={60}
               required
             />
-            <p className="text-sm text-gray-500 mt-1">up to 60 words maximum</p>
+            <p className="text-sm text-[#d1585a] mt-1">up to 60 words maximum</p>
           </div>
 
           <div className="mb-6">
             <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
               Add your picture
             </h2>
+            <p className="text-xs text-[#d1585a] mt-1 mb-1">
+              (This adds another personalised touch. You can put a picture of family, pet, or yourself depending on the occasion. If not required, please leave it empty.)
+            </p>
             <input
               type="file"
               accept=".jpeg,.jpg,.png,.heic,.svg"
@@ -189,10 +200,10 @@ export default function QuantityReview() {
             ) : (
               <p className="text-gray-600">No image uploaded</p>
             )}
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-[#d1585a] mt-1">
               Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[#d1585a]">
               Please keep the size under 5MB
             </p>
           </div>
@@ -214,10 +225,10 @@ export default function QuantityReview() {
             ) : (
               <p className="text-gray-600">No file uploaded</p>
             )}
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-[#d1585a] mt-1">
               Acceptable formats: Excel (.xlsx, .xls)
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[#d1585a]">
               Please keep the size under 5MB
             </p>
           </div>
@@ -248,18 +259,18 @@ export default function QuantityReview() {
             />
             <button
               type="submit"
-              className="bg-[#ee6e73] text-white px-6 py-2 mb-10 rounded-full hover:bg-[#124e66] transition duration-300"
+              className="bg-[#124e66] text-white px-6 py-2 mb-10 rounded-full hover:bg-[#ee6e73] transition duration-300"
             >
-              Continue
+              Add to cart
             </button>
           </div>
         </form>
 
         <div className="w-full md:w-1/3 mt-8 md:mt-0">
-          <h2 className="md:text-2xl text-xl font-bold text-[#ee6e73] ">
+          {/* <h2 className="md:text-2xl text-xl font-bold text-[#ee6e73] ">
             Product Preview
-          </h2>
-          <div className="border p-4 rounded-lg">
+          </h2> */}
+          <div className="">
             {productDetails.image && (
               <Image
                 src={`https://nexiblesapp.barecms.com/uploads/${productDetails.image}`}
@@ -268,32 +279,6 @@ export default function QuantityReview() {
                 height={200}
                 className="mb-4 mx-auto"
               />
-            )}
-
-            <p className="font-bold text-lg">
-              {productDetails.name || "Unnamed Product"}
-            </p>
-            <p className="text-gray-700">
-              Category: {productDetails.category || "Uncategorized"}
-            </p>
-            <p className="text-gray-700">
-              Price: ₹{productDetails.price || "0"}
-            </p>
-
-            {productDetails.uploaded_picture &&
-            productDetails.uploaded_picture !== "Not uploaded" ? (
-              <div>
-                <p className="text-gray-700">Uploaded Picture</p>
-                <Image
-                  src={`https://nexiblesapp.barecms.com/uploads/${productDetails.uploaded_picture}`}
-                  alt={productDetails.name}
-                  width={200}
-                  height={200}
-                  className="mb-4 mx-auto"
-                />
-              </div>
-            ) : (
-              <p className="text-gray-500">No picture uploaded</p>
             )}
           </div>
         </div>
@@ -470,7 +455,7 @@ export default function QuantityReview() {
 //               maxLength={60}
 //               required
 //             />
-//             <p className="text-sm text-gray-500 mt-1">up to 60 words maximum</p>
+//             <p className="text-sm text-[#d1585a] mt-1">up to 60 words maximum</p>
 //           </div>
 
 //           <div className="mb-6">
@@ -486,8 +471,8 @@ export default function QuantityReview() {
 //             ) : (
 //               <p className="text-gray-600">No image uploaded</p>
 //             )}
-//             <p className="text-sm text-gray-500 mt-1">Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg</p>
-//             <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
+//             <p className="text-sm text-[#d1585a] mt-1">Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg</p>
+//             <p className="text-sm text-[#d1585a]">Please keep the size under 5MB</p>
 //           </div>
 
 //           <div className="mb-6">
@@ -503,8 +488,8 @@ export default function QuantityReview() {
 //             ) : (
 //               <p className="text-gray-600">No file uploaded</p>
 //             )}
-//             <p className="text-sm text-gray-500 mt-1">Acceptable formats: Excel (.xlsx, .xls)</p>
-//             <p className="text-sm text-gray-500">Please keep the size under 5MB</p>
+//             <p className="text-sm text-[#d1585a] mt-1">Acceptable formats: Excel (.xlsx, .xls)</p>
+//             <p className="text-sm text-[#d1585a]">Please keep the size under 5MB</p>
 //           </div>
 
 //           <p className="text-[#ee6e73] font-bold mb-4">
@@ -566,7 +551,7 @@ export default function QuantityReview() {
 //                 />
 //               </div>
 //             ) : (
-//               <p className='text-gray-500'>No picture uploaded</p>
+//               <p className='text-[#d1585a]'>No picture uploaded</p>
 //             )}
 
 //           </div>
