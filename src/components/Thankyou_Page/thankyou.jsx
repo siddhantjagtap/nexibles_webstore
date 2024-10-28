@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Envelope from "../../../public/Thank_You_Page/Thank_You_Page_Illustration.svg";
 import Butterfly from "../../../public/Thank_You_Page/Thank_You_Page_Butterflies.svg";
 
 function Thankyou() {
+  useEffect(() => {
+    localStorage.removeItem('cart');
+    localStorage.removeItem('orderNo');
+    localStorage.removeItem('subtotal');
+  }, []);
+
   return (
     <div
       className="flex items-center justify-center h-screen bg-cover"
