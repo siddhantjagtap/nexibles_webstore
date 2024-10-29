@@ -81,7 +81,7 @@ export default function ContactForm() {
             Do you have any questions? Please contact us right away.
           </p>
           <p className="text-lg md:text-xl text-[#fcfdfd] font-semibold mb-4">
-            We'd be delighted to address any queries you may have!
+            We will be delighted to address any queries you may have!
           </p>
         </div>
 
