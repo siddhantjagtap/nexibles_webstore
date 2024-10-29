@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Envelope from "../../../public/Thank_You_Page/Thank_You_Page_Illustration.svg";
 import Butterfly from "../../../public/Thank_You_Page/Thank_You_Page_Butterflies.svg";
 
 function Thankyou() {
+  useEffect(() => {
+    localStorage.removeItem('cart');
+    localStorage.removeItem('orderNo');
+    localStorage.removeItem('subtotal');
+  }, []);
+
   return (
     <div
       className="flex items-center justify-center h-screen bg-cover"
@@ -20,30 +27,30 @@ function Thankyou() {
             height={192}
             className="w-[120px] h-[120px] sm:w-[192px] sm:h-[192px] "
           />
-          <h1 className="text-4xl sm:text-6xl lg:text-[7rem] font-bold text-yellow-400 lg:ml-6 mt-4 lg:mt-0">
+          <h1 className="text-4xl sm:text-6xl lg:text-[5rem] font-bold text-yellow-400 lg:ml-6 mt-4 lg:mt-0">
             Thank You!
           </h1>
           <img
             src={Butterfly.src}
             alt="Butterfly 1"
-            className="absolute right-[2rem] sm:right-[6rem] lg:right-[14rem] top-20 sm:top-40 w-[5rem] sm:w-[7rem] lg:w-[10rem] h-[5rem] sm:h-[7rem] lg:h-[10rem]"
+            className="absolute right-[2rem] sm:right-[6rem] lg:right-[14rem] top-20 sm:top-32 w-[5rem] sm:w-[7rem] lg:w-[10rem] h-[5rem] sm:h-[7rem] lg:h-[10rem]"
           />
         </div>
-        <div className="mt-8">
-          <p className="text-lg sm:text-2xl lg:text-3xl text-white mb-4">
+        <div className="mt-">
+          <p className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-semibold">
             For ordering from NexiGifting. You shall receive an email soon
             confirming your order and the{" "}
             <span className="font-bold text-yellow-300">tracking link</span>{" "}
             with it.
           </p>
-          <div className="text-lg sm:text-2xl lg:text-3xl text-white mb-4">
+          <div className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-semibold">
             If you have any questions or need assistance, feel free to reach out
             to us at{" "}
             <a href="mailto:sales@artnext.in" className="text-yellow-300">
               sales@artnext.in
             </a>
           </div>
-          <p className="text-lg sm:text-2xl lg:text-3xl text-white">
+          <p className="text-lg sm:text-xl lg:text-xl text-white md:font-semibold">
             Thanks again, and we hope you enjoy your personalised pouches!
           </p>
         </div>

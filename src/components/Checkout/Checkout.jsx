@@ -110,14 +110,20 @@ export default function Checkout({ defaultAddress }) {
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
-    const intamount = Math.round(totalPrice * 100);
+    const intamount = 100 ; //Math.round(totalPrice * 100);
+    var baseUrl = "https://main--nexionline.netlify.app";
+    if (typeof window !== 'undefined') {
+      baseUrl = window.location.origin;
+   }
+   const transactionId = "G" + Date.now();
     const data = {
       orderNo: orderNo,
       name: user?.result?.firstName ?? user?.firstName,
       number: user?.result?.mobile ?? user?.mobile,
       MUID: user?.result?.customerId ?? user?.customerId,
       amount: intamount,
-      transactionId: "G" + Date.now(),
+      transactionId: transactionId,
+      redirectUrl:`${baseUrl}/api/check-status?transactionId=${transactionId}&url=${baseUrl}`
     };
 
     try {
@@ -125,40 +131,35 @@ export default function Checkout({ defaultAddress }) {
         "https://nexiblesapp.barecms.com/api/payment",
         data
       );
-      const {
-        url: paymentUrl,
-        transactionId,
-        merchantId,
-      } = paymentResponse.data;
 
-      // Redirect to the payment URL
+      const { url: paymentUrl, transactionId, merchantId } = paymentResponse.data;
+
       window.location.href = paymentUrl;
 
-      // Set up a listener for the payment completion
-      window.addEventListener("message", async function (event) {
-        if (
-          event.origin === "https://nexiblesapp.barecms.com" &&
-          event.data.paymentComplete
-        ) {
-          try {
-            const statusResponse = await axios.post(
-              `https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`
-            );
-            const { redirectUrl } = statusResponse.data;
-            if (redirectUrl) {
-              window.location.href = redirectUrl;
-            } else {
-              console.error("No redirect URL provided in the status response");
-            }
-          } catch (statusError) {
-            console.error("Error checking payment status:", statusError);
-          }
-        }
-      });
+      // window.addEventListener("message", async function (event) {
+      //   if (
+      //     event.origin === "https://nexiblesapp.barecms.com" &&
+      //     event.data.paymentComplete
+      //   ) {
+      //     try {
+      //       const statusResponse = await axios.post(
+      //         `https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`
+      //       );
+      //       const { redirectUrl } = statusResponse.data;
+      //       if (redirectUrl) {
+      //         window.location.href = redirectUrl;
+      //       } else {
+      //         console.error("No redirect URL provided in the status response");
+      //       }
+      //     } catch (statusError) {
+      //       console.error("Error checking payment status:", statusError);
+      //     }
+      //   }
+      // });
     } catch (error) {
-      console.error("Error initiating payment:", error);
-    } finally {
       setLoading2(false);
+      console.error('Error initiating payment:', error);
+      // Handle this error case appropriately
     }
   };
 
@@ -173,13 +174,13 @@ export default function Checkout({ defaultAddress }) {
             </h2>
             <div className="space-y-4">
               <div>
-                <label className="block font-semibold text-lg sm:text-xl mb-2 text-[#464087]">
+                <label className="block font-semibold text-lg sm:text-xl mb-2 text-[#db5c3c]">
                   Email
                 </label>
-                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base">
+                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base">
                   {user?.result?.emailAddress}
                 </h3>
-                <label className="block font-semibold text-lg sm:text-xl mt-2 text-[#464087]">
+                <label className="block font-semibold text-lg sm:text-xl mt-2 text-[#db5c3c]">
                   Shipping
                 </label>
               </div>
@@ -191,7 +192,7 @@ export default function Checkout({ defaultAddress }) {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <p className="text-[#464087] uppercase text-xl md:text-2xl font-bold">
+                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold">
                             {user?.result?.firstName ?? user?.firstName}{" "}
                             {user?.result?.lastName ?? user?.lastName}
                           </p>
@@ -244,7 +245,7 @@ export default function Checkout({ defaultAddress }) {
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           Name
                         </label>
                         <input
@@ -253,18 +254,18 @@ export default function Checkout({ defaultAddress }) {
                           placeholder="eg John Smith"
                           value={formData.title}
                           onChange={handleChange}
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           Number
                         </label>
                         <input
                           type="text"
                           name="phone"
                           placeholder="eg +91 88745 6xxxx"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                           maxLength="9"
                           pattern="[0-9]{9}"
                           value={formData.phone}
@@ -273,7 +274,7 @@ export default function Checkout({ defaultAddress }) {
                       </div>
                     </div>
                     <div>
-                      <label className="block font-semibold mb-2 text-[#464087]">
+                      <label className="block font-semibold mb-2 text-[#db5c3c]">
                         Address
                       </label>
                       <input
@@ -282,12 +283,12 @@ export default function Checkout({ defaultAddress }) {
                         value={formData.address}
                         onChange={handleChange}
                         placeholder="eg 1, Mumbai Road, Churchgate"
-                        className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                        className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                       />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           Flat Number
                         </label>
                         <input
@@ -296,11 +297,11 @@ export default function Checkout({ defaultAddress }) {
                           value={formData.floor}
                           onChange={handleChange}
                           placeholder="eg 501 A-wing"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           Landmark
                         </label>
                         <input
@@ -309,13 +310,13 @@ export default function Checkout({ defaultAddress }) {
                           value={formData.address2}
                           onChange={handleChange}
                           placeholder="eg near churchgate station"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           City
                         </label>
                         <input
@@ -324,11 +325,11 @@ export default function Checkout({ defaultAddress }) {
                           value={formData.city}
                           onChange={handleChange}
                           placeholder="eg Mumbai"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           State
                         </label>
                         <input
@@ -337,11 +338,11 @@ export default function Checkout({ defaultAddress }) {
                           value={formData.state}
                           onChange={handleChange}
                           placeholder="eg Maharashtra"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                       <div>
-                        <label className="block font-semibold mb-2 text-[#464087]">
+                        <label className="block font-semibold mb-2 text-[#db5c3c]">
                           Pincode
                         </label>
                         <input
@@ -350,14 +351,14 @@ export default function Checkout({ defaultAddress }) {
                           value={formData.zip}
                           onChange={handleChange}
                           placeholder="eg 400021"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                         />
                       </div>
                     </div>
                     <div>
                       <button
                         onClick={handleSubmit}
-                        className="border border-[#464087] p-1 rounded-xl text-[#464087] text-sm sm:text-base"
+                        className="border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
                       >
                         SAVE
                       </button>
@@ -378,7 +379,7 @@ export default function Checkout({ defaultAddress }) {
               {cartItems.map((item, index) => (
                 <div key={index} className="mb-8">
                   <div className="mb-4">
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#464087]">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[#db5c3c]">
                       {item.name}
                     </h3>
                     <button className="border border-gray-400 py-1 px-3 rounded-xl text-sm">
@@ -388,7 +389,7 @@ export default function Checkout({ defaultAddress }) {
 
                   <div className="flex flex-col sm:flex-row justify-between items-start mt-4">
                     <div className="flex-1 space-y-2 w-full sm:w-auto mb-4 sm:mb-0">
-                      <h3 className="font-semibold text-[#464087]">Details</h3>
+                      <h3 className="font-semibold text-[#db5c3c]">Details</h3>
                       <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
                         {item.productSize}
                       </h3>
@@ -397,6 +398,12 @@ export default function Checkout({ defaultAddress }) {
                       </h3>
                       <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
                         {item.custom_message}
+                      </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_picture}
+                      </h3>
+                      <h3 className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_receivers}
                       </h3>
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
@@ -408,12 +415,12 @@ export default function Checkout({ defaultAddress }) {
                             className="object-cover w-full h-full"
                           />
                         ) : (
-                          <span className="text-[#464087]">Image Preview</span>
+                          <span className="text-[#db5c3c]">Image Preview</span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#464087] mt-4">
+                  <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
                     Product Total {`₹ ${item.price}`}
                   </button>
                 </div>
@@ -432,7 +439,7 @@ export default function Checkout({ defaultAddress }) {
               </div>
               <Link
                 href="/category"
-                className="bg-yellow-400 rounded-lg text-md p-1 font-semibold text-white w-full sm:w-auto text-center"
+                className="bg-[#197d8e] rounded-lg text-md font-semibold text-white w-full sm:w-auto text-center"
               >
                 Add more products
               </Link>
@@ -440,7 +447,7 @@ export default function Checkout({ defaultAddress }) {
 
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087] font-semibold text-sm sm:text-base">
+                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
                   Product Total {`₹ ${totalPrice}`}
                 </h3>
               </div>
@@ -455,13 +462,13 @@ export default function Checkout({ defaultAddress }) {
               <button
                 onClick={makePayment}
                 disabled={loading2}
-                className="bg-yellow-400 flex items-center px-4 py-2 rounded-full text-xl sm:text-2xl font-bold text-[#464087] w-full sm:w-auto sm:mr-[5rem] mb-4 sm:mb-20 justify-center"
+                className="bg-[#197d8e] flex items-center px-4 py-2 rounded-full text-xl sm:text-2xl font-bold text-white w-full sm:w-auto sm:mr-[5rem] mb-4 sm:mb-20 justify-center"
               >
                 {loading2 ? "Processing..." : "Proceed To Pay"}
               </button>
             </div>
-            <div className="w-full text-center">
-              <p className="text-sm text-[#464087] mb-2">
+            {/* <div className="w-full text-center">
+              <p className="text-sm text-[#db5c3c] mb-2">
                 Available Payment Options
               </p>
               <div className="flex justify-center space-x-2">
@@ -472,7 +479,7 @@ export default function Checkout({ defaultAddress }) {
                   ></div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

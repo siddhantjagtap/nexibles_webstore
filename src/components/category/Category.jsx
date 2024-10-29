@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import useFetchCategories from "../../app/usefetchcategories";
 import useFetchProducts from "../../app/fetchproduct";
+import Loader from "../comman/Loader";
+import CategoryBanner from "./CategoryBanner";
 
 export default function CelebrationCategoryPage() {
   const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
@@ -60,48 +62,54 @@ export default function CelebrationCategoryPage() {
     localStorage.setItem("cart", JSON.stringify(existingCart));
   };
 
-  if (categoriesLoading || productsLoading) return <p>Loading...</p>;
+  if (categoriesLoading || productsLoading)
+    return (
+      <p>
+        <Loader/>
+      </p>
+    );
   if (categoriesError)
     return <p>Error fetching categories: {categoriesError}</p>;
   if (productsError) return <p>Error fetching products: {productsError}</p>;
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white pt-[7rem] relative my-4 ">
+    <div className="flex flex-col md:flex-row min-h-screen bg-white pt-[3rem] relative my-4">
       {/* Mobile menu button */}
       <button
         className="md:hidden fixed top-20 right-4 mt-[-1rem] z-20 bg-[#] p-2 rounded-full shadow-lg"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24}  />}
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Sidebar */}
       <aside
-        className={`w-full md:w-[20%] bg-[#f9a287] md:ml-[3rem] p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
+        className={`w-full md:w-[15%] bg-[#d88473] md:ml-[3rem] md:mt-6 p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 rounded-2xl`}
+        } md:translate-x-0 rounded-[2.5rem]`}
       >
         {categoryData.map((category, index) => (
           <div
             key={index}
             className={`flex md:flex-col items-center mb-4 md:mb-6 cursor-pointer transition-colors duration-200 ${
               selectedCategory?.name === category.name
-                ? "bg-[#124e66] text-white rounded-lg"
-                : "hover:bg-[#f9d3a2] rounded-lg"
+                ? // ? "bg-[#124e66] text-white rounded-lg"
+                  "bg-[#197d8e] text-white rounded-lg"
+                : "hover:bg-[#] rounded-lg"
             } p-2 md:p-4`}
             onClick={() => {
               setSelectedCategory(category);
               setIsMobileMenuOpen(false);
             }}
           >
-            <div className="rounded-full bg-white w-12 h-12 md:w-[90%] md:h-auto md:aspect-square p-2 md:p-4 flex justify-center items-center overflow-hidden">
+            <div className="rounded-full bg-white w-12 h-12 md:w-[120%] md:h-auto md:aspect-square p-2 md:p-4 flex justify-center items-center overflow-hidden">
               <img
                 src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
                 alt={category.name}
                 className="object-contain w-full h-full"
               />
             </div>
-            <p className="text-sm md:text-lg ml-3 md:ml-0 md:mt-4 text-center">
+            <p className="text-sm md:text-lg font-semibold ml-3 md:ml-0 md:mt-4 text-center text-[#f9e2b2]">
               {category.name}
             </p>
           </div>
@@ -111,40 +119,29 @@ export default function CelebrationCategoryPage() {
       {/* Main Content Section */}
       {selectedCategory && (
         <main className="w-full md:w-[80%] p-6 md:mt-0">
-          {/* Full-width Category banner */}
-          <div className="bg-[#f9d3a2] p-6 mb-8 rounded-lg shadow-lg flex flex-col md:flex-row justify-between items-center">
-            <h2 className="text-3xl font-bold text-[#124e66] mb-4 md:mb-0">
-              {selectedCategory.name}
-            </h2>
-            <p className="text-lg hidden md:block">
-              {selectedCategory.description || "Celebrate with style!"}
-            </p>
-            <Image
-              src={`https://nexiblesapp.barecms.com/uploads/${selectedCategory.bg_Img}`}
-              alt={`${selectedCategory.name} Banner`}
-              width={100}
-              height={100}
-              className="mt-4 md:mt-0 md:mr-4 rounded-full"
-            />
-          </div>
+          {/* Replace the existing banner with CategoryBanner */}
+          <CategoryBanner
+            className="w-[100%] bg-[#f9e2b2]"
+            categoryName={selectedCategory.name}
+          />
 
           {/* Product display grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 ml-16 md:mt-[22%]">
             {products.length > 0 ? (
               products.map((product) => (
                 <div key={product.id} className="relative h-full pt-12">
-                  <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-80 flex items-center justify-center">
-                    <div className="relative w-full h-full -mt-6">
+                  <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[46%] h-80 w-22 flex items-center justify-center">
+                    <div className="relative w-full h-full mt-4">
                       <Image
                         src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
                         alt={product.name}
                         layout="fill"
                         objectFit="contain"
-                        className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115"
+                        className="scale-110 transition-transform duration-300 hover:-translate-y-12 hover:scale-115 max-w-[83%] max-h-[83%] mx-auto mt-2"
                       />
                     </div>
                   </div>
-                  <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-xl">
+                  <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-2xl">
                     {product.name}
                   </p>
                   <Link
@@ -155,7 +152,7 @@ export default function CelebrationCategoryPage() {
                     )}`}
                   >
                     <button
-                      className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
+                      className="bg-[#197d8e] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
                       onClick={() => addToCart(product)}
                     >
                       Customise
@@ -177,37 +174,43 @@ export default function CelebrationCategoryPage() {
   );
 }
 
-
-
-
-
-
-
-// //old
 // "use client";
 // import React, { useState, useEffect } from "react";
 // import Image from "next/image";
 // import Link from "next/link";
-// import useFetchCategories from '../../app/usefetchcategories';
-// import useFetchProducts from '../../app/fetchproduct';
+// import { Menu, X } from "lucide-react";
+// import useFetchCategories from "../../app/usefetchcategories";
+// import useFetchProducts from "../../app/fetchproduct";
+// import Loader from "../comman/Loader";
 
 // export default function CelebrationCategoryPage() {
-//   const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
+//   const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
 
-//   const { data: categoryData, loading: categoriesLoading, error: categoriesError } = useFetchCategories(token);
+//   const {
+//     data: categoryData,
+//     loading: categoriesLoading,
+//     error: categoriesError,
+//   } = useFetchCategories(token);
 //   const [selectedCategory, setSelectedCategory] = useState(null);
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-//   const { products, loading: productsLoading, error: productsError } = useFetchProducts(token, selectedCategory?.name);
+//   const {
+//     products,
+//     loading: productsLoading,
+//     error: productsError,
+//   } = useFetchProducts(token, selectedCategory?.name);
 
 //   useEffect(() => {
 //     if (categoryData.length > 0 && !selectedCategory) {
-//       const diwaliCategory = categoryData.find(cat => cat.name.toLowerCase() === 'diwali');
+//       const diwaliCategory = categoryData.find(
+//         (cat) => cat.name.toLowerCase() === "diwali"
+//       );
 //       setSelectedCategory(diwaliCategory || categoryData[0]);
 //     }
 //   }, [categoryData, selectedCategory]);
 
 //   const addToCart = (product) => {
-//     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
 
 //     const newCartItem = {
 //       id: product.id,
@@ -215,9 +218,11 @@ export default function CelebrationCategoryPage() {
 //       price: product.price,
 //       category: selectedCategory?.name,
 //       quantity: 1,
-//       image: product.image
+//       image: product.image,
 //     };
-//     const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+//     const existingItemIndex = existingCart.findIndex(
+//       (item) => item.id === product.id
+//     );
 
 //     if (existingItemIndex !== -1) {
 //       const existingItem = existingCart[existingItemIndex];
@@ -229,52 +234,74 @@ export default function CelebrationCategoryPage() {
 //     } else {
 //       existingCart.push(newCartItem);
 //     }
-//     localStorage.setItem('cart', JSON.stringify(existingCart));
-// };
+//     localStorage.setItem("cart", JSON.stringify(existingCart));
+//   };
 
-//   if (categoriesLoading || productsLoading) return <p>Loading...</p>;
-//   if (categoriesError) return <p>Error fetching categories: {categoriesError}</p>;
+//   if (categoriesLoading || productsLoading) return <p><Loader/></p>;
+//   if (categoriesError)
+//     return <p>Error fetching categories: {categoriesError}</p>;
 //   if (productsError) return <p>Error fetching products: {productsError}</p>;
 
 //   return (
-//     <div className="flex min-h-screen bg-white pt-[7rem] relative my-4">
-//       <aside className="w-[20%] bg-[#f9a287] ml-[3rem] p-6 relative rounded-2xl z-10">
+//     <div className="flex flex-col md:flex-row min-h-screen bg-white pt-[3rem] relative my-4 ">
+//       {/* Mobile menu button */}
+//       <button
+//         className="md:hidden fixed top-20 right-4 mt-[-1rem] z-20 bg-[#] p-2 rounded-full shadow-lg"
+//         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+//       >
+//         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+//       </button>
+
+//       {/* Sidebar */}
+//       <aside
+//         className={`w-full md:w-[20%] bg-[#f9a287] md:ml-[3rem] p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
+//           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+//         } md:translate-x-0 rounded-2xl`}
+//       >
 //         {categoryData.map((category, index) => (
 //           <div
 //             key={index}
-//             className={`flex flex-col items-center mb-6 cursor-pointer transition-colors duration-200 ${selectedCategory?.name === category.name
-//               ? "bg-[#124e66] text-white rounded-lg"
-//               : "hover:bg-[#f9d3a2] rounded-lg"
-//               } p-4`}
-//             onClick={() => setSelectedCategory(category)}
+//             className={`flex md:flex-col items-center mb-4 md:mb-6 cursor-pointer transition-colors duration-200 ${
+//               selectedCategory?.name === category.name
+//                 ? "bg-[#124e66] text-white rounded-lg"
+//                 : "hover:bg-[#] rounded-lg"
+//             } p-2 md:p-4`}
+//             onClick={() => {
+//               setSelectedCategory(category);
+//               setIsMobileMenuOpen(false);
+//             }}
 //           >
-//             <div className="rounded-full bg-white w-[90%] aspect-square p-4 flex justify-center items-center overflow-hidden">
+//             <div className="rounded-full bg-white w-12 h-12 md:w-[90%] md:h-auto md:aspect-square p-2 md:p-4 flex justify-center items-center overflow-hidden">
 //               <img
 //                 src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
 //                 alt={category.name}
 //                 className="object-contain w-full h-full"
 //               />
 //             </div>
-//             <p className="text-lg mt-4 text-center">{category.name}</p>
+//             <p className="text-sm md:text-lg ml-3 md:ml-0 md:mt-4 text-center">
+//               {category.name}
+//             </p>
 //           </div>
 //         ))}
 //       </aside>
 
 //       {/* Main Content Section */}
 //       {selectedCategory && (
-//         <main className="w-[80%] p-6">
+//         <main className="w-full md:w-[80%] p-6 md:mt-0">
 //           {/* Full-width Category banner */}
-//           <div className="bg-[#f9d3a2] p-6 mb-8 rounded-lg shadow-lg flex justify-between items-center">
-//             <h2 className="text-3xl font-bold text-[#124e66]">
+//           <div className="bg-[#f9d3a2] p-6 mb-8 rounded-lg shadow-lg flex flex-col md:flex-row justify-between items-center">
+//             <h2 className="text-3xl font-bold text-[#124e66] mb-4 md:mb-0">
 //               {selectedCategory.name}
 //             </h2>
-//             <p className="text-lg hidden sm:block">{selectedCategory.description || "Celebrate with style!"}</p>
+//             <p className="text-lg hidden md:block">
+//               {selectedCategory.description || "Celebrate with style!"}
+//             </p>
 //             <Image
 //               src={`https://nexiblesapp.barecms.com/uploads/${selectedCategory.bg_Img}`}
 //               alt={`${selectedCategory.name} Banner`}
 //               width={100}
 //               height={100}
-//               className="mr-4 rounded-full"
+//               className="mt-4 md:mt-0 md:mr-4 rounded-full"
 //             />
 //           </div>
 
@@ -283,21 +310,34 @@ export default function CelebrationCategoryPage() {
 //             {products.length > 0 ? (
 //               products.map((product) => (
 //                 <div key={product.id} className="relative h-full pt-12">
-//                   <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[50%] h-80 flex items-center justify-center">
-//                     <div className="relative w-full h-full -mt-6">
-//                       <Image
+//                   <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[40%] h-80 w-22 flex items-center justify-center">
+//                     <div className="relative w-full h-full mt-4">
+//                       {/* <Image
 //                         src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
 //                         alt={product.name}
 //                         layout="fill"
 //                         objectFit="contain"
 //                         className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115"
+//                       /> */}
+//                       <Image
+//                         src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
+//                         alt={product.name}
+//                         layout="fill"
+//                         objectFit="contain"
+//                         className="scale-110 transition-transform duration-300 hover:-translate-y-12 hover:scale-115 max-w-[85%] max-h-[85%] mx-auto"
 //                       />
 //                     </div>
 //                   </div>
 //                   <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-xl">
 //                     {product.name}
 //                   </p>
-//                   <Link href={`/productsize?pouchId=${product.id}&image=${encodeURIComponent(product.image.replace(/%20/g, '-'))}`}>
+//                   <Link
+//                     href={`/productsize?pouchId=${
+//                       product.id
+//                     }&image=${encodeURIComponent(
+//                       product.image.replace(/%20/g, "-")
+//                     )}`}
+//                   >
 //                     <button
 //                       className="bg-[#124e66] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
 //                       onClick={() => addToCart(product)}
@@ -309,7 +349,9 @@ export default function CelebrationCategoryPage() {
 //               ))
 //             ) : (
 //               <div className="col-span-full text-center py-8">
-//                 <p className="text-xl text-gray-600">No products found for this category.</p>
+//                 <p className="text-xl text-gray-600">
+//                   No products found for this category.
+//                 </p>
 //               </div>
 //             )}
 //           </div>

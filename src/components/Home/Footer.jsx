@@ -45,20 +45,17 @@ const Footer = () => {
                 className="p-2 rounded-full w-full text-gray-800"
               />
               <div className="flex justify-center my-6">
-                <a href="#" className="hover:text-gray-300">
-                  <Image src={Instragram} />
+                <a href="https://www.instagram.com" className="hover:text-gray-300">
+                  <Image src={Instragram} alt="Instagram" />
                 </a>
-                <a href="#" className="hover:text-gray-300">
-                  <Image src={Whatsapp} />
+                <a href="https://wa.me/919821045101" className="hover:text-gray-300">
+                  <Image src={Whatsapp} alt="WhatsApp" />
                 </a>
-                {/* <a href="#" className="hover:text-gray-300">
-                  <Image src={Linkedin} />
-                </a> */}
-                <a href="#" className="hover:text-gray-300">
-                  <Image src={Call} />
+                <a href="tel:+919821045101" className="hover:text-gray-300">
+                  <Image src={Call} alt="Call" />
                 </a>
-                <a href="#" className="hover:text-gray-300">
-                  <Image src={Mail} />
+                <a href="mailto:sales@artnext.in" className="hover:text-gray-300">
+                  <Image src={Mail} alt="Email" />
                 </a>
               </div>
             </div>
@@ -74,7 +71,7 @@ const Footer = () => {
               <Link href="/tracking" className="hover:underline">
                 Tracking Link
               </Link>
-              <Link href="/faqs" className="hover:underline">
+              <Link href="/faq" className="hover:underline">
                 FAQs
               </Link>
             </nav>

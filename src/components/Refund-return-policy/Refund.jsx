@@ -3,9 +3,9 @@ import React from 'react';
 function Refund() {
     return (
         <div>
-            <div className="min-h-screen p-4 md:p-8" style={({ backgroundImage: "url('/Contact_Us_Page/Contact_Us_Background.jpg')" })}>
+            <div className="min-h-screen p-4 md:p-8 md:px-12" style={({ backgroundImage: "url('/Contact_Us_Page/Contact_Us_Background.jpg')" })}>
                 <h1 className="text-2xl md:text-4xl mt-10 md:mt-24 font-gotham-light font-bold text-white text-center mb-4 md:mb-6">{`Return & Refund Policy`}</h1>
-                <div className="w-[95%] md:w-[90%] text-center mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-8">
+                <div className="w-[95%] md:w-[90%] text-center mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-8 md:px-36">
                     <p className="mb-4 text-sm md:text-base">{`We strive to ensure that you have a satisfying shopping experience with us. Our Return Policy outlines guidelines for returns, applicable only in the case of damaged or wrong products.`}</p>
                     
                     <section className="mb-6">

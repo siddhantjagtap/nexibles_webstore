@@ -132,7 +132,7 @@ export default function AlmostThere() {
             <h2 className="text-2xl font-bold text-[#d1585a] mb-2">
               Add your picture
             </h2>
-            <p className="text-sm text-[#5f8d8a] mb-2">
+            <p className="text-sm text-[#d1585a] mb-2">
               (This adds another personalised touch. You can put a picture of
               your family, pet, or yourself depending on the occasion. If not
               required, please leave it empty.)
@@ -143,9 +143,12 @@ export default function AlmostThere() {
               accept=".jpeg,.jpg,.png,.heic,.svg"
               className="w-full p-2 border border-[#68a398] rounded-3xl"
             />
-            <p className="text-sm text-[#5f8d8a] mt-1">
+            <p className="text-sm text-[#d1585a] mt-1">
               Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg. Please
               keep the size under 5MB.
+            </p>
+            <p className="text-sm text-[#d1585a] mt-1">
+              Please keep size under 50mb?
             </p>
             <label className="flex items-center mt-2">
               <input
@@ -161,7 +164,7 @@ export default function AlmostThere() {
             <h2 className="text-2xl font-bold text-[#d1585a] mb-2">
               Add list of receivers
             </h2>
-            <p className="text-sm text-[#5f8d8a] mb-2">
+            <p className="text-sm text-[#d1585a] mb-2">
               (This should include the names to be printed on the bottom of the
               pouch. If not required, please leave it empty.)
             </p>
@@ -171,9 +174,12 @@ export default function AlmostThere() {
               accept=".xlsx,.xls"
               className="w-full p-2 border border-[#68a398] rounded-3xl"
             />
-            <p className="text-sm text-[#5f8d8a] mt-1">
+            <p className="text-sm text-[#d1585a] mt-1">
               Acceptable formats: Excel (.xlsx, .xls). Please keep the size
               under 5MB.
+            </p>
+            <p className="text-sm text-[#d1585a] mt-1">
+              Please keep size under 50mb?
             </p>
             <label className="flex items-center mt-2">
               <input

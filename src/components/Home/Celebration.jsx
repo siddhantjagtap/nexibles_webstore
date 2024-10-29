@@ -146,8 +146,8 @@ export default function Celebration() {
 
         @media (min-width: 768px) {
           .bird-illustration {
-            width: 350px; // Default size for desktop
-            height: 350px; // Default size for desktop
+            width: 300px; // Default size for desktop
+            height: 300px; // Default size for desktop
           }
         }
 

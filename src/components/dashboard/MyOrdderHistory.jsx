@@ -28,9 +28,11 @@ const MyOrderHistory = () => {
                     throw new Error('Failed to fetch order history');
                 }
                 const data = await response.json();
+                const filteredOrders = data.orderDetails.filter(order => order.origin === "Nexigifting");
                 console.log("data", data);
                 console.log("data.orderdetails", data.orderDetails);
-                setOrders(data.orderDetails);
+                const sortedOrders = filteredOrders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+                setOrders(sortedOrders);
             } catch (error) {
                 console.error('Error fetching order history:', error);
             }
@@ -48,7 +50,7 @@ const MyOrderHistory = () => {
         // Extract products from the filtered orders
         const productsToAdd = ordersToAdd.flatMap(order => {
             return {
-                id: order.product_id, // Use product_id as the actual product ID
+                id: order.product_id,
                 name: order.product_name,
                 image: order.image,
                 price: order.price,
