@@ -182,6 +182,7 @@ import useFetchCategories from "../../app/usefetchcategories";
 import useFetchProducts from "../../app/fetchproduct";
 import Loader from "../comman/Loader";
 import CategoryBanner from "./CategoryBanner";
+import Footer from "../Home/Footer";
 
 export default function CelebrationCategoryPage() {
   const token = "irrv211vui9kuwn11efsb4xd4zdkuq";
@@ -248,6 +249,7 @@ export default function CelebrationCategoryPage() {
   if (productsError) return <p>Error fetching products: {productsError}</p>;
 
   return (
+    <>
     <div className="flex flex-col md:flex-row min-h-screen bg-white pt-[3rem] relative my-4">
       {/* Mobile menu button */}
       <button
@@ -343,9 +345,14 @@ export default function CelebrationCategoryPage() {
               </div>
             )}
           </div>
+        
         </main>
+        
       )}
+       
     </div>
+      <Footer />
+    </>
   );
 }
 
