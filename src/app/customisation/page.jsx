@@ -6,9 +6,11 @@ import React from 'react'
 
 function page() {
   return (
-    <div className="[&>nav]:!bg-white">
+    <div className="[&>nav]:!bg-white ">
       <Navbar />
-      <OwnDesign />
+      <div className="my-28">
+        <OwnDesign />
+      </div>
       <Footer />
     </div>
   );

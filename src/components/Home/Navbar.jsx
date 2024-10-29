@@ -83,7 +83,7 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4 sm:space-x-6">
             <div className="hidden md:flex space-x-8 text-[#197d8e] text-xl mt-2 justify-end">
-              <Link href="/celebrations">Occasions</Link>
+              <Link href="/category">Occasions</Link>
               <Link href="/customisation">Customise</Link>
               <Link href="/about">About Us</Link>
               <Link href="/contact-us">Contact Us</Link>
