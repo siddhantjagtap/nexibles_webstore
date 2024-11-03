@@ -191,13 +191,13 @@ export default function ContactForm() {
                 Address
               </h2>
               <p className="text-base md:text-mx text-[#fcfdfd] font-normal">
-                Art NEXT Pvt Ltd,
+              Unit A6C, Lodha Industrial & Logistics Park - II,
                 <br />
-                A/463, Ground Floor, TTC Industrial Area,
+                Usatane Village, Navi Mumbai,
                 <br />
-                Mahape, MIDC, Navi Mumbai,
+                Taloja Bypass Road, Palava,
                 <br />
-                Thane - 400710, MH
+                PIN code 421306, Maharashtra, India.
               </p>
             </div>
 

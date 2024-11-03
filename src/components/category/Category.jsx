@@ -271,7 +271,7 @@ export default function CelebrationCategoryPage() {
             className={`flex md:flex-col items-center mb-4 md:mb-6 cursor-pointer transition-colors duration-200 ${
               selectedCategory?.name === category.name
                 ? // ? "bg-[#124e66] text-white rounded-lg"
-                  "bg-[#197d8e] text-white rounded-lg"
+                  " text-white rounded-lg"
                 : "hover:bg-[#] rounded-lg"
             } p-2 md:p-4`}
             onClick={() => {

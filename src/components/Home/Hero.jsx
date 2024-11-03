@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Image from "next/image";
 import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
 import { useState, useEffect } from "react";
@@ -21,75 +21,78 @@ export default function Hero() {
   }, [images.length]);
 
   return (
-    <div className="h-screen bg-[#197d8e] bg-cover bg-center bg-[url('/Homepage/Backgrounds/Banner_Background.png')]">
-      <div className="pt-4 flex flex-col md:flex-row items-center">
-        {/* Image Section */}
-        <div className="relative w-full md:w-1/2 h-[50vh] md:h-[90vh] mb-4 md:mb-0">
-          <div className="overflow-hidden w-full h-full relative">
-            {images.map((src, index) => (
-              <Image
-                key={index}
-                src={src}
-                alt={`Diwali Pouch ${index + 1}`}
-                layout="fill"
-                objectFit="contain"
-                className={`absolute transition-opacity duration-500 ${
-                  index === currentSlide ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex justify-center md:mt-4">
-            {images.map((_, i) => (
-              <div
-                key={i}
-                className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
-                  i === currentSlide ? "bg-white" : "bg-gray-400"
-                }`}
-                onClick={() => setCurrentSlide(i)}
-              ></div>
-            ))}
-          </div>
-        </div>
+    <div className="relative h-screen bg-[#197d8e]">
+      {/* White circular container */}
+      <div className="absolute inset-0 w-full h-full">
+        <div className="relative w-full h-full bg-white rounded-b-[100%] md:rounded-b-[20rem]">
+          <div className="pt-4 flex flex-col md:flex-row items-center">
+            {/* Image Section */}
+            <div className="relative w-full md:w-1/2 h-[50vh] md:h-[90vh] mb-4 md:mb-0">
+              <div className="overflow-hidden w-full h-full relative">
+                {images.map((src, index) => (
+                  <Image
+                    key={index}
+                    src={src}
+                    alt={`Diwali Pouch ${index + 1}`}
+                    layout="fill"
+                    objectFit="contain"
+                    className={`absolute transition-opacity duration-500 ${
+                      index === currentSlide ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-center md:mt-4">
+                {images.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
+                      i === currentSlide ? "bg-gray-800" : "bg-gray-400"
+                    }`}
+                    onClick={() => setCurrentSlide(i)}
+                  ></div>
+                ))}
+              </div>
+            </div>
 
-        {/* Text Section */}
-        <div className="md:w-1/2 text-center md:text-left px-4">
-          <div className="flex justify-center md:justify-start">
-            <h1 className="text-4xl md:text-6xl text-[#0f1729] font-extrabold md:mb-4 mb-2">
-              NEXI
-            </h1>
-            <h1 className="text-4xl md:text-6xl text-[#db5c3c] font-extrabold">
-              GIFTING
-            </h1>
-            <Image
-              src={Butterflies2}
-              alt="butterflies"
-              width={64}
-              height={64}
-              className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-3rem] "
-            />
-          </div>
+            {/* Text Section */}
+            <div className="md:w-1/2 text-center md:text-left px-4">
+              <div className="flex justify-center md:justify-start">
+                <h1 className="text-4xl md:text-6xl text-[#0f1729] font-extrabold md:mb-4 mb-2">
+                  NEXI
+                </h1>
+                <h1 className="text-4xl md:text-6xl text-[#db5c3c] font-extrabold">
+                  GIFTING
+                </h1>
+                <Image
+                  src={Butterflies2}
+                  alt="butterflies"
+                  width={64}
+                  height={64}
+                  className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-3rem]"
+                />
+              </div>
 
-          <h2 className="text-xl md:text-2xl font-bold">
-            {`India's First of Its kind`}
-          </h2>
-          <p className="text-mx md:text-lg mb-6 text-gray-500">
-            {"Personalise, Pack, Present - The Future of Gifting"}
-          </p>
-          <Link
-            href={`/category`}
-            passHref
-            className="bg-[#197d8e] text-white font-bold py-2 px-6 md:px-6 rounded-full text-mx md:text-xl transition duration-300"
-          >
-            Shop Now
-          </Link>
+              <h2 className="text-xl md:text-2xl font-bold">
+                {`India’s First Personalised Stand-Up Pouches`}
+              </h2>
+              <p className="text-mx md:text-lg mb-6 text-gray-500">
+                {"Personalise, Pack, Present - The Future of Gifting"}
+              </p>
+              <Link
+                href={`/category`}
+                passHref
+                className="bg-[#197d8e] text-white font-bold py-2 px-6 md:px-6 rounded-full text-mx md:text-xl transition duration-300 hover:bg-[#156b7a]"
+              >
+                Shop Now
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-
 
 //old
 

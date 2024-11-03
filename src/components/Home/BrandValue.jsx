@@ -53,9 +53,14 @@ const BrandValues = () => {
         />
 
         <div className="flex items-center justify-center mb-12">
+          <div>
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mt-12">
             Brand Values
           </h2>
+          <h2 className="text-white text-xl sm:text-3xl md:text-xl font-bold mt-2">
+          The Nexigifting Advantage 
+          </h2>
+          </div>
         </div>
 
         {/* Grid for Values */}
