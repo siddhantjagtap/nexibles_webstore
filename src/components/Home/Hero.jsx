@@ -7,27 +7,29 @@ import Link from "next/link";
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
+    "/Home/pouch-6.png",
     "/Home/pouch-1.png",
     "/Home/pouch-2.png",
     "/Home/pouch-3.png",
     "/Home/pouch-4.png",
+
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
-    <div className="relative h-screen bg-[#197d8e]">
+    <div className="relative h-screen bg-[#197d8e] ">
       {/* White circular container */}
-      <div className="absolute inset-0 w-full h-full">
-        <div className="relative w-full h-full bg-white rounded-b-[100%] md:rounded-b-[20rem]">
-          <div className="pt-4 flex flex-col md:flex-row items-center">
+      <div className="absolute inset-0 w-full h-full ">
+        <div className="relative w-full h-full bg-white rounded-b-[100%] md:rounded-b-[20rem] ">
+          <div className="pt-4 flex flex-col md:flex-row items-center justify-center">
             {/* Image Section */}
-            <div className="relative w-full md:w-1/2 h-[50vh] md:h-[90vh] mb-4 md:mb-0">
+            <div className="relative w-full md:w-[30%] mt-24 h-[30vh] md:h-[57vh] mb-4 md:mt-48 md:mb-0">
               <div className="overflow-hidden w-full h-full relative">
                 {images.map((src, index) => (
                   <Image
@@ -36,19 +38,17 @@ export default function Hero() {
                     alt={`Diwali Pouch ${index + 1}`}
                     layout="fill"
                     objectFit="contain"
-                    className={`absolute transition-opacity duration-500 ${
-                      index === currentSlide ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute transition-opacity duration-500 ${index === currentSlide ? "opacity-100" : "opacity-0"
+                      }`}
                   />
                 ))}
               </div>
-              <div className="flex justify-center md:mt-4">
+              <div className="flex justify-center md:mt-4 ">
                 {images.map((_, i) => (
                   <div
                     key={i}
-                    className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
-                      i === currentSlide ? "bg-gray-800" : "bg-gray-400"
-                    }`}
+                    className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${i === currentSlide ? "bg-[#d88473]" : "bg-gray-400"
+                      }`}
                     onClick={() => setCurrentSlide(i)}
                   ></div>
                 ))}
@@ -56,12 +56,12 @@ export default function Hero() {
             </div>
 
             {/* Text Section */}
-            <div className="md:w-1/2 text-center md:text-left px-4">
+            <div className="md:w-[70%] md:text-left px-4 md:mt-36">
               <div className="flex justify-center md:justify-start">
-                <h1 className="text-4xl md:text-6xl text-[#0f1729] font-extrabold md:mb-4 mb-2">
+                <h1 className="md:text-pt-75 text-pt-20 text-[#0f1729] font-gotham-rounded-bold mb-2">
                   NEXI
                 </h1>
-                <h1 className="text-4xl md:text-6xl text-[#db5c3c] font-extrabold">
+                <h1 className="md:text-pt-75 text-pt-20 text-[#db5c3c] font-gotham-rounded-bold">
                   GIFTING
                 </h1>
                 <Image
@@ -73,10 +73,10 @@ export default function Hero() {
                 />
               </div>
 
-              <h2 className="text-xl md:text-2xl font-bold">
+              <h2 className="md:text-pt-30 text-pt-10 font-gotham-medium">
                 {`India’s First Personalised Stand-Up Pouches`}
               </h2>
-              <p className="text-mx md:text-lg mb-6 text-gray-500">
+              <p className="md:text-pt-22 text-pt-5 font-gotham-light mb-6 text-gray-500">
                 {"Personalise, Pack, Present - The Future of Gifting"}
               </p>
               <Link
@@ -93,70 +93,3 @@ export default function Hero() {
     </div>
   );
 }
-
-//old
-
-// 'use client';
-// import Image from 'next/image';
-// import { useState, useEffect } from 'react';
-// import Link from "next/link";
-// export default function Hero() {
-//   const [currentSlide, setCurrentSlide] = useState(0);
-//   const images = ['/Home/pouch-1.png', '/Home/pouch-2.png', '/Home/pouch-3.png', '/Home/pouch-4.png'];
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentSlide((prev) => (prev + 1) % images.length);
-//     }, 3000);
-//     return () => clearInterval(interval);
-//   }, [images.length]);
-//   return (
-//     <div className="h-screen
-
-//     bg-[#197d8e]  bg-cover bg-center"  style={{ backgroundImage: "url('/Homepage/Backgrounds/Banner_Background.png')" }}>
-//       <div className=" pt-4 " >
-//         <div className="flex  items-center">
-//           <div className="md:w-1/2 mt-8 md:mt-0 relative">
-//             <div className="overflow-hidden w-full h-[90vh] relative">
-//               {images.map((src, index) => (
-//                 <Image
-//                   key={index}
-//                   src={src}
-//                   alt={`Diwali Pouch ${index + 1}`}
-//                   layout="fill"
-//                   objectFit="contain"
-//                   className={`absolute transition-opacity duration-500 ${
-//                     index === currentSlide ? 'opacity-100' : 'opacity-0'
-//                   }`}
-//                 />
-//               ))}
-//             </div>
-//             <div className="flex justify-center ">
-//               {images.map((_, i) => (
-//                 <div
-//                   key={i}
-//                   className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
-//                     i === currentSlide ? 'bg-white' : 'bg-gray-400'
-//                   }`}
-//                   onClick={() => setCurrentSlide(i)}
-//                 ></div>
-//               ))}
-//             </div>
-//           </div>
-//           <div className="" >
-//             <div className='flex'>
-//             <h1 className="text-8xl text-[#0f1729] font-extrabold mb-4">NEXI</h1>
-//             <h1 className="text-8xl text-[#db5c3c] font-extrabold ">GIFTING</h1>
-//             </div>
-//             <h2 className="text-2xl font-bold ">Indias First Customized Stand-Up Pouch Gifting Platform</h2>
-//             <p className="text-xl mb-6">Start with just 50 pouches & scale up to 500 for all your gifting needs!</p>
-//             <Link href={`/shop`} passHref  className="bg-[#124e66] text-white font-bold py-2 px-8 rounded-full text-2xl transition duration-300" >
-//               Shop Now
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-
-//     </div>
-//   );
-// }

@@ -15,7 +15,6 @@ export async function GET(request) {
   }
 
   try {
-    // Replace this with your payment provider's API endpoint for checking status
     const statusUrl = `https://nexiblesapp.barecms.com/api/status/${transactionId}/${MERCHANT_ID}`;
     const response = await axios.get(statusUrl);
 

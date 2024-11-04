@@ -13,7 +13,7 @@ const Cart = () => {
   const { user, logout } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
-  const [shippingCost, setShippingCost] = useState(50);
+  const [shippingCost, setShippingCost] = useState(0);
   const [isProcessingOrder, setIsProcessingOrder] = useState(false);
   const isLoggedIn = () => {
     if (typeof window !== "undefined") {
@@ -49,7 +49,7 @@ const Cart = () => {
   }, [cartItems]);
 
   const calculateTotal = () => {
-    return calculateSubtotal() + parseFloat(shippingCost || 50);
+    return calculateSubtotal() + parseFloat(shippingCost);
   };
 
   const handleRemoveItem = (indexToRemove) => {
@@ -140,7 +140,7 @@ const Cart = () => {
 
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
-                      <div className="w-full sm:w-32 h-32 flex items-center justify-center rounded-xl">
+                      <div className="w-full sm:w-32 h-48 flex items-center justify-center rounded-xl">
                         {item.uploaded_picture &&
                           item.uploaded_picture !== "Not uploaded" ? (
                           <img
@@ -172,7 +172,7 @@ const Cart = () => {
               <div className="grid grid-cols-1 gap-4">
                 <div>
                   <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#464087]">
-                    Shipping Cost : {shippingCost || "Shipping"}
+                    Shipping Cost : {shippingCost || "Free"}
                   </h3>
                 </div>
               </div>

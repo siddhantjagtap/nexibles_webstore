@@ -1,5 +1,3 @@
-// //old
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/utils/authContext";
@@ -7,14 +5,19 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
-export default function Checkout({ defaultAddress }) {
+export default function Checkout({ defaultAddress, addresses }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [orderNo, setOrderNo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [isProcessingOrder, setIsProcessingOrder] = useState(false);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+  const [appliedPromoCode, setAppliedPromoCode] = useState(null);
   const { user } = useAuth();
   const router = useRouter();
-  const [loading2, setLoading2] = useState(false);
+  
   const [formData, setFormData] = useState({
     customerId: "",
     location: "",
@@ -39,32 +42,56 @@ export default function Checkout({ defaultAddress }) {
   });
 
   useEffect(() => {
-    const loadCartData = () => {
-      if (typeof window !== "undefined") {
-        try {
-          const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
-          const storedOrderNo = localStorage.getItem("orderNo");
-          const storedSubtotal = localStorage.getItem("subtotal");
+    const initializeClientData = () => {
+      try {
+        const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const storedOrderNo = localStorage.getItem("orderNo");
+        const storedPromoCode = JSON.parse(localStorage.getItem("appliedCoupon")) || null;
+        setAppliedPromoCode(storedPromoCode);
 
-          let total = parseFloat(storedSubtotal) || 0;
-          if (isNaN(total)) {
-            total = storedItems.reduce(
-              (sum, item) => sum + (parseFloat(item.price) || 0),
-              0
-            );
-          }
+        let newSubTotal = storedItems.reduce(
+          (sum, item) => sum + (parseFloat(item.price) || 0),
+          0
+        );
+        setSubTotal(newSubTotal.toFixed(2));
 
-          setCartItems(storedItems);
-          setTotalPrice(total.toFixed(2));
-          setOrderNo(storedOrderNo);
-        } catch (error) {
-          console.error("Error loading cart data:", error);
+        // Calculate discount if promo code is applied
+        let newDiscountAmount = 0;
+        if (storedPromoCode) {
+          storedItems.forEach((item) => {
+            const discount = (item.price * item.quantity * storedPromoCode.discount) / 100;
+            newDiscountAmount += Math.min(discount, storedPromoCode.max_discount);
+          });
+          setDiscountAmount(newDiscountAmount.toFixed(2));
         }
+
+        // Calculate final total
+        const newTotalPrice = (newSubTotal - newDiscountAmount).toFixed(2);
+        setTotalPrice(newTotalPrice);
+        setCartItems(storedItems);
+        setOrderNo(storedOrderNo);
+      } catch (error) {
+        console.error("Error loading cart data:", error);
+        setCartItems([]);
+        setSubTotal(0);
+        setDiscountAmount(0);
+        setTotalPrice(0);
       }
     };
 
-    loadCartData();
-  }, []);
+    if (typeof window !== "undefined") {
+      initializeClientData();
+    }
+
+    // Set default address if available
+    if (addresses && addresses.length > 0) {
+      const defaultAddr = addresses.find(addr => addr.isDefault === "1") || addresses[0];
+      setFormData(prevData => ({
+        ...prevData,
+        ...defaultAddr
+      }));
+    }
+  }, [addresses]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -107,59 +134,139 @@ export default function Checkout({ defaultAddress }) {
     }
   };
 
+  const getOrderDetailsFromLocalStorage = () => {
+    return cartItems.map((product) => ({
+      id: product.id,
+      name: product.name,
+      image: product.picture,
+      price: product.price,
+      quantity: product.quantity,
+      category: product.category,
+      size: product.productSize,
+      custom_message: product.custom_message,
+      customer_name: product.customer_name,
+      uploaded_receivers: product.uploaded_receivers,
+      uploaded_picture: product.uploaded_picture,
+      origin: "Nexigifting"
+    }));
+  };
+
+  const createOrder = async () => {
+    if (isProcessingOrder) {
+      console.log("Order is already being processed");
+      return false;
+    }
+    setIsProcessingOrder(true);
+
+    try {
+      if (!user) {
+        console.log("User not logged in, redirecting to login page");
+        router.push("/login");
+        return false;
+      }
+
+      const orderNo = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      const orderDate = new Date().toISOString();
+      const addressDetails = defaultAddress?.data || {};
+
+      const requestBody = {
+        orderNo,
+        orderDate,
+        pmtMethod: "PHONEPE",
+        customerID: user?.result?.customerId || user?.customerId,
+        salutation: "",
+        firstName: user?.result?.firstName || user?.firstName,
+        lastName: user?.result?.lastName || user?.lastName,
+        mobile: addressDetails.phone || user?.result?.mobile,
+        eMail: user?.result?.emailAddress || user?.email,
+        street: addressDetails.floor || "",
+        address: (addressDetails.address || "") + "," + (addressDetails.address2 || ""),
+        city: addressDetails.city || "",
+        state: addressDetails.state || "",
+        company: addressDetails.title || "",
+        zipcode: addressDetails.zip || "",
+        country: addressDetails.country || "",
+        remark: "",
+        coupon: appliedPromoCode?.coupon_code || "",
+        currency: "",
+        invamt: totalPrice,
+        tax: "0",
+        ordstatus: "",
+        discount: discountAmount,
+        disamt: discountAmount,
+        promoDiscount: appliedPromoCode ? appliedPromoCode.discount : "0",
+        minDeliveryAmt: totalPrice,
+        orderCharge: "0",
+        ipAddress: "",
+        confirm_status: "0",
+        orderDetails: getOrderDetailsFromLocalStorage(),
+      };
+
+      const response = await fetch("https://nexiblesapp.barecms.com/api/createorder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "API-Key": "irrv211vui9kuwn11efsb4xd4zdkuq"
+        },
+        body: JSON.stringify(requestBody),
+      });
+      const responseData = await response.json();
+
+      if (responseData.success === true) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("orderNo", responseData.orderNo);
+        }
+        return true;
+      } else {
+        throw new Error(responseData.message || "Failed to create order");
+      }
+    } catch (error) {
+      console.error("Error in createOrder:", error);
+      return false;
+    } finally {
+      setIsProcessingOrder(false);
+    }
+  };
+  const intamount = 100; // parseInt(totalPrice) * 100;
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
-    const intamount = 100 ; //Math.round(totalPrice * 100);
-    var baseUrl = "https://main--nexionline.netlify.app";
-    if (typeof window !== 'undefined') {
-      baseUrl = window.location.origin;
-   }
-   const transactionId = "G" + Date.now();
-    const data = {
-      orderNo: orderNo,
-      name: user?.result?.firstName ?? user?.firstName,
-      number: user?.result?.mobile ?? user?.mobile,
-      MUID: user?.result?.customerId ?? user?.customerId,
-      amount: intamount,
-      transactionId: transactionId,
-      redirectUrl:`${baseUrl}/api/check-status?transactionId=${transactionId}&url=${baseUrl}`
-    };
 
     try {
+      const orderCreated = await createOrder();
+      if (!orderCreated) {
+        setLoading2(false);
+        return;
+      }
+
+      var baseUrl = "https://main--nexionline.netlify.app";
+      if (typeof window !== 'undefined') {
+        baseUrl = window.location.origin;
+      }
+
+      const transactionId = "G" + Date.now();
+      const orderNo = typeof window !== 'undefined' ? localStorage.getItem("orderNo") : null;
+      const data = {
+        orderNo: orderNo,
+        name: user?.result?.firstName ?? user?.firstName,
+        number: user?.result?.mobile ?? user?.mobile,
+        MUID: user?.result?.customerId ?? user?.customerId,
+        amount:intamount,
+        transactionId: transactionId,
+        redirectUrl: `${baseUrl}/api/check-status?transactionId=${transactionId}&url=${baseUrl}`
+      };
+
       const paymentResponse = await axios.post(
         "https://nexiblesapp.barecms.com/api/payment",
         data
       );
 
-      const { url: paymentUrl, transactionId, merchantId } = paymentResponse.data;
-
-      window.location.href = paymentUrl;
-
-      // window.addEventListener("message", async function (event) {
-      //   if (
-      //     event.origin === "https://nexiblesapp.barecms.com" &&
-      //     event.data.paymentComplete
-      //   ) {
-      //     try {
-      //       const statusResponse = await axios.post(
-      //         `https://nexiblesapp.barecms.com/api/status/${transactionId}/${merchantId}`
-      //       );
-      //       const { redirectUrl } = statusResponse.data;
-      //       if (redirectUrl) {
-      //         window.location.href = redirectUrl;
-      //       } else {
-      //         console.error("No redirect URL provided in the status response");
-      //       }
-      //     } catch (statusError) {
-      //       console.error("Error checking payment status:", statusError);
-      //     }
-      //   }
-      // });
+      if (typeof window !== 'undefined') {
+        window.location.href = paymentResponse.data.url;
+      }
     } catch (error) {
       setLoading2(false);
       console.error('Error initiating payment:', error);
-      // Handle this error case appropriately
     }
   };
 
@@ -407,10 +514,10 @@ export default function Checkout({ defaultAddress }) {
                       </h3>
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
-                      <div className="w-full sm:w-32 h-32 flex items-center justify-center rounded-xl">
-                        {item.uploaded_picture ? (
+                      <div className="w-full sm:w-32 h-48 flex items-center justify-center rounded-xl">
+                        {item.image ? (
                           <img
-                            src={`https://nexiblesapp.barecms.com/uploads/${item.uploaded_picture}`}
+                            src={`https://nexiblesapp.barecms.com/uploads/${item.image}`}
                             alt="Product"
                             className="object-cover w-full h-full"
                           />
@@ -437,12 +544,12 @@ export default function Checkout({ defaultAddress }) {
                   Apply
                 </button>
               </div>
-              <Link
+              {/* <Link
                 href="/category"
                 className="bg-[#197d8e] rounded-lg text-md font-semibold text-white w-full sm:w-auto text-center"
               >
                 Add more products
-              </Link>
+              </Link> */}
             </div>
 
             <div className="space-y-4">
