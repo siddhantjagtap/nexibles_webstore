@@ -90,8 +90,8 @@ const FAQ = () => {
             Do you have a question?{" "}
           </p>
           <p className="text-black text-base sm:text-xl mb-6 px-2 sm:px-12">
-            We have solutions most of the time! If you can't find the answers
-            you're looking for, please reach out to us at sales@artnext.in and
+            We have solutions most of the time! If you cant find the answers
+            youre looking for, please reach out to us at sales@artnext.in and
             we will find a solution together.
           </p>
 

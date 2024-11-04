@@ -19,7 +19,7 @@ const Content = () => (
           Make It Yours
         </h2>
         <div className="flex items-center gap-2 text-base md:text-lg text-[#e85d3d] text-gray-700">
-          <span className="text-[#e85d3d]">Your Design Idea</span>
+          <span className="text-[#e85d3d]">Your Design Idea </span>
           <span className="text-[#e85d3d]">+</span>
           <span className="text-[#e85d3d]">Our Team</span>
         </div>

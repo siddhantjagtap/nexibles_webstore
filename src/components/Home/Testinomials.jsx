@@ -27,9 +27,9 @@ const Testimonials = () => {
         <div className="h-full flex flex-col">
           <div className="bg-[#197d8e] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
             <p className="text-sm sm:text-base mb-3 sm:mb-4 flex-1 font-bold text-justify hyphens-auto break-words">
-              "These pouches were perfect for our Diwali gift hampers. The
+              These pouches were perfect for our Diwali gift hampers. The
               option to personalize each one made our gifts stand out and
-              brought smiles all around."
+              brought smiles all around.
             </p>
             <div className="mt-auto">
               <p className="text-center text-sm sm:text-base font-extralight">
@@ -56,9 +56,9 @@ const Testimonials = () => {
         <div className="h-full flex flex-col">
           <div className="bg-[#db5c3c] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
             <p className="text-sm sm:text-base mb-3 sm:mb-4 flex-1 font-bold text-justify hyphens-auto break-words">
-              "I used these pouches for wedding favors and they were a hit! It
+              I used these pouches for wedding favors and they were a hit! It
               looked great with our pictures on the pouch, the guests got to
-              take home a cherished personalized gift."
+              take home a cherished personalized gift.
             </p>
             <div className="mt-auto">
               <p className="text-center text-sm sm:text-base font-extralight">
@@ -85,9 +85,9 @@ const Testimonials = () => {
         <div className="h-full flex flex-col">
           <div className="bg-[#197d8e] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
             <p className="text-sm sm:text-base mb-3 sm:mb-4 flex-1 font-bold text-justify hyphens-auto break-words">
-              "I gave my family these pouches filled with gourmet coffee &
+              I gave my family these pouches filled with gourmet coffee &
               chocolates. The quality & easy customization was top-notch. It
-              made the gifts more memorable!"
+              made the gifts more memorable!
             </p>
             <div className="mt-auto">
               <p className="text-center text-sm sm:text-base font-extralight">
@@ -114,9 +114,9 @@ const Testimonials = () => {
         <div className="h-full flex flex-col">
           <div className="bg-[#db5c3c] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
             <p className="text-sm sm:text-base mb-3 sm:mb-4 flex-1 font-bold text-justify hyphens-auto break-words">
-              "The Nexipouches were fantastic for our baby shower return gifts.
+              The Nexipouches were fantastic for our baby shower return gifts.
               They were stylish, durable & we got to give some cute gifts to our
-              guests."
+              guests.
             </p>
             <div className="mt-auto">
               <p className="text-center text-sm sm:text-base font-extralight">

@@ -140,10 +140,10 @@ export default function QuantityReview() {
           </div>
 
           <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-4">
-            Yay you're done!
+            Yay youre done!
           </h2>
           <p className="text-gray-600 mb-4">
-            Let's review everything once so your pouches are perfect!
+            Lets review everything once so your pouches are perfect!
           </p>
 
           <div className="mb-6">

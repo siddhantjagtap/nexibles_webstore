@@ -71,7 +71,6 @@ const Navbar = () => {
             <div className="relative px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg">
               <Image
                 src="/home/Nexi GIFTING LOGO GIF.gif"
-                // scr=""
                 alt="Nexibles"
                 width={150}
                 height={30}
@@ -83,13 +82,13 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4 sm:space-x-6">
             <div className="hidden md:flex space-x-8 text-[#197d8e] text-xl mt-2 justify-end">
-              <Link href="/category">Occasions</Link>
-              <Link href="/customisation">Customise</Link>
+              <Link href="/occasions">Occasions</Link>
+              <Link href="/customise">Customise</Link>
               <Link href="/about">About Us</Link>
               <Link href="/contact-us">Contact Us</Link>
             </div>
             <Link
-              href="/category"
+              href="/occasions"
               className={`hidden sm:flex items-center ${iconColor}`}
             >
               <Image

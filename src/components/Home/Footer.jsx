@@ -19,7 +19,6 @@ const Footer = () => {
       >
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-between items-start">
-            {/* Navigation Links */}
             <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl">
               <Link href="/" className="hover:underline">
                 Home
@@ -27,14 +26,13 @@ const Footer = () => {
               <Link href="/about" className="hover:underline">
                 About Us
               </Link>
-              <Link href="/celebrations" className="hover:underline">
-                Celebrations
+              <Link href="/occasions" className="hover:underline">
+              Occasions 
               </Link>
-              <Link href="/customisation" className="hover:underline">
-                Customisation
+              <Link href="/customise" className="hover:underline">
+                Customise
               </Link>
             </nav>
-            {/* Newsletter Signup (now on the right) */}
             <div className="mt-16 md:my-46px">
               <h3 className="text-xl font-semibold mb-2 text-center">
                 Sign up for our Newsletter!
@@ -63,7 +61,7 @@ const Footer = () => {
             {/* Right Side Links (now in the middle) */}
             <nav className="flex flex-col space-y-4 md:space-y-6 mt-10 text-xl text-start">
               <Link href="/all-blog" className="hover:underline">
-                Blog
+                Blogs
               </Link>
               <Link href="/contact-us" className="hover:underline">
                 Contact Us
@@ -72,7 +70,7 @@ const Footer = () => {
                 Tracking Link
               </Link>
               <Link href="/faq" className="hover:underline">
-                FAQs
+              FAQ’s 
               </Link>
             </nav>
           </div>

@@ -22,25 +22,27 @@ const VersatileGifting = () => {
               priority
             />
             {/* Content positioned over the background */}
-            <div className="absolute top-12 left-12 z-10">
-              <h2 className="text-4xl md:text-7xl font-Mochiy text-white">
-                Versatile
+            <div className="absolute top-12 left-12 z-10 ">
+              <h2 className="text-4xl md:text-5xl font-Mochiy text-white mt-14">
+                Versatile & Sustainable
               </h2>
-              <h2 className="text-4xl md:text-7xl font-Mochiy text-white mb-4 md:mt-8">
-                Gifting
+              <h2 className="text-4xl md:text-5xl font-Mochiy text-white mb-4 md:mt-8">
+               Gifting Solutions
               </h2>
-              <p className="text-lg md:text-2xl max-w-md text-white md:mt-8">
-                <span className="block">Perfect Custom Pouches</span>
-                <span className="block">for gifting Chocolates,</span>
-                <span className="block">Coffee Beans, Dry Fruits & more</span>
+              {/* <h2 className="text-4xl md:text-5xl font-Mochiy text-white mb-4 md:mt-8">
+              
+              </h2> */}
+              <p className="text-lg md:text-3xl max-w-md text-white md:mt-8">
+                <span className="block">From Treats to Treasures, </span>
+                <span className="block">Sealed with Care</span>
+                {/* <span className="block">Coffee Beans, Dry Fruits & more</span> */}
               </p>
             </div>
           </div>
         </div>
 
         {/* Right Section (1/4) */}
-        <div className="w-1/4 relative">
-          {/* Dry Fruits Circles */}
+        {/* <div className="w-1/4 relative">
           <div className="absolute -left-8 flex space-x-4 z-20">
             <div className="w-14 h-14 bg-[#BAE6FD] rounded-full flex items-center justify-center p-2">
               <Image
@@ -70,8 +72,6 @@ const VersatileGifting = () => {
               />
             </div>
           </div>
-
-          {/* Large Pouch */}
           <div className="mt-8">
             <Image
               src={pouch2}
@@ -82,7 +82,7 @@ const VersatileGifting = () => {
               style={{ objectFit: "contain" }}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
