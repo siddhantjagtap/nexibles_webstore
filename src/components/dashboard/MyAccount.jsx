@@ -44,7 +44,7 @@ export default function MyAccount() {
               <Link href="my-dashboard" className="text-gray-500 text-sm py-1">
                 Profile Details
               </Link>
-              <Link href="my-dashboard" className="text-gray-500 text-sm py-1">
+              <Link href="all-addresses" className="text-gray-500 text-sm py-1">
                 Address Book
               </Link>
             </div>
