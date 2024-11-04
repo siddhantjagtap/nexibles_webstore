@@ -34,7 +34,8 @@ const BlogCard = ({ title, imageSrc, index }) => {
         </div>
         <div className="flex flex-col flex-grow justify-between">
           <div className="text-center mt-2 px-1">
-            <h3 className="text-white md:text-2xl text-lg mb-2 mt-4">
+            {/* <h3 className="text-white md:text-2xl text-lg mb-2 mt-4"> */}
+            <h3 className="text-white text-sm md:text-lg mb-2 md:mb-4 md:mt-6">
               {title}
             </h3>
           </div>

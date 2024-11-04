@@ -135,7 +135,7 @@ const BlogDetail = () => {
           className="md:w-full md:h-full h-full object-cover md:mt-4"
         />
       </div>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl md:mt-0 mt-8 px-4 sm:px-8 md:px-16 lg:px-32 italic text-center text-[#197d8e]">
+      <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl md:mt-8 mt-8 px-4 sm:px-8 md:px-16 lg:px-32 italic text-center text-[#197d8e]">
         {currentBlog.title}
       </h1>
       {/* <p className="text-sm sm:text-base md:text-lg italic m-4 px-4 sm:px-8 md:px-16 lg:px-32 text-center">
