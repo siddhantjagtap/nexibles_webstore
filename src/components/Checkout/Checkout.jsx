@@ -360,9 +360,9 @@ export default function Checkout({ defaultAddress, addresses }) {
                   defaultAddress.data.isDefault ? (
                   <>
                     <div className="space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold">
+                      <div className="border border-[#464087] rounded-xl shadow-lg">
+                        <div className="flex justify-between items-center border-b border-[#464087] ">
+                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold p-2">
                             {user?.result?.firstName ?? user?.firstName}{" "}
                             {user?.result?.lastName ?? user?.lastName}
                           </p>
@@ -394,7 +394,7 @@ export default function Checkout({ defaultAddress, addresses }) {
                                 }
 
                                 return (
-                                  <p className="text-[#464087]" key={key}>
+                                  <p className="text-[#464087] px-2" key={key}>
                                     <span className="font-bold">
                                       {displayedKey.charAt(0).toUpperCase() +
                                         displayedKey.slice(1)}
@@ -590,12 +590,19 @@ export default function Checkout({ defaultAddress, addresses }) {
                       </div>
                     </div>
                   </div>
-                  <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
+                  {/* <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
                     Product Total {`₹ ${item.price}`}
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
+                  Subtotal: ₹ {subTotal}
+                </h3>
+              </div>
+              </div>
             <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
               <div className="flex items-center space-x-2 w-full sm:w-auto">
                 <input
@@ -618,12 +625,6 @@ export default function Checkout({ defaultAddress, addresses }) {
               <p className="text-red-500 text-sm">{couponError}</p>
             )}
             <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
-                  Subtotal: ₹ {subTotal}
-                </h3>
-              </div>
-
               {appliedCoupon && (
                 <div className="flex justify-between items-center">
                   <h3 className="w-full p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
@@ -634,7 +635,7 @@ export default function Checkout({ defaultAddress, addresses }) {
 
               <div className="flex justify-between items-center">
                 <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
-                  Final Total: ₹ {totalPrice}
+                  Total: ₹ {totalPrice}
                 </h3>
               </div>
             </div>
