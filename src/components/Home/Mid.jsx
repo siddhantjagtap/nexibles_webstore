@@ -141,12 +141,12 @@ const handlePersonalizationNext = useCallback(() => {
           />
         </div>
       </div>
-      <p className="text-white md:text-[#db5c3c] mt-4 text-center px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap">
+      <p className="md:text-[#db5c3c] font-gotham-medium md:text-pt-20 mt-4 text-center px-4 py-1 whitespace-nowrap">
         {product.name}
       </p>
       <button
         onClick={() => handleCustomizeClick(product)}
-        className="bg-[#197d8e] mt-4 mx-auto block text-white px-4 py-1 rounded-full font-bold text-lg md:text-xl whitespace-nowrap mb-4"
+        className="bg-[#197d8e] md:text-pt-20 font-gotham-rounded-bold mt-4 mx-auto block text-white px-4 py-1 rounded-full whitespace-nowrap mb-4"
       >
         Customise
       </button>
@@ -171,7 +171,7 @@ const handlePersonalizationNext = useCallback(() => {
 
       <div className="container mx-auto px-8 md:px-12 lg:px-16">
         <div>
-          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-center text-black md:text-white mt-8 relative z-10">
+          <h2 className="font-gotham-bold text-pt-30 text-center text-black md:text-white mt-8 relative z-10">
             <Image
               src={Butterflies2}
               alt="butterflies"
@@ -253,7 +253,7 @@ const handlePersonalizationNext = useCallback(() => {
                             />
                           </div>
                         </div>
-                        <p className="text-[#f9e2b2] md:text-xl lg:text-2xl font-bold mt-2 transition-all duration-300 group-hover:-translate-y-4">
+                        <p className="text-[#f9e2b2] md:text-pt-20 font-gotham-bold mt-2 transition-all duration-300 group-hover:-translate-y-4">
                           {category.name}
                         </p>
                       </div>
@@ -279,7 +279,7 @@ const handlePersonalizationNext = useCallback(() => {
           </div>
         </div>
 
-        <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-center text-black md:text-white relative z-10 mb-8">
+        <h3 className="font-gotham-bold md:text-pt-23  text-center text-black md:text-white relative z-10 mb-8">
           <Image
             src={FlowerIllustration}
             alt="flower illustration"

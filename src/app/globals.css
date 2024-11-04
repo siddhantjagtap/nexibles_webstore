@@ -3,3 +3,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    @font-face {
+      font-family: 'Gotham_Black';
+      src: url('/Font/Gotham_Black.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Bold';
+      src: url('/Font/Gotham_Bold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Gotham_Book';
+      src: url('/Font/Gotham_Book.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Light';
+      src: url('/Font/Gotham_Light.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Medium';
+      src: url('/Font/Gotham_Medium.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Regular';
+      src: url('/Font/Gotham_Regular.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Rounded_Bold';
+      src: local('Gotham_Rounded_Bold'),
+      url('/Font/Gotham_Rounded_Bold.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Gotham_Medium_Italic';
+      src: url('/Font/Gotham_Medium_Italic.otf') format('opentype');
+    }
+  }
