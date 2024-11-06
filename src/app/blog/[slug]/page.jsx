@@ -342,7 +342,7 @@ const BlogDetail = () => {
 
         <div className="mt-4 px-4 sm:px-8 md:px-16 lg:px-32 space-y-4">
           {currentBlog.sections?.map((section) => (
-            <div className="space-y-2 font-gotham-medium">
+            <div key={section.heading} className="space-y-2 font-gotham-medium">
               <h2 className="text-[#db5c3c] text-xl font-semibold">
                 {section.heading}
               </h2>
