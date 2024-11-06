@@ -40,7 +40,7 @@ const BrandValues = () => {
         </div>
       </div>
 
-      <div className="relative pb-12 overflow-hidden mt-12 z-0 min-h-[300px] lg:min-h-[380px]">
+      <div className="relative pb-12 overflow-hidden mt-12 z-0 min-h-[300px] lg:min-h-[480px]">
         <Image
           src="/Homepage/Brand_icons/Brand Values Bakground.svg"
           alt="Background"
@@ -48,7 +48,7 @@ const BrandValues = () => {
           className="object-cover -z-10"
           priority
         />
-        <div className="flex items-center justify-center mb-12">
+        <div className="flex items-center justify-center mb-8">
           <div>
           <h2 className="text-white font-gotham-bold md:text-pt-36 mt-12">
             Brand Values
@@ -68,7 +68,7 @@ const BrandValues = () => {
                 height={85}
                 className="mb-4"
               />
-              <p className="font-gotham-bold md:text-pt-20">{value.title}</p>
+              <p className="font-gotham-bold md:text-pt-18">{value.title}</p>
             </div>
           ))}
         </div>

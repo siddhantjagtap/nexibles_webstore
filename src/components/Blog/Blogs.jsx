@@ -138,7 +138,7 @@ const Blogs = () => {
 
   return (
     <section className="overflow-visible relative">
-      <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl overflow-visible">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 max-w- overflow-visible">
         <div className="flex items-center justify-center space-x-2 md:space-x-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#db5c3c] mx-2 sm:mx- my-2 md:mb-[14px] sm:my-6 ">
             Blogs
@@ -228,6 +228,10 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
+
+
+
 
 
 //before update

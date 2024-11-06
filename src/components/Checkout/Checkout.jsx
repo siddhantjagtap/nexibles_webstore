@@ -14,10 +14,12 @@ export default function Checkout({ defaultAddress, addresses }) {
   const [isProcessingOrder, setIsProcessingOrder] = useState(false);
   const [discountAmount, setDiscountAmount] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
-  const [appliedPromoCode, setAppliedPromoCode] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
   const { user } = useAuth();
   const router = useRouter();
-  
+
   const [formData, setFormData] = useState({
     customerId: "",
     location: "",
@@ -46,8 +48,8 @@ export default function Checkout({ defaultAddress, addresses }) {
       try {
         const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
         const storedOrderNo = localStorage.getItem("orderNo");
-        const storedPromoCode = JSON.parse(localStorage.getItem("appliedCoupon")) || null;
-        setAppliedPromoCode(storedPromoCode);
+        const storedCoupon = JSON.parse(localStorage.getItem("appliedCoupon")) || null;
+        setAppliedCoupon(storedCoupon);
 
         let newSubTotal = storedItems.reduce(
           (sum, item) => sum + (parseFloat(item.price) || 0),
@@ -55,12 +57,12 @@ export default function Checkout({ defaultAddress, addresses }) {
         );
         setSubTotal(newSubTotal.toFixed(2));
 
-        // Calculate discount if promo code is applied
+        // Calculate discount if coupon is applied
         let newDiscountAmount = 0;
-        if (storedPromoCode) {
+        if (storedCoupon) {
           storedItems.forEach((item) => {
-            const discount = (item.price * item.quantity * storedPromoCode.discount) / 100;
-            newDiscountAmount += Math.min(discount, storedPromoCode.max_discount);
+            const itemDiscount = (item.price * storedCoupon.discount) / 100;
+            newDiscountAmount += Math.min(itemDiscount, storedCoupon.max_discount);
           });
           setDiscountAmount(newDiscountAmount.toFixed(2));
         }
@@ -91,7 +93,67 @@ export default function Checkout({ defaultAddress, addresses }) {
         ...defaultAddr
       }));
     }
+
+    return () => {
+      // Cleanup function
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("appliedCoupon");
+      }
+    };
   }, [addresses]);
+
+  const applyCoupon = async () => {
+    if (!couponCode) {
+      setCouponError("Please enter a coupon code");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://nexiblesapp.barecms.com/api/coupon/promo_code/${couponCode}`,
+        {
+          headers: { "API-Key": "irrv211vui9kuwn11efsb4xd4zdkuq" },
+        }
+      );
+      const result = await response.json();
+
+      if (result.status === "success" && result.data.length > 0) {
+        const couponData = result.data[0];
+        const currentDate = new Date();
+        const validityDate = new Date(couponData.validity_date);
+
+        if (validityDate < currentDate) {
+          setCouponError("Coupon has expired");
+          return;
+        }
+
+        if (parseFloat(subTotal) < couponData.min_amount) {
+          setCouponError(`Minimum order amount should be ₹${couponData.min_amount}`);
+          return;
+        }
+
+        let newDiscountAmount = 0;
+        cartItems.forEach((item) => {
+          const itemDiscount = (item.price * couponData.discount) / 100;
+          newDiscountAmount += Math.min(itemDiscount, couponData.max_discount);
+        });
+
+        setDiscountAmount(newDiscountAmount.toFixed(2));
+        setAppliedCoupon(couponData);
+        setCouponError("");
+
+        const newTotal = (parseFloat(subTotal) - newDiscountAmount).toFixed(2);
+        setTotalPrice(newTotal);
+
+        localStorage.setItem("appliedCoupon", JSON.stringify(couponData));
+      } else {
+        setCouponError("Invalid coupon code");
+      }
+    } catch (error) {
+      console.error("Error applying coupon:", error);
+      setCouponError("Error applying coupon");
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -187,14 +249,14 @@ export default function Checkout({ defaultAddress, addresses }) {
         zipcode: addressDetails.zip || "",
         country: addressDetails.country || "",
         remark: "",
-        coupon: appliedPromoCode?.coupon_code || "",
+        coupon: appliedCoupon?.coupon_code || "",
         currency: "",
         invamt: totalPrice,
         tax: "0",
         ordstatus: "",
         discount: discountAmount,
         disamt: discountAmount,
-        promoDiscount: appliedPromoCode ? appliedPromoCode.discount : "0",
+        promoDiscount: appliedCoupon ? appliedCoupon.discount : "0",
         minDeliveryAmt: totalPrice,
         orderCharge: "0",
         ipAddress: "",
@@ -227,7 +289,8 @@ export default function Checkout({ defaultAddress, addresses }) {
       setIsProcessingOrder(false);
     }
   };
-  const intamount = 100; // parseInt(totalPrice) * 100;
+
+  const intamount = 100; //parseInt(totalPrice) * 100;
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);
@@ -251,7 +314,7 @@ export default function Checkout({ defaultAddress, addresses }) {
         name: user?.result?.firstName ?? user?.firstName,
         number: user?.result?.mobile ?? user?.mobile,
         MUID: user?.result?.customerId ?? user?.customerId,
-        amount:intamount,
+        amount: intamount,
         transactionId: transactionId,
         redirectUrl: `${baseUrl}/api/check-status?transactionId=${transactionId}&url=${baseUrl}`
       };
@@ -293,13 +356,13 @@ export default function Checkout({ defaultAddress, addresses }) {
               </div>
               <div className="grid grid-cols-1 gap-4">
                 {defaultAddress &&
-                defaultAddress.data &&
-                defaultAddress.data.isDefault ? (
+                  defaultAddress.data &&
+                  defaultAddress.data.isDefault ? (
                   <>
                     <div className="space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold">
+                      <div className="border border-[#464087] rounded-xl shadow-lg">
+                        <div className="flex justify-between items-center border-b border-[#464087] ">
+                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold p-2">
                             {user?.result?.firstName ?? user?.firstName}{" "}
                             {user?.result?.lastName ?? user?.lastName}
                           </p>
@@ -331,7 +394,7 @@ export default function Checkout({ defaultAddress, addresses }) {
                                 }
 
                                 return (
-                                  <p className="text-[#464087]" key={key}>
+                                  <p className="text-[#464087] px-2" key={key}>
                                     <span className="font-bold">
                                       {displayedKey.charAt(0).toUpperCase() +
                                         displayedKey.slice(1)}
@@ -527,35 +590,52 @@ export default function Checkout({ defaultAddress, addresses }) {
                       </div>
                     </div>
                   </div>
-                  <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
+                  {/* <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">
                     Product Total {`₹ ${item.price}`}
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-              <div className="flex items-center space-x-2 w-full sm:w-auto">
-                <input
-                  type="text"
-                  placeholder="Discount Code"
-                  className="border border-[#464087] text-sm p-1 rounded-xl w-full sm:w-auto"
-                />
-                <button className="border border-[#464087] text-sm p-1 rounded-xl">
-                  Apply
-                </button>
-              </div>
-              {/* <Link
-                href="/category"
-                className="bg-[#197d8e] rounded-lg text-md font-semibold text-white w-full sm:w-auto text-center"
-              >
-                Add more products
-              </Link> */}
-            </div>
-
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
-                  Product Total {`₹ ${totalPrice}`}
+                  Subtotal: ₹ {subTotal}
+                </h3>
+              </div>
+              </div>
+            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+              <div className="flex items-center space-x-2 w-full sm:w-auto">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder="Discount Code"
+                  className="border border-[#464087] text-sm p-1 rounded-xl w-full sm:w-auto"
+                />
+                <button
+                  onClick={applyCoupon}
+                  className="border border-[#464087] text-sm p-1 rounded-xl"
+                >
+                  Apply
+                </button>
+              </div>
+
+            </div>
+            {couponError && (
+              <p className="text-red-500 text-sm">{couponError}</p>
+            )}
+            <div className="space-y-4">
+              {appliedCoupon && (
+                <div className="flex justify-between items-center">
+                  <h3 className="w-full p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
+                    Discount ({appliedCoupon.discount}%): -₹ {discountAmount}
+                  </h3>
+                </div>
+              )}
+
+              <div className="flex justify-between items-center">
+                <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] font-semibold text-sm sm:text-base">
+                  Total: ₹ {totalPrice}
                 </h3>
               </div>
             </div>

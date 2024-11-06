@@ -317,7 +317,7 @@ const BlogDetail = () => {
         />
       </div> */}
 
-      <div className="relative w-full max-w-screen-xl mx-auto md:mt-16">
+      <div className="relative w-full w-screen-xl mx-auto md:mt-16">
         <div className="relative w-full h-[120px] sm:h-[400px] md:h-auto">
           {" "}
           {/* Removed fixed height */}

@@ -11,7 +11,6 @@ const BlogCard = ({ title, imageSrc, index }) => {
       .replace(/--+/g, "-")
       .trim();
   };
-
   const backgroundColor = index % 2 === 0 ? "bg-[#db5c3c]" : "bg-[#197d8e]";
   const slug = createSlug(title);
 

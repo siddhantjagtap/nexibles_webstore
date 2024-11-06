@@ -10,7 +10,23 @@ import useFetchCategories from "../../app/usefetchcategories";
 
 const CustomCarousel = ({ items = [], renderItem, slidesToShow = 5 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
   const validItems = items.filter((item) => item && typeof item === "object");
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getResponsiveSlidesToShow = useCallback(() => {
+    if (windowWidth < 640) return 1;
+    if (windowWidth < 768) return 2;
+    if (windowWidth < 1024) return 3;
+    if (windowWidth < 1280) return 4;
+    return slidesToShow;
+  }, [windowWidth, slidesToShow]);
 
   const next = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % validItems.length);
@@ -24,25 +40,27 @@ const CustomCarousel = ({ items = [], renderItem, slidesToShow = 5 }) => {
 
   const getVisibleItems = useCallback(() => {
     if (!validItems.length) return [];
-
     const visibleItems = [];
-    const numItemsToShow = Math.min(slidesToShow, validItems.length);
+    const responsiveSlidesToShow = getResponsiveSlidesToShow();
+    const numItemsToShow = Math.min(responsiveSlidesToShow, validItems.length);
 
     for (let i = 0; i < numItemsToShow; i++) {
       const index = (currentIndex + i) % validItems.length;
       visibleItems.push(validItems[index]);
     }
     return visibleItems;
-  }, [currentIndex, validItems, slidesToShow]);
+  }, [currentIndex, validItems, getResponsiveSlidesToShow]);
 
   if (!validItems.length) return null;
 
+  const responsiveSlidesToShow = getResponsiveSlidesToShow();
+
   return (
-    <div className="relative px-16 md:px-20">
-      {validItems.length > slidesToShow && (
+    <div className="relative px-4 sm:px-8 md:px-16 lg:px-20">
+      {validItems.length > responsiveSlidesToShow && (
         <button
           onClick={prev}
-          className="absolute left-4 md:left-6 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          className="absolute left-0 sm:left-2 md:left-4 lg:left-6 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Previous"
         >
           <Image
@@ -50,26 +68,26 @@ const CustomCarousel = ({ items = [], renderItem, slidesToShow = 5 }) => {
             alt="Previous"
             width={40}
             height={40}
-            className="hover:scale-110 transition-transform duration-300"
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 hover:scale-110 transition-transform duration-300"
           />
         </button>
       )}
 
-      <div className="flex gap-2 transition-transform duration-300 ease-in-out">
+      <div className="flex gap-2  transition-transform duration-300 ease-in-out">
         {getVisibleItems().map((item, index) => (
           <div
             key={`${item.id || index}`}
-            className="flex-shrink-0 w-full md:w-1/5"
+            className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
           >
             {renderItem(item)}
           </div>
         ))}
       </div>
 
-      {validItems.length > slidesToShow && (
+      {validItems.length > responsiveSlidesToShow && (
         <button
           onClick={next}
-          className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
+          className="absolute right-0 sm:right-2 md:right-0 lg:right-0 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer focus:outline-none"
           aria-label="Next"
         >
           <Image
@@ -77,7 +95,7 @@ const CustomCarousel = ({ items = [], renderItem, slidesToShow = 5 }) => {
             alt="Next"
             width={40}
             height={40}
-            className="hover:scale-110 transition-transform duration-300 "
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 hover:scale-110 transition-transform duration-300"
           />
         </button>
       )}
@@ -144,9 +162,9 @@ export default function Mid() {
     if (!category || !category.bg_Img || !category.name) return null;
 
     return (
-      <Link href="/category">
-        <div className="text-center w-full relative group pt-4 pb-8">
-          <div className="h-48 md:h-48 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
+      <Link href="/occasions">
+        <div className="text-center w-full relative group pt-2 sm:pt-4 pb-4 sm:pb-8">
+          <div className="h-32 sm:h-40 md:h-48 w-32 sm:w-40 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
             <div className="relative w-full h-[86%]">
               <Image
                 src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
@@ -155,12 +173,12 @@ export default function Mid() {
                 objectFit="contain"
                 className="transition-transform duration-300 group-hover:scale-115"
                 onError={(e) => {
-                  e.target.src = "/placeholder-image.jpg"; // Add a placeholder image
+                  e.target.src = "/placeholder-image.jpg";
                 }}
               />
             </div>
           </div>
-          <p className="text-[#f9e2b2] md:text-xl lg:text-2xl font-bold mt-2 transition-all duration-300 group-hover:-translate-y-4">
+          <p className="text-[#f9e2b2] text-sm sm:text-base md:text-xl lg:text-2xl font-bold mt-2 transition-all duration-300 group-hover:-translate-y-4">
             {category.name}
           </p>
         </div>
@@ -172,9 +190,10 @@ export default function Mid() {
     if (!product || !product.image || !product.name) return null;
 
     return (
-      <div className="w-full relative h-full pt-12">
-        <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[45%] h-64 flex items-center justify-center">
-          <div className="relative w-full h-full mt-8">
+      
+      <div className="w-full relative h-full pt-6 sm:pt-8 md:pt-12">
+        <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[45%] h-40 sm:h-48 md:h-64 flex items-center justify-center">
+          <div className="relative w-full h-full mt-4 sm:mt-6 md:mt-8">
             <Image
               src={`https://nexiblesapp.barecms.com/uploads/${product.image}`}
               alt={product.name}
@@ -182,17 +201,17 @@ export default function Mid() {
               objectFit="contain"
               className="scale-110 transition-transform duration-300 hover:-translate-y-8 hover:scale-115 max-w-[75%] max-h-[83%] mx-auto"
               onError={(e) => {
-                e.target.src = "/placeholder-image.jpg"; // Add a placeholder image
+                e.target.src = "/placeholder-image.jpg";
               }}
             />
           </div>
         </div>
-        <p className="md:text-[#db5c3c] font-gotham-medium md:text-pt-20 mt-4 text-center px-4 py-1 whitespace-nowrap">
+        <p className="text-[#db5c3c] font-gotham-medium text-sm sm:text-base md:text-pt-20 mt-2 sm:mt-4 text-center px-2 sm:px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">
           {product.name}
         </p>
         <button
           onClick={() => handleCustomizeClick(product)}
-          className="bg-[#197d8e] md:text-pt-20 font-gotham-rounded-bold mt-4 mx-auto block text-white px-4 py-1 rounded-full whitespace-nowrap mb-4"
+          className="bg-[#197d8e] text-sm sm:text-base md:text-pt-20 font-gotham-rounded-bold mt-2 sm:mt-4 mx-auto block text-white px-3 sm:px-4 py-1 rounded-full whitespace-nowrap mb-2 sm:mb-4"
         >
           Customise
         </button>
@@ -201,7 +220,7 @@ export default function Mid() {
   };
 
   return (
-    <div className="text-white pt-2 relative bg-no-repeat bg-[#4bb2bc] md:bg-transparent">
+    <div className="text-white pt-2 relative bg-no-repeat bg-[#197d8e] md:bg-transparent">
       <div
         className="hidden md:block absolute inset-0 bg-no-repeat"
         style={{
@@ -211,29 +230,29 @@ export default function Mid() {
         }}
       />
 
-      <div className="container mx-auto px-8 md:px-12 lg:px-16">
-        <div>
-          <h2 className="font-gotham-bold text-pt-30 text-center text-black md:text-white mt-8 relative z-10">
-            <Image
-              src={Butterflies2}
-              alt="butterflies"
-              width={64}
-              height={64}
-              className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-3rem]"
-            />
-            Personalise Your Celebration
-          </h2>
-          <p className="text-center md:mb-12 text-base md:text-xl lg:text-xl max-w-4xl mx-auto relative z-10 mt- text-black md:text-white">
-            From design to details, add your personal touch to every pouch.
-            <Image
-              src={TreeIllustration}
-              alt="butterflies"
-              width={44}
-              height={44}
-              className="inline-block md:w-20 md:h-20 lg:w-24 lg:h-24 md:mt-[-3rem] md:mr-[-10rem]"
-            />
-          </p>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+       <div>
+  <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-30 text-center text-black md:text-white mt-4 sm:mt-6 md:mt-8 relative z-10">
+    <Image
+      src={Butterflies2}
+      alt="butterflies"
+      width={64}
+      height={64}
+      className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
+    />
+    Personalise Your Celebration
+  </h2>
+  <p className="text-center md:mb-12 text-sm sm:text-base md:text-xl lg:text-xl max-w-4xl mx-auto relative z-10 text-black md:text-white">
+    From design to details, add your personal touch to every pouch.
+    <Image
+      src={TreeIllustration}
+      alt="tree illustration"
+      width={44}
+      height={44}
+      className="inline-block w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 mt-[-1rem] sm:mt-[-1.5rem] md:mt-[-2rem] lg:mt-[-2.5rem]"
+    />
+  </p>
+</div>
 
         <div className="relative z-10 max-w-6xl mx-auto md:mb-12">
           {categoryData && categoryData.length > 0 && (
@@ -246,13 +265,13 @@ export default function Mid() {
           )}
         </div>
 
-        <h3 className="font-gotham-bold md:text-pt-23  text-center text-black md:text-white relative z-10 mb-8">
+        <h3 className="font-gotham-bold text-lg sm:text-xl md:text-pt-23 text-center text-black md:text-white relative z-10 mb-4 sm:mb-6 md:mb-8">
           <Image
             src={FlowerIllustration}
             alt="flower illustration"
             width={40}
             height={40}
-            className="inline-block md:w-30 md:h-30 lg:w-36 lg:h-36"
+            className="inline-block w-8 h-8 sm:w-12 sm:h-12 md:w-30 md:h-30 lg:w-36 lg:h-36"
           />
           Popular Products
           <Image
@@ -260,7 +279,7 @@ export default function Mid() {
             alt="butterflies"
             width={60}
             height={60}
-            className="inline-block md:w-20 md:h-20 lg:w-20 lg:h-20 mt-[-3rem]"
+            className="inline-block w-10 h-10 sm:w-12 sm:h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
           />
         </h3>
 
@@ -278,6 +297,13 @@ export default function Mid() {
     </div>
   );
 }
+
+
+
+
+
+
+
 
 // import React, { useRef, useState, useEffect, useCallback } from "react";
 // import Image from "next/image";

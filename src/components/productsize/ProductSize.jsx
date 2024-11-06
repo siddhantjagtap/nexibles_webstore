@@ -55,7 +55,7 @@ export default function ProductSize() {
 
   return (
     <div className="h-full px-8 pt-28">
-      <Link href="/category" className="text-[#124e66] font-bold">
+      <Link href="/occasions" className="text-[#124e66] font-bold">
         ← Back
       </Link>
 
