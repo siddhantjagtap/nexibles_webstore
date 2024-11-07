@@ -23,26 +23,26 @@ export default function About() {
           </h3>
           <div className="max-w-4xl text-white text-center">
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              Welcome to NexiGifting! At NexiGifting, we believe in creating
+              {`Welcome to NexiGifting! At NexiGifting, we believe in creating
               moments. As India's first platform offering personalised stand-up
               pouches, we've attempted to turn the art of gift-giving into a
               canvas for your imagination, designed for posterity. Our goal is
-              to carry this out with creativity, speed, and precision.
+              to carry this out with creativity, speed, and precision.`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              Whether it's a birthday surprise, a Diwali celebration, or a
-              wedding keepsake, we make sure your gifts reflect your
+              {`Whether it's a birthday surprise, a Diwali celebration, or a
+              wedding keepsake, we make sure your gifts reflect your`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              vision - wrapped in style, crafted with love and designed for
+              {`vision - wrapped in style, crafted with love and designed for
               longevity & reusability. With flexible order quantities, starting
               from just 50 pouches, we give you the freedom to create,
-              personalise and gift without limits.
+              personalise and gift without limits.`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              NexiGifting is where innovation and imagination come together -
+              {`NexiGifting is where innovation and imagination come together -
               from design to delivery, making every gift an unforgettable
-              moment.
+              moment.`}
             </p>
           </div>
         </div>
@@ -66,19 +66,19 @@ export default function About() {
               Our parent brand,
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              NEXt generation flexIBLES, is taking flexible packaging to the
+              {`NEXt generation flexIBLES, is taking flexible packaging to the
               next level. We bring the future of packaging to you with
               cutting-edge digital printing, offering fast, creative, and
-              sustainable solutions for brands and companies of all sizes.
+              sustainable solutions for brands and companies of all sizes.`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              From custom pouches to shrink sleeves and more, every product is
+              {`From custom pouches to shrink sleeves and more, every product is
               carefully designed to meet your unique needs, with a quality
               control process that ensures perfection in every batch. At
-              Nexibles, your ideas meet our innovation, and together,
+              Nexibles, your ideas meet our innovation, and together,`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
-              we create packaging solutions that speak volumes.
+              {`we create packaging solutions that speak volumes.`}
             </p>
           </div>
         </div>
