@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add this to your CSS file */
+.placeholder-white::placeholder {
+  color: white;
+}
+
+
 @layer base {
     @font-face {
       font-family: 'Gotham_Black';

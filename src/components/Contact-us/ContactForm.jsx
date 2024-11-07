@@ -3,7 +3,7 @@ import React,{ useState } from "react";
 import Image from "next/image";
 import Navbar from "../Home/Navbar";
 import SubmitFormIllustration from "../../../public/Home/Submit-Form-Illustration.svg";
-
+import { toast } from "react-toastify";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     full_name: '',
@@ -41,7 +41,7 @@ export default function ContactForm() {
       const result = await response.json();
       if (response.ok) {
         setResponseMessage('Thank you! Your message has been sent.');
-        toast('Thank you! Your message has been sent.');
+        toast.success('Thank you! Your message has been sent.');
         setFormData({
           full_name: '',
           email: '',
@@ -177,11 +177,7 @@ export default function ContactForm() {
                   Submit
                 </button>
               </div>
-              {responseMessage && (
-                <div className="text-white mt-4">
-                  {responseMessage}
-                </div>
-              )}
+
             </form>
           </div>
 

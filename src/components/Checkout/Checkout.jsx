@@ -290,7 +290,7 @@ export default function Checkout({ defaultAddress, addresses }) {
     }
   };
 
-  const intamount = 100; //parseInt(totalPrice) * 100;
+  const intamount = parseInt(totalPrice) * 100;
   const makePayment = async (e) => {
     e.preventDefault();
     setLoading2(true);

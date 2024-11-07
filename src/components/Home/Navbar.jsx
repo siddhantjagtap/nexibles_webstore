@@ -65,7 +65,7 @@ const Navbar = () => {
         hasScrolled ? "bg-white shadow-xl" : ""
       }`}
     >
-      <div className="flex flex-col justify-between px-4 py-2 sm:px-6">
+      <div className="flex flex-col justify-between px-4 py-2 sm:px-6 font-gotham-light">
         <div className="w-full flex justify-between">
           <Link href="/" className="mr-auto">
             <div className="relative px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg">
@@ -87,7 +87,7 @@ const Navbar = () => {
               <Link href="/about">About Us</Link>
               <Link href="/contact-us">Contact Us</Link>
             </div>
-            <Link
+            {/* <Link
               href="/occasions"
               className={`hidden sm:flex items-center ${iconColor}`}
             >
@@ -98,7 +98,7 @@ const Navbar = () => {
                 height={23}
                 className="sm:w-[25px] sm:h-[25px]"
               />
-            </Link>
+            </Link> */}
             <div
               className="relative hidden sm:flex text-black items-center cursor-pointer group"
               onClick={handleProfileClick}
@@ -110,6 +110,11 @@ const Navbar = () => {
                 alt="Profile"
                 className="sm:w-[25px] sm:h-[25px]"
               />
+             <span className="ml-1 md:block hidden text-[#197d8e] text-lg">
+                {user
+                  ? `Hello, ${user?.result?.firstName || user?.firstName}`
+                  : ""}
+              </span>
               {!user && (
                 <div className="absolute p-4 top-10 right-0 font-bold bg-white border border-[#197d8e] rounded-xl w-[15rem] h-auto text-[#db5c3c] flex items-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-wrap">
                   Sign in to view your profile and track your orders.

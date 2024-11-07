@@ -59,7 +59,7 @@ const Content = () => (
           >
             sales@artnext.in
           </a>{" "}
-          & we will bring your idea to life for you, down to the tiniest detail!
+          & we'll bring your idea to life for you, down to the tiniest detail!
         </p>
       </div>
     </div>

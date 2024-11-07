@@ -21,6 +21,7 @@ const BlogDetail = () => {
     {
       title:
         "Low MOQ, High Impact: Maximizing Limited-Edition Gifting With Custom Packaging",
+        
       imageSrc: GrandMother,
       slug: "low-moqhigh-impact-maximizing-limited-edition-gifting-with-custom-packaging",
       introduction:
@@ -306,41 +307,39 @@ const BlogDetail = () => {
     return <div>Blog post not found</div>;
   }
 
-  return (
-    <div className="[&>nav]:!bg-white">
-      <Navbar />
-      {/* <div className="relative w-full h-[120px] sm:h-[400px] md:h-[450px]">
+
+  
+return (
+  <div className="[&>nav]:!bg-white">
+    <Navbar />
+
+    <div className="relative w-full mx-auto md:mt-8">
+      {/* Image container with full width, centered, without causing scroll */}
+      <div className="relative mt-16 w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[400px] overflow-hidden">
         <Image
           src={currentBlog.imageSrc}
           alt={currentBlog.title}
-          className="md:w-full md:h-full h-full object-fill md:mt-4"
+          fill
+          className="object-cover w-full h-full"
+          priority
         />
-      </div> */}
+      </div>
 
-      <div className="relative w-full w-screen-xl mx-auto md:mt-16">
-        <div className="relative w-full h-[120px] sm:h-[400px] md:h-auto">
-          {" "}
-          {/* Removed fixed height */}
-          <Image
-            src={currentBlog.imageSrc}
-            alt={currentBlog.title}
-            className="w-full h-auto object-contain" // Changed to object-contain and h-auto
-            priority // Add priority for faster loading of hero image
-          />
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl md:mt-8 mt-8 px-4 sm:px-8 md:px-16 lg:px-32 italic text-center text-[#197d8e]">
+      {/* Centered Content */}
+      <div className="px-4 sm:px-8 md:px-16 lg:px-32">
+        <h1 className=" max-w-[83%] px-24 text-center text-2xl sm:text-3xl md:text-3xl lg:text-4xl md:mt-8 mt-8 italic text-[#197d8e]">
           {currentBlog.title}
         </h1>
 
         {currentBlog.introduction && (
-          <div className="mt-8 px-4 sm:px-8 md:px-16 lg:px-32">
+          <div className="mt-8">
             <p className="text-black leading-relaxed font-gotham-medium">
               {currentBlog.introduction}
             </p>
           </div>
         )}
 
-        <div className="mt-4 px-4 sm:px-8 md:px-16 lg:px-32 space-y-4">
+        <div className="mt-4 space-y-4">
           {currentBlog.sections?.map((section) => (
             <div key={section.heading} className="space-y-2 font-gotham-medium">
               <h2 className="text-[#db5c3c] text-xl font-semibold">
@@ -350,14 +349,15 @@ const BlogDetail = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-8">
-          <BlogCarousel />
-        </div>
-        <Footer />
       </div>
+
+      <div className="mt-8">
+        <BlogCarousel />
+      </div>
+      <Footer />
     </div>
-  );
+  </div>
+);
 };
 
 export default BlogDetail;

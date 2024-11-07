@@ -64,14 +64,14 @@ const BlogCard = ({ title, imageSrc, index }) => {
         </div>
         <div className="flex flex-col flex-grow justify-between">
           <div className="text-center md:mt-4 px-2">
-            <h3 className="text-white text-sm md:text-lg mb-2 md:mb-4">
+            <h3 className="text-white md:text-lg mb-2 md:mb-4 font-gotham-book text-pt-14">
               {title}
             </h3>
           </div>
-          <div className="text-center">
+          <div className="text-center justify-end">
             <Link
               href={`/blog/${slug}`}
-              className="inline-block text-white text-sm md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
+              className="inline-block text-white font-gotham-medium text-pt-20  text-md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
             >
               Read More
             </Link>
@@ -217,7 +217,7 @@ const Blogs = () => {
         <div className="flex justify-center mt-8 md:mt-12">
           <Link
             href="/all-blog"
-            className="bg-[#107d98] text-white px-6 py-3 md:px-8 md:py-4 mb-4 rounded-full text-lg md:text-xl font-semibold hover:bg-[#0c5f73] transition-colors"
+            className="bg-[#107d98] text-white font-gotham-rounded-bold text-pt-18 px-6 py-3 md:px-8 md:py-4 mb-4 rounded-full  md:text-xl font-semibold hover:bg-[#0c5f73] transition-colors"
           >
             Show More
           </Link>

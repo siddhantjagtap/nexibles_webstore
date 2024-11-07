@@ -75,7 +75,7 @@ export default function Hero() {
                   />
                 </div>
 
-                <h2 className="text-lg md:text-2xl lg:text-pt-30 font-gotham-medium mt-4">
+                <h2 className="text-lg md:text-2xl lg:text-pt-25 font-gotham-medium mt-4">
                   {`India's First Personalised Stand-Up Pouches`}
                 </h2>
                 <p className="text-sm md:text-lg lg:text-pt-22 font-gotham-light mb-6 text-gray-500 mt-2">

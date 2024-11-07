@@ -42,7 +42,7 @@ function Login() {
       if (data.status === "success") {
         const token = data.token;
         login(data.data);
-        toast.success(data.status);
+        toast.success("Login Successful");
         router.push("/");
         localStorage.setItem("token", token);
       } else {
@@ -113,7 +113,7 @@ function Login() {
       } else {
         const data = await response.json();
         console.log("data", data);
-        toast.success(data.status);
+        toast.success("Registered successfully");
         setUserDetails({
           customerId: "",
           firstName: "",
@@ -174,7 +174,7 @@ function Login() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#db5c3c] mb-6 md:mb-8 mt-16 md:mt-24">
             Sign in
           </h2>
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <button className="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-base md:text-lg">
               <FaGoogle className="mr-2 md:mr-3" /> Continue With Google
             </button>
@@ -184,10 +184,10 @@ function Login() {
             <button className="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 border border-1 border-[#197d8e] rounded-2xl text-gray-400 text-base md:text-lg">
               <FaApple className="mr-2 md:mr-3" /> Continue With Apple
             </button>
-          </div>
-          <div className="text-center my-4 text-[#db5c3c] font-semibold">
+          </div> */}
+          {/* <div className="text-center my-4 text-[#db5c3c] font-semibold">
             Or sign in with email
-          </div>
+          </div> */}
           <form onSubmit={handleLogin} className="space-y-4">
             <input
               type="email"
@@ -207,7 +207,7 @@ function Login() {
             />
             <button
               type="submit"
-              className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-2 md:py-3 rounded-2xl text-base md:text-lg"
+              className="w-full bg-[#db5c3c]  text-white py-2 md:py-3 rounded-2xl text-base md:text-lg"
             >
               Log In
             </button>
@@ -263,7 +263,7 @@ function Login() {
             />
             <button
               type="submit"
-              className="w-full bg-white border border-1 border-[#197d8e] text-gray-400 py-2 md:py-3 rounded-2xl text-base md:text-lg"
+              className="w-full bg-[#db5c3c]  text-white py-2 md:py-3 rounded-2xl text-base md:text-lg"
             >
               Create Account
             </button>

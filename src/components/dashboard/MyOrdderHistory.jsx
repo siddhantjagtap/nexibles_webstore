@@ -159,7 +159,7 @@ const MyOrderHistory = () => {
                                                             <img
                                                                 src={`https://nexiblesapp.barecms.com/uploads/${order.image}`}
                                                                 alt={order.product_name}
-                                                                className="h-52 w-full object-cover lg:h-auto lg:w-[350px]"
+                                                                className="h-52 w-full object-cover lg:h-[20rem] lg:w-[15rem]"
                                                             />
                                                             {/* Name & Price */}
                                                             <h2 className="font-bold text-md mt-4">{order.product_name}</h2>
