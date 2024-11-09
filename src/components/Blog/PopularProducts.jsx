@@ -22,7 +22,7 @@ const ProductCarousel = ({ items = [], renderItem, slidesToShow = 5 }) => {
   const getResponsiveSlidesToShow = useCallback(() => {
     if (windowWidth < 640) return 1;
     if (windowWidth < 768) return 2;
-    if (windowWidth < 1024) return 3;
+    if (windowWidth < 1024) return 3;``
     if (windowWidth < 1280) return 4;
     return slidesToShow;
   }, [windowWidth, slidesToShow]);
