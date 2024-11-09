@@ -29,7 +29,7 @@ export default function CelebrationCategoryPage() {
   useEffect(() => {
     if (categoryData.length > 0 && !selectedCategory) {
       const diwaliCategory = categoryData.find(
-        (cat) => cat.name.toLowerCase() === "diwali"
+        (cat) => cat.name.toLowerCase() === "wedding"
       );
       setSelectedCategory(diwaliCategory || categoryData[0]);
     }

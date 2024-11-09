@@ -7,10 +7,9 @@ export default function About() {
       className="min-h-screen"
       style={{
         backgroundImage: "url('/About_Us_Page/About Us Background.png')",
-        backgroundSize: "100% 100%", // or "100% 100%" if you want it to stretch
+        backgroundSize: "100% 100%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        // backgroundAttachment: "fixed", // optional for parallax effect
       }}
     >
       <div className="container mx-auto max-w-3xl px-4 md:px-6 lg:px-8">
