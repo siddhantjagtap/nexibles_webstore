@@ -139,7 +139,10 @@ const Cart = () => {
                         {item.custom_message || "Custom Message"}
                       </div>
                       <div className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
-                        {item.uploaded_receivers || "Uploaded Receivers"}
+                        {item.uploaded_picture || "Not Uploaded Picture"}
+                      </div>
+                      <div className="w-full sm:w-3/4 border border-[#464087] rounded-xl p-1 text-sm">
+                        {item.uploaded_receivers || "Not Uploaded Excel"}
                       </div>
                     </div>
                     <div className="flex flex-col items-center w-full sm:w-auto">
@@ -154,12 +157,12 @@ const Cart = () => {
                           <span className="text-[#464087]">No Image</span>
                         )}
                       </div>
-                      <button
+                      {/* <button
                         className="mt-2 bg-[#db5c3c] text-white px-4 py-2 rounded-full font-semibold"
                         onClick={() => openModal(item.image)}
                       >
                         View Mockup
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <button className="w-full sm:w-auto p-4 border border-[#464087] py-1 text-md rounded-xl text-lg font-semibold text-[#db5c3c] mt-4">

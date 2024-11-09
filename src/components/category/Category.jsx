@@ -111,7 +111,7 @@ export default function CelebrationCategoryPage() {
                   className="object-contain w-full h-full"
                 />
               </div>
-              <p className="text-sm md:text-lg font-semibold ml-3 md:ml-0 md:mt-4 text-center text-[#f9e2b2]">
+              <p className="text-sm md:text-lg font-gotham-bold ml-3 md:ml-0 md:mt-4 text-center text-[#f9e2b2]">
                 {category.name}
               </p>
             </div>
@@ -143,7 +143,7 @@ export default function CelebrationCategoryPage() {
                         />
                       </div>
                     </div>
-                    <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-bold text-2xl">
+                    <p className="text-[#db5c3c] mt-8 text-center px-6 py-1 rounded-full font-gotham-medium text-pt-16 ">
                       {product.name}
                     </p>
                     <Link
@@ -154,7 +154,7 @@ export default function CelebrationCategoryPage() {
                       )}`}
                     >
                       <button
-                        className="bg-[#197d8e] mt-4 text-white px-6 py-1 rounded-full font-bold text-xl mx-auto block"
+                        className="bg-[#197d8e] mt-4 text-white px-6 py-1 rounded-full font-gotham-rounded-bold text-pt-16 mx-auto block"
                         onClick={() => addToCart(product)}
                       >
                         Customise

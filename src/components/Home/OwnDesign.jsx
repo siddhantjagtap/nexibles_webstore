@@ -16,22 +16,22 @@ const Content = () => (
         />
       </div>
 
-      <div className="flex flex-col text-center sm:text-left">
-        <h2 className="font-gotham-bold text-3xl lg:text-5xl text-[#197d8e] mb-3">
+      <div className="flex flex-col font-gotham-bold text-center sm:text-left">
+        <h2 className="md:text-pt-40 text-[#197d8e] mb-3">
           Make It Yours
         </h2>
         <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2">
-          <span className="text-[#e85d3d] text-xl lg:text-2xl">
+          <span className="text-[#e85d3d] md:text-pt-20 lg:text-2xl">
             Your Design Idea
           </span>
-          <span className="text-[#e85d3d] hidden sm:inline text-xl lg:text-2xl">
+          <span className="text-[#e85d3d] hidden sm:inline md:text-pt-20 lg:text-2xl">
             +
           </span>
-          <span className="text-[#e85d3d] text-xl lg:text-2xl">Our Team</span>
+          <span className="text-[#e85d3d] md:text-pt-20 lg:text-2xl">Our Team</span>
         </div>
         <div className="flex items-center justify-center sm:justify-start gap-2 mt-2">
-          <span className="text-[#e85d3d] text-xl lg:text-2xl">=</span>
-          <span className="text-[#e85d3d] text-xl lg:text-2xl">
+          <span className="text-[#e85d3d] md:text-pt-20 lg:text-2xl">=</span>
+          <span className="text-[#e85d3d] md:text-pt-20 lg:text-2xl">
             Gifting Magic
           </span>
         </div>

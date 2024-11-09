@@ -37,11 +37,20 @@ export default function ProductSize() {
       return;
     }
 
+    // Set price based on selected size
+    let price;
+    if (size.name === "NexiSmall") {
+      price = "50";
+    } else if (size.name === "NexiMedium") {
+      price = "60";
+    }
+
     const updatedCart = existingCart.map((item) => {
       if (item.id === parseInt(pouchId, 10)) {
         return {
           ...item,
           productSize: size.name,
+          price: price // Add the price to the cart item
         };
       }
       return item;
@@ -49,17 +58,16 @@ export default function ProductSize() {
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    window.location.href = `/message?size=${size.name
-      }&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
+    window.location.href = `/message?size=${size.name}&pouchId=${pouchId}&image=${encodeURIComponent(imageFileName)}`;
   };
-
+  
   return (
     <div className="h-full px-8 pt-28">
       <Link href="/occasions" className="text-[#124e66] font-bold">
         ← Back
       </Link>
 
-      <h1 className="text-2xl md:text-4xl font-bold text-[#ee6e73] text-center">
+      <h1 className="text-2xl md:text-pt-30 font-gotham-bold text-[#ee6e73] text-center">
         Choose Your Size
       </h1>
 
@@ -70,7 +78,7 @@ export default function ProductSize() {
             className="text-center group cursor-pointer w-full lg:w-auto"
             onClick={() => handleSizeSelection(size)}
           >
-            <div className="relative p-4 transition-all duration-300 group-hover:bg-gray-200 group-hover:border-gray-400">
+            <div className="relative p-4 transition-all duration-300  group-hover:border-gray-400">
               <Image
                 src={`https://nexiblesapp.barecms.com/uploads/${imageFileName}`}
                 alt={size.name}
@@ -78,14 +86,14 @@ export default function ProductSize() {
                 height={size.height}
                 className="mx-auto"
               />
-              <h2 className="text-2xl font-bold mt-4 mb-2">
+              <h2 className="text-pt-20 font-gotham-bold mt-4 mb-2">
                 <span className="text-[#124e66]">Nexi</span>
                 <span className="text-[#ee6e73]">
                   {size.name.replace("Nexi", "")}
                 </span>
               </h2>
-              <p className="text-gray-600 mb-1">{size.dimensions}</p>
-              <p className="text-gray-600 mb-4">{size.capacity}</p>
+              <p className="text-gray-600 mb-1 font-gotham-light text-pt-10">{size.dimensions}</p>
+              <p className="text-gray-600 mb-4 font-gotham-light text-pt-10">{size.capacity}</p>
             </div>
           </div>
         ))}

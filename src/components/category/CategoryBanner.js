@@ -63,12 +63,12 @@ const CategoryBanner = ({ categoryName }) => {
         <div className="max-w-7xl mx-auto h-full px-4 md:px-6 flex flex-col md:flex-row items-center justify-between relative">
           <div className="flex-1 text-center md:text-left pt-4 md:pt-0 md:mb-0 z-10 w-full md:w-auto">
             <h2
-              className="text-2xl md:text-3xl font-bold mb-2 mx-auto md:ml-[22rem] md:mx-0 max-w-[90%] md:max-w-none"
+              className="text-2xl md:text-pt-25 font-gotham-bold mb-2 mx-auto md:ml-[22rem] md:mx-0 max-w-[90%] md:max-w-none"
               style={{ color: displayData.textColor }}
             >
               {displayData.title}
             </h2>
-            <p className="text-base md:text-lg text-black font-semibold w-full md:w-1/2 block md:ml-[22rem] px-4 md:px-0">
+            <p className="text-base md:text-pt-15 text-black font-gotham-medium w-full md:w-1/2 block md:ml-[22rem] px-4 md:px-0">
               {displayData.description}
             </p>
           </div>

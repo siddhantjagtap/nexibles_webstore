@@ -18,6 +18,28 @@ export default function QuantityReview() {
   const [uploadedReceivers, setUploadedReceivers] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [productDetails, setProductDetails] = useState({});
+  const [image2, setImage2] = useState(null);
+  
+  useEffect(() => {
+    // Retrieve `image2` from the product images API based on `pouchId`
+    async function fetchProductImage() {
+      try {
+        const response = await fetch(
+          `https://nexiblesapp.barecms.com/api/productimages/${pouchId}`
+        );
+        const data = await response.json();
+        if (data.data.length > 0) {
+          setImage2(data.data[0].image_url); // Assuming `imageFileName` is the correct field
+        }
+      } catch (error) {
+        console.error("Error fetching image2:", error);
+      }
+    }
+
+    if (pouchId) {
+      fetchProductImage();
+    }
+  }, [pouchId]);
 
   // Load cart data from localStorage when the component mounts
   useEffect(() => {
@@ -107,7 +129,7 @@ export default function QuantityReview() {
         ← Back
       </button>
 
-      <h1 className="text-2xl md:text-4xl font-bold text-[#ee6e73] text-center mt-6 mb-8">
+      <h1 className="text-2xl md:text-4xl font-gotham-rounded-bold text-[#ee6e73] text-center mt-6 mb-8">
         Quantity and Review
       </h1>
 
@@ -116,7 +138,7 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="quantity"
-              className=" text-[#d1585a] md:text-2xl font-bold mb-2"
+              className=" text-[#d1585a] md:text-2xl font-gotham-medium mb-2"
             >
               Quantity
             </label>
@@ -127,29 +149,29 @@ export default function QuantityReview() {
                 value={quantity}
                 onChange={handleQuantityChange}
                 className="block w-20 h-8 p-2 border border-[#d1585a]"
-                placeholder="Enter quantity"
+                placeholder="Quantity"
                 required
               />
               <label
                 htmlFor="quantity"
-                className="text-[#d1585a] md:text-xs mb-2"
+                className="text-[#d1585a] md:text-xs mb-2 font-gotham-light"
               >
                 (minimum order of 50 pouches)
               </label>
             </div>
           </div>
 
-          <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-4">
+          <h2 className="md:text-2xl font-gotham-medium text-[#ee6e73] mb-4">
             Yay youre done!
           </h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 mb-4 font-gotham-light">
             Lets review everything once so your pouches are perfect!
           </p>
 
           <div className="mb-6">
             <label
               htmlFor="customerName"
-              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
+              className="block text-[#ee6e73] md:text-2xl font-gotham-medium mb-2"
             >
               Add your name
             </label>
@@ -158,7 +180,7 @@ export default function QuantityReview() {
               id="customerName"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              className="w-full p-2 border border-[#68a398] rounded-3xl"
+              className="w-full p-2 border border-[#68a398] rounded-3xl font-gotham-light"
               placeholder="eg. Karan & Jinal Doshi"
               required
             />
@@ -166,7 +188,7 @@ export default function QuantityReview() {
           <div className="mb-6">
             <label
               htmlFor="customMessage"
-              className="block text-[#ee6e73] md:text-2xl font-bold mb-2"
+              className="block text-[#ee6e73] md:text-2xl font-gotham-medium mb-2"
             >
               Add your message
             </label>
@@ -174,27 +196,27 @@ export default function QuantityReview() {
               id="customMessage"
               value={customMessage}
               onChange={(e) => setCustomMessage(e.target.value)}
-              className="w-full p-2 border border-[#68a398] rounded-3xl h-32"
+              className="w-full p-2 border border-[#68a398] rounded-3xl h-32 font-gotham-light"
               placeholder="Your message here"
               maxLength={60}
               required
             />
-            <p className="text-sm text-[#d1585a] mt-1">
+            <p className="text-sm text-[#d1585a] mt-1 font-gotham-light">
               up to 60 words maximum
             </p>
           </div>
 
           <div className="mb-6">
-            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
+            <h2 className="md:text-2xl text-[#ee6e73] mb-2 font-gotham-medium">
               Add your picture
             </h2>
-            <p className="text-xs text-[#d1585a] mt-1 mb-1">
+            <p className="text-xs text-[#d1585a] mt-1 mb-1 font-gotham-light">
               (This adds another personalized touch. You can put a picture of
               family, pet, or yourself depending on the occasion. If not
               required, please leave it empty.)
             </p>
             <label className="relative w-full">
-              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer">
+              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer font-gotham-light">
                 {uploadedPicture || "Upload here"}
               </span>
               <input
@@ -204,20 +226,20 @@ export default function QuantityReview() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
             </label>
-            <p className="text-sm text-[#d1585a] mt-1">
+            <p className="text-sm text-[#d1585a] mt-1 font-gotham-light">
               Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg
             </p>
-            <p className="text-sm text-[#d1585a]">
+            <p className="text-sm text-[#d1585a]  font-gotham-light">
               Please keep the size under 5MB
             </p>
           </div>
 
           <div className="mb-6">
-            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
+            <h2 className="md:text-2xl text-[#ee6e73] mb-2 font-gotham-medium">
               Add list of receivers
             </h2>
             <label className="relative w-full">
-              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer">
+              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer font-gotham-light">
                 {uploadedReceivers || "Upload here"}
               </span>
               <input
@@ -227,10 +249,10 @@ export default function QuantityReview() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
             </label>
-            <p className="text-sm text-[#d1585a] mt-1">
+            <p className="text-sm text-[#d1585a] mt-1 font-gotham-light">
               Acceptable formats: Excel (.xlsx, .xls)
             </p>
-            <p className="text-sm text-[#d1585a]">
+            <p className="text-sm text-[#d1585a] font-gotham-light">
               Please keep the size under 5MB
             </p>
           </div>
@@ -286,7 +308,7 @@ export default function QuantityReview() {
             </p>
           </div> */}
 
-          <p className="text-[#ee6e73] font-bold mb-4">
+          <p className="text-[#ee6e73] font-bold mb-4 font-gotham-rounded-bold">
             Please make sure you have uploaded the correct picture & document &
             there are no spelling errors anywhere!
           </p>
@@ -312,7 +334,7 @@ export default function QuantityReview() {
             />
             <button
               type="submit"
-              className="bg-[#124e66] text-white px-6 py-2 mb-10 rounded-full hover:bg-[#ee6e73] transition duration-300"
+              className="bg-[#124e66] text-white px-6 py-2 mb-10 rounded-full font-gotham-rounded-bold hover:bg-[#ee6e73] transition duration-300"
             >
               Add to cart
             </button>
@@ -333,6 +355,15 @@ export default function QuantityReview() {
                 className="mb-4 mx-auto"
               />
             )}
+            {image2 && (
+                <Image
+                  src={`https://nexiblesapp.barecms.com/uploads/${image2}`}
+                  alt="Second Image"
+                  width={300}
+                  height={400}
+                  className="rounded"
+                />
+              )}
           </div>
         </div>
       </div>
