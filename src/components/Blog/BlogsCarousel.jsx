@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import Butterflies2 from "../../../public/Home/Butterflies-2.svg";
 import "swiper/css";
 
 const DesktopBlogCard = ({ title, imageSrc, index }) => {
@@ -124,9 +125,23 @@ const BlogCarousel = () => {
   return (
     <section className="overflow-visible relative py-6 sm:py-10">
       <div className="container mx-auto px-4 overflow-visible">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#0f1729]">
+        <div className="flex items-center justify-center mb-6">
+          {" "}
+          {/* Changed justify-between to justify-center */}
+          {/* <h2 className="text-2xl sm:text-3xl font-bold text-orange-500">
+            {" "}
+            
             More topics you might be interested in
+          </h2> */}
+          <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-30 text-center text-black md:text-[#db5c3c] mt-4 sm:mt-6 md:mt-8 relative z-10">
+            <Image
+              src={Butterflies2}
+              alt="butterflies"
+              width={64}
+              height={64}
+              className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
+            />
+            Personalise Your Celebration
           </h2>
         </div>
         <Swiper

@@ -12,6 +12,7 @@ import DryFruits from "../../../../public/Blog Page/Assets/Blog 8 Full.jpg";
 import Navbar from "@/components/Home/Navbar";
 import Footer from "@/components/Home/Footer";
 import BlogCarousel from "@/components/Blog/BlogsCarousel";
+import PopularProducts from "@/components/Blog/PopularProducts";
 
 const BlogDetail = () => {
   const pathname = usePathname();
@@ -353,6 +354,7 @@ return (
 
       <div className="mt-8">
         <BlogCarousel />
+        <PopularProducts />
       </div>
       <Footer />
     </div>
