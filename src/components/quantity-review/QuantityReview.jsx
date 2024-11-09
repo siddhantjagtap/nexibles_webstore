@@ -179,10 +179,63 @@ export default function QuantityReview() {
               maxLength={60}
               required
             />
-            <p className="text-sm text-[#d1585a] mt-1">up to 60 words maximum</p>
+            <p className="text-sm text-[#d1585a] mt-1">
+              up to 60 words maximum
+            </p>
           </div>
 
           <div className="mb-6">
+            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
+              Add your picture
+            </h2>
+            <p className="text-xs text-[#d1585a] mt-1 mb-1">
+              (This adds another personalized touch. You can put a picture of
+              family, pet, or yourself depending on the occasion. If not
+              required, please leave it empty.)
+            </p>
+            <label className="relative w-full">
+              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer">
+                {uploadedPicture || "Upload here"}
+              </span>
+              <input
+                type="file"
+                accept=".jpeg,.jpg,.png,.heic,.svg"
+                onChange={handleImageChange}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+            </label>
+            <p className="text-sm text-[#d1585a] mt-1">
+              Acceptable picture formats: .jpeg, .jpg, .png, .heic, .svg
+            </p>
+            <p className="text-sm text-[#d1585a]">
+              Please keep the size under 5MB
+            </p>
+          </div>
+
+          <div className="mb-6">
+            <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
+              Add list of receivers
+            </h2>
+            <label className="relative w-full">
+              <span className="block p-2 pl-4 border border-[#68a398] rounded-3xl text-gray-400 w-full cursor-pointer">
+                {uploadedReceivers || "Upload here"}
+              </span>
+              <input
+                type="file"
+                accept=".xlsx,.xls"
+                onChange={handleReceiverChange}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+            </label>
+            <p className="text-sm text-[#d1585a] mt-1">
+              Acceptable formats: Excel (.xlsx, .xls)
+            </p>
+            <p className="text-sm text-[#d1585a]">
+              Please keep the size under 5MB
+            </p>
+          </div>
+
+          {/* <div className="mb-6">
             <h2 className="md:text-2xl font-bold text-[#ee6e73] mb-2">
               Add your picture
             </h2>
@@ -231,7 +284,7 @@ export default function QuantityReview() {
             <p className="text-sm text-[#d1585a]">
               Please keep the size under 5MB
             </p>
-          </div>
+          </div> */}
 
           <p className="text-[#ee6e73] font-bold mb-4">
             Please make sure you have uploaded the correct picture & document &
@@ -286,6 +339,23 @@ export default function QuantityReview() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // // old
 // 'use client';

@@ -52,7 +52,7 @@ const BrandValues = () => {
             alt="Bird Illustration"
             // width={140}
             // height={140}
-            className="bird-illustration ml-[12rem] md:ml-[1px] md:w-[10rem] md:h-[8rem]  w-[10rem] h-[6rem]"
+            className="bird-illustration ml-[12rem] md:ml-[-1rem] md:w-[10rem] md:h-[8rem]  w-[10rem] h-[6rem]"
           />
         </div>
       </div>
@@ -67,12 +67,12 @@ const BrandValues = () => {
         />
         <div className="flex items-center justify-center mb-8">
           <div>
-            <h2 className="text-white font-gotham-bold md:text-pt-36 max-w-xl mt-12">
-              Brand Values
-            </h2>
-            <h2 className="text-white font-gotham-bold md:text-pt-20 mt-2">
+            <h2 className="text-white font-gotham-bold md:text-pt-30 text-pt-18 max-w-xl mt-12 md:ml-0 ">
               The Nexigifting Advantage
             </h2>
+            {/* <h2 className="text-white font-gotham-bold md:text-pt-20 mt-2">
+              The Nexigifting Advantage
+            </h2> */}
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 max-w-4xl mx-auto">
@@ -97,7 +97,7 @@ const BrandValues = () => {
 
       {activeIndex !== null && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-gray-400 p-8 rounded-md  shadow-md max-w-2xl w-full relative">
+          <div className="bg-[#db5c3c] p-8 rounded-md  shadow-md max-w-2xl w-full relative">
             <div className="absolute top-[-30px] left-1/2 transform -translate-x-1/2">
               <Image
                 src={values[activeIndex].icon}
@@ -108,17 +108,17 @@ const BrandValues = () => {
               />
             </div>
             <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              className="absolute top-4 right-4 text-white hover:text-gray-700"
               onClick={() => setActiveIndex(null)}
             >
               <X size={24} />
             </button>
-            <div className="flex items-center mb-4 mt-8">
+            <div className="flex items-center mb-4 mt-8 text-white">
               <h3 className="text-2xl font-bold">
                 {values[activeIndex].title}
               </h3>
             </div>
-            <p>{values[activeIndex].content}</p>
+            <p className="text-white">{values[activeIndex].content}</p>
           </div>
         </div>
       )}

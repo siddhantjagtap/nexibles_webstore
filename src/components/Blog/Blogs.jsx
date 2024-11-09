@@ -71,7 +71,7 @@ const BlogCard = ({ title, imageSrc, index }) => {
           <div className="text-center justify-end">
             <Link
               href={`/blog/${slug}`}
-              className="inline-block text-white font-gotham-medium text-pt-20  text-md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
+              className="inline-block text-white font-gotham-medium text-pt-14  text-md:text-xl px-4 py-2 rounded-full font-semibold hover:text-black transition duration-300"
             >
               Read More
             </Link>
@@ -214,10 +214,10 @@ const Blogs = () => {
           </div>
         )}
 
-        <div className="flex justify-center mt-8 md:mt-12">
+        <div className="flex justify-center mt-8 md:mt-12 md:mb-8">
           <Link
             href="/all-blog"
-            className="bg-[#107d98] text-white font-gotham-rounded-bold text-pt-18 px-6 py-3 md:px-8 md:py-4 mb-4 rounded-full  md:text-xl font-semibold hover:bg-[#0c5f73] transition-colors"
+            className="bg-[#107d98] text-white font-gotham-rounded-bold text-pt-4 px-6 py-3 md:px-8 md:py-4  mb-4 rounded-full font-semibold hover:bg-[#0c5f73] transition-colors"
           >
             Show More
           </Link>

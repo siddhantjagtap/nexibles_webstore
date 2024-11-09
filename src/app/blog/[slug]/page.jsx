@@ -315,7 +315,7 @@ return (
 
     <div className="relative w-full mx-auto md:mt-8">
       {/* Image container with full width, centered, without causing scroll */}
-      <div className="relative mt-16 w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[400px] overflow-hidden">
+      <div className="relative mt-16 w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[450px] overflow-hidden">
         <Image
           src={currentBlog.imageSrc}
           alt={currentBlog.title}
@@ -327,7 +327,7 @@ return (
 
       {/* Centered Content */}
       <div className="px-4 sm:px-8 md:px-16 lg:px-32">
-        <h1 className=" max-w-[83%] px-24 text-center text-2xl sm:text-3xl md:text-3xl lg:text-4xl md:mt-8 mt-8 italic text-[#197d8e]">
+        <h1 className=" max-w-[100%] px-18 text-center text-2xl sm:text-3xl md:text-3xl lg:text-3xl md:mt-8 mt-8 italic text-[#197d8e]">
           {currentBlog.title}
         </h1>
 

@@ -6,15 +6,16 @@ export default function About() {
     <div
       className="min-h-screen"
       style={{
-        backgroundImage: "url('/About_Us_Page/Abou_Us_Background.jpg')",
-        backgroundSize: "cover",
+        backgroundImage: "url('/About_Us_Page/About Us Background.png')",
+        backgroundSize: "100% 100%", // or "100% 100%" if you want it to stretch
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
+        // backgroundAttachment: "fixed", // optional for parallax effect
       }}
     >
       <div className="container mx-auto max-w-3xl px-4 md:px-6 lg:px-8">
         {/* First Section (About NexiGifting) */}
-        <div className="relative flex flex-col items-center justify-center text-center pt-16 md:pt-24 gap-6 md:gap-8">
+        <div className="items-center justify-center text-center pt-16 md:pt-24 gap-6 md:gap-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-[#f9e2b2]">
             Personalise, Pack, Present
           </h2>
@@ -49,21 +50,13 @@ export default function About() {
 
         {/* Second Section (By Nexibles) */}
         <div className="relative flex flex-col items-center text-center py-8 md:py-12">
-          {/* Bird Illustration - Left Side */}
-          <div className="absolute left-[-12rem] top-1/4 w-28 md:w-[42%] lg:w-[30%]">
-            <img
-              src={BirdIllustration.src}
-              alt="Bird Illustration"
-              className="w-full h-auto"
-            />
-          </div>
-
+ 
           <div className="max-w-4xl text-white">
             <h2 className="text-base md:text-xl lg:text-xl mb-4 ">
-              By Nexibles
+              {`By Nexibles`}
             </h2>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4">
-              Our parent brand,
+              {`Our parent brand,`}
             </p>
             <p className="text-base md:text-xl lg:text-xl leading-snug mb-4 ">
               {`NEXt generation flexIBLES, is taking flexible packaging to the
@@ -93,20 +86,24 @@ export default function About() {
 
 
 
+
+
+
+
 // import React from "react";
 // import BirdIllustration from "../../../public/About_Us_Page/About_Us_Bird_Illustration.svg";
 
 // export default function About() {
 //   return (
-//     <div
-//       className="min-h-screen"
-//       style={{
-//         backgroundImage: "url('/About_Us_Page/Abou_Us_Background.jpg')",
-//         backgroundSize: "cover",
-//         backgroundPosition: "center",
-//         backgroundRepeat: "no-repeat",
-//       }}
-//     >
+    // <div
+    //   className="min-h-screen"
+    //   style={{
+    //     backgroundImage: "url('/About_Us_Page/Abou_Us_Background.jpg')",
+    //     backgroundSize: "cover",
+    //     backgroundPosition: "center",
+    //     backgroundRepeat: "no-repeat",
+    //   }}
+    // >
 //       {/* First Section (About NexiGifting) */}
 //       <div className="relative flex flex-col lg:flex-row items-start justify-between pt-16 md:pt-24 gap-6 md:gap-8 px-4 md:px-6 lg:px-24 py-8 md:py-12">
 //         <div className="lg:w-1/2 text-white md:mt-8">

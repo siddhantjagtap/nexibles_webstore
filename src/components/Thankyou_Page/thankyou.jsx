@@ -45,7 +45,7 @@ function Thankyou() {
     <div
       className="flex items-center justify-center h-screen bg-cover"
       style={{
-        backgroundImage: "url('/Contact_Us_Page/Contact_Us_Background.jpg')",
+        backgroundImage: "url('/Thank_You_Page/Thank You Page Background.png')",
       }}
     >
       <div className="text-center px-4 lg:px-64">

@@ -60,10 +60,10 @@ export default function Hero() {
               {/* Text Section */}
               <div className="md:w-[70%] text-center md:text-left px-4 md:px-8 md:mt-36">
                 <div className="flex justify-center md:justify-start items-center">
-                  <h1 className="text-2xl md:text-5xl lg:text-pt-60 text-[#0f1729] font-gotham-rounded-bold">
+                  <h1 className="text-pt-45 lg:text-pt-52 text-[#0f1729] font-gotham-rounded-bold">
                     NEXI
                   </h1>
-                  <h1 className="text-2xl md:text-5xl lg:text-pt-60 text-[#db5c3c] font-gotham-rounded-bold">
+                  <h1 className="text-pt-45 lg:text-pt-52 text-[#db5c3c] font-gotham-rounded-bold">
                     GIFTING
                   </h1>
                   <Image
@@ -75,7 +75,7 @@ export default function Hero() {
                   />
                 </div>
 
-                <h2 className="text-lg md:text-2xl lg:text-pt-25 font-gotham-medium mt-4">
+                <h2 className="text-lg md:text-2xl lg:text-pt-18 font-gotham-medium -mt-4">
                   {`India's First Personalised Stand-Up Pouches`}
                 </h2>
                 <p className="text-sm md:text-lg lg:text-pt-22 font-gotham-light mb-6 text-gray-500 mt-2">

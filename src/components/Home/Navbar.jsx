@@ -87,7 +87,9 @@ const Navbar = () => {
               <Link href="/about">About Us</Link>
               <Link href="/contact-us">Contact Us</Link>
             </div>
-            {/* <Link
+
+            {/* Search Icon */}
+            <Link
               href="/occasions"
               className={`hidden sm:flex items-center ${iconColor}`}
             >
@@ -98,7 +100,9 @@ const Navbar = () => {
                 height={23}
                 className="sm:w-[25px] sm:h-[25px]"
               />
-            </Link> */}
+            </Link>
+
+            {/* Profile Icon */}
             <div
               className="relative hidden sm:flex text-black items-center cursor-pointer group"
               onClick={handleProfileClick}

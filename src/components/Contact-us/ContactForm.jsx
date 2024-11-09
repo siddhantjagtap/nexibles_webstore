@@ -64,7 +64,7 @@ export default function ContactForm() {
     <div
       className="contact-form min-h-screen text-white p-4 md:p-8 md:px-24"
       style={{
-        backgroundImage: 'url("/Contact_Us_Page/Contact_Us_Background.jpg")',
+        backgroundImage: 'url("/Contact_Us_Page/Contact Us Background.png")',
         backgroundSize: "cover",
       }}
     >
@@ -177,7 +177,6 @@ export default function ContactForm() {
                   Submit
                 </button>
               </div>
-
             </form>
           </div>
 
@@ -187,7 +186,7 @@ export default function ContactForm() {
                 Address
               </h2>
               <p className="text-base md:text-mx text-[#fcfdfd] font-normal">
-              Unit A6C, Lodha Industrial & Logistics Park - II,
+                Unit A6C, Lodha Industrial & Logistics Park - II,
                 <br />
                 Usatane Village, Navi Mumbai,
                 <br />

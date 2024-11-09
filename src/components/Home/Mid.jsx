@@ -163,7 +163,7 @@ export default function Mid() {
 
     return (
       <Link href="/occasions">
-        <div className="text-center w-full relative group pt-2 sm:pt-4 pb-4 sm:pb-8">
+        <div className="text-center w-full relative group pt-2 sm:pt-4 pb-4 sm:pb-">
           <div className="h-32 sm:h-40 md:h-48 w-32 sm:w-40 md:w-48 mx-auto flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 transform group-hover:-translate-y-4">
             <div className="relative w-full h-[86%]">
               <Image
@@ -190,7 +190,6 @@ export default function Mid() {
     if (!product || !product.image || !product.name) return null;
 
     return (
-      
       <div className="w-full relative h-full pt-6 sm:pt-8 md:pt-12">
         <div className="bg-[#f9e2b2] rounded-t-3xl rounded-b-[45%] h-40 sm:h-48 md:h-64 flex items-center justify-center">
           <div className="relative w-full h-full mt-4 sm:mt-6 md:mt-8">
@@ -230,29 +229,29 @@ export default function Mid() {
         }}
       />
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
-       <div>
-  <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-30 text-center text-black md:text-white mt-4 sm:mt-6 md:mt-8 relative z-10">
-    <Image
-      src={Butterflies2}
-      alt="butterflies"
-      width={64}
-      height={64}
-      className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
-    />
-    Personalise Your Celebration
-  </h2>
-  <p className="text-center md:mb-12 text-sm sm:text-base md:text-xl lg:text-xl max-w-4xl mx-auto relative z-10 text-black md:text-white">
-    From design to details, add your personal touch to every pouch.
-    <Image
-      src={TreeIllustration}
-      alt="tree illustration"
-      width={44}
-      height={44}
-      className="inline-block w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 mt-[-1rem] sm:mt-[-1.5rem] md:mt-[-2rem] lg:mt-[-2.5rem]"
-    />
-  </p>
-</div>
+      <div className="container text-center px-4 sm:px-6 md:px-8 lg:px-16">
+        <div>
+          <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-30 text-center text-black md:text-white mt-4 sm:mt-6 md:mt-8 relative z-10">
+            <Image
+              src={Butterflies2}
+              alt="butterflies"
+              width={64}
+              height={64}
+              className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
+            />
+            Personalise Your Celebration
+          </h2>
+          <p className=" md:mb-12 text-sm sm:text-base md:text-xl lg:text-xl max-w-4xl mx-auto relative z-10 text-black md:text-white">
+            From design to details, add your personal touch to every pouch.
+          </p>
+          <Image
+            src={TreeIllustration}
+            alt="tree illustration"
+            width={44}
+            height={44}
+            className="inline-block w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24  sm:mt-[-1.5rem] md:mt-[-2rem] lg:mt-[-.5rem]"
+          />
+        </div>
 
         <div className="relative z-10 max-w-6xl mx-auto md:mb-12">
           {categoryData && categoryData.length > 0 && (
@@ -297,13 +296,6 @@ export default function Mid() {
     </div>
   );
 }
-
-
-
-
-
-
-
 
 // import React, { useRef, useState, useEffect, useCallback } from "react";
 // import Image from "next/image";
