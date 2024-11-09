@@ -189,15 +189,10 @@ const PopularProducts = ({ token = "irrv211vui9kuwn11efsb4xd4zdkuq" }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
-      <h3 className="font-gotham-bold text-lg sm:text-xl md:text-pt-23 text-center text-black md:text-white relative z-10 mb-4 sm:mb-6 md:mb-8">
-        <Image
-          src={FlowerIllustration}
-          alt="flower illustration"
-          width={40}
-          height={40}
-          className="inline-block w-8 h-8 sm:w-12 sm:h-12 md:w-30 md:h-30 lg:w-36 lg:h-36"
-        />
-        Popular Products
+      {/* <h3 className="font-gotham-bold text-lg sm:text-xl md:text-pt-23 text-center text-[#db5c3c]  relative z-10 mb-4 sm:mb-6 md:mb-8">
+        */}
+         <h3 className="font-gotham-bold text-lg sm:text-2xl md:text-pt-20 text-center text-[#db5c3c] md:text-[#db5c3c] mt-4 sm:mt-6 md:mt-8 relative z-10">
+        Check out our Popular Products
         <Image
           src={Butterflies2}
           alt="butterflies"

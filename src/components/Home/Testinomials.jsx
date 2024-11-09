@@ -26,10 +26,11 @@ const Testimonials = () => {
         {/* Card 1 */}
         <div className="h-full flex flex-col">
           <div className="bg-[#197d8e] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
-            <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify hyphens-auto break-words">
-              These pouches were perfect for our Diwali gift hampers. The
-              option to personalize each one made our gifts stand out and
-              brought smiles all around.
+            {/* <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify hyphens-auto break-words"> */}
+            <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify break-words overflow-wrap break-word word-break-normal hyphens-manual">
+              These pouches were perfect for our Diwali gift hampers. The option
+              to personalize each one made our gifts stand out and brought
+              smiles all around.
             </p>
             <div className="mt-auto">
               <p className="text-center font-gotham-light md:text-pt-15">
@@ -55,7 +56,8 @@ const Testimonials = () => {
         {/* Card 2 */}
         <div className="h-full flex flex-col">
           <div className="bg-[#db5c3c] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
-            <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words">
+            {/* <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words"> */}
+            <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify break-words overflow-wrap break-word word-break-normal hyphens-manual">
               I used these pouches for wedding favors and they were a hit! It
               looked great with our pictures on the pouch, the guests got to
               take home a cherished personalized gift.
@@ -84,7 +86,8 @@ const Testimonials = () => {
         {/* Card 3 */}
         <div className="h-full flex flex-col">
           <div className="bg-[#197d8e] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
-            <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words">
+            {/* <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words"> */}
+            <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify break-words overflow-wrap break-word word-break-normal hyphens-manual">
               I gave my family these pouches filled with gourmet coffee &
               chocolates. The quality & easy customization was top-notch. It
               made the gifts more memorable!
@@ -113,7 +116,8 @@ const Testimonials = () => {
         {/* Card 4 */}
         <div className="h-full flex flex-col">
           <div className="bg-[#db5c3c] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md flex-1 flex flex-col">
-            <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words">
+            {/* <p className="font-gotham-bold md:text-pt-15  mb-3 sm:mb-4 flex-1  text-justify hyphens-auto break-words"> */}
+            <p className="font-gotham-bold md:text-pt-15 mb-3 sm:mb-4 flex-1 text-justify break-words overflow-wrap break-word word-break-normal hyphens-manual">
               The Nexipouches were fantastic for our baby shower return gifts.
               They were stylish, durable & we got to give some cute gifts to our
               guests.
@@ -144,9 +148,6 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
-
-
-
 
 
 // "use client";

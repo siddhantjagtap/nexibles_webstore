@@ -86,7 +86,7 @@ export default function CelebrationCategoryPage() {
 
         {/* Sidebar */}
         <aside
-          className={`w-full md:w-[15%] bg-[#d88473] md:ml-[3rem] md:mt-6 p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
+          className={`w-full md:w-[12%] bg-[#d88473] md:ml-[3rem] md:mt-6 p-4 md:p-6 fixed md:static top-0 left-0 h-full md:h-auto overflow-y-auto transition-transform duration-300 ease-in-out z-10 ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 rounded-[2.5rem]`}
         >
@@ -98,20 +98,20 @@ export default function CelebrationCategoryPage() {
                   ? // ? "bg-[#124e66] text-white rounded-lg"
                     " text-white rounded-lg"
                   : "hover:bg-[#] rounded-lg"
-              } p-2 md:p-4`}
+              } p-2 `}
               onClick={() => {
                 setSelectedCategory(category);
                 setIsMobileMenuOpen(false);
               }}
             >
-              <div className="rounded-full bg-white w-12 h-12 md:w-[120%] md:h-auto md:aspect-square p-2 md:p-4 flex justify-center items-center overflow-hidden">
+              <div className="rounded-full bg-white w-12 h-12 md:w-[120%] md:h-auto md:aspect-square p-2 flex justify-center items-center overflow-hidden">
                 <img
                   src={`https://nexiblesapp.barecms.com/uploads/${category.bg_Img}`}
                   alt={category.name}
                   className="object-contain w-full h-full"
                 />
               </div>
-              <p className="text-sm md:text-lg font-gotham-bold ml-3 md:ml-0 md:mt-4 text-center text-[#f9e2b2]">
+              <p className="text-sm md:text-lg font-semibold ml-3 md:ml-0 md:mt-4 text-center text-[#f9e2b2]">
                 {category.name}
               </p>
             </div>

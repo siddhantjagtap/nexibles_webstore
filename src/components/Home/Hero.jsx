@@ -60,10 +60,10 @@ export default function Hero() {
               {/* Text Section */}
               <div className="md:w-[70%] text-center md:text-left px-4 md:px-8 md:mt-36">
                 <div className="flex justify-center md:justify-start items-center">
-                  <h1 className="text-pt-45 lg:text-pt-52 text-[#0f1729] font-gotham-rounded-bold">
+                  <h1 className="text-pt-20 md:text-pt-45 lg:text-pt-52 md:py-0 py-4 text-[#0f1729] font-gotham-rounded-bold">
                     NEXI
                   </h1>
-                  <h1 className="text-pt-45 lg:text-pt-52 text-[#db5c3c] font-gotham-rounded-bold">
+                  <h1 className="text-pt-20 md:text-pt-45 lg:text-pt-52 text-[#db5c3c] font-gotham-rounded-bold">
                     GIFTING
                   </h1>
                   <Image

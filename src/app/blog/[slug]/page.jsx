@@ -352,9 +352,9 @@ return (
         </div>
       </div>
 
-      <div className="mt-8">
-        <BlogCarousel />
+      <div className="mt-20">
         <PopularProducts />
+        <BlogCarousel />
       </div>
       <Footer />
     </div>

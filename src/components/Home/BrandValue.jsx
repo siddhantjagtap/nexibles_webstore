@@ -46,13 +46,11 @@ const BrandValues = () => {
   return (
     <>
       <div className="relative">
-        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-10 ml-[-10rem]">
+        <div className="absolute -top-1 left-1/4 transform -translate-x-1/2 z-10 ml-[-10rem]">
           <Image
             src={BirdIllustration}
             alt="Bird Illustration"
-            // width={140}
-            // height={140}
-            className="bird-illustration ml-[12rem] md:ml-[-1rem] md:w-[10rem] md:h-[8rem]  w-[10rem] h-[6rem]"
+            className="bird-illustration ml-[12rem] md:ml-[20rem] md:w-[10rem] md:h-[8rem]  w-[10rem] h-[6rem]"
           />
         </div>
       </div>

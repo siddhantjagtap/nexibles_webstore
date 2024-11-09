@@ -20,7 +20,7 @@ const DesktopBlogCard = ({ title, imageSrc, index }) => {
   const slug = createSlug(title);
   return (
     <div
-      className={`mt-40 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 pt-24 pb-6 h-80 w-60 flex flex-col justify-between`}
+      className={`mt-24 relative cursor-pointer ${backgroundColor} overflow-visible shadow-lg p-4 pt-24 pb-6 h-80 w-60 flex flex-col justify-between`}
     >
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="w-48 h-48 rounded-full overflow-hidden">
@@ -133,7 +133,7 @@ const BlogCarousel = () => {
             
             More topics you might be interested in
           </h2> */}
-          <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-30 text-center text-black md:text-[#db5c3c] mt-4 sm:mt-6 md:mt-8 relative z-10">
+          <h2 className="font-gotham-bold text-xl sm:text-2xl md:text-pt-20 text-center text-[#db5c3c] md:text-[#db5c3c] mt-4 sm:mt-6 md:mt-8 relative z-10">
             <Image
               src={Butterflies2}
               alt="butterflies"
@@ -141,7 +141,7 @@ const BlogCarousel = () => {
               height={64}
               className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
             />
-            Personalise Your Celebration
+            More topics you might be interested in
           </h2>
         </div>
         <Swiper
@@ -200,6 +200,16 @@ const BlogCarousel = () => {
 };
 
 export default BlogCarousel;
+
+
+
+
+
+
+
+
+
+
 
 //before update
 
