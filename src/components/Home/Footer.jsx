@@ -140,7 +140,7 @@ const Footer = () => {
                 Blogs
               </Link>
               <Link
-                href="/contact-us"
+                href="/Contact-us"
                 className="hover:underline font-gotham-book text-base sm:text-lg lg:text-pt-20"
               >
                 Contact Us

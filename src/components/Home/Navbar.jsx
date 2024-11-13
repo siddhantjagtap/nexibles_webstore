@@ -86,7 +86,7 @@ const Navbar = () => {
               <Link href="/occasions">Occasions</Link>
               <Link href="/customise">Customise</Link>
               <Link href="/about">About Us</Link>
-              <Link href="/contact-us">Contact Us</Link>
+              <Link href="/Contact-us">Contact Us</Link>
             </div>
 
             {/* Search Icon */}
