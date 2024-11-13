@@ -83,7 +83,7 @@ const MyDashboard = ({ savedAddresses }) => {
               No Addresses Found
             </h2>
             <p className="text-gray-700 mb-6 font-gotham-light">
-              You haven't added any addresses yet. Add your first address to get started.
+              {`You haven't added any addresses yet. Add your first address to get started.`}
             </p>
             <button
               onClick={handleAddAddressClick}

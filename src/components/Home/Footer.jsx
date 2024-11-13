@@ -155,7 +155,7 @@ const Footer = () => {
                 href="/faq"
                 className="hover:underline font-gotham-book text-base sm:text-lg lg:text-pt-20"
               >
-                FAQ's
+                {`FAQ's`}
               </Link>
             </nav>
           </div>

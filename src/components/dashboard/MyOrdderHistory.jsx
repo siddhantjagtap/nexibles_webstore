@@ -140,7 +140,7 @@ const MyOrderHistory = () => {
                                 />
                             </svg>
                             <h3 className="text-[#db5c3c] font-gotham-rounded-bold text-lg mb-2">No Orders Found</h3>
-                            <p className="text-gray-600 mb-6">You haven't placed any orders yet.</p>
+                            <p className="text-gray-600 mb-6">{`You haven't placed any orders yet.`}</p>
                             {/* <Link
                                 href="/occasions"
                                 className="bg-[#197d8e]  text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all inline-block"
