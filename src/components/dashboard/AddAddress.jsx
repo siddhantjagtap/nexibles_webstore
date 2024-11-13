@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from 'react';
 import { useAuth } from '@/utils/authContext';
+import { RxCross2 } from 'react-icons/rx';
 
 const AddAddress = (props) => {
-    const {user} = useAuth();
-    console.log("userINaddress",user);
+    const { user } = useAuth();
     const [formData, setFormData] = useState({
         customerId: '',
         location: '',
@@ -14,11 +14,10 @@ const AddAddress = (props) => {
         floor: '',
         address: '',
         address2: '',
-        state: '',
+        state: 'Maharashtra', // Set default value
         city: '',
-        prov: '',
         zip: '',
-        country: '',
+        country: 'India', // Set default value
         phone: '',
         mobile: '',
         addressType: '',
@@ -26,40 +25,17 @@ const AddAddress = (props) => {
         addedon: '',
         latlong: '',
         street_no: '',
+        addressTypeOther: ''
     });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(`Field ${name} changed to:`, value); // Add logging
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         if (!user) return;
-    //         let customerId = user?.result?.customerId || user?.customerId;
-    //         const formDataWithCustomerId = { ...formData, customerId };
-    //         const response = await fetch('https://nexiblesapp.barecms.com/api/customerAddress', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify(formDataWithCustomerId)
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Failed to insert address');
-    //         }
-    //         const data = await response.json();
-    //         console.log('Address inserted successfully:', data);
-    //         props.setShowAddAddress(false);
-    //         window.location.reload();
-    //     } catch (error) {
-    //         console.error("Error inserting address:", error);
-    //     }
-    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -68,6 +44,9 @@ const AddAddress = (props) => {
             let customerId = user?.result?.customerId || user?.customerId;
             const formDataWithCustomerId = { ...formData, customerId };
             formDataWithCustomerId.addedon = new Date().toISOString();
+
+            // Log the data being sent
+            console.log('Submitting form data:', formDataWithCustomerId);
 
             const response = await fetch('https://nexiblesapp.barecms.com/api/customerAddress', {
                 method: 'POST',
@@ -78,8 +57,11 @@ const AddAddress = (props) => {
             });
 
             if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Server response:', errorData);
                 throw new Error('Failed to insert address');
             }
+
             const data = await response.json();
             console.log('Address inserted successfully:', data);
             props.setShowAddAddress(false);
@@ -90,19 +72,35 @@ const AddAddress = (props) => {
     };
 
     return (
-        <div className="bg-white py-10">
+        <div className="bg-white py-2 relative">
+            <button
+                onClick={() => props.setShowAddAddress(false)}
+                className="absolute top-0 right-0 "
+            >
+                <RxCross2 className="cursor-pointer" size={18} />
+            </button>
             <div className="">
-                <h2 className="text-gray-900 font-bold text-3xl px-8">Enter Your New Address</h2>
+                <h2 className="text-[#db5c3c] pt-4 font-gotham-rounded-bold text-pt-20 px-8">Enter Your New Address</h2>
             </div>
-            <form onSubmit={handleSubmit} action="" className="py-4 px-8">
-                <div className="flex flex-col space-y-4">
+            <form onSubmit={handleSubmit} className="py-4 px-8">
+                <div className="flex flex-col space-y-4 font-gotham-light">
+                    {/* Previous inputs remain the same */}
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
                         className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                        placeholder="title (required for business addresses)"
+                        placeholder="Title (required for business addresses)"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="floor"
+                        value={formData.floor}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Floor"
                         required
                     />
                     <input
@@ -131,33 +129,43 @@ const AddAddress = (props) => {
                         placeholder="City/Town"
                         required
                     />
+
+                    {/* Updated select fields with explicit value and onChange handlers */}
                     <select
                         name="state"
                         value={formData.state}
                         onChange={handleChange}
-                        id=""
-                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none">
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        required
+                    >
+                        <option value="">Select State</option>
                         <option value="Maharashtra">Maharashtra</option>
-                        <option value="Delhi">Dehli</option>
+                        <option value="Delhi">Delhi</option>
                     </select>
+
                     <input
                         type="text"
                         name="zip"
                         value={formData.zip}
                         onChange={handleChange}
                         className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                        placeholder="zip"
+                        placeholder="ZIP"
                         required
+                        maxLength={6}
                     />
+
                     <select
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
-                        id=""
-                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none">
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        required
+                    >
+                        <option value="">Select Country</option>
                         <option value="India">India</option>
                         <option value="Germany">Germany</option>
                     </select>
+
                     <input
                         type="text"
                         name="phone"
@@ -166,15 +174,28 @@ const AddAddress = (props) => {
                         className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
                         placeholder="Phone"
                         required
+                        maxLength={10}
                     />
-                    <div className="ml-2">
+
+                    <div className="">
+                        <select
+                            name="addressType"
+                            value={formData.addressType}
+                            onChange={handleChange}
+                            className="border-2 rounded-full w-full text-gray-900 px-4 py-1 outline-none"
+                            required
+                        >
+                            <option value="">Select Address Type</option>
+                            <option value="Home">Home</option>
+                            <option value="Office">Office</option>
+                        </select>
                     </div>
                 </div>
-                <div className="mt-4">
-                <button type="submit" className="bg-[#30384E] rounded-md text-white px-8 py-2 ">
-                    Use this address
-                </button>
 
+                <div className="mt-6">
+                    <button type="submit" className="bg-[#db5c3c] rounded-full font-gotham-rounded-bold w-full text-white px-8 py-2">
+                        Use this address
+                    </button>
                 </div>
             </form>
         </div>

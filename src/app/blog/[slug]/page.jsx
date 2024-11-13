@@ -328,7 +328,7 @@ return (
 
       {/* Centered Content */}
       <div className="px-4 sm:px-8 md:px-16 lg:px-32">
-        <h1 className=" max-w-[100%] px-18 text-center text-2xl sm:text-3xl md:text-3xl lg:text-3xl md:mt-8 mt-8 italic text-[#197d8e]">
+        <h1 className=" max-w-[100%] font-gotham-rounded-bold px-18 text-center text-2xl sm:text-3xl md:text-3xl lg:text-3xl md:mt-8 mt-8 text-[#197d8e]">
           {currentBlog.title}
         </h1>
 
@@ -343,10 +343,10 @@ return (
         <div className="mt-4 space-y-4">
           {currentBlog.sections?.map((section) => (
             <div key={section.heading} className="space-y-2 font-gotham-medium">
-              <h2 className="text-[#db5c3c] text-xl font-semibold">
+              <h2 className="text-[#db5c3c] text-xl font-gotham-book">
                 {section.heading}
               </h2>
-              <p className="text-black leading-relaxed">{section.content}</p>
+              <p className="text-black leading-relaxed font-gotham-light">{section.content}</p>
             </div>
           ))}
         </div>

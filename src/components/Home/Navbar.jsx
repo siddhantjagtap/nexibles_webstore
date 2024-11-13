@@ -70,11 +70,12 @@ const Navbar = () => {
           <Link href="/" className="mr-auto">
             <div className="relative px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg">
               <Image
-                src="/home/Nexi GIFTING LOGO GIF.gif"
+                // src="/home/logo 2.gif"
+                src="/home/Nexigiting Logo Without Background.gif"
                 alt="Nexibles"
                 width={150}
                 height={30}
-                className="sm:w-[220px] sm:h-[27px]"
+                className="sm:w-[220px] sm:h-[40px]"
                 priority
               />
             </div>
@@ -114,7 +115,7 @@ const Navbar = () => {
                 alt="Profile"
                 className="sm:w-[25px] sm:h-[25px]"
               />
-             <span className="ml-1 md:block hidden text-[#197d8e] text-lg">
+              <span className="ml-1 md:block hidden text-[#197d8e] text-lg">
                 {user
                   ? `Hello, ${user?.result?.firstName || user?.firstName}`
                   : ""}
@@ -159,7 +160,7 @@ const Navbar = () => {
         </div> */}
       </div>
 
-      <div
+      {/* <div
         className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         }`}
@@ -169,15 +170,23 @@ const Navbar = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
+      > */}
+      <div
+        className={`fixed top-0 left-0 w-full h-full z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+        style={{
+          backgroundColor: "#197d8e",
+        }}
       >
         <div className="w-full bg-transparent p-6 md:p-8 flex items-center justify-end min-h-screen relative">
           <button
             onClick={toggleMenu}
-            className="absolute top-8 right-8 text-black"
+            className="absolute top-8 right-8 text-white"
           >
             <IoCloseOutline size={32} />
           </button>
-          <ul className="text-black text-2xl md:text-4xl mt-12 md:mt-0 space-y-6 text-right">
+          <ul className="text-white text-2xl md:text-4xl mt-12 md:mt-0 space-y-6 text-right">
             <li>
               <Link href="/" onClick={toggleMenu}>
                 Home
@@ -216,6 +225,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 
 
 //old one final

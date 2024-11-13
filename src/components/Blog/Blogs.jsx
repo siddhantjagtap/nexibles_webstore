@@ -66,10 +66,16 @@ const BlogCard = ({ title, imageSrc, index }) => {
         <div className="flex flex-col flex-grow justify-between">
           {/* Responsive text size for title */}
           <div className="text-center md:mt-4 px-2 flex-grow">
-            <h3 className="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 font-gotham-book">
+            <h3 className="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 font-gotham-book line-clamp-4">
               {title}
             </h3>
           </div>
+
+          {/* <div className="text-center md:mt-4 px-2 flex-grow">
+            <h3 className="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 font-gotham-book">
+              {title}
+            </h3>
+          </div> */}
           {/* Read More button always at the bottom */}
           <div className="text-center mt-auto">
             <Link
@@ -208,8 +214,8 @@ const Blogs = () => {
           </div>
         ) : (
           <div className="flex justify-center mt-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
-              {getRandomBlogs(4).map((post, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-6 lg:gap-24 max-w-6xl mx-auto">
+              {getRandomBlogs(5).map((post, index) => (
                 <div key={index} className="flex justify-center">
                   <BlogCard index={index} {...post} />
                 </div>

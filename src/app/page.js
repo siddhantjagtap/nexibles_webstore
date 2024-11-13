@@ -9,6 +9,7 @@ import OwnDesign from "@/components/Home/OwnDesign";
 import { VersatileAndCelebration } from "@/components/Home/VersatileAndCelebration"; // Correct import
 import VersatileGifting from "@/components/Home/VersatileGifting";
 import BrandValues from "@/components/Home/BrandValue";
+import PopularProducts from "@/components/Blog/PopularProducts";
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
       <Navbar />
       <Hero />
       <Mid />
+      {/* <PopularProducts /> */}
       <VersatileAndCelebration />
       <BrandValues />
       

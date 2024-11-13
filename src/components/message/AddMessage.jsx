@@ -160,7 +160,7 @@ const [image2, setImage2] = useState(null);
             />
             <button
               type="submit"
-              className="bg-[#124e66] font-gotham-rounded-bold text-white px-4 py-2 rounded-full text-sm sm:text-base hover:bg-[#0e3e51] transition duration-300"
+              className="bg-[#124e66] font-gotham-rounded-bold text-white px-4 py-2 ml-[-1.3rem] mb-[1.2rem] rounded-full text-sm sm:text-base hover:bg-[#0e3e51] transition duration-300"
             >
               Next
             </button>

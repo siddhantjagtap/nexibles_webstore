@@ -52,7 +52,7 @@ export default function Checkout({ defaultAddress, addresses }) {
         setAppliedCoupon(storedCoupon);
 
         let newSubTotal = storedItems.reduce(
-          (sum, item) => sum + (parseFloat(item.price) || 0),
+          (sum, item) => sum + (parseFloat(item.totalPrice) || 0),
           0
         );
         setSubTotal(newSubTotal.toFixed(2));
@@ -188,7 +188,7 @@ export default function Checkout({ defaultAddress, addresses }) {
       }
       const data = await response.json();
       console.log("Address inserted successfully:", data);
-      router.reload();
+      window.location.reload();
     } catch (error) {
       console.error("Error inserting address:", error);
     } finally {
@@ -350,190 +350,191 @@ export default function Checkout({ defaultAddress, addresses }) {
                 <h3 className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base">
                   {user?.result?.emailAddress}
                 </h3>
-                <label className="block font-semibold text-lg sm:text-xl mt-2 text-[#db5c3c]">
+                {/* <label className="block font-semibold text-lg sm:text-xl mt-2 text-[#db5c3c]">
                   Shipping
-                </label>
+                </label> */}
               </div>
-              <div className="grid grid-cols-1 gap-4">
-                {defaultAddress &&
-                  defaultAddress.data &&
-                  defaultAddress.data.isDefault ? (
-                  <>
-                    <div className="space-y-4">
-                      <div className="border border-[#464087] rounded-xl shadow-lg">
-                        <div className="flex justify-between items-center border-b border-[#464087] ">
-                          <p className="text-[#db5c3c] uppercase text-xl md:text-2xl font-bold p-2">
-                            {user?.result?.firstName ?? user?.firstName}{" "}
-                            {user?.result?.lastName ?? user?.lastName}
-                          </p>
-                        </div>
-                        {Object.entries(defaultAddress.data).map(
-                          ([key, value]) => {
-                            if (
-                              value !== null &&
-                              value !== undefined &&
-                              value !== ""
-                            ) {
-                              const displayedKey =
-                                key === "title" ? "Company Name" : key;
-                              if (
-                                displayedKey !== "customerId" &&
-                                displayedKey !== "isDefault" &&
-                                displayedKey !== "id"
-                              ) {
-                                let displayValue = value;
+              <div className="max-w-4xl mx-auto">
 
-                                if (
-                                  key === "addedon" &&
-                                  typeof value === "string"
-                                ) {
-                                  const date = new Date(value);
-                                  displayValue = date
-                                    .toISOString()
-                                    .split("T")[0];
-                                }
 
-                                return (
-                                  <p className="text-[#464087] px-2" key={key}>
-                                    <span className="font-bold">
-                                      {displayedKey.charAt(0).toUpperCase() +
-                                        displayedKey.slice(1)}
-                                      :
-                                    </span>{" "}
-                                    {displayValue}
-                                  </p>
-                                );
-                              }
+                {defaultAddress && defaultAddress.data && defaultAddress.data.isDefault ? (
+                  <div className="bg-white rounded-lg overflow-hidden">
+                    {/* Header Section */}
+                    <h2 className="text-2xl font-bold text-[#464087] mb-8">Shipping Details</h2>
+                    <div className="bg-gradient-to-r from-[#464087] to-[#5651a8] px-6 py-4">
+                      <div className="flex justify-between items-center">
+                        <p className="text-white text-xl font-bold">
+                          {user?.result?.firstName ?? user?.firstName}{" "}
+                          {user?.result?.lastName ?? user?.lastName}
+                        </p>
+                        <span className="bg-[#db5c3c] text-white text-sm px-4 py-1 rounded-full">
+                          Default Address
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Address Details */}
+                    <div className="p-6 grid grid-cols-2 gap-y-4">
+                      {Object.entries(defaultAddress.data).map(([key, value]) => {
+                        if (value !== null && value !== undefined && value !== "") {
+                          const displayedKey = key === "title" ? "Company Name" : key;
+                          if (!["customerId", "isDefault", "id"].includes(displayedKey)) {
+                            let displayValue = value;
+                            if (key === "addedon" && typeof value === "string") {
+                              displayValue = new Date(value).toISOString().split("T")[0];
                             }
-                            return null;
+                            return (
+                              <div className="text-gray-700" key={key}>
+                                <p className="text-sm text-[#464087] font-medium mb-1">
+                                  {displayedKey.charAt(0).toUpperCase() + displayedKey.slice(1)}
+                                </p>
+                                <p className="text-lg">{displayValue}</p>
+                              </div>
+                            );
                           }
-                        )}
-                      </div>
+                        }
+                        return null;
+                      })}
                     </div>
-                  </>
+                  </div>
                 ) : (
-                  <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-white ">
+                    {/* Form Header */}
+                    <h3 className="text-[#db5c3c] text-xl font-semibold mb-6">Add New Address</h3>
+
+                    {/* Form Grid */}
+                    <div className="space-y-6">
+                      {/* Name and Phone */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            Full Name
+                          </label>
+                          <input
+                            type="text"
+                            name="title"
+                            placeholder="Enter your full name"
+                            value={formData.title}
+                            onChange={handleChange}
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            Phone Number
+                          </label>
+                          <input
+                            type="text"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            maxLength="9"
+                            pattern="[0-9]{9}"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Street Address */}
                       <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          Name
+                        <label className="block text-[#464087] font-medium mb-2">
+                          Street Address
                         </label>
                         <input
                           type="text"
-                          name="title"
-                          placeholder="eg John Smith"
-                          value={formData.title}
+                          name="address"
+                          value={formData.address}
                           onChange={handleChange}
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
+                          placeholder="Enter your street address"
+                          className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
                         />
                       </div>
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          Number
-                        </label>
-                        <input
-                          type="text"
-                          name="phone"
-                          placeholder="eg +91 88745 6xxxx"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                          maxLength="9"
-                          pattern="[0-9]{9}"
-                          value={formData.phone}
-                          onChange={handleChange}
-                        />
+
+                      {/* Flat Number and Landmark */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            Flat/Unit Number
+                          </label>
+                          <input
+                            type="text"
+                            name="floor"
+                            value={formData.floor}
+                            onChange={handleChange}
+                            placeholder="Enter flat or unit number"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            Landmark
+                          </label>
+                          <input
+                            type="text"
+                            name="address2"
+                            value={formData.address2}
+                            onChange={handleChange}
+                            placeholder="Enter nearby landmark"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* City, State, Pincode */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            City
+                          </label>
+                          <input
+                            type="text"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
+                            placeholder="Enter city"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            State
+                          </label>
+                          <input
+                            type="text"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
+                            placeholder="Enter state"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[#464087] font-medium mb-2">
+                            Pincode
+                          </label>
+                          <input
+                            type="text"
+                            name="zip"
+                            value={formData.zip}
+                            onChange={handleChange}
+                            placeholder="Enter pincode"
+                            className="w-full bg-gray-50 border border-[#464087] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-[#db5c3c] focus:ring-1 focus:ring-[#db5c3c] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Submit Button */}
+                      <div className="pt-4">
+                        <button
+                          onClick={handleSubmit}
+                          className="w-full sm:w-auto bg-[#db5c3c] hover:bg-[#c54c2f] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+                        >
+                          Save Address
+                        </button>
                       </div>
                     </div>
-                    <div>
-                      <label className="block font-semibold mb-2 text-[#db5c3c]">
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        placeholder="eg 1, Mumbai Road, Churchgate"
-                        className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                      />
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          Flat Number
-                        </label>
-                        <input
-                          type="text"
-                          name="floor"
-                          value={formData.floor}
-                          onChange={handleChange}
-                          placeholder="eg 501 A-wing"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          Landmark
-                        </label>
-                        <input
-                          type="text"
-                          name="address2"
-                          value={formData.address2}
-                          onChange={handleChange}
-                          placeholder="eg near churchgate station"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          City
-                        </label>
-                        <input
-                          type="text"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleChange}
-                          placeholder="eg Mumbai"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          State
-                        </label>
-                        <input
-                          type="text"
-                          name="state"
-                          value={formData.state}
-                          onChange={handleChange}
-                          placeholder="eg Maharashtra"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-semibold mb-2 text-[#db5c3c]">
-                          Pincode
-                        </label>
-                        <input
-                          type="text"
-                          name="zip"
-                          value={formData.zip}
-                          onChange={handleChange}
-                          placeholder="eg 400021"
-                          className="w-full border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <button
-                        onClick={handleSubmit}
-                        className="border border-[#464087] p-1 rounded-xl text-[#db5c3c] text-sm sm:text-base"
-                      >
-                        SAVE
-                      </button>
-                    </div>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
@@ -602,7 +603,7 @@ export default function Checkout({ defaultAddress, addresses }) {
                   Subtotal: ₹ {subTotal}
                 </h3>
               </div>
-              </div>
+            </div>
             <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
               <div className="flex items-center space-x-2 w-full sm:w-auto">
                 <input

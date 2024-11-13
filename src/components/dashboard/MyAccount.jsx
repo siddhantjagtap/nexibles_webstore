@@ -12,7 +12,7 @@ export default function MyAccount() {
 
   return (
     <div className="bg-white mt-4 md:mt-9">
-      <div className="px-4 md:px-10 py-10 md:py-20">
+      <div className="px-4 md:px-10 py-10 md:py-20 w-full max-w-[400px]">
         <div className="mb-4 py-4 md:py-6 px-4 border border-[#197d8e] rounded-3xl flex items-center">
           <Image
             src={profile.src}
@@ -21,7 +21,7 @@ export default function MyAccount() {
             className="mr-4"
             alt="Profile"
           />
-          <span className="text-[#db5c3c] text-lg md:text-xl font-bold">
+          <span className="text-[#db5c3c] text-lg md:text-xl font-gotham-rounded-bold">
             {user?.result?.firstName}
           </span>
         </div>
@@ -30,7 +30,7 @@ export default function MyAccount() {
             className="w-full border-b border-[#197d8e] py-3 md:py-4 px-4 flex justify-between items-center bg-white"
             onClick={() => setIsProfileOpen(!isProfileOpen)}
           >
-            <Link href="my-dashboard" className="text-[#db5c3c] font-bold">
+            <Link href="my-dashboard" className="text-[#db5c3c] font-gotham-rounded-bold">
               My Profile
             </Link>
             {isProfileOpen ? (
@@ -41,26 +41,26 @@ export default function MyAccount() {
           </button>
           {isProfileOpen && (
             <div className="px-4 py-2 flex flex-col">
-              <Link href="my-dashboard" className="text-gray-500 text-sm py-1">
+              <Link href="my-dashboard" className="text-gray-500 text-sm  font-gotham-light py-1">
                 Profile Details
               </Link>
-              <Link href="all-addresses" className="text-gray-500 text-sm py-1">
+              <Link href="all-addresses" className="text-gray-500  font-gotham-light text-sm py-1">
                 Address Book
               </Link>
             </div>
           )}
           <div className="py-3 md:py-2 px-4 border-b border-[#197d8e]">
-            <Link href="my-orderhistory" className="text-[#db5c3c] font-bold">
+            <Link href="my-orderhistory" className="text-[#db5c3c] font-gotham-rounded-bold">
               My Orders
             </Link>
           </div>
           <div className="py-3 md:py-2 px-4 border-b border-[#197d8e]">
-            <Link href="contact" className="text-[#db5c3c] font-bold">
+            <Link href="contact" className="text-[#db5c3c] font-gotham-rounded-bold">
               Contact Us
             </Link>
           </div>
           <div className="py-3 md:py-2 px-4">
-            <button onClick={logout} className="text-[#db5c3c] font-bold">
+            <button onClick={logout} className="text-[#db5c3c] font-gotham-rounded-bold">
               Logout
             </button>
           </div>

@@ -7,9 +7,9 @@ const CategoryIcon = ({ icon }) => {
   return <Image src={icon} alt="Category Icon" width={80} height={80} />;
 };
 
-const CategoryBanner = ({ categoryName }) => {
+const CategoryBanner = ({ categoryName, categoryddescription }) => {
   const getCategoryKey = (name) => {
-    if (!name) return "diwali";
+    if (!name) return "wedding";
 
     const categoryMap = {
       "new beginnings": "new_beginnings",

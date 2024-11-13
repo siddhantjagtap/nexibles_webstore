@@ -4,6 +4,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { useAuth } from '@/utils/authContext';
 import { useRouter } from 'next/navigation';
 import { FiDownload } from "react-icons/fi";
+import { Link } from 'lucide-react';
 
 
 const MyOrderHistory = () => {
@@ -123,7 +124,30 @@ const MyOrderHistory = () => {
 
                 <div className="space-y-6">
                     {orders.length === 0 ? (
-                        <p className="text-gray-900">No orders found.</p>
+                        <div className="border border-[#197d8e] rounded-3xl py-8 px-6 text-center">
+                            <svg
+                                className="mx-auto h-12 w-12 text-[#197d8e] mb-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                />
+                            </svg>
+                            <h3 className="text-[#db5c3c] font-gotham-rounded-bold text-lg mb-2">No Orders Found</h3>
+                            <p className="text-gray-600 mb-6">You haven't placed any orders yet.</p>
+                            {/* <Link
+                                href="/occasions"
+                                className="bg-[#197d8e]  text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all inline-block"
+                            >
+                                Start Shopping
+                            </Link> */}
+                        </div>
                     ) : (
                         Object.entries(groupOrdersByOrderNo()).map(([orderNo, orderGroup]) => (
                             <div key={orderNo} className="w-full">

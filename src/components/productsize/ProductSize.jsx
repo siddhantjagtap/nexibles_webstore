@@ -39,11 +39,11 @@ export default function ProductSize() {
 
     // Set price based on selected size
     let price;
-    if (size.name === "NexiSmall") {
-      price = "50";
-    } else if (size.name === "NexiMedium") {
-      price = "60";
-    }
+    // if (size.name === "NexiSmall") {
+    //   price = "50";
+    // } else if (size.name === "NexiMedium") {
+    //   price = "60";
+    // }
 
     const updatedCart = existingCart.map((item) => {
       if (item.id === parseInt(pouchId, 10)) {

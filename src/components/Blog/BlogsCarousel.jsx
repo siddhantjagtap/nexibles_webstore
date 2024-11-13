@@ -35,7 +35,11 @@ const DesktopBlogCard = ({ title, imageSrc, index }) => {
       </div>
       <div className="flex flex-col flex-grow justify-between">
         <div className="text-center mt-4 px-2">
-          <h3 className="text-white text-lg mb-4">{title}</h3>
+          {/* <h3 className="text-white text-lg mb-4">{title}</h3> */}
+         
+          <h3 className="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 font-gotham-book line-clamp-4 overflow-hidden text-ellipsis">
+            {title}
+          </h3>
         </div>
         <div className="text-center">
           <Link href={`/blog/${slug}`} passHref>
@@ -139,7 +143,7 @@ const BlogCarousel = () => {
               alt="butterflies"
               width={64}
               height={64}
-              className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
+              className="inline-block font-gotham-rounded-bold w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mt-[-2rem] sm:mt-[-2.5rem] md:mt-[-3rem]"
             />
             More topics you might be interested in
           </h2>

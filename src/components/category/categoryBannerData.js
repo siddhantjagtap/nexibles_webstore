@@ -7,12 +7,13 @@ import EngagementIcon from "../../../public/Category Page/Occassions/Engagement 
 import AnniversaryIcon from "../../../public/Category Page/Occassions/Anniversary Category Banner.svg";
 import NewBeginningsIcon from "../../../public/Category Page/Occassions/New Beginnings Category Banner.svg";
 import GraduationIcon from "../../../public/Category Page/Occassions/Graduation Category Banner.svg";
+import PetBirthday from "../../../public/Category Page/Occassions/Pet Birthday Category Banner.svg";
 
 export const categoryBannerData = {
   diwali: {
     title: "Diwali",
     description:
-      "Light up your diwali with our vibrant pouches that bring joy and a personal touch to your festive celebrations.",
+      "Unbox Tradition with a Modern Twist",
     bgColor: "#f9e2b2",
 
     textColor: "#db5c3c",
@@ -22,7 +23,7 @@ export const categoryBannerData = {
   birthday: {
     title: "Birthday",
     description:
-      "Make their day extra special with our personalized birthday pouches filled with love and celebration.",
+      "The Ultimate Birthday Surprise!",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: BirthdayIcon,
@@ -31,7 +32,7 @@ export const categoryBannerData = {
   wedding: {
     title: "Wedding",
     description:
-      "Celebrate love with our elegant wedding pouches that add charm to your special moments.",
+      "Unbox Timeless Elegance for Your Special Day",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: WeddingIcon,
@@ -40,7 +41,7 @@ export const categoryBannerData = {
   graduation: {
     title: "Graduation",
     description:
-      "Celebrate academic achievements with our specially designed graduation pouches.",
+      "Celebrate Achievement, Wrapped in Style",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: GraduationIcon,
@@ -49,7 +50,7 @@ export const categoryBannerData = {
   baby_shower: {
     title: "Baby Shower",
     description:
-      "Welcome the little one with our adorable baby shower celebration pouches.",
+      "Tiny Hands, Big Love",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: BabyShowerIcon,
@@ -58,7 +59,7 @@ export const categoryBannerData = {
   engagement: {
     title: "Engagement",
     description:
-      "Mark the beginning of forever with our elegant engagement celebration pouches.",
+      "Sealing Promises in Every Fold of Tradition",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: EngagementIcon,
@@ -67,7 +68,7 @@ export const categoryBannerData = {
   anniversary: {
     title: "Anniversary",
     description:
-      "Mark the milestones of your love with elegant pouches that make your anniversary special.",
+      "Your Love Story, Wrapped to Perfection",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: AnniversaryIcon,
@@ -75,17 +76,24 @@ export const categoryBannerData = {
   new_beginnings: {
     title: "New Beginnings",
     description:
-      "Start fresh with our specially curated collection for new beginnings and fresh starts.",
+      "New Beginnings, New Memories",
     bgColor: "#f9e2b2",
     textColor: "#db5c3c",
     icon: NewBeginningsIcon,
   },
+  pet_birthday: {
+    title: "Pet Birthday",
+    description:
+      "Unbox the Fun, Celebrate the Fur-ever Joy!",
+    bgColor: "#f9e2b2",
+    textColor: "#db5c3c",
+    icon: PetBirthday,
+  },
 
   };
 
+  //Unbox the Fun, Celebrate the Fur-ever Joy!
 
-
-  
   //   housewarming: {
   //     title: "Housewarming",
   //     description:
