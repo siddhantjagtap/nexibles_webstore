@@ -1,9 +1,9 @@
 "use client";
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Navbar from "../Home/Navbar";
 import SubmitFormIllustration from "../../../public/Home/Submit-Form-Illustration.svg";
-
+import { toast } from "react-toastify";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     full_name: '',
@@ -15,8 +15,7 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
-  const token = 'irrv211vui9kuwn11efsb4xd4zdkuq'; // API token
-
+  const token = 'irrv211vui9kuwn11efsb4xd4zdkuq';
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -41,7 +40,7 @@ export default function ContactForm() {
       const result = await response.json();
       if (response.ok) {
         setResponseMessage('Thank you! Your message has been sent.');
-        toast('Thank you! Your message has been sent.');
+        toast.success('Thank you! Your message has been sent.');
         setFormData({
           full_name: '',
           email: '',
@@ -62,25 +61,25 @@ export default function ContactForm() {
 
   return (
     <div
-      className="contact-form min-h-screen text-white p-4 md:p-8 md:px-24"
+      className="contact-form min-h-screen text-white p-4 md:p-8 md:px-24 md:pt-8 pt-16"
       style={{
-        backgroundImage: 'url("/Contact_Us_Page/Contact_Us_Background.jpg")',
+        backgroundImage: 'url("/Contact_Us_Page/Contact Us Background.png")',
         backgroundSize: "cover",
       }}
     >
-      <Navbar />
-      <div className="max-w-7xl mx-auto mt-8 md:mt-16">
+      {/* <Navbar /> */}
+      <div className="max-w-7xl mx-auto mt-16 md:mt-16">
         <div className="md:max-w-2/3">
-          <h1 className="text-[#f9e2b2] text-2xl md:text-4xl font-bold mb-4 md:mt-24">
+          <h1 className="text-[#f9e2b2] text-2xl md:text-4xl font-gotham-rounded-bold mb-4 md:mt-24">
             Get in touch
           </h1>
-          <p className="text-lg text-[#fcfdfd] md:text-xl mb-2 md:mb-4 font-semibold">
+          <p className="text-lg text-[#fcfdfd] md:text-xl mb-2 md:mb-4 font-gotham-book">
             Make your journey of personalised gifting easy with us.
           </p>
-          <p className="text-lg text-[#fcfdfd] md:text-xl font-semibold">
+          <p className="text-lg text-[#fcfdfd] md:text-xl font-gotham-book">
             Do you have any questions? Please contact us right away.
           </p>
-          <p className="text-lg md:text-xl text-[#fcfdfd] font-semibold mb-4">
+          <p className="text-lg md:text-xl text-[#fcfdfd] font-gotham-book mb-4">
             We will be delighted to address any queries you may have!
           </p>
         </div>
@@ -92,7 +91,7 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-[#fcfdfd] mb-1 md:text-xl font-light"
+                    className="block text-[#fcfdfd] mb-1 md:text-xl font-gotham-light"
                   >
                     Name
                   </label>
@@ -100,13 +99,13 @@ export default function ContactForm() {
                     type="text"
                     id="name"
                     placeholder="eg John Smith"
-                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-extralight"
+                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-gotham-light"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-[#fcfdfd] mb-1 md:text-xl font-light"
+                    className="block text-[#fcfdfd] mb-1 md:text-xl font-gotham-light"
                   >
                     Email
                   </label>
@@ -114,13 +113,13 @@ export default function ContactForm() {
                     type="email"
                     id="email"
                     placeholder="eg JohnSmith@gmail.com"
-                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-extralight"
+                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-gotham-light"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="number"
-                    className="block text-[#fcfdfd] mb-1 md:text-xl font-light"
+                    className="block text-[#fcfdfd] mb-1 md:text-xl font-gotham-light"
                   >
                     Number
                   </label>
@@ -128,13 +127,13 @@ export default function ContactForm() {
                     type="tel"
                     id="number"
                     placeholder="eg +91 88745 6xxxx"
-                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-extralight"
+                    className="w-full p-3 rounded-2xl bg-transparent border border-white text-[#fcfdfd] placeholder-white font-gotham-light"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-[#fcfdfd] mb-1 md:text-xl font-light"
+                    className="block text-[#fcfdfd] mb-1 md:text-xl font-gotham-light"
                   >
                     Subject
                   </label>
@@ -142,56 +141,67 @@ export default function ContactForm() {
                     type="text"
                     id="subject"
                     placeholder="eg Diwali Gifting Inquiry"
-                    className="w-full p-3 rounded-2xl bg-transparent border border-[#fcfdfd] text-[#fcfdfd] placeholder-white font-extralight"
+                    className="w-full p-3 rounded-2xl bg-transparent border border-[#fcfdfd] text-[#fcfdfd] placeholder-white font-gotham-light"
                   />
                 </div>
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-white mb-1 md:text-xl font-light"
+                  className="block text-white mb-1 md:text-xl font-gotham-light"
                 >
                   Message
                 </label>
                 <textarea
                   id="message"
                   placeholder="eg Looking for customised pouches to give as gifts for my diwali party"
-                  className="w-full p-3 rounded-2xl bg-transparent border border-white text-white placeholder-white mb-4 font-extralight"
+                  className="w-full p-3 rounded-2xl bg-transparent border border-white text-white placeholder-white mb-4 font-gotham-light"
                   rows="3"
                 ></textarea>
               </div>
 
               {/* No change to the button layout */}
-              <div className="flex items-center">
+              <div className="flex items-center md:sm:justify-start justify-end">
                 <Image
-                  src={SubmitFormIllustration}
-                  alt="Submit"
-                  width={100}
-                  height={100}
-                  className="mr-4 md:mr-[-1rem] md:w-48 md:h-48"
+                  src="/Home/Submit-Form-Illustration.svg"
+                  alt="Submit Illustration"
+                  width={60}
+                  height={60}
+                  className="mr-4"
                 />
                 <button
                   type="submit"
-                  className="bg-[#db5c3c] text-[#fffdfdc] mb-[6rem] ml-[-1rem] md:px-24 px-4 py-1 rounded-full text-xl md:text-3xl font-bold md:mt-0 mt-[2rem]"
+                  className="bg-[#db5c3c] text-white px-4 py-2 ml-[-1.3rem] mb-[1.2rem] rounded-full font-gotham-rounded-bold text-sm sm:text-base hover:bg-[#0e3e51] transition duration-300"
                 >
                   Submit
                 </button>
               </div>
-              {responseMessage && (
-                <div className="text-white mt-4">
-                  {responseMessage}
-                </div>
-              )}
+
+              {/* <div className="flex items-center justify-end">
+                <Image
+                  src="/Home/Submit-Form-Illustration.svg"
+                  alt="Submit Illustration"
+                  width={60}
+                  height={60}
+                  className="mr-4"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#124e66] text-white px-4 py-2 ml-[-1.3rem] mb-[1.2rem] rounded-full font-gotham-rounded-bold text-sm sm:text-base hover:bg-[#0e3e51] transition duration-300"
+                >
+                  Add to cart
+                </button>
+              </div> */}
             </form>
           </div>
 
           <div className="w-full md:w-[30%]">
             <div className="mb-6">
-              <h2 className="text-[#f9e2b2] font-bold text-xl md:text-2xl">
+              <h2 className="text-[#f9e2b2] font-gotham-rounded-bold text-xl md:text-2xl">
                 Address
               </h2>
-              <p className="text-base md:text-mx text-[#fcfdfd] font-normal">
-              Unit A6C, Lodha Industrial & Logistics Park - II,
+              <p className="text-base md:text-mx text-[#fcfdfd] font-gotham-light">
+                Unit A6C, Lodha Industrial & Logistics Park - II,
                 <br />
                 Usatane Village, Navi Mumbai,
                 <br />
@@ -202,20 +212,24 @@ export default function ContactForm() {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-[#f9e2b2] font-bold text-xl md:text-xl">
+              <h2 className="text-[#f9e2b2] font-gotham-rounded-bold text-xl md:text-xl">
                 Call us
               </h2>
-              <p className="text-base md:text-mx font-bold text-[#fcfdfd]">
-                +91 9821045101
+              <p className="text-base md:text-mx font-light text-[#fcfdfd]">
+                <a href="tel:+919821045101" className="text-[#fcfdfd]">
+                  +91 9821045101
+                </a>
               </p>
             </div>
 
             <div>
-              <h2 className="text-[#f9e2b2] font-bold text-xl md:text-xl">
+              <h2 className="text-[#f9e2b2] font-gotham-rounded-bold text-xl md:text-xl">
                 Write to us
               </h2>
-              <p className="text-base md:text-mx font-bold text-[#fcfdfd]">
-                sales@artnext.in
+              <p className="text-base md:text-mx font-light text-[#fcfdfd]">
+                <a href="mailto:sales@artnext.in" className="text-[#fcfdfd]">
+                  sales@artnext.in
+                </a>
               </p>
             </div>
           </div>

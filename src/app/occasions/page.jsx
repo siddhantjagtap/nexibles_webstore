@@ -8,7 +8,6 @@ export default function page() {
     <div>
       <Navbar/>
       <Category />
-   
       </div>
   )
 }

@@ -6,23 +6,25 @@ import Mid from "@/components/Home/Mid";
 import Testimonials from "@/components/Home/Testinomials";
 import Blogs from "@/components//Blog/Blogs";
 import OwnDesign from "@/components/Home/OwnDesign";
-import { VersatileAndCelebration } from "@/components/Home/VersatileAndCelebration"; // Correct import
+import { VersatileAndCelebration } from "@/components/Home/VersatileAndCelebration";
 import VersatileGifting from "@/components/Home/VersatileGifting";
 import BrandValues from "@/components/Home/BrandValue";
+import PopularProducts from "@/components/Blog/PopularProducts";
 
 export default function Page() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Mid />
-      {/* <VersatileGifting/> */}
-      <VersatileAndCelebration />
-       {/* Correct usage */}
-      <Testimonials />
-      <OwnDesign />
-      <Blogs />
-      <Footer />
+      <div className="[&>nav]:!bg-white">
+        <Navbar />
+        <Hero />
+        <Mid />
+        <VersatileAndCelebration />
+        <BrandValues />
+        <Testimonials />
+        <OwnDesign />
+        <Blogs />
+        <Footer />
+      </div>
     </>
   );
 }

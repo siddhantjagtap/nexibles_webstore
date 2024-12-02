@@ -17,12 +17,16 @@ module.exports = {
         'gotham-bold': ['Gotham_Bold', 'sans-serif'],
         'gotham-book': ['Gotham_Book', 'sans-serif'],
         'gotham-light': ['Gotham_Light', 'sans-serif'],
-        'gotham-medium': ['Gotham_Medium', 'sans-serif'],
         'gotham-regular': ['Gotham_Regular', 'sans-serif'],
         'gotham-rounded-bold': ['Gotham_Rounded_Bold', 'sans-serif'],
         'gotham-medium-italic': ['Gotham_Medium_Italic', 'sans-serif'],
+        'gotham-rounded-medium': ['Gotham_Rounded_Medium', 'sans-serif'],
+        'quattrocento-bold': ['QuattrocentoSans_Bold', 'sans-serif'],
+        'quattrocento-bolditalic': ['QuattrocentoSans_BoldItalic', 'sans-serif'],
+        'quattrocento-italic': ['QuattrocentoSans_Italic', 'sans-serif'],
+        'quattrocento-regular': ['QuattrocentoSans_Regular', 'sans-serif'],
         'Mochiy': ['Mochiy Pop One', 'sans-serif']
-      },
+      },      
       fontSize: {
         'pt-8': '8pt',
         'pt-10': '10pt',
@@ -44,6 +48,20 @@ module.exports = {
         'pt-72': '72pt',
         'pt-75': '75pt',
         'pt-96': '96pt',
+      },
+      keyframes: {
+        'butterfly-spin': {
+          '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
+          '50%': { transform: 'rotate(180deg) scale(1.2)' },
+        },
+        'butterfly-pulse': {
+          '0%, 100%': { transform: 'scale(1)', opacity: 0.2 },
+          '50%': { transform: 'scale(1.1)', opacity: 0.4 },
+        }
+      },
+      animation: {
+        'butterfly-spin': 'butterfly-spin 3s ease-in-out infinite',
+        'butterfly-pulse': 'butterfly-pulse 2s ease-in-out infinite',
       }
     },
   },

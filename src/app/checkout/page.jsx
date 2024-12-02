@@ -1,5 +1,5 @@
 "use client";
-import Checkout from "@/components/Checkout/Checkout";
+import Checkout from "@/components/checkout/Checkout";
 import Footer from "@/components/Home/Footer";
 import Navbar from "@/components/Home/Navbar";
 import React, { Suspense, useEffect, useState } from "react";
@@ -19,7 +19,7 @@ function Page() {  // Keep the function name lowercase
           {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
           }
         );

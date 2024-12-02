@@ -1,3 +1,4 @@
+import Loader from '@/components/comman/Loader'
 import Footer from '@/components/Home/Footer'
 import Navbar from '@/components/Home/Navbar'
 import AddMessage from '@/components/message/AddMessage'
@@ -7,7 +8,9 @@ export default function page() {
   return (
     <div>
     <Navbar/>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>
+      <Loader/>
+    </div>}>
     <AddMessage/>
     </Suspense>
     <Footer/>

@@ -45,7 +45,7 @@ function Thankyou() {
     <div
       className="flex items-center justify-center h-screen bg-cover"
       style={{
-        backgroundImage: "url('/Contact_Us_Page/Contact_Us_Background.jpg')",
+        backgroundImage: "url('/Thank_You_Page/Thank You Page Background.png')",
       }}
     >
       <div className="text-center px-4 lg:px-64">
@@ -57,7 +57,7 @@ function Thankyou() {
             height={192}
             className="w-[120px] h-[120px] sm:w-[192px] sm:h-[192px] "
           />
-          <h1 className="text-4xl sm:text-6xl lg:text-[5rem] font-bold text-yellow-400 lg:ml-6 mt-4 lg:mt-0">
+          <h1 className="text-5xl sm:text-6xl lg:text-[6rem] font-gotham-rounded-bold text-yellow-400 lg:ml-6 mt-4 lg:mt-0">
             Thank You!
           </h1>
           <img
@@ -69,27 +69,27 @@ function Thankyou() {
         {orderNo && (
           <Link href={`/my-orderhistory`}>
             <div className="mt-6 mb-6">
-              <p className="text-xl sm:text-2xl text-white font-semibold">
+              <p className="text-xl sm:text-2xl text-white font-gotham-book">
                 Order Number: <span className="text-yellow-300">{orderNo}</span>
               </p>
             </div>
           </Link>
         )}
-        <div className="mt-">
-          <p className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-semibold">
+        <div className="mt- ">
+          <p className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-gotham-book">
             For ordering from NexiGifting. You shall receive an email soon
             confirming your order and the{" "}
-            <span className="font-bold text-yellow-300">tracking link</span>{" "}
+            <span className="font-gotham-book text-yellow-300">tracking link</span>{" "}
             with it.
           </p>
-          <div className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-semibold">
+          <div className="text-lg sm:text-xl lg:text-xl text-white mb-4 md:font-gotham-book">
             If you have any questions or need assistance, feel free to reach out
             to us at{" "}
             <a href="mailto:sales@artnext.in" className="text-yellow-300">
               sales@artnext.in
             </a>
           </div>
-          <p className="text-lg sm:text-xl lg:text-xl text-white md:font-semibold">
+          <p className="text-lg sm:text-xl lg:text-xl text-white md:font-gotham-book">
             Thanks again, and we hope you enjoy your personalised pouches!
           </p>
         </div>

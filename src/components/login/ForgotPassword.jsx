@@ -22,7 +22,7 @@ const ForgotPassword = ({ onClose }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emailAddress: email }), // Change "email" to "emailAddress"
+        body: JSON.stringify({ emailAddress: email }),
       });
       const data = await response.json();
       if (data.status === "success") {
@@ -37,7 +37,6 @@ const ForgotPassword = ({ onClose }) => {
     }
   };
 
-
   return (
     <div
       ref={modalRef}
@@ -51,16 +50,16 @@ const ForgotPassword = ({ onClose }) => {
           </button>
         </div>
         <div className="p-6">
-          <h1 className="text-3xl font-bold text-center text-gray-900 mb-4">Forgot Password</h1>
-          <p className="text-lg text-gray-700 mb-6">Enter your email address to reset your password.</p>
+          <h1 className="text-3xl font-gotham-rounded-bold text-center text-[#db5c3c] mb-4">Forgot Password</h1>
+          <p className="text-md text-[#197d8e] mb-6">Enter your email address to reset your password.</p>
           <div className="flex justify-center items-center">
             <img
               src="/login/reset-password.png"
               alt="forgot_password"
-              className="h-16" />
+              className="h-16 " />
           </div>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <label htmlFor="email" className="text-gray-900 font-semibold">
+            <label htmlFor="email" className="text-[#197d8e] font-gotham-rounded-bold">
               Email:
             </label>
             <input
@@ -68,10 +67,10 @@ const ForgotPassword = ({ onClose }) => {
               type="email"
               placeholder="example@email.com"
               required
-              className="border border-gray-900 rounded-full px-4 py-2 outline-none"
+              className="border border-gray-900 rounded-full px-4 py-2 outline-none font-gotham-light"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="bg-[#111B36] text-white py-2 rounded-full transition-colors duration-300">
+            <button className="bg-[#db5c3c] text-white py-2  font-gotham-rounded-bold rounded-full transition-colors duration-300">
               Submit
             </button>
           </form>

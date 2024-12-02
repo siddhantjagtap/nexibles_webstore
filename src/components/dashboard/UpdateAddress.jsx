@@ -1,8 +1,7 @@
 "use client"
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
-    console.log("addressID",addressId);
+import React, { useState, useEffect } from 'react';
+import { RxCross2 } from 'react-icons/rx';
+const UpdatedAddress = ({ addressId, setShowUpdateAddress }) => {
     const [formData, setFormData] = useState({
         title: '',
         address: '',
@@ -12,8 +11,8 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
         zip: '',
         country: 'India',
         phone: '',
+        addressType: '',
     });
-    console.log("formData",formData);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -25,6 +24,7 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
             const response = await fetch(`https://nexiblesapp.barecms.com/api/customerAddress/${addressId}`, {
                 method: 'PATCH',
@@ -44,7 +44,6 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
         }
     };
 
-
     useEffect(() => {
         const fetchAddress = async () => {
             try {
@@ -56,9 +55,9 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
                     const responseData = await response.json();
                     if (responseData.success === 1 && responseData.data && responseData.data.length > 0) {
                         const addressData = responseData.data[0];
-                        console.log('Address Data:', addressData);
                         setFormData({
                             title: addressData.title,
+                            floor: addressData.floor,
                             address: addressData.address,
                             address2: addressData.address2,
                             city: addressData.city,
@@ -66,7 +65,7 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
                             zip: addressData.zip,
                             country: addressData.country,
                             phone: addressData.phone,
-                            isDefault: addressData.isDefault
+                            addressType: addressData.addressType,
                         });
                     } else {
                         console.error('No data found for addressId:', addressId);
@@ -81,91 +80,136 @@ const UpdatedAddress = ({addressId,setShowUpdateAddress}) => {
     }, [addressId]);
 
     return (
-        <div className="bg-white py-10">
-        <div>
-            <h2 className="text-gray-900 font-bold text-3xl px-8">Update Your Address</h2>
+        <div className="bg-white py-10 relative">  {/* Added relative positioning */}
+            <button
+                onClick={() => setShowUpdateAddress(false)}
+                className="absolute top-0 right-0 text-black"
+            >
+                <RxCross2 className="cursor-pointer" size={34} />
+            </button>
+            <div>
+                <h2 className="text-[#db5c3c] font-gotham-rounded-bold text-3xl px-8">Update Your Address</h2>
+            </div>
+            <form onSubmit={handleSubmit} className="py-4 px-8">
+                <div className="flex flex-col space-y-4">
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Company Name"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="floor"
+                        value={formData.floor}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Floor"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Address 1"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="address2"
+                        value={formData.address2}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Address 2"
+                    />
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="City/Town"
+                        required
+                    />
+                    <select
+                        name="state"
+                        value={formData.state}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                    >
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Delhi">Delhi</option>
+                    </select>
+                    <input
+                        type="text"
+                        name="zip"
+                        value={formData.zip}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="ZIP"
+                        required
+                    />
+                    <select
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                    >
+                        <option value="India">India</option>
+                        <option value="Germany">Germany</option>
+                    </select>
+                    <input
+                        type="text"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                        placeholder="Phone"
+                        required
+                        maxLength={10}
+                        minLength={10}
+                    />
+                    <select
+                        name="addressType"
+                        value={formData.addressType}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setFormData((prevState) => ({
+                                ...prevState,
+                                addressType: value === 'Others' ? '' : value,
+                            }));
+                        }}
+                        className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
+                    >
+                        <option value="">Select Address Type</option>
+                        <option value="Home">Home</option>
+                        <option value="Office">Office</option>
+                        {/* <option value="Others">Others</option> */}
+                    </select>
+                    {/* {formData.addressType === '' && (
+                        <input
+                            type="text"
+                            name="addressType"
+                            value={formData.addressType}
+                            onChange={handleChange}
+                            className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none mt-2"
+                            placeholder="Please specify"
+                            required
+                        />
+                    )} */}
+                </div>
+                <div className="mt-4">
+                    <button type="submit" className="bg-[#db5c3c] rounded-full font-gotham-rounded-bold w-full text-white px-8 py-2">
+                        Use this address
+                    </button>
+                </div>
+            </form>
         </div>
-        <form onSubmit={handleSubmit} className="py-4 px-8">
-            <div className="flex flex-col space-y-4">
-                <input
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="Company Name"
-                    required
-                />
-                <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="Address 1"
-                    required
-                />
-                <input
-                    type="text"
-                    name="address2"
-                    value={formData.address2}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="Address 2"
-                />
-                <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="City/Town"
-                    required
-                />
-                <select
-                    name="state"
-                    value={formData.state}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                >
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Delhi">Dehli</option>
-                </select>
-                <input
-                    type="text"
-                    name="zip"
-                    value={formData.zip}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="ZIP"
-                    required
-                />
-                <select
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                >
-                    <option value="India">India</option>
-                    <option value="Germany">Germany</option>
-                </select>
-                <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="border-2 rounded-full text-gray-900 px-4 py-1 outline-none"
-                    placeholder="Phone"
-                    required
-                />
-            </div>
-            <div className="mt-4">
-                <button type="submit" className="bg-[#30384E] rounded-md text-white px-8 py-2 ">
-                    Use this address
-                </button>
-            </div>
-        </form>
-    </div>
     );
 };
 

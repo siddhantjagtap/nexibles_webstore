@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-
+import logo from "../../../public/Home/Nexigiting Logo Without Background.gif";
 const CNFPassword = ({ token }) => {
-  console.log("token in cnf password",token);
+  console.log("token in cnf password", token);
   const router = useRouter();
 
   const [newPassword, setNewPassword] = useState("");
@@ -43,13 +43,13 @@ const CNFPassword = ({ token }) => {
       <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
         <div className="mb-8 text-center">
           <img
-            src="/home/nexible.gif"
+            src={logo}
             alt="logo"
             className="h-12 mx-auto mb-4"
           />
           <hr className="mb-2" />
-          <h2 className="text-2xl font-bold">Enter Your New Password</h2>
-          <p className="text-sm text-gray-600">
+          <h2 className="text-2xl font-gotham-rounded-bold">Enter Your New Password</h2>
+          <p className="text-sm font-gotham-light text-gray-600">
             Your new password must be different from previous passwords.
           </p>
           <div className="flex justify-center items-center">
@@ -64,7 +64,7 @@ const CNFPassword = ({ token }) => {
           <input
             type="password"
             placeholder="New Password"
-            className="border-2 border-gray-900 rounded-full px-4 py-2 outline-none"
+            className="border-2 border-[#197d8e] rounded-full px-4 py-2 outline-none font-gotham-light"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
@@ -72,14 +72,14 @@ const CNFPassword = ({ token }) => {
           <input
             type="password"
             placeholder="Confirm Password"
-            className="border-2 border-gray-900 rounded-full px-4 py-2 outline-none"
+            className="border-2 border-[#197d8e] rounded-full px-4 py-2 outline-none font-gotham-light"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
           <button
             type="submit"
-            className="bg-[#111B36] text-white rounded-full px-6 py-2 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
+            className="bg-[#db5c3c] text-white rounded-full px-6 py-2 font-gotham-rounded-bold hover:bg-[#197d8e] transition-colors duration-300"
           >
             Reset Password
           </button>

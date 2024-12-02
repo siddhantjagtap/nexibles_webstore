@@ -4,6 +4,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { useAuth } from '@/utils/authContext';
 import { useRouter } from 'next/navigation';
 import { FiDownload } from "react-icons/fi";
+import { Link } from 'lucide-react';
 
 
 const MyOrderHistory = () => {
@@ -117,61 +118,76 @@ const MyOrderHistory = () => {
 
     return (
         <div>
-            <div className="bg-white mt-10 py-20 px-10">
-                {/* <h2 className="mb-6 font-bold md:text-2xl text-gray-900">Order History & Re-Order</h2> */}
+            <div className="bg-white md:mt-10 md:py-20 px-8 mb-8">
+                {/* <h2 className="mb-6 font-gotham-bold md:text-2xl text-gray-900">Order History & Re-Order</h2> */}
 
 
                 <div className="space-y-6">
                     {orders.length === 0 ? (
-                        <p className="text-gray-900">No orders found.</p>
+                        <div className="border border-[#197d8e] rounded-3xl py-8 px-6 text-center">
+                            <svg
+                                className="mx-auto h-12 w-12 text-[#197d8e] mb-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                />
+                            </svg>
+                            <h3 className="text-[#db5c3c] font-gotham-rounded-bold text-lg mb-2">No Orders Found</h3>
+                            <p className="text-gray-600 mb-6">{`You haven't placed any orders yet.`}</p>
+                        </div>
                     ) : (
                         Object.entries(groupOrdersByOrderNo()).map(([orderNo, orderGroup]) => (
                             <div key={orderNo} className="w-full">
                                 <div className="h-auto border border-[#197d8e] rounded-3xl">
-                                    <div className="font-bold text-xl text-[#db5c3c] border-b border-[#197d8e] p-6">All Orders</div>
+                                    <div className="font-gotham-bold text-xl text-[#db5c3c] border-b border-[#197d8e] p-6">All Orders</div>
                                     {orderGroup.map(order => (
                                         <div key={order.id} className="flex flex-col p-4 lg:flex-row lg:space-x-10 py-2 md:py-2">
-                                            {/* Order Info */}
                                             <div className="text-gray-900">
                                                 <div className="space-y-2 mt-2">
                                                     <p><span className="text-sm">Order Number:</span> </p>
-                                                    <p className="font-bold text-md">#{order.orderNo}</p>
+                                                    <p className="font-gotham-bold text-md">#{order.orderNo}</p>
                                                     <p className="text-sm">Status</p>
-                                                    <p className="font-bold text-[#db5c3c]">{order.payment_status}</p>
-
-                                                    {/* Order Details & Track Shipment buttons */}
+                                                    <p className="font-gotham-bold text-[#db5c3c]">{order.payment_status}</p>
                                                     <div className='flex flex-col space-y-4 w-auto'>
                                                         <button
-                                                            className='bg-[#db5c3c] p-3 md:w-[20rem] font-bold rounded-full text-white'
+                                                            className='bg-[#db5c3c] p-3 md:w-[20rem] font-gotham-bold rounded-full text-white'
                                                             onClick={() => toggleOrderDetails(orderNo)}
                                                         >
                                                             {visibleOrder === orderNo ? "Hide Details" : "Order Details"}
                                                         </button>
-                                                        {/* <button className='bg-[#0f1729] p-3 md:w-[20rem] font-bold rounded-full text-white'>
-                                                            Track Shipment
-                                                        </button> */}
                                                     </div>
-
-                                                    {/* Order details - Show image, price, and name if visible */}
                                                     {visibleOrder === orderNo && (
                                                         <div className="mt-4 p-4 ">
-                                                            {/* Image */}
                                                             <img
                                                                 src={`https://nexiblesapp.barecms.com/uploads/${order.image}`}
                                                                 alt={order.product_name}
-                                                                className="h-52 w-full object-cover lg:h-auto lg:w-[350px]"
+                                                                className="md:h-52 h-[9rem] w-30 md:w-full object-cover lg:h-[20rem] lg:w-[15rem]"
                                                             />
-                                                            {/* Name & Price */}
-                                                            <h2 className="font-bold text-md mt-4">{order.product_name}</h2>
-                                                            <p className="font-bold text-md mt-2">Price: ₹{order.price}</p>
-                                                            <p className="font-bold text-md mt-2">Quantity: {order.quantity}</p>
-                                                            <p className="font-bold text-md mt-2">
-                                                                Ordered Date: {new Date(order.orderDate).toLocaleDateString('en-GB', {
-                                                                    day: '2-digit',
-                                                                    month: '2-digit',
-                                                                    year: 'numeric',
-                                                                })}
-                                                            </p>
+                                                            <div className="font-gotham-light text-sm">
+                                                                <h2 className=" md:text-md mt-4">{order.product_name}</h2>
+                                                                <p className=" md:text-md mt-2">Price: ₹{order.price}</p>
+                                                                <p className=" md:text-md mt-2">Quantity: {order.quantity}</p>
+                                                                <p className=" md:text-md mt-2">Name: {order.customer_name}</p>
+                                                                <p className=" md:text-md mt-2">Size: {order.size}</p>
+                                                                <p className=" md:text-md mt-2">Custom Message: {order.custom_message}</p>
+                                                                <p className=" md:text-md mt-2">Uploaded Picture: {order.uploaded_picture}</p>
+                                                                <p className=" md:text-md mt-2">Uploaded Receivers: {order.uploaded_receivers}</p>
+                                                                <p className="font-gotham-light text-md mt-2">
+                                                                    Ordered Date: {new Date(order.orderDate).toLocaleDateString('en-GB', {
+                                                                        day: '2-digit',
+                                                                        month: '2-digit',
+                                                                        year: 'numeric',
+                                                                    })}
+                                                                </p>
+                                                            </div>
+
                                                         </div>
                                                     )}
                                                 </div>

@@ -17,7 +17,6 @@ const useFetchCategories = (token) => {
         });
         const result = await response.json();
         if (result.status === 'success') {
-          // Filter the data where origin is 'gifting' (case-insensitive)
           const filteredData = result.data.filter(item =>
             item.origin && item.origin.toLowerCase() === 'nexigifting'
           );
