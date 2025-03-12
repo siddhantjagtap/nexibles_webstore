@@ -4,8 +4,10 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 const CNFPassword = ({ token }) => {
-  console.log("token in cnf password",token);
+  console.log("token in cnf password", token);
   const router = useRouter();
+  const token2 = process.env.NEXT_PUBLIC_API_KEY;
+  const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,12 +20,12 @@ const CNFPassword = ({ token }) => {
     }
 
     try {
-      const response = await fetch("https://nexiblesapp.barecms.com/api/login/reset-password", {
+      const response = await fetch(`${APIURL}/api/login/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, newPassword }),
+        body: JSON.stringify({ token2, newPassword }),
       });
       const data = await response.json();
       if (response.ok) {

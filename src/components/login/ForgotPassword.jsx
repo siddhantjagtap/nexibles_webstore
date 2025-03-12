@@ -7,6 +7,8 @@ import { useState } from "react";
 const ForgotPassword = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const modalRef = useRef();
+  const token = process.env.NEXT_PUBLIC_API_KEY;
+  const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -16,13 +18,17 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const baseUrl = window.location.origin;
     try {
-      const response = await fetch("https://nexiblesapp.barecms.com/api/login/forgot-password", {
+      const response = await fetch(`${APIURL}/api/login/forgot-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emailAddress: email }), // Change "email" to "emailAddress"
+        body: JSON.stringify({ 
+          emailAddress: email, 
+          baseUrl: baseUrl 
+        }),// Change "email" to "emailAddress"
       });
       const data = await response.json();
       if (data.status === "success") {

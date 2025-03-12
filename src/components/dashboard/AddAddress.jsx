@@ -4,6 +4,8 @@ import { useAuth } from '@/utils/authContext';
 import { RxCross2 } from 'react-icons/rx';
 
 const AddAddress = (props) => {
+    const token = process.env.NEXT_PUBLIC_API_KEY;
+    const APIURL = process.env.NEXT_PUBLIC_API_URL;  
     const { user } = useAuth();
     const [formData, setFormData] = useState({
         customerId: '',
@@ -48,7 +50,7 @@ const AddAddress = (props) => {
             // Log the data being sent
             console.log('Submitting form data:', formDataWithCustomerId);
 
-            const response = await fetch('https://nexiblesapp.barecms.com/api/customerAddress', {
+            const response = await fetch(`${APIURL}/api/customerAddress`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,18 +74,18 @@ const AddAddress = (props) => {
     };
 
     return (
-        <div className="bg-white py-2 relative">
+        <div className="bg-white py-10 relative">
             <button
                 onClick={() => props.setShowAddAddress(false)}
-                className="absolute top-0 right-0 "
+                className="absolute top-0 right-0 text-black"
             >
-                <RxCross2 className="cursor-pointer" size={18} />
+                <RxCross2 className="cursor-pointer" size={34} />
             </button>
             <div className="">
-                <h2 className="text-[#db5c3c] pt-4 font-gotham-rounded-bold text-pt-20 px-8">Enter Your New Address</h2>
+                <h2 className="text-gray-900 font-bold text-3xl px-8">Enter Your New Address</h2>
             </div>
             <form onSubmit={handleSubmit} className="py-4 px-8">
-                <div className="flex flex-col space-y-4 font-gotham-light">
+                <div className="flex flex-col space-y-4">
                     {/* Previous inputs remain the same */}
                     <input
                         type="text"
@@ -192,8 +194,8 @@ const AddAddress = (props) => {
                     </div>
                 </div>
 
-                <div className="mt-6">
-                    <button type="submit" className="bg-[#db5c3c] rounded-full font-gotham-rounded-bold w-full text-white px-8 py-2">
+                <div className="mt-4">
+                    <button type="submit" className="bg-[#30384E] rounded-md text-white px-8 py-2">
                         Use this address
                     </button>
                 </div>

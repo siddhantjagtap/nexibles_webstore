@@ -1,46 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Add this to your CSS file */
-.placeholder-white::placeholder {
-  color: white;
+.containers {
+ padding:0 6%;
 }
 
+/* .product-image-magnifier {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  } */
 
-@layer base {
-    @font-face {
-      font-family: 'Gotham_Black';
-      src: url('/Font/Gotham_Black.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Bold';
-      src: url('/Font/Gotham_Bold.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Gotham_Book';
-      src: url('/Font/Gotham_Book.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Light';
-      src: url('/Font/Gotham_Light.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Medium';
-      src: url('/Font/Gotham_Medium.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Regular';
-      src: url('/Font/Gotham_Regular.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Rounded_Bold';
-      src: local('Gotham_Rounded_Bold'),
-      url('/Font/Gotham_Rounded_Bold.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Gotham_Medium_Italic';
-      src: url('/Font/Gotham_Medium_Italic.otf') format('opentype');
-    }
+  .custom-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
   }
+  
+  .list-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-item em {
+    font-style: italic;
+  }
+  
+  .description-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  

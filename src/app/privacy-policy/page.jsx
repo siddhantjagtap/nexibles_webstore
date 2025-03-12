@@ -1,19 +1,16 @@
-import Footer from '@/components/Home/Footer'
-import Navbar from '@/components/Home/Navbar'
-import Privacy from '@/components/Privacy-policy/Privacy'
 import React from 'react'
+import Navbar from '@/components/shop/Navbar'
+import Footer from '@/components/shop/Footer'
+import PrivacyPolicy from '@/components/static-pages/PrivacyPolicy'
 
-function page() {
+const page = () => {
   return (
-    <div className="[&>nav]:!bg-white">
-    
+    <div>
         <Navbar />
-          
-        <Privacy />
-      <Footer />
-
-      </div>
-  );
+        <PrivacyPolicy />
+        <Footer />
+    </div>
+  )
 }
 
 export default page

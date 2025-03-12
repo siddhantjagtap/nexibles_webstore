@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 const UpdatedAddress = ({ addressId, setShowUpdateAddress }) => {
+    const token = process.env.NEXT_PUBLIC_API_KEY;
+    const APIURL = process.env.NEXT_PUBLIC_API_URL;
+
     const [formData, setFormData] = useState({
         title: '',
         address: '',
@@ -26,7 +29,7 @@ const UpdatedAddress = ({ addressId, setShowUpdateAddress }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`https://nexiblesapp.barecms.com/api/customerAddress/${addressId}`, {
+            const response = await fetch(`${APIURL}/api/customerAddress/${addressId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +51,7 @@ const UpdatedAddress = ({ addressId, setShowUpdateAddress }) => {
         const fetchAddress = async () => {
             try {
                 if (addressId) {
-                    const response = await fetch(`https://nexiblesapp.barecms.com/api/customerAddress/${addressId}`);
+                    const response = await fetch(`${APIURL}/api/customerAddress/${addressId}`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch address');
                     }
@@ -202,7 +205,7 @@ const UpdatedAddress = ({ addressId, setShowUpdateAddress }) => {
                     )} */}
                 </div>
                 <div className="mt-4">
-                    <button type="submit" className="bg-[] rounded-md text-white px-8 py-2">
+                    <button type="submit" className="bg-[#30384E] rounded-md text-white px-8 py-2">
                         Use this address
                     </button>
                 </div>

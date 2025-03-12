@@ -4,7 +4,9 @@ import jwt from 'jsonwebtoken';
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 
+
 const AuthContext = createContext();
+
 export const useAuth = () => {
     return useContext(AuthContext);
 };
@@ -23,10 +25,13 @@ export const AuthProvider = ({ children }) =>
                 toast.error('Session Expired');
                 localStorage.removeItem('token');
             }
+
         } catch (error) {
             console.error('Error decoding token', error);
             localStorage.removeItem('token');
+
         }
+
     };
 
     useEffect(() => {
@@ -47,7 +52,8 @@ export const AuthProvider = ({ children }) =>
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('token');
+        localStorage.clear();
+        window.location.reload();
         navigation.push('/login');
     };
 
@@ -59,4 +65,3 @@ export const AuthProvider = ({ children }) =>
 
     return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 };
-

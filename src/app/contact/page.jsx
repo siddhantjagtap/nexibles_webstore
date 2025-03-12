@@ -1,22 +1,16 @@
-import Contact from '@/components/Contact-us/Contact'
-import MyAccount from '@/components/dashboard/MyAccount'
-import Footer from '@/components/Home/Footer'
-import Navbar from '@/components/Home/Navbar'
-import React from 'react'
-
-function page() {
+import React from "react";
+import Footer from "@/components/shop/Footer";
+import HomeContactForm from "@/components/home/HomeContactForm";
+import Navbar from "@/components/shop/Navbar";
+//page
+const page = () => {
   return (
     <div>
-    <Navbar />
-    <div className="md:flex bg-white containers">
-        <div className="md:w-1/3 w-full">
-            <MyAccount />
-        </div>
-        <Contact />
+      <Navbar />
+        <HomeContactForm />
+          <Footer />
     </div>
-    <Footer />
-</div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

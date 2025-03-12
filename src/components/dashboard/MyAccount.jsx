@@ -1,144 +1,128 @@
 "use client";
 import Link from "next/link";
+import { FaChevronRight } from "react-icons/fa";
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { useAuth } from "@/utils/authContext";
-import Image from "next/image";
-import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
 
 export default function MyAccount() {
-  const { user, logout } = useAuth();
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
+  const handleSelectItem = (index) => {
+    if (selectedIndex === index) {
+      setSelectedIndex(null); // Deselect if clicked again
+    } else {
+      setSelectedIndex(index);
+    }
+    setHoveredIndex(null); // Reset hoveredIndex when item is clicked
+  };
 
   return (
-    <div className="bg-white mt-4 md:mt-9">
-      <div className="px-4 md:px-10 py-10 md:py-20 w-full max-w-[400px]">
-        <div className="mb-4 py-4 md:py-6 px-4 border border-[#197d8e] rounded-3xl flex items-center">
-          <Image
-            src={profile.src}
-            width={30}
-            height={30}
-            className="mr-4"
-            alt="Profile"
-          />
-          <span className="text-[#db5c3c] text-lg md:text-xl font-gotham-rounded-bold">
-            {user?.result?.firstName}
-          </span>
-        </div>
-        <div className="border border-[#197d8e] rounded-3xl overflow-hidden">
-          <button
-            className="w-full border-b border-[#197d8e] py-3 md:py-4 px-4 flex justify-between items-center bg-white"
-            onClick={() => setIsProfileOpen(!isProfileOpen)}
-          >
-            <Link href="my-dashboard" className="text-[#db5c3c] font-gotham-rounded-bold">
-              My Profile
+    <div className="bg-white mt-9">
+      <div className="px-10 py-20">
+        <h3 className="text-gray-900 font-bold text-xl">My Account</h3>
+        <div className="">
+          <ul className="text-gray-900 font-bold mt-4 border-r-8 border-gray-900">
+            <Link href="/my-dashboard">
+              <li
+                className={`cursor-pointer p-3 ${
+                  hoveredIndex === 0 ? "hover:bg-gray-200" : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter(0)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span className="flex items-center">
+                  {hoveredIndex === 0 && <FaChevronRight className="mr-2" />}
+                  Dashboard
+                </span>
+              </li>
             </Link>
-            {isProfileOpen ? (
-              <ChevronUp className="text-[#db5c3c]" size={20} />
-            ) : (
-              <ChevronDown className="text-[#db5c3c]" size={20} />
-            )}
-          </button>
-          {isProfileOpen && (
-            <div className="px-4 py-2 flex flex-col">
-              <Link href="my-dashboard" className="text-gray-500 text-sm  font-gotham-light py-1">
-                Profile Details
-              </Link>
-              <Link href="all-addresses" className="text-gray-500  font-gotham-light text-sm py-1">
-                Address Book
-              </Link>
-            </div>
-          )}
-          <div className="py-3 md:py-2 px-4 border-b border-[#197d8e]">
-            <Link href="my-orderhistory" className="text-[#db5c3c] font-gotham-rounded-bold">
-              My Orders
+            {/*<Link href="/my-dashboard">
+                            <li
+                                className={`cursor-pointer p-3 ${
+                                    selectedIndex === 0 ? "bg-gray-200" : ""
+                                }`}
+                                onMouseEnter={() => handleMouseEnter(0)}
+                                onMouseLeave={handleMouseLeave}
+                                onClick={() => handleSelectItem(0)}
+                            >
+                                <span className="flex items-center">
+                                    {(hoveredIndex === 0 || selectedIndex === 0) && <FaChevronRight className="mr-2" />}
+                                    Dashboard
+                                </span>
+                            </li>
+                        </Link>*/}
+            {/* Other list items */}
+            {/* <Link href="/my-projects">
+                            <li
+                                className={`cursor-pointer p-3 ${hoveredIndex === 1 ? "hover:bg-gray-200" : ""
+                                    }`}
+                                onMouseEnter={() => handleMouseEnter(1)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <span className="flex items-center">
+                                    {hoveredIndex === 1 && <FaChevronRight className="mr-2" />}
+                                    My Projects
+                                </span>
+                            </li>
+                        </Link> */}
+            <Link href="/my-orderhistory">
+              <li
+                className={`cursor-pointer p-3 ${
+                  hoveredIndex === 2 ? "hover:bg-gray-200" : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter(2)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span className="flex items-center">
+                  {hoveredIndex === 2 && <FaChevronRight className="mr-2" />}
+                  Order History & Reorders
+                </span>
+              </li>
             </Link>
-          </div>
-          <div className="py-3 md:py-2 px-4 border-b border-[#197d8e]">
-            <Link href="contact" className="text-[#db5c3c] font-gotham-rounded-bold">
-              Contact Us
+            <Link href="/manageaddress">
+              <li
+                className={`cursor-pointer p-3 ${
+                  hoveredIndex === 3 ? "hover:bg-gray-200" : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter(3)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span className="flex items-center">
+                  {hoveredIndex === 3 && <FaChevronRight className="mr-2" />}
+                  Address
+                </span>
+              </li>
             </Link>
-          </div>
-          <div className="py-3 md:py-2 px-4">
-            <button onClick={logout} className="text-[#db5c3c] font-gotham-rounded-bold">
-              Logout
-            </button>
-          </div>
+            {/* <Link href="/my-uploads">
+                            <li
+                                className={`cursor-pointer p-3 ${hoveredIndex === 4 ? "hover:bg-gray-200" : ""
+                                    }`}
+                                onMouseEnter={() => handleMouseEnter(4)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <span className="flex items-center">
+                                    {hoveredIndex === 4 && <FaChevronRight className="mr-2" />}
+                                    My Uploads
+                                </span>
+                            </li>
+                        </Link>
+                        <li className="hover:bg-gray-200 cursor-pointer p-3">My Design Services</li>
+                        <li className="hover:bg-gray-200 cursor-pointer p-3">Account Settings</li>
+                        <li className="hover:bg-gray-200 cursor-pointer p-3">My Subsciption</li>
+                        <li className="hover:bg-gray-200 cursor-pointer p-3">Favorite Templates</li> */}
+            {/* <li className="hover:bg-gray-200 cursor-pointer p-3">Design Services</li>
+                        <li className="hover:bg-gray-200 cursor-pointer p-3">Brand Kit</li> */}
+          </ul>
         </div>
       </div>
     </div>
   );
 }
-
-
-
-// //old
-// "use client";
-// import Link from "next/link";
-// import { FaChevronRight } from "react-icons/fa";
-// import React, { useState } from 'react';
-// import { ChevronDown, ChevronUp, User } from 'lucide-react';
-// import { useAuth } from "@/utils/authContext";
-// import Image from "next/image";
-// import profile from "../../../public/Homepage/Header_Icon/Profile_Icon.svg";
-// export default function MyAccount() {
-//   const [hoveredIndex, setHoveredIndex] = useState(null);
-//   const [selectedIndex, setSelectedIndex] = useState(null);
-
-//   const handleMouseEnter = (index) => {
-//     setHoveredIndex(index);
-//   };
-
-//   const handleMouseLeave = () => {
-//     setHoveredIndex(null);
-//   };
-//   const { user, logout } = useAuth();
-//   const handleSelectItem = (index) => {
-//     if (selectedIndex === index) {
-//       setSelectedIndex(null); // Deselect if clicked again
-//     } else {
-//       setSelectedIndex(index);
-//     }
-//     setHoveredIndex(null); // Reset hoveredIndex when item is clicked
-//   };
-//   const [isProfileOpen, setIsProfileOpen] = useState(false);
-//   return (
-//     <div className="bg-white mt-9">
-//       <div className="px-10 py-20">
-//         {/* <h3 className="text-[#db5c3c]gray-900 font-bold text-[#db5c3c]xl">My Account</h3> */}
-//         <div className="">
-//         <div className="mb-4 py-6 px-4 border border-[#197d8e] rounded-3xl flex items-center">
-//         <Image src={profile.src} width={30} height={30} className="mr-4"/>
-//         <span className="text-[#db5c3c] text-xl font-bold">{user?.result?.firstName}</span>
-//       </div>
-//       <div className="border border-[#197d8e] rounded-3xl overflow-hidden">
-//         <button
-//           className="w-full border-b border-[#197d8e] py-4 px-4 flex justify-between items-center bg-white"
-//           onClick={() => setIsProfileOpen(!isProfileOpen)}
-//         >
-//           <Link href="my-dashboard" className="text-[#db5c3c] font-bold ">My Profile</Link>
-//           {isProfileOpen ? <ChevronUp className="text-[#db5c3c] " size={20} /> : <ChevronDown className="text-[#db5c3c]gray-400" size={20} />}
-//         </button>
-//         {isProfileOpen && (
-//           <div className="px-4 py-2 flex flex-col ">
-//             <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Profile Details</Link>
-//             <Link href="my-dashboard" className="text-gray-500 text-sm py-1">Address Book</Link>
-//           </div>
-//         )}
-//         <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
-//         <Link href="my-orderhistory" className="text-[#db5c3c] font-bold">My Orders</Link>
-//       </div>
-
-//       <div className="mt-2 py-2 px-4 border-b border-[#197d8e]">
-//         <Link href="contact" className="text-[#db5c3c] font-bold">Contact Us</Link>
-//       </div>
-
-//       <div className="mt-2 py-2 px-4">
-//         <button onClick={logout} className="text-[#db5c3c] font-bold">Logout</button>
-//       </div>
-//       </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
